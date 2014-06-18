@@ -1,0 +1,76 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		<br><input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+  <tr>
+  	<td> 认证类型变更>> 合计：$result[count]</td>
+  </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+    <tr bgcolor="#F2F2F2">
+      <th align="center"></th>
+      <th height="22" align="center">操作</th>
+      <th align="center"><font color=#003399>项目编号</th>
+	  <th align="center"><font color=#003399>合同编号</th>
+      <th align="center">组织名称</th>
+      <th align="center">合同来源</th>
+      <th align="center">体系标准</th>
+	  <th align="center">产品/范围</th>
+	  <th align="center">审核类型</th>
+      <th align="center">计划开始</th>
+      <th align="center">监审最后日</th>
+
+      <th align="center">状态</th>
+    </tr>
+<!--
+EOT;
+foreach($result[data] as $k=>$v) {
+if ($v[renzhengfanwei] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+    <td align="center"><a href="#"><img src="./frontEnd/images/select1.gif" width="12" height="13" border="0" onclick="ShowDlog_item($v[ht_id],$v[htxm_id])"/></a></td>
+      <td align="center">
+      	<a href="index.php?m=type&do=xm_type&xmid=$v[id]&htxm_id=$v[htxm_id]&zuzhi_id=$v[zuzhi_id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a>
+	  </td>
+      <td align="center">$v[htxmcode]</td>
+	  <td align="center">$v[htcode]</td>
+      <td align="left" width="260" height="22">&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+      <td align="center">$v[htfrom]</td>
+      <td align="center">$v[audit_ver]</td>
+	  <!--<td align="center">$v[product]</td>-->
+	  <td align="center"><div class="{$k} show_block" style="text-align:left">{$v[renzhengfanwei]}</div>$v[show]</td>
+	  <td align="center">$v[audit_type]</td>
+      <td align="center">$v[taskBeginDate]</td>
+      <td align="center">$v[finalItemDate]</td>
+      <td align="center">$v[status]</td>
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

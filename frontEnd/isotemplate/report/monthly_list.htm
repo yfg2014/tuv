@@ -1,0 +1,32 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+
+//]]>
+</script>
+<div style="height:80px;"></div>
+<table width="600" class="e_table">
+<form method="post" name="winput" action="./index.php?m=report&do=monthly_list">
+<tr bgcolor="#FFFFFF">
+<td align="right"><font color="#003399" style="font-size:14px;">开始日期：</font></td>
+<td><input name="begindate"  type="text" id="sel1" style="width:120px;" onFocus="showCalendar(this, 'y-mm-dd');" value="$begindate" /></td>
+<td align="right"><font color="#003399"  style="font-size:14px;">截止日期：</font></td>
+<td><input name="enddate"  type="text" id="sel2" style="width:120px;" onFocus="showCalendar(this, 'y-mm-dd');"  value="$enddate" /></td>
+<td><input type="submit" value="搜索" name="submit" /></td>
+</tr>
+</table>
+<table width="600" class="e_table">
+<tr bgcolor="#F2F2F2">
+<td align="center">
+<br><font color="#003399"><h3>证书上报CNAS数据合计：$numrows 条<a href="./index.php?m=xls&do=monthly_list_xls"><img src="./frontEnd/images/excel.gif" border="0" title="导出EXCEL上报CNAS数据文件" /></a></h3></font>
+</td>
+</tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

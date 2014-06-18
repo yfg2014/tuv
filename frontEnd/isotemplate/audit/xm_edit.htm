@@ -1,0 +1,427 @@
+<!--
+<?php
+print <<<EOT
+-->
+<style>
+.e_table_no{
+border-bottom:1px #0066FF solid;
+}
+.e_table_no td{
+border:0px;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css" />
+<script src="frontEnd/js/jquery.modal.js" type="text/javascript"></script>
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	var option = {
+		closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",
+		onClose:function(dialog){
+		$("#simplemodal-container,#simplemodal-overlay").hide();$(dialog.data).empty();$.modal.close();
+		}
+	};
+	var r_msg = function(){
+	var obj=this;option.containerCss = {
+			width:730,height:420
+		};
+		$('<iframe src="dlg/in_auditor_list.php?taskBeginDate=$result[taskBeginDate]&taskEndDate=$result[taskEndDate]&taskBeginHalfDate=$result[taskBeginHalfDate]&taskEndHalfDate=$result[taskEndHalfDate]&iso_t=$result[iso]&getdaima=$getdaima&" id="f1" frameborder="0" style="width:700px;height:680px;margin-bottom:5px;"></iframe>').load(function(){
+			$(this).contents().find('.line').click(function(){
+				var o = $(this).parent();obj.value=o.next().text();
+				$(obj).prev().val(o.find('.hr_id').val());$.modal.close()
+			})
+		}).modal(option);option.containerCss = null;
+	};
+	var getdaima = function(){
+		var obj = $(this),o2 = obj.parents('.pr'),o = o2.find('.r_code'),v=o.val(),v1 = obj.parent().parent().find('.tixi').text(),role = obj.parent().parent().find('.role'+v1).val();
+		if(!v){
+			alert('您还没有选择审核人员！');return;
+		}
+		if(!role){
+			alert('您还没有选择组内身份！');return;
+		}
+
+		$.post('./dlg/in_duima.php',{'hr_id':v,'iso':v1,getdaima:'$getdaima','role':role},
+			function(r){
+				var o = $.parseJSON(r);
+				if(o.xiaolei){
+					obj.siblings(':text').val(o.xiaolei);
+				}else{
+					obj.siblings(':text').val('');
+				}
+				if(o.qualification){
+					obj.parent().prev().find('select').val(o.qualification);
+				}else{
+					obj.parent().prev().find('select').val('');
+					obj.siblings(':text').val('');
+				}
+			}
+		);
+	};
+	var rm = function(){
+		var u=$(this).parents('.pr'),o=u.find('.eid').val();
+		if(o == ''){
+			if($('#container').find('.pr').length > 1){
+				u.empty().remove();
+			}			
+		}else{
+			if(confirm('你是否删除该审核员信息？')){
+				$.post('./dlg/in_auditor_del.php',{id:o},
+					function(r){
+						if(r == '1'){
+							alert('操作成功！');
+							u.empty().remove();
+							if($('#container').find('.pr').length <= 1){
+								pr.clone().find('.rm').click(rm).end().find('.r_msg').click(r_msg).end().find('.getdaima').click(getdaima).end().find('.eid').val('').end().find('.r_code').val('').end().find('.r_msg').val('').end().find('.audit_code').val('').end().find('select').val('').end().find('.isLeader').val('0').end().find('.audi').val(vl).end().appendTo('#container');
+							}
+						}else{
+							alert('操作失败！');
+						}
+					}
+				)			
+			}
+		}
+	}
+	var pr = $('#container table').find('.rm').click(rm).end().find('.r_msg').click(r_msg).end().find('.getdaima').click(getdaima).end().eq(0).clone();
+	var vl = $('#container table').eq(0).find('.audi').val();
+	$('[name="add_pr"]').click(function(){
+		pr.clone().find('.rm').click(rm).end().find('.r_msg').click(r_msg).end().find('.getdaima').click(getdaima).end().find('.eid').val('').end().find('.r_code').val('').end().find('.r_msg').val('').end().find('.audit_code').val('').end().find('select').val('').end().find('.isLeader').val('0').end().find('.audi').val(vl).end().appendTo('#container')
+	});
+	$('.usual').idTabs({event:'mouseover'});
+})
+//]]>
+</script>
+<div class="blank"></div>
+{$Information->info}
+
+<table width="$width" class="e_table">
+<!--
+EOT;
+foreach ($xm_other as $v)
+{
+echo <<<EOT
+-->
+	<tr>
+		<td width="15%" align="right">TO审核部：</td>
+		<td>&nbsp;$v</td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+<div class="blank"></div>
+<table width="$width" class="e_table">
+  <tr bgcolor="#FFFFFF">
+    <td colspan="4" height="28"><font color="#003399">项目任务信息>></font>
+	&nbsp;<a href="index.php?m=audit&do=task_edit&taskId=$taskId"><font color="red">[审核修改]</font></a></td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td height="28" width="18%" align="right"><font color="#003399">是否进现场：</font></td>
+    <td>&nbsp;{$result[jinxianchang]}</td>
+    <td width="18%" align="right"><font color="#003399">认证标准：</font></td>
+    <td>&nbsp;{$result[audit_ver]}</td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td height="28" align="right"><font color="#003399">总人日：</font></td>
+    <td>&nbsp;{$result[zrd]}</td>
+    <td align="right"><font color="#003399">现场人日：</font></td>
+    <td>&nbsp;{$result[xcd]}</td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td height="28" align="right"><font color="#003399">任务开始时间：</font></td>
+    <td>&nbsp;{$result[taskBeginDate]} {$result[taskBeginHalfDate]}</td>
+    <td align="right"><font color="#003399">任务结束时间：</font></td>
+    <td>&nbsp;{$result[taskEndDate]} {$result[taskEndHalfDate]}</td>
+  </tr>
+    <tr bgcolor="#FFFFFF">
+    <td align="center" colspan="4">
+    	<table width="100%"  class="e_table">
+    	<tr bgcolor="#FFFFFF">
+    	    <td align="center">体系</td>
+		  	<td align="center">体系标准</td>
+			<td align="center">产品标准</td>
+			<td align="center">现场人日</td>
+			<td align="center">认证范围</td>
+			<td align="center">专业代码</td>
+		  </tr>
+<!--
+EOT;
+foreach($arr as $v)
+{
+echo <<<EOT
+-->
+		  <tr bgcolor="#FFFFFF">
+		    <td align="center">$v[iso]</td>
+		    <td align="center">$v[audit_ver]</td>
+		    <td align="center">$v[audit_type]</td>
+			<td align="center">$v[xcd]</td>
+			<td width="200">$v[renzhengfanwei]</td>
+			<td align="center">$v[audit_code]</td>
+		  </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+    	</table>
+    </td>
+  </tr>
+</table>
+
+<form name="winput" method="post" action="./index.php?m=audit&do=xm_save&" onsubmit="return Validator.Validate(this,2)">
+<table width="$width" class="e_table" >
+<tr>
+<td align="center">领域</td>
+<td align="center">审核类型</td>
+<td align="left">&nbsp;是否重报审核计划</td>
+<!--
+EOT;
+foreach ($arr as $v){
+if($v[upplan] == '1' or $v[upplan] == '2' or $v[upplan] == '3'){
+$v[upplan] == '2' ? $upplan_ck = 'selected="selected"' : $upplan_ck = '';
+if($v[upplan] != '2'){
+echo <<<EOT
+-->
+<script type="text/javascript">
+alert('此计划已上报，请确认是否需要重新上报审核计划');
+</script>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	<tr>
+		<td width="15%" align="center">$v[iso]</td>
+		<td width="15%" align="center">$v[audit_type]</td>
+		<td width="70%" align="left">
+		&nbsp;<select name="upplan[$v[id]]" dataType="Require" msg="是否重报审核计划不为空！">
+			<option value="1">否</option>
+			<option value="2" $upplan_ck>是</option>
+		</select> <span style="color:red;">*</span>
+<!--
+EOT;
+}else{
+echo <<<EOT
+-->
+<input type="hidden" name="upplan[]" value="0" />
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		</td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+<div class="blank"></div>
+<!--
+EOT;
+if($hr_qj !='' or $hr_Has !=''){
+echo <<<EOT
+-->
+<table width="$width" class="e_table" id="hdy" >
+<!--
+EOT;
+foreach($hr_qj as $v){
+echo <<<EOT
+-->
+	<tr>
+		<td height="25" align="left"><font style="font-size:17px;color:red;">$v 已请假，不能重复安排审核！</font></td>
+	</tr>
+<!--
+EOT;
+}
+foreach($hr_Has as $k=>$v){
+echo <<<EOT
+-->
+	<tr>
+		<td height="25" align="left"><font style="font-size:17px;color:red;">$k 重复安排,已审核企业：$v</font></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+<div class="blank"></div>
+<table width="$width" class="e_table" id="hdy" >
+
+	<tr>
+		<td height="25"><font color="#003399">审核派人>></font></td>
+		<td height="25" align="center">&nbsp;
+
+		</td>
+	</tr>
+	<tr >
+		<td height="25" colspan="4">
+			<table width="100%" class="e_table_no">
+				<tr>
+					<td width="80" align="center"><font color="#003399">人员姓名</font></td>
+					<td width="30" align="center"><font color="#003399">领域</font></td>
+					<td width="40" align="center"><font color="#003399">组长</font></td>
+					<td width="70" align="center"><font color="#003399">组内身份</font></td>
+					<td width="70" align="center"><font color="#003399">验证</font></td>
+					<td width="50" align="center"><font color="#003399">注册资格</font></td>
+					<td width="280" align="center"><font color="#003399">专业代码</font></td>
+				</tr>
+			</table>
+			<div id="container">
+<!--
+EOT;
+$iso = $audit_code = array();
+$rows == '' ? $rows = array(0) : $rows;
+foreach($rows as $value){
+	$auditday = '';
+	$time1 = strtotime($result[taskEndDate].' '.$result[taskEndHalfDate]);
+	$time2 = strtotime($result[taskBeginDate].' '.$result[taskBeginHalfDate]);
+	$time = ($time1 - $time2) / (24*3600);
+	$value[auditday] == '' ? $auditday = number_format($time,'1') : $auditday = $value[auditday];
+	if($value[iso] == ''){
+		$iso = explode(',',$result[iso]);
+		$iso_n = count($iso);
+	}else{
+		$auditorPlanId = explode(',',$value[auditorPlanId]);
+		$iso = explode(',',$value[iso]);
+		$isLeader = explode(',',$value[isLeader]);
+		$role = explode(',',$value[role]);
+		$witness = explode(',',$value[witness]);
+		$qualification = explode(',',$value[qualification]);
+		$audit_code = explode(',',$value[audit_code]);
+		$iso_n = count($iso);
+	}
+echo <<<EOT
+-->
+			<table width="100%" class="pr e_table_no">
+				<tr bgcolor="#FFFFFF">
+					<td>
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<input type="hidden" name="auditorId[]" class="eid" value="$value[id]" />
+								<td width="80" align="center">
+								<img src="frontEnd/images/button_empty.png" title="删除该行" class="rm" style="cursor:pointer;" />
+								<input type="hidden" name="empId[]" class="r_code" value="$value[empId]" />
+								<input name="empName[]" class="r_msg" style="width:45px;" value="$value[empName]" readonly="readonly" dataType="Require" msg="人员姓名不能为空！" /><font color="#FF0000">*</font>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table border="0">
+<!--
+EOT;
+	$i = '0';
+	foreach($iso as $k => $v){
+		if($isLeader[$k] == '1'){$sel = 'selected="selected"';}else{$sel = '';}
+echo <<<EOT
+-->
+							<tr>
+								<input type="hidden" name="iso[]" value="$v" />
+								<td width="29" align="center" class="tixi"><font color="#003399">$v</font></td>
+								<td width="40" align="center">
+									<select class="isLeader" name="isLeader[]">
+										<option value="0" >否</option>
+										<option value="1" $sel>是</option>
+									</select>								</td>
+								<td width="70" align="center">
+									<select class="role$v" name="role[]" style="width:60px;">
+										<option value="">请选择</option>
+<!--
+EOT;
+		foreach($setup_role as $vl){
+			if($role[$k] == $vl[code]){$sel = 'selected="selected"';}else{$sel = '';}
+echo <<<EOT
+-->
+											<option value="{$vl[code]}" $sel>$vl[msg]</option>
+<!--
+EOT;
+		}
+echo <<<EOT
+-->
+									</select>								</td>
+								<td width="70" align="center"><select name="witness[]" style="width:60px;">
+                                  <option value="" selected >请选择</option>
+<!--
+EOT;
+		foreach($setup_authentication as $key => $vl){
+			if($key == $witness[$k]) {$sel = 'selected="selected"';}else{$sel = '';}
+echo <<<EOT
+-->
+                                  <option value="$key" $sel>$vl</option>
+<!--
+EOT;
+		}
+echo <<<EOT
+-->
+                                </select></td>
+								<td width="50" align="center">
+									<select class="qualification" name="qualification[]" style="width:50px;">
+										<option value="" selected >选择</option>
+<!--
+EOT;
+		foreach($setup_hr_reg_qualification as $vl) {
+			if($vl[code] == $qualification[$k]) {$sel = 'selected="selected"';}else{$sel = '';}
+echo <<<EOT
+-->
+										<option value="{$vl[code]}" $sel>{$vl[msg]}</option>
+<!--
+EOT;
+		}
+echo <<<EOT
+-->
+									</select>								</td>
+								<td width="300">
+									<input name="audit_code[]" style="width:72%;" class="audit_code" value="$audit_code[$k]"/>
+									<input type="hidden" name="auditorPlanId[]" class="eid" value="$auditorPlanId[$k]"  />
+									<font color="#FF0000">*</font>
+									<img src="frontEnd/images/sousuo.gif" title="选择" class="getdaima" style="cursor:pointer;" /></td>
+							</tr>
+<!--
+EOT;
+	}
+echo <<<EOT
+-->
+						</table>
+					</td>
+					<td style="display:none" width="50"><input type="text" class="audi" name="auditday[]" style="width:90%;" value="$auditday" /></td>
+				</tr>
+			</table>
+<!--
+EOT;
+}
+$result[xmonline] == '2' && $xmonline_ck = 'checked="checked"';
+$result[xmonline] > '2' && ($xmonline_ck = 'checked="checked" disabled="disabled"' and $xmonline_str = '任务已审批，无法修改');
+echo <<<EOT
+-->
+			</div>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td height="25" align="center"><input type="button" name="add_pr" value="增加" /></td>
+		<td height="25" colspan="3" align="center">
+			<input type="hidden" name="taskId" value="$taskId" />
+			<input type="hidden" name="zuzhi_id" value="$result[zuzhi_id]" />
+			<input type="hidden" name="isof" value="$result[iso]">
+			<font color="red">已派人</font><input type="checkbox" name="xmonline" value="2" $xmonline_ck />&nbsp;
+			<input type="submit" value=" 保存 " $xmonline_ck /> &nbsp; $xmonline_str
+		</td>
+	</tr>
+</form>
+</table>
+<div class="blank"></div>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

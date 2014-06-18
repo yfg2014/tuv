@@ -1,0 +1,93 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		<br>
+<!--		人员信息导出：
+				<a href="./index.php?m=xls&do=hr_information_xls&{$TopSearch->SearchUrl}"><img src="./frontEnd/images/excel.gif" border="0" title="人员资格信息" /></a>
+-->
+		<input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+<tr><td align="left">
+人员信息查询&gt;&gt;&nbsp;合计：$result[count]
+</td></tr>
+</table>
+
+<table width="$width" class="c_table stripe">
+	<tr>
+		<th align="center">编辑</th>
+		<th align="center">编号</th>
+		<th align="center">姓名</th>
+		<th align="center">性别</th>
+		<th align="center">联系手机</th>
+		<th align="center">电子邮箱</th>
+		<th align="center">审核员性质</th>
+		<th align="center">合同状态</th>
+        <th align="center">人员来源</th>
+		<th align="center">地区</th>
+		<th align="center">详细</th>
+		<th align="center">备注</th>
+		<th align="center">操作</th>
+	</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+	$v[worktype] = Cache::cache_zaizhi($v[worktype]);
+	$v[working]== '1' && $v[working] = '正常';
+	$v[working]== '0' && $v[working] = '解聘';
+	$v[working]== '2' && $v[working] = '停用';
+	if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+
+
+-->
+	<tr>
+		<td align="center"><a href="index.php?m=hr&do=hr_information_edit&id={$v[id]}"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+		<td height="22" align="center">$v[idcode]</td>
+		<td align="center">$v[username]</td>
+		<td align="center">$v[sex]</td>
+		<td width="90" align="center">$v[phone]</td>
+		<td width="100" align="center">$v[email]</td>
+		<td align="center">$v[worktype]</td>
+		<td align="center">$v[working]</td>
+		<td align="center">$v[htfrom]</td>
+		<td  width="150" align="center">$v[city_msg]</td>
+		<td align="center">
+		  <a href="index.php?m=hr&do=hr_photos_edit&hr_id={$v[id]}">照片</a>
+		  <a href="index.php?m=hr&do=hr_resume&hr_id={$v[id]}">简历</a>
+		  <a href="index.php?m=hr&do=hr_education&hr_id={$v[id]}">学历</a>
+		  <a href="index.php?m=hr&do=hr_profession&hr_id={$v[id]}">职称</a>
+		  <a href="index.php?m=hr&do=ziliao_edit&hr_id={$v[id]}">资料</a>
+		</td>
+		<td align="center"><div class="{$k} show_block">$v[other]</div>$v[show]</td>
+		<td align="center"><a href="index.php?m=hr&do=hr_information_del&id={$v[id]}"><img src="frontEnd/images/button_empty.png" alt="删除" border="0" style="cursor:pointer;" onclick="return confirm('你确定要删除吗？');" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+</div>
+<!--
+EOT;
+?>
+-->
+<div class="blank"></div>
+<div class="blank"></div>

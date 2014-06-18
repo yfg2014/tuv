@@ -1,0 +1,84 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="./index.php?m=audit&do=item_list">
+    <tr bgcolor="#EAF4EA">
+        <td>
+            $SearchHtml
+            <br/><input type="submit" value="搜索" name="submit" />
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+        <td>
+            <font color="#003399">审核项目查询>></font>   合计：$result[count]
+        </td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe">
+<tr bgcolor="#F2F2F2">
+	<th align="center">详细</th>
+	<th align="center">合同编号</th>
+	<th  align="center">项目编号</th>
+	<th align="center">组织名称</th>
+	<th align="center">标准</th>
+	<th align="center">产品/范围</th>
+	<th align="center">审核类型</th>
+	<th align="center">审核开始</th>
+	<th align="center">审核结束</th>
+	<!--<th align="center">评定日期</th>-->
+	<th align="center">合同来源</th>
+	<th align="center">证书状态</th>
+	<th align="center">状态</th>
+</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v){
+if($v[product]!='')
+{
+   $v[product] = Cache::cache_product($v[product]);
+}
+if ($v[renzhengfanwei] != ''){$v[show] = "<font onmouseover=\"show_block('$k','',1.5)\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+if($v[zsid] > 0){
+	$zs = $db->get_one("SELECT online FROM `{$dbtable['zs_cert']}` WHERE id='{$v[zsid]}'");
+	$v[zs_online] = Cache::cache_Certification_online($zs[online]);
+}
+print <<<EOT
+-->
+<tr bgcolor="#FFFFFF">
+	<td width="40" align="center"><a href="#"><img src="./frontEnd/images/select1.gif" width="12" height="13" border="0" onclick="ShowDlog_item($v[ht_id],$v[htxm_id])"/></a></td>
+	<td align="center">$v[htcode]</td>
+	<td align="center">$v[htxmcode]</td>
+	<td height="24" width="250">&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+	<td align="center">$v[audit_ver]</td>
+	<!--<td align="center" width="150">$v[product]</td>-->
+	<td align="center"><div class="{$k} show_block" style="text-align:left">{$v[renzhengfanwei]}</div>$v[show]</td>
+	<td align="center">$v[audit_type]</td>
+	<td align="center">$v[taskBeginDate]</td>
+	<td align="center">$v[taskEndDate]</td>
+	<!--<td align="center">$v[assessmentdate]</td>-->
+	<td align="center">$v[htfrom]</td>
+	<td align="center">$v[zs_online]</td>
+	<td align="center">$v[status]</td>
+</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,77 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<div style="width:400px;margin:auto;">
+<table width="400px" class="t_table" align="center">
+<form method="post" name="winput" action="index.php?m=report&do=audit_department_report">
+    <tr>
+  		<td>
+  			  <span class="top_search">审核日期</span>：
+			  <input type="text" name="s_date" value="$s_date" style="width:80px" onFocus="return showCalendar(this, 'y-mm-dd');">
+				 至
+			  <input type="text" name="e_date" value="$e_date" style="width:80px" onFocus="return showCalendar(this, 'y-mm-dd');">
+			  <input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</table>
+<div class="blank"></div>
+<table width="400px" class="c_table">
+	<tr>
+		<td colspan="6">审核项目统计表 >></td>
+	</tr>
+	<tr align="center">
+		<td>部门</td>
+		<td>QMS</td>
+		<td>EMS</td>
+		<td>13485</td>
+		<td>OHS</td>
+		<td>合计</td>
+	</tr>
+<!--
+EOT;
+foreach($setup_htfrom as $v){
+	if($v[online] == 1){
+echo <<<EOT
+-->
+	<tr align="center">
+		<td width="120" align="right">$v[msg]&nbsp;</td>
+<!--
+EOT;
+$count = '';
+foreach($arriso as $vk){
+$num = $arr[$v[code]][$vk];
+$count += $num;
+$sum[$vk] += $num;
+echo <<<EOT
+-->
+		<td>$num</td>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		<td>$count</td>
+	</tr>
+<!--
+EOT;
+	}
+}
+$count = $sum[Q] + $sum[E] + $sum[QY] + $sum[S];
+echo <<<EOT
+-->
+	<tr align="center">
+		<td width="120" align="right">合计&nbsp;</td>
+		<td>$sum[Q]</td>
+		<td>$sum[E]</td>
+		<td>$sum[QY]</td>
+		<td>$sum[S]</td>
+		<td>$count</td>
+	</tr>
+</table>
+</div>
+<!--
+EOT;
+?>
+-->

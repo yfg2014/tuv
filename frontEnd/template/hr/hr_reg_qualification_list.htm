@@ -1,0 +1,104 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+function show_daima(obj){
+	$('.'+obj).show();
+}
+</script>
+<div align="center">
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		<br><input type="submit" value="搜索" name="submit" />&nbsp;
+		</td>
+	</tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+<tr >
+     <td  align="left">
+     	注册资格查询(有效)>> 合计：{$result['count']}
+     </td>
+</tr>
+</table>
+
+<table  width="$width"  class="c_table stripe">
+	<tr >
+		<th align="center">编辑</th>
+		<th align="center">代码</th>
+		<th align="center">编号</th>
+		<th align="center">姓名</th>
+		<th align="center">人员来源</th>
+		<th align="center">体系</th>
+		<th align="center">标准版本</th>
+		<th align="center">资格</th>
+		<th align="center">资格证号码</th>
+		<th align="center">开始时间</th>
+		<th align="center">结束时间</th>
+		<th align="center">到期天数</th>
+		<th align="center">第一次年度<br/>确认时间</th>
+		<th align="center">第二次年度<br/>确认时间</th>
+		<th align="center">状态</th>
+		<th align="center">备注</th>
+	</tr>
+
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+$daima = array();
+$daima_q = $db->query("SELECT xiaolei FROM hr_audit_code WHERE hr_id='$v[hr_id]' AND iso='$v[iso]'");
+while($daima_arr = $db->fetch_array($daima_q)){
+	$daima []= $daima_arr['xiaolei'];
+}
+$daima = implode('；',array_unique($daima));
+if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+$v[online] == '1' ? $v[online] = '有效' : $v[online] = '失效';
+
+$style = '';
+if($v[tianshu] < 180){ 
+	$style = 'style="color:#ff903a"' ;
+}
+print <<<EOT
+-->
+	<tr $style>
+		<td align="center"><a href="index.php?m=hr&do=hr_reg_qualification_edit&hr_id=$v[hr_id]&id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+		<td align="center"><span style="cursor:pointer;" onclick="show_daima('daima$k');">查看</span></td>
+		<td align="center">$v[idcode]</td>
+		<td align="center">$v[username]</td>
+		<td align="center">$v[htfrom]</td>
+		<td align="center">$v[iso]</td>
+		<td align="center">$v[audit_ver]</td>
+		<td align="center">$v[qualification]</td>
+		<td align="center">$v[qualification_no]</td>
+		<td align="center">$v[s_date]</td>
+		<td align="center">$v[e_date]</td>
+		<td align="center">$v[tianshu]</td>
+		<td align="center">$v[yeardate1]</td>
+		<td align="center">$v[yeardate2]</td>
+		<td align="center">$v[online]</td>
+		<td align="center"><div class="{$k} show_block">$v[other]</div>$v[show]</td>
+	</tr>
+	<tr class="daima$k" style="display:none;text-align:left;background-color:#FFFFFF;">
+		<td colspan="15" style="background-color:#FFFFFF;">$daima</td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+</div>
+</div>
+<!--
+EOT;
+?>
+-->

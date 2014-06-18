@@ -1,0 +1,129 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+//姓名弹窗
+$(function(){
+	var option = {
+		closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",
+		onClose:function(dialog){
+		$("#simplemodal-container,#simplemodal-overlay").hide();$(dialog.data).empty();$.modal.close();
+		}
+	};
+	$("#username").click(function(){
+		var obj = $(this).parent();
+		option.containerCss = {
+			width: 900,
+			height: 500
+		};
+		$('<iframe src="dlg/in_hr_information_list.php" frameborder="0" style="width:870px;height:680px;margin-bottom:5px;"></iframe>').load(function(){
+			$(this).contents().find('.line').click(function(){
+				var o = $(this).parent();
+				obj.find('#hr_id').val(o.find('.hr_id').val());
+				obj.find('#username').val(o.find('.username').val());
+				$.modal.close();
+			})
+		}).modal(option);
+		option.containerCss = null;
+	}); 
+
+});
+function save(){
+		
+	//调用表单验证插件
+	if(!Validator.Validate(document.forms[0],2))return;
+	document.forms[0].submit();
+
+}
+
+//]]>
+</script>
+<div class="blank"></div>
+<table width="$width" align="center">
+	<tr>
+		<th align="left">培养计划登记>> </th>
+	</tr>
+</table>
+<table class="e_table" width="$width">
+<form name="add_auditor_plan" method="post" action="index.php?m=hr&do=hr_auditor_plan_save">
+		<input type="hidden" name="id" value="{$id}" />
+	<tr>	
+		<td width="200" align="right">姓名：</td> 
+		<td width="400">
+			<input type="hidden" name="hr_id" id="hr_id" value="$result[hr_id]" />
+			<input type="text" name="username" id="username" style="width:100px;" readonly="readonly" value="{$result[username]}" datatype="Require" msg="姓名不能为空！" /><font color="red"> * </font>
+		</td>
+	</tr>
+	<tr>
+		<td align="right">培养方向：</td>
+		<td>
+			<select name="plan_item" datatype="Require" style="width:100px;" msg="培养方向不能为空！">
+				<option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_hr_auditor_plan as $key => $value)
+{
+	if($result[plan_item] == $key){$sel = 'selected';}else{$sel = '';}
+print <<<EOT
+-->
+			<option value="{$key}" $sel>$value</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+			</select><font color="red"> * </font>
+		</td>
+	</tr>
+	<tr>
+		<td align="right">体系：</td>
+		<td>
+			<select name="iso">
+				<option value=""></option>
+<!--
+EOT;
+foreach($setup_audit_iso as $value)
+{
+	if($result[iso] == $key){$sel = 'selected';}else{$sel = '';}
+print <<<EOT
+-->
+			<option value="{$value[code]}" $sel>$value[code]</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+			</select><font color="red"> * </font>
+		</td>
+	</tr>
+	<tr>
+		<td align="right">负责人：</td>
+		<td align="left"><input type="text" name="planner" value="{$result[planner]}" style="width:100px;" /></td>
+	</tr>
+	<tr>
+		<td align="right">预定开始时间：</td>
+		<td><input type="text" name="plan_date" value="{$result[plan_date]}" style="width:150px" onFocus="return showCalendar(this, 'y-mm-dd');" dataType="Date" msg="请输入正确预定开始时间 如:1980-01-01"/> <font color="red"> * </font></td>
+	</tr>
+	<tr>
+		<td align="right">预定完成时间：</td>
+		<td><input type="text" name="plan_complete_date" value="{$result[plan_complete_date]}" style="width:150px" onFocus="return showCalendar(this, 'y-mm-dd');" dataType="Date" msg="请输入正确预定完成时间 如:1980-01-01"/> <font color="red"> * </font></td>
+	</tr>
+	<tr>
+		<td align="right">实际完成时间：</td>
+		<td><input type="text" name="actual_complete_date" value="{$result[actual_complete_date]}" style="width:150px" onFocus="return showCalendar(this, 'y-mm-dd');" /></td>
+	</tr>
+	<tr>
+		<td align="right">备注：</td>
+		<td><textarea name="remark" style="width:300px;height:80px;">$result[remark]</textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center"><input type="button" value=" 保 存 " onclick="javascript:save();" /></td>
+	</tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

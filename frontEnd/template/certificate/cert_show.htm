@@ -1,0 +1,126 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<table width="600px"  class="c_table stripe">
+    <tr>
+        <td height="24" colspan="4">证书信息 >></td>
+    </tr>
+   <tr>
+        <td width="20%" height="22" align="right">证书编号：</td>
+        <td width="30%">$zs[certNo]</td>
+        <td width="20%" align="right">换证日期：</td>
+        <td width="30%">$zs[renewaldate]</td>
+    </tr>
+	</tr>
+        <tr>
+        <td width="20%" height="22" align="right">主证书编号：</td>
+        <td width="30%">$zs[main_certNo]</td>
+        <td width="20%" align="right">换证原因：</td>
+        <td width="30%">$zs[renewal_reason]</td>
+    </tr>
+    <tr>
+        <td height="22" align="right">注册日期：</td>
+        <td>$zs[certStart]</td>
+        <td align="right">原注册号：</td>
+        <td>$zs[certNo_y]</td>
+    </tr>
+    <tr>
+        <td height="22" align="right">注册到期：</td>
+        <td>$zs[certEnd]</td>
+        <td height="22" align="right">
+		初评获证日：</td>
+        <td>$zs[firstDate]
+        </td>
+    </tr>
+	<tr>
+		<td align="right">上报日期：</td>
+        <td>$zs[zsprintdate]</td>
+        <td height="22" align="right">原颁证机构：</td>
+        <td>$zs[zjg_name]</td>
+    </tr>
+	<tr>
+    	<td height="22" align="right">组织名称：</td>
+        <td colspan="3">$zs[eiregistername]</td>
+    </tr>
+	<tr>
+    	<td height="22" align="right">组织名称(英文)：</td>
+        <td colspan="3">$zs[eiregistername_e]</td>
+    </tr>
+	<tr>
+      <td height="22" align="right">证书地址：</td>
+      <td colspan="3">$zs[zs_address]</td>
+    </tr>
+	<tr>
+      <td height="22" align="right">证书地址邮编：</td>
+      <td colspan="3">$zs[zs_postalcode]</td>
+    </tr>
+    <tr>
+      <td height="22" align="right">证书地址(英文)：</td>
+      <td colspan="3">$zs[zs_address_e]</td>
+    </tr>
+<!--
+EOT;
+if($zs[kind] == '2'){
+echo <<<EOT
+-->
+	<tr>
+      <td height="22" align="right">制造商：</td>
+      <td colspan="3">$zs[manu_company]</td>
+    </tr>
+	<tr>
+      <td height="22" align="right">制造商(英文)：</td>
+      <td colspan="3">$zs[manu_company_e]</td>
+    </tr>
+	<tr>
+      <td height="22" align="right"> 制造地址：</td>
+      <td colspan="3">$zs[manu_address]</td>
+    </tr>
+    <tr>
+      <td height="22" align="right">制造地址(英文)：</td>
+      <td colspan="3">$zs[manu_address_e]</td>
+    </tr>
+	<tr>
+      <td height="22" align="right">生产厂：</td>
+      <td colspan="3">$zs[pro_company]</td>
+    </tr>
+	<tr>
+      <td height="22" align="right">生产厂(英文)：</td>
+      <td colspan="3">$zs[pro_company_e]</td>
+    </tr>
+	<tr>
+      <td height="22" align="right">生产地址：</td>
+      <td colspan="3">$zs[pro_address]</td>
+    </tr>
+    <tr>
+      <td height="22" align="right">生产地址(英文)：</td>
+      <td colspan="3">$zs[pro_address_e]</td>
+    </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+    <tr>
+        <td height="22" align="right">证书范围(中文):</td>
+        <td colspan="3"><div style="width:95%; word-wrap: break-word; word-break: break-all;">$zs[coverFields]</div>
+        </td>
+    </tr>
+    <tr>
+        <td height="22" align="right">证书范围(英文):</td>
+        <td colspan="3">$zs[coverFieldsE]</td>
+    </tr>
+    <tr>
+        <td height="22" align="right">备注：</td>
+        <td colspan="3">$zs[other]</td>
+    </tr>
+	<tr>
+        <td height="22" align="right">证书状态：</td>
+        <td colspan="3">$zs[online]</td>
+    </tr>
+</table>
+<!--
+EOT;
+?>
+-->

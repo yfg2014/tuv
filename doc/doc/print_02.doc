@@ -1,0 +1,1549 @@
+<?php
+echo <<<EOT
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 12">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=File-List href="$localx">
+<link rel=Edit-Time-Data href="print_02.files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>-</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="country-region"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="place"/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>TNC Audit 2008</o:Subject>
+  <o:Author>Dr. H. Saalfeld</o:Author>
+  <o:LastAuthor>TOSHIBA</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:TotalTime>11</o:TotalTime>
+  <o:LastPrinted>2011-08-05T06:19:00Z</o:LastPrinted>
+  <o:Created>2012-06-05T08:25:00Z</o:Created>
+  <o:LastSaved>2012-06-05T08:25:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>222</o:Words>
+  <o:Characters>1268</o:Characters>
+  <o:Company>TUEV NORD CERT GmbH</o:Company>
+  <o:Lines>10</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1488</o:CharactersWithSpaces>
+  <o:Version>12.00</o:Version>
+ </o:DocumentProperties>
+ <o:CustomDocumentProperties>
+  <o:Kopfzeile1 dt:dt="string"></o:Kopfzeile1>
+  <o:Inhalt_x0020__x002f__x0020_Content dt:dt="string">-</o:Inhalt_x0020__x002f__x0020_Content>
+  <o:Standard dt:dt="string">;#&#45;&#45;-;#</o:Standard>
+  <o:ContentType dt:dt="string">Dokument</o:ContentType>
+  <o:Sprache dt:dt="string">;#english;#</o:Sprache>
+  <o:Revision dt:dt="string">0/12.10</o:Revision>
+  <o:Inhalt dt:dt="string">Contract Review of Business in China</o:Inhalt>
+  <o:Sprache_x0020__x002f__x0020_Language dt:dt="string">;#english;#</o:Sprache_x0020__x002f__x0020_Language>
+ </o:CustomDocumentProperties>
+</xml><![endif]-->
+<link rel=themeData href="print_02.files/themedata.thmx">
+<link rel=colorSchemeMapping href="print_02.files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Print</w:View>
+  <w:DocumentProtectionNotEnforced>Forms</w:DocumentProtectionNotEnforced>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:HyphenationZone>21</w:HyphenationZone>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>ZH-CN</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:DocumentVariables>
+   <w:AStand>16.07.2008</w:AStand>
+   <w:Organisation>empty</w:Organisation>
+   <w:Rev>07-2008</w:Rev>
+   <w:Standard1>2</w:Standard1>
+   <w:Standard2>1</w:Standard2>
+   <w:Standard3>1</w:Standard3>
+   <w:Standard4>1</w:Standard4>
+   <w:Vorlage>A00F200 - Auditprogramm.dot</w:Vorlage>
+   <w:ZAListe>empty</w:ZAListe>
+   <w:ZEListe>empty</w:ZEListe>
+  </w:DocumentVariables>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="--"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" LatentStyleCount="267">
+  <w:LsdException Locked="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="99" Name="No List"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 680460288 22 0 262145 0;}
+@font-face
+	{font-family:PMingLiU;
+	panose-1:2 2 5 0 0 0 0 0 0 0;
+	mso-font-alt:PMingLiU;
+	mso-font-charset:136;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610611969 684719354 22 0 1048577 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:1;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-520081665 -1073717157 41 0 66047 0;}
+@font-face
+	{font-family:"\@PMingLiU";
+	panose-1:2 2 5 0 0 0 0 0 0 0;
+	mso-font-charset:136;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610611969 684719354 22 0 1048577 0;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 680460288 22 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+h1
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"\6807\9898 1 Char";
+	mso-style-next:\6B63\6587;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:12.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:SimSun;
+	mso-fareast-theme-font:minor-fareast;
+	mso-font-kerning:16.0pt;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+h2
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"\6807\9898 2 Char";
+	mso-style-next:\6B63\6587;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:10.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:SimSun;
+	mso-fareast-theme-font:minor-fareast;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	mso-bidi-font-style:italic;}
+h3
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"\6807\9898 3 Char";
+	mso-style-next:\6B63\6587;
+	margin-top:3.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:10.0pt;
+	mso-bidi-font-size:13.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:SimSun;
+	mso-fareast-theme-font:minor-fareast;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+h5
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"\6807\9898 5 Char";
+	mso-style-next:\6B63\6587;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	font-size:13.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:SimSun;
+	mso-fareast-theme-font:minor-fareast;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-style:italic;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"\6807\9898 7 Char";
+	mso-style-next:\6B63\6587;
+	margin-top:3.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:5.65pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:7;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-weight:bold;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	mso-style-link:"\6279\6CE8\6587\5B57 Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-unhide:no;
+	mso-style-link:"\9875\7709 Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 8.0cm right 16.0cm;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-unhide:no;
+	mso-style-link:"\9875\811A Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 8.0cm right 16.0cm;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:\6B63\6587;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-weight:bold;}
+span.MsoCommentReference
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;}
+p.MsoList, li.MsoList, div.MsoList
+	{mso-style-unhide:no;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:14.15pt;
+	margin-bottom:.0001pt;
+	text-indent:-14.15pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+p.MsoList2, li.MsoList2, div.MsoList2
+	{mso-style-unhide:no;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:28.3pt;
+	margin-bottom:.0001pt;
+	text-indent:-14.15pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{mso-style-unhide:no;
+	mso-style-link:"\6B63\6587\6587\672C Char";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{mso-style-unhide:no;
+	mso-style-link:"\6B63\6587\6587\672C\7F29\8FDB Char";
+	margin-top:5.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:5.65pt;
+	line-height:12.0pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	mso-style-parent:\6279\6CE8\6587\5B57;
+	mso-style-link:"\6279\6CE8\4E3B\9898 Char";
+	mso-style-next:\6279\6CE8\6587\5B57;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	mso-style-link:"\6279\6CE8\6846\6587\672C Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-font-family:PMingLiU;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+span.1Char
+	{mso-style-name:"\6807\9898 1 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"\6807\9898 1";
+	mso-ansi-font-size:22.0pt;
+	mso-bidi-font-size:22.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-font-kerning:22.0pt;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-weight:bold;}
+span.2Char
+	{mso-style-name:"\6807\9898 2 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"\6807\9898 2";
+	mso-ansi-font-size:16.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:SimSun;
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-weight:bold;}
+span.3Char
+	{mso-style-name:"\6807\9898 3 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"\6807\9898 3";
+	mso-ansi-font-size:16.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-weight:bold;}
+span.5Char
+	{mso-style-name:"\6807\9898 5 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"\6807\9898 5";
+	mso-ansi-font-size:14.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-weight:bold;}
+span.7Char
+	{mso-style-name:"\6807\9898 7 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"\6807\9898 7";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-weight:bold;}
+span.Char
+	{mso-style-name:"\6279\6CE8\6587\5B57 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:\6279\6CE8\6587\5B57;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+span.Char0
+	{mso-style-name:"\9875\7709 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:\9875\7709;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+span.Char1
+	{mso-style-name:"\9875\811A Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:\9875\811A;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+span.Char2
+	{mso-style-name:"\6B63\6587\6587\672C Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:\6B63\6587\6587\672C;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+span.Char3
+	{mso-style-name:"\6B63\6587\6587\672C\7F29\8FDB Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:\6B63\6587\6587\672C\7F29\8FDB;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+span.Char4
+	{mso-style-name:"\6279\6CE8\4E3B\9898 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-parent:"\6279\6CE8\6587\5B57 Char";
+	mso-style-link:\6279\6CE8\4E3B\9898;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;
+	font-weight:bold;}
+span.Char5
+	{mso-style-name:"\6279\6CE8\6846\6587\672C Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:\6279\6CE8\6846\6587\672C;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-ansi-language:EN-GB;
+	mso-fareast-language:DE;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	mso-ascii-font-family:"Times New Roman";
+	mso-fareast-font-family:PMingLiU;
+	mso-hansi-font-family:"Times New Roman";
+	mso-font-kerning:0pt;}
+ /* Page Definitions */
+ @page
+	{mso-footnote-separator:url("$localh") fs;
+	mso-footnote-continuation-separator:url("$localh") fcs;
+	mso-endnote-separator:url("$localh") es;
+	mso-endnote-continuation-separator:url("$localh") ecs;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.9pt 53.85pt 14.2pt 70.9pt;
+	mso-header-margin:49.6pt;
+	mso-footer-margin:49.6pt;
+	mso-header:url("$localh") h1;
+	mso-footer:url("$localh") f1;
+	mso-first-header:url("$localh") fh1;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:\666E\901A\8868\683C;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+table.MsoTableGrid
+	{mso-style-name:\7F51\683C\578B;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-unhide:no;
+	border:solid windowtext 1.0pt;
+	mso-border-alt:solid windowtext .5pt;
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-border-insideh:.5pt solid windowtext;
+	mso-border-insidev:.5pt solid windowtext;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	mso-bidi-font-family:"Times New Roman";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="5122"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:35.45pt'>
+
+<div class=Section1>
+
+<p class=MsoNormal><span lang=EN-GB style='font-size:9.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=636
+ style='width:477.15pt;margin-left:5.4pt;border-collapse:collapse;border:none;
+ mso-border-alt:solid black .75pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+ mso-border-insideh:.75pt solid black;mso-border-insidev:.75pt solid black'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width="100%" colspan=3 valign=top style='width:100.0%;border:solid black 1.0pt;
+  mso-border-alt:solid black .75pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2><span lang=EN-GB style='mso-fareast-font-family:PMingLiU;color:black'>Master
+  Data of Organisation<o:p></o:p></span></h2>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;height:26.95pt'>
+  <td width="35%" valign=top style='width:35.32%;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:26.95pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm'><span lang=EN-GB>Name of Organisation</span></p>
+  </td>
+  <td width="64%" colspan=2 valign=top style='width:64.68%;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:26.95pt'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  mso-fareast-language:ZH-CN'>$w[eiregistername_e]<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;height:26.95pt'>
+  <td width="35%" valign=top style='width:35.32%;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:26.95pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm'><span lang=EN-US style='mso-ansi-language:EN-US'>Name
+  of corporate group</span><span lang=EN-US style='mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-TW'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm'><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+  EN-US'>(in case of group certification)</span><span lang=EN-US
+  style='mso-ansi-language:EN-US'><o:p></o:p></span></p>
+  </td>
+  <td width="64%" colspan=2 valign=top style='width:64.68%;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:26.95pt'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  mso-fareast-theme-font:minor-fareast;mso-fareast-language:ZH-CN'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;height:26.95pt'>
+  <td width="35%" valign=top style='width:35.32%;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:26.95pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm'><span lang=EN-GB>Street</span></p>
+  </td>
+  <td width="64%" colspan=2 valign=top style='width:64.68%;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:26.95pt'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  mso-fareast-language:ZH-CN'>$w[eisc_address_e]<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB>Postcode / Town / Country</span></p>
+  </td>
+  <td width="64%" colspan=2 valign=top style='width:64.68%;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB>Contact</span></p>
+  </td>
+  <td width="64%" colspan=2 valign=top style='width:64.68%;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB>E-Mail</span></p>
+  </td>
+  <td width="64%" colspan=2 valign=top style='width:64.68%;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  mso-fareast-language:ZH-CN'>$w[eilinkman_email]</span><span lang=EN-GB style='mso-fareast-font-family:
+  SimSun'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB>Phone/Fax</span></p>
+  </td>
+  <td width="30%" valign=top style='width:30.94%;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  mso-fareast-language:ZH-CN'>$w[eiphone]</span><span lang=EN-GB style='mso-fareast-font-family:
+  SimSun'><o:p></o:p></span></p>
+  </td>
+  <td width="33%" valign=top style='width:33.74%;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  mso-fareast-language:ZH-CN'>$w[eifax]</span><span lang=EN-GB style='mso-fareast-font-family:
+  SimSun'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB>Language</span></p>
+  </td>
+  <td width="64%" colspan=2 valign=top style='width:64.68%;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal><a name=Sprache></a><!--[if supportFields]><span
+  style='mso-bookmark:Sprache'></span><span style='mso-element:field-begin'></span><span
+  style='mso-bookmark:Sprache'><span lang=EN-GB><span
+  style='mso-spacerun:yes'>?/span>FORMTEXT <span style='mso-element:field-separator'></span></span></span><![endif]--><span
+  style='mso-bookmark:Sprache'><span lang=EN-GB><span style='mso-no-proof:yes'>english</span><!--[if gte mso 9]><xml>
+   <w:data>FFFFFFFF0000000000000700530070007200610063006800650000000700640065007500740073006300680000000000000000000000000000000E004700650074004100630074006900760065004600690065006C006400000000000000</w:data>
+  </xml><![endif]--></span></span><!--[if supportFields]><span
+  style='mso-bookmark:Sprache'></span><span style='mso-element:field-end'></span><![endif]--><span
+  style='mso-bookmark:Sprache'></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9;height:2.0cm'>
+  <td width="35%" rowspan=2 valign=top style='width:35.32%;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:2.0cm'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm'><span lang=EN-GB>Scope Description</span></p>
+  </td>
+  <td width="64%" colspan=2 valign=top style='width:64.68%;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:2.0cm'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  mso-fareast-language:ZH-CN'>$w[renzhengfanwei_e]<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10;height:18.7pt'>
+  <td width="64%" colspan=2 valign=top style='width:64.68%;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.7pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:16.0pt;font-family:
+  "Courier New";color:#2A00FF;background:white;mso-highlight:white;mso-ansi-language:
+  EN-US;mso-fareast-language:ZH-CN'>&#9633;</span></b><span lang=EN-US
+  style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;mso-fareast-language:
+  ZH-CN'> </span><span lang=EN-US style='mso-ansi-language:EN-US'>more
+  description regarding scope in annex<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11;height:13.5pt'>
+  <td width="35%" valign=top style='width:35.32%;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.5pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm'><span lang=EN-GB>Industry / Scope (EA)</span></p>
+  </td>
+  <td width="64%" colspan=2 valign=top style='width:64.68%;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.5pt'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  mso-fareast-language:ZH-CN'>$w[audit_code]<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12'>
+  <td width="100%" colspan=3 valign=top style='width:100.0%;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2><span lang=EN-GB style='mso-fareast-font-family:PMingLiU;color:black;
+  mso-fareast-language:ZH-TW'>Business Type in <st1:country-region w:st="on"><st1:place
+   w:st="on">China</st1:place></st1:country-region></span><!--[if supportFields]><span
+  lang=EN-GB style='mso-fareast-font-family:PMingLiU;color:black'><span
+  style='mso-element:field-begin'></span> set ZAListe &quot;?&quot; <span
+  style='mso-element:field-separator'></span>?</span><![endif]--><!--[if supportFields]><span
+  lang=EN-GB style='mso-fareast-font-family:PMingLiU;color:black'><span
+  style='mso-element:field-end'></span></span><![endif]--><span lang=EN-GB
+  style='mso-fareast-font-family:PMingLiU;color:black'><o:p></o:p></span></h2>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><b><span lang=EN-US
+  style='font-size:16.0pt;font-family:"Courier New";background:white;
+  mso-highlight:white;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN'>&#9633;</span></b><span
+  lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:ZH-TW'> </span><span
+  lang=EN-GB style='mso-fareast-language:ZH-TW'>Quality Management System
+  Certification<o:p></o:p></span></p>
+  </td>
+  <td width="64%" colspan=2 style='width:64.68%;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB style='mso-fareast-language:ZH-TW'>Standard: </span><span
+  lang=EN-GB style='mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><b><span lang=EN-US
+  style='font-size:16.0pt;font-family:"Courier New";background:white;
+  mso-highlight:white;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN'>&#9633;</span></b><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-fareast-language:
+  ZH-TW'>Environment Management System Certification<o:p></o:p></span></p>
+  </td>
+  <td width="64%" colspan=2 style='width:64.68%;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB style='mso-fareast-language:ZH-TW'>Standard: <o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><b><span lang=EN-US
+  style='font-size:16.0pt;font-family:"Courier New";background:white;
+  mso-highlight:white;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN'>&#9633;</span></b><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-fareast-language:
+  ZH-TW'>Occupational Health and Safety Management System Certification<o:p></o:p></span></p>
+  </td>
+  <td width="64%" colspan=2 style='width:64.68%;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB style='mso-fareast-language:ZH-TW'>Standard: <o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><b><span lang=EN-US
+  style='font-size:16.0pt;font-family:"Courier New";background:white;
+  mso-highlight:white;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN'>&#9633;</span></b><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-fareast-language:
+  ZH-TW'>Product Certification<o:p></o:p></span></p>
+  </td>
+  <td width="64%" colspan=2 style='width:64.68%;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB style='mso-fareast-language:ZH-TW'>Standard: <o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:17;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><b><span lang=EN-US
+  style='font-size:16.0pt;font-family:"Courier New";background:white;
+  mso-highlight:white;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN'>&#9633;</span></b><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-fareast-language:
+  ZH-TW'>New Certification Business<o:p></o:p></span></p>
+  </td>
+  <td width="64%" colspan=2 style='width:64.68%;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB style='mso-fareast-language:ZH-TW'>Standard: <o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:18;mso-yfti-lastrow:yes;height:13.6pt'>
+  <td width="35%" style='width:35.32%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><b><span lang=EN-US
+  style='font-size:16.0pt;font-family:"Courier New";background:white;
+  mso-highlight:white;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN'>&#9633;</span></b><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-fareast-font-family:
+  SimSun;mso-fareast-language:ZH-CN'>No</span><span lang=EN-GB
+  style='mso-fareast-language:ZH-TW'>n-Certification Business<o:p></o:p></span></p>
+  </td>
+  <td width="64%" colspan=2 style='width:64.68%;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.6pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:0cm;text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-GB style='mso-fareast-language:ZH-TW'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-GB style='mso-fareast-language:ZH-TW'>For new
+certification as well as non-certification business, relevant standards, rules,
+guidelines, personnel qualification, etc. should be attached together for
+review.<o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=636
+ style='width:477.0pt;margin-left:5.4pt;border-collapse:collapse;border:none;
+ mso-border-alt:solid windowtext .5pt;mso-yfti-tbllook:480;mso-padding-alt:
+ 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:.5pt solid windowtext;mso-border-insidev:
+ .5pt solid windowtext'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=420 colspan=3 valign=top style='width:315.0pt;border:solid black 1.0pt;
+  border-right:none;mso-border-top-alt:solid black .75pt;mso-border-left-alt:
+  solid black .75pt;mso-border-bottom-alt:solid black .75pt;background:#D9D9D9;
+  padding:0cm 5.4pt 0cm 5.4pt'><span lang=EN-GB style='font-size:10.0pt;
+  mso-bidi-font-size:14.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+  SimSun;mso-fareast-theme-font:minor-fareast;color:black;mso-ansi-language:
+  EN-GB;mso-fareast-language:DE;mso-bidi-language:AR-SA'><br clear=all
+  style='page-break-before:always'>
+  </span>
+  <h2><span lang=EN-GB style='mso-fareast-font-family:PMingLiU;color:black'>Editor</span><span
+  lang=EN-GB style='mso-fareast-font-family:PMingLiU;color:black;mso-fareast-language:
+  ZH-TW'> (Applicant Office Worldwide)<o:p></o:p></span></h2>
+  </td>
+  <td width=216 valign=top style='width:162.0pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black .75pt;mso-border-bottom-alt:
+  solid black .75pt;mso-border-right-alt:solid black .75pt;background:#D9D9D9;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2><span lang=EN-GB style='mso-fareast-font-family:PMingLiU;color:black;
+  display:none;mso-hide:all'><o:p>&nbsp;</o:p></span></h2>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td width=120 valign=top style='width:90.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:solid black 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  mso-border-bottom-alt:solid black .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><span lang=EN-GB>Date</span></p>
+  </td>
+  <td width=172 valign=top style='width:129.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;background:white;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><span lang=EN-GB
+  style='mso-bidi-font-size:10.0pt;mso-fareast-font-family:SimSun;mso-bidi-font-family:
+  Arial;mso-fareast-language:ZH-CN'>21.07.2011</span><span lang=EN-GB
+  style='mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
+  </td>
+  <td width=128 valign=top style='width:96.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;background:white;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><span lang=EN-GB>Person in
+  charge</span></p>
+  </td>
+  <td width=216 valign=top style='width:162.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;background:white;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><span lang=EN-GB
+  style='mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN'>Sue<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=120 valign=top style='width:90.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid windowtext .5pt;
+  mso-border-top-alt:solid black .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><span lang=EN-GB
+  style='mso-fareast-language:ZH-TW'>Applicant Office<o:p></o:p></span></p>
+  </td>
+  <td width=516 colspan=3 valign=top style='width:387.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;mso-border-top-alt:solid black .75pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-top:1.0pt;margin-right:0cm;margin-bottom:
+  1.0pt;margin-left:14.45pt;text-indent:-14.45pt'><span lang=EN-GB
+  style='mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN'>SHG<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=420 colspan=3 valign=top style='width:315.0pt;border-top:none;
+  border-left:solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:
+  none;mso-border-top-alt:solid black .75pt;mso-border-top-alt:solid black .75pt;
+  mso-border-left-alt:solid black .75pt;mso-border-bottom-alt:solid black .75pt;
+  background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt'><span lang=EN-GB
+  style='font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:"Arial","sans-serif";
+  mso-fareast-font-family:SimSun;mso-fareast-theme-font:minor-fareast;
+  color:black;mso-ansi-language:EN-GB;mso-fareast-language:DE;mso-bidi-language:
+  AR-SA'><br clear=all style='page-break-before:always'>
+  </span>
+  <h2><span lang=EN-GB style='mso-fareast-font-family:PMingLiU;color:black;
+  mso-fareast-language:ZH-TW'>Evaluation by Authority Person in TN <st1:country-region
+  w:st="on"><st1:place w:st="on">China</st1:place></st1:country-region><o:p></o:p></span></h2>
+  </td>
+  <td width=216 valign=top style='width:162.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-top-alt:solid black .75pt;
+  mso-border-bottom-alt:solid black .75pt;mso-border-right-alt:solid black .75pt;
+  background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2><span lang=EN-GB style='mso-fareast-font-family:PMingLiU;color:black;
+  display:none;mso-hide:all'><o:p>&nbsp;</o:p></span></h2>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=420 colspan=3 valign=top style='width:315.0pt;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2 style='margin-top:1.0pt;margin-right:0cm;margin-bottom:1.0pt;margin-left:
+  14.45pt;text-indent:-14.45pt;page-break-after:auto'><span lang=EN-GB
+  style='mso-fareast-font-family:PMingLiU;mso-fareast-language:ZH-TW;
+  font-weight:normal;mso-bidi-font-weight:bold'>Certification under approved
+  scopes?<o:p></o:p></span></h2>
+  </td>
+  <td width=216 valign=top style='width:162.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2 style='margin-top:1.0pt;margin-right:0cm;margin-bottom:1.0pt;margin-left:
+  0cm;page-break-after:auto'><span lang=EN-US style='font-size:16.0pt;
+  font-family:"Courier New";mso-fareast-font-family:PMingLiU;background:white;
+  mso-highlight:white;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN;
+  font-weight:normal'>&#9632;</span><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;mso-fareast-language:
+  ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'> </span><span lang=EN-GB
+  style='mso-bidi-font-size:10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:
+  ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'><span
+  style='mso-spacerun:yes'> Yes <span style='mso-spacerun:yes'> </span></span><span
+  lang=EN-US style='font-size:16.0pt;font-family:"Courier New";mso-fareast-font-family:
+  PMingLiU;background:white;mso-highlight:white;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN;font-weight:normal'>&#9633;</span><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN;font-weight:
+  normal;mso-bidi-font-weight:bold'><span
+  style='mso-spacerun:yes'> No <span style='mso-spacerun:yes'></span></span><span
+  lang=EN-US style='font-size:16.0pt;font-family:"Courier New";mso-fareast-font-family:
+  PMingLiU;background:white;mso-highlight:white;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN;font-weight:normal'>&#9633;</span><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN;font-weight:
+  normal;mso-bidi-font-weight:bold'><span style='mso-spacerun:yes'> n.a</span><span
+  lang=EN-GB style='mso-fareast-font-family:SimSun;display:none;mso-hide:all;
+  mso-fareast-language:ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'><o:p></o:p></span></h2>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=420 colspan=3 valign=top style='width:315.0pt;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2 style='margin-top:1.0pt;margin-right:0cm;margin-bottom:1.0pt;margin-left:
+  0cm;page-break-after:auto'><span lang=EN-GB style='mso-fareast-font-family:
+  PMingLiU;mso-fareast-language:ZH-TW;font-weight:normal;mso-bidi-font-weight:
+  bold'>Documentation for new and non-certification business is available?<o:p></o:p></span></h2>
+  </td>
+  <td width=216 valign=top style='width:162.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2 style='margin-top:1.0pt;margin-right:0cm;margin-bottom:1.0pt;margin-left:
+  0cm;page-break-after:auto'><span lang=EN-US style='font-size:16.0pt;
+  font-family:"Courier New";mso-fareast-font-family:PMingLiU;background:white;
+  mso-highlight:white;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN;
+  font-weight:normal'>&#9632;</span><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;mso-fareast-language:
+  ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'> </span><span lang=EN-GB
+  style='mso-bidi-font-size:10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:
+  ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'><span
+  style='mso-spacerun:yes'> Yes <span style='mso-spacerun:yes'> </span></span><span
+  lang=EN-US style='font-size:16.0pt;font-family:"Courier New";mso-fareast-font-family:
+  PMingLiU;background:white;mso-highlight:white;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN;font-weight:normal'>&#9633;</span><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN;font-weight:
+  normal;mso-bidi-font-weight:bold'><span
+  style='mso-spacerun:yes'> No <span style='mso-spacerun:yes'></span></span><span
+  lang=EN-US style='font-size:16.0pt;font-family:"Courier New";mso-fareast-font-family:
+  PMingLiU;background:white;mso-highlight:white;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN;font-weight:normal'>&#9633;</span><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN;font-weight:
+  normal;mso-bidi-font-weight:bold'><span style='mso-spacerun:yes'> n.a</span><span
+  lang=EN-GB style='mso-fareast-font-family:SimSun;display:none;mso-hide:all;
+  mso-fareast-language:ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'><o:p></o:p></span></h2>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width=420 colspan=3 valign=top style='width:315.0pt;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2 style='margin-top:1.0pt;margin-right:0cm;margin-bottom:1.0pt;margin-left:
+  14.45pt;text-indent:-14.45pt;page-break-after:auto'><span lang=EN-GB
+  style='mso-fareast-font-family:PMingLiU;mso-fareast-language:ZH-TW;
+  font-weight:normal;mso-bidi-font-weight:bold'>Submit documentation to CNCA
+  for record?<o:p></o:p></span></h2>
+  </td>
+  <td width=216 valign=top style='width:162.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2 style='margin-top:1.0pt;margin-right:0cm;margin-bottom:1.0pt;margin-left:
+  0cm;page-break-after:auto'><span lang=EN-US style='font-size:16.0pt;
+  font-family:"Courier New";mso-fareast-font-family:PMingLiU;background:white;
+  mso-highlight:white;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN;
+  font-weight:normal'>&#9632;</span><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;mso-fareast-language:
+  ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'> </span><span lang=EN-GB
+  style='mso-bidi-font-size:10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:
+  ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'><span
+  style='mso-spacerun:yes'> Yes <span style='mso-spacerun:yes'> </span></span><span
+  lang=EN-US style='font-size:16.0pt;font-family:"Courier New";mso-fareast-font-family:
+  PMingLiU;background:white;mso-highlight:white;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN;font-weight:normal'>&#9633;</span><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN;font-weight:
+  normal;mso-bidi-font-weight:bold'><span
+  style='mso-spacerun:yes'> No <span style='mso-spacerun:yes'></span></span><span
+  lang=EN-US style='font-size:16.0pt;font-family:"Courier New";mso-fareast-font-family:
+  PMingLiU;background:white;mso-highlight:white;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN;font-weight:normal'>&#9633;</span><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN;font-weight:
+  normal;mso-bidi-font-weight:bold'><span style='mso-spacerun:yes'> n.a</span><span
+  lang=EN-GB style='mso-fareast-font-family:SimSun;display:none;mso-hide:all;
+  mso-fareast-language:ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'><o:p></o:p></span></h2>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=420 colspan=3 valign=top style='width:315.0pt;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2 style='margin-top:1.0pt;margin-right:0cm;margin-bottom:1.0pt;margin-left:
+  14.45pt;text-indent:-14.45pt;page-break-after:auto'><span lang=EN-GB
+  style='mso-fareast-font-family:PMingLiU;mso-fareast-language:ZH-TW'>Final
+  Evaluation<o:p></o:p></span></h2>
+  </td>
+  <td width=216 valign=top style='width:162.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2 style='margin-top:1.0pt;margin-right:0cm;margin-bottom:1.0pt;margin-left:
+  0cm;page-break-after:auto'><span lang=EN-US style='font-size:16.0pt;
+  font-family:"Courier New";mso-fareast-font-family:PMingLiU;background:white;
+  mso-highlight:white;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN;
+  font-weight:normal'>&#9632;</span><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;mso-fareast-language:
+  ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'> </span><span lang=EN-GB
+  style='mso-bidi-font-size:10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:
+  ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'><span
+  style='mso-spacerun:yes'> Yes <span style='mso-spacerun:yes'> </span></span><span
+  lang=EN-US style='font-size:16.0pt;font-family:"Courier New";mso-fareast-font-family:
+  PMingLiU;background:white;mso-highlight:white;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN;font-weight:normal'>&#9633;</span><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN;font-weight:
+  normal;mso-bidi-font-weight:bold'><span
+  style='mso-spacerun:yes'> No <span style='mso-spacerun:yes'></span></span><span
+  lang=EN-US style='font-size:16.0pt;font-family:"Courier New";mso-fareast-font-family:
+  PMingLiU;background:white;mso-highlight:white;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN;font-weight:normal'>&#9633;</span><span
+  lang=EN-US style='mso-fareast-font-family:SimSun;mso-ansi-language:EN-US;
+  mso-fareast-language:ZH-CN'> </span><span lang=EN-GB style='mso-bidi-font-size:
+  10.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN;font-weight:
+  normal;mso-bidi-font-weight:bold'><span style='mso-spacerun:yes'> n.a</span><span
+  lang=EN-GB style='mso-fareast-font-family:SimSun;display:none;mso-hide:all;
+  mso-fareast-language:ZH-CN;font-weight:normal;mso-bidi-font-weight:bold'><o:p></o:p></span></h2>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8;height:36.85pt'>
+  <td width=636 colspan=4 valign=top style='width:477.0pt;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:36.85pt'>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  color:red;mso-fareast-language:ZH-CN'>Comments/Remarks<o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  color:red;mso-fareast-language:ZH-CN'>Transferred certification<span
+  style='mso-spacerun:yes'>                           </span></span><span
+  lang=EN-GB style='mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN'><span
+  style='mso-spacerun:yes'></span><span style='font-family:SimSun;
+  mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;mso-fareast-language:
+  ZH-CN'>&#9633;</span><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  color:red;mso-fareast-language:ZH-CN'>Yes<span style='mso-spacerun:yes'>
+ </span></span><span style='font-family:SimSun;mso-ascii-font-family:Arial;
+  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>&#9633;</span><span
+  lang=EN-GB style='mso-fareast-font-family:SimSun;color:red;mso-fareast-language:
+  ZH-CN'>No<span style='mso-spacerun:yes'> </span>Approved by CCAA<span
+  style='mso-spacerun:yes'></span></span><span style='font-family:SimSun;
+  mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;mso-fareast-language:
+  ZH-CN'>&#9633;</span><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  color:red;mso-fareast-language:ZH-CN'>Yes<span style='mso-spacerun:yes'>  </span></span><span style='font-family:SimSun;mso-ascii-font-family:Arial;
+  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>&#9633;</span><span
+  lang=EN-GB style='mso-fareast-font-family:SimSun;color:red;mso-fareast-language:
+  ZH-CN'>No<span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  color:red;mso-fareast-language:ZH-CN'>separation of automotive portion
+  (TS)<span style='mso-spacerun:yes'>       </span></span><span
+  style='font-family:SimSun;mso-ascii-font-family:Arial;mso-hansi-font-family:
+  Arial;mso-fareast-language:ZH-CN'>&#9633;</span><span lang=EN-GB
+  style='mso-fareast-font-family:SimSun;color:red;mso-fareast-language:ZH-CN'>Yes<span
+  style='mso-spacerun:yes'> </span></span><span style='font-family:SimSun;
+  mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;mso-fareast-language:
+  ZH-CN'>&#9633;</span><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  color:red;mso-fareast-language:ZH-CN'>No<span style='mso-spacerun:yes'>  
+  </span>Approved by IATF<span style='mso-spacerun:yes'>   </span></span><span
+  style='font-family:SimSun;mso-ascii-font-family:Arial;mso-hansi-font-family:
+  Arial;mso-fareast-language:ZH-CN'>&#9633;</span><span lang=EN-GB
+  style='mso-fareast-font-family:SimSun;color:red;mso-fareast-language:ZH-CN'>Yes
+  </span><span lang=EN-GB style='mso-fareast-font-family:SimSun;mso-fareast-language:
+  ZH-CN'><span style='mso-spacerun:yes'></span><span style='font-family:
+  SimSun;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;mso-fareast-language:
+  ZH-CN'>&#9633;</span><span lang=EN-GB style='mso-fareast-font-family:SimSun;
+  color:red;mso-fareast-language:ZH-CN'>No<span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9;mso-yfti-lastrow:yes'>
+  <td width=420 colspan=3 valign=top style='width:315.0pt;border:solid black 1.0pt;
+  border-top:none;mso-border-top-alt:solid black .75pt;mso-border-alt:solid black .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='margin-top:3.0pt;margin-right:2.85pt;margin-bottom:
+  3.0pt;margin-left:0cm;tab-stops:42.15pt'><b style='mso-bidi-font-weight:normal'><span
+  lang=EN-GB style='mso-bidi-font-size:10.0pt;mso-bidi-font-family:Arial'>Date:<a
+  name=DatumFreigabe> </a></span></b><b style='mso-bidi-font-weight:normal'><span
+  lang=EN-GB style='mso-bidi-font-size:10.0pt;mso-bidi-font-family:Arial;
+  mso-fareast-language:ZH-TW'><o:p></o:p></span></b></p>
+  <h2 style='margin-top:3.0pt;margin-right:0cm;margin-bottom:3.0pt;margin-left:
+  14.45pt;text-indent:-14.45pt;page-break-after:auto'><span lang=EN-GB
+  style='mso-bidi-font-size:10.0pt;mso-fareast-font-family:PMingLiU'>Name: </span><span
+  lang=EN-GB style='mso-bidi-font-size:10.0pt;mso-fareast-font-family:SimSun;
+  mso-fareast-language:ZH-CN'>Mr. Danny XIE</span><span lang=EN-GB
+  style='mso-fareast-font-family:SimSun;mso-fareast-language:ZH-CN'><o:p></o:p></span></h2>
+  </td>
+  <td width=216 valign=top style='width:162.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  mso-border-alt:solid black .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <h2 style='margin-top:1.0pt;margin-right:0cm;margin-bottom:1.0pt;margin-left:
+  14.45pt;text-indent:-14.45pt;page-break-after:auto'><span lang=EN-GB
+  style='mso-bidi-font-size:10.0pt;mso-fareast-font-family:PMingLiU'>Signature<o:p></o:p></span></h2>
+  </td>
+ </tr>
+ <![if !supportMisalignedColumns]>
+ <tr height=0>
+  <td width=120 style='border:none'></td>
+  <td width=172 style='border:none'></td>
+  <td width=128 style='border:none'></td>
+  <td width=216 style='border:none'></td>
+ </tr>
+ <![endif]>
+</table>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+lang=EN-GB style='font-size:8.0pt;mso-fareast-font-family:SimSun;mso-fareast-language:
+ZH-CN'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
+EOT;
+?>

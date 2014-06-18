@@ -1,0 +1,177 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="./index.php?m=report&do=auditor_plan">
+    <tr>
+  		<td>
+  			$SearchHtml
+  			<br/><input type="submit" value="搜索" name="submit" />
+			当前 $ydate 年 $mdate 月
+  		</td>
+   </tr>
+</form>
+</table>
+$result[pages]
+<div class="blank"></div>
+<table  width="$width" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+	<tr bgcolor="#FFFFFF">
+	    <td  align="center">资格</td>
+		<td height="25px" align="center">审核员</td>
+<!--
+EOT;
+for($s1 = 1;$s1 <= $tianshu; $s1++) {
+$xinqi=mktime(0,0,0,$mdate,$s1,$ydate);
+if (date("l",$xinqi)=="Sunday" or date("l", $xinqi)=="Saturday"){$bgcolor='bgcolor="orange"';}else{$bgcolor = '';}
+echo <<<EOT
+-->
+		<td width="30" align="center" $bgcolor>$s1</td>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		<td width="30" align="center">合计</td>
+	</tr>
+<!--
+EOT;
+foreach($result[data] as $v) {
+$zg_sql = "SELECT iso,qualification  FROM  hr_reg_qualification where hr_id ='$v[id]' AND online='1'";
+$query_zg = $db->query($zg_sql);
+$zgstr='';
+while($zglist=$db->fetch_array($query_zg))
+{
+   $zgstr .= $zglist[iso].Cache::cache_hr_reg_qualification($zglist[qualification]).'<br>';
+}
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+	<td width="70px" align="center">$zgstr</td>
+		<td height="25px" width="70px"><a href="index.php?m=hr&do=hr_information_edit&id={$v[id]}">$v[username]</a></td>
+<!--
+EOT;
+$prdb = $pr_arr = array();
+$pr_sql = "SELECT id,taskId,zuzhi_id,taskBeginDate,taskBeginHalfDate,taskEndDate,taskEndHalfDate,zd_ren FROM $dbtable[xm_auditor] WHERE empId='$v[id]' AND ((taskBeginDate >= '$s_date' AND taskBeginDate <= '$e_date') OR (taskEndDate >= '$s_date' AND taskEndDate <= '$e_date'))";
+$pr_q = $db->query($pr_sql);
+while($pr_arr = $db->fetch_array($pr_q)){
+$htxmcode = array();
+$query3 = $db->query("SELECT htxm_id FROM `xm_item` WHERE `taskId`='$pr_arr[taskId]'");
+while($htid = $db->fetch_array($query3)){
+	$rowss = $db->get_one("SELECT htxmcode  FROM `ht_contract_item` WHERE `id`='$htid[htxm_id]'");
+	$htxmcode []= $rowss[htxmcode];
+}
+$htxmcode = implode(',',$htxmcode);
+
+$qy = $db->get_one("SELECT eiregistername,eisc_address,eiphone,eilinkman FROM $dbtable[mk_company] WHERE id='$pr_arr[zuzhi_id]'");
+$pr_arr['eiregistername'] = $qy['eiregistername'];
+$pr_arr['eisc_address'] = $qy['eisc_address'];
+$pr_arr['eiphone'] = $qy['eiphone'];
+$pr_arr['eilinkman'] = $qy['eilinkman'];
+$prdb []= $pr_arr;
+
+$empname=array();
+$zuzhang='';
+$lp = $db->query("SELECT id,empName FROM $dbtable[xm_auditor] WHERE taskId='$pr_arr[taskId]'");
+while($empid=$db->fetch_array($lp))
+{
+   $ly = $db->get_one("SELECT isLeader FROM $dbtable[xm_auditor_plan] WHERE auditorId='$empid[id]' ");
+   if($ly['isLeader'] == '0'){
+	 $empname[]=$empid['empName'];
+	 }else{
+	$zuzhang=$empid['empName'];}
+}
+$epname=implode(",", $empname);
+$othermsg[$pr_arr[zuzhi_id]] = "项目编号：$htxmcode<br> 企业名称：$pr_arr[eiregistername] <br> 企业地址：$pr_arr[eisc_address] <br> 联系电话：$pr_arr[eiphone] <br> 联系人：$pr_arr[eilinkman] <br> 制单人：$pr_arr[zd_ren] <br> 组长：$zuzhang <br> 审核组员：$epname 	";
+}
+
+$total = '';
+for($s1 = 1;$s1 <= $tianshu; $s1++) {
+if (strlen($s1)==1){$s1_tmp=$ydate."-".$mdate."-"."0".$s1;}else{$s1_tmp=$ydate."-".$mdate."-".$s1;}
+$am_href = $pm_href = $am = $pm = '';$showmsg1 = '';$showmsg2 = '';
+foreach($prdb as $pr){
+
+	$c++;
+	$classid = $pr[zuzhi_id].$s1.$c;
+	if(
+		($pr['taskBeginDate'].$pr['taskBeginHalfDate'] <= $s1_tmp.'08:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] > $s1_tmp.'08:00:00')
+		or
+		($pr['taskBeginDate'].$pr['taskBeginHalfDate'] <= $s1_tmp.'09:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] > $s1_tmp.'09:00:00')
+		or
+		($pr['taskBeginDate'].$pr['taskBeginHalfDate'] <= $s1_tmp.'10:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] > $s1_tmp.'10:00:00')
+		or
+		($pr['taskBeginDate'].$pr['taskBeginHalfDate'] <= $s1_tmp.'11:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] > $s1_tmp.'11:00:00')
+	){
+	$am = 'bgcolor=#FFFF00';
+	$total = $total + 0.5;
+	$am_href = "<a href=\"index.php?m=audit&do=item_people_list&empName=".urlencode($v[username])."\" onmouseover=\"show_block('$classid','300px','2')\" onmouseout=\"hide_block('$classid')\">&nbsp;&nbsp;</a>";
+	$showmsg1 = "<div class=\"$classid show_block\">{$othermsg[$pr[zuzhi_id]]}</div>";
+	}
+	if(
+		($pr['taskBeginDate'].$pr['taskBeginHalfDate'] <= $s1_tmp.'12:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] > $s1_tmp.'12:00:00')
+		or
+		($pr['taskBeginDate'].$pr['taskBeginHalfDate'] <= $s1_tmp.'13:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] > $s1_tmp.'13:00:00')
+		or
+		($pr['taskBeginDate'].$pr['taskBeginHalfDate'] <= $s1_tmp.'14:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] > $s1_tmp.'14:00:00')
+		or
+		($pr['taskBeginDate'].$pr['taskBeginHalfDate'] <= $s1_tmp.'15:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] > $s1_tmp.'15:00:00')
+		or
+		($pr['taskBeginDate'].$pr['taskBeginHalfDate'] <= $s1_tmp.'16:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] > $s1_tmp.'16:00:00')
+		or
+		($pr['taskBeginDate'].$pr['taskBeginHalfDate'] <= $s1_tmp.'17:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] > $s1_tmp.'17:00:00')
+	){
+	$pm = 'bgcolor=#FFFF00';
+	$total = $total + 0.5;
+	$pm_href = "<a href=\"index.php?m=audit&do=item_people_list&empName=".urlencode($v[username])."\" onmouseover=\"show_block('$classid','300px','2')\" onmouseout=\"hide_block('$classid')\">&nbsp;&nbsp;</a>";
+	$showmsg2 = "<div class=\"$classid show_block\">{$othermsg[$pr[zuzhi_id]]}</div>";
+	}
+}
+//onmouseover=\"show_block('$classid','300px')\" onmouseout=\"hide_block('$pr[zuzhi_id]')\"
+//and $pr['taskEndDate'].$pr['taskEndHalfDate'] >= $s1_tmp.'12:00:00'
+//$pr['taskBeginDate'].$pr['taskBeginHalfDate'] < $s1_tmp.'17:00:00' and $pr['taskEndDate'].$pr['taskEndHalfDate'] >= $s1_tmp.'17:00:00'
+if($showmsg1 != $showmsg2){
+echo <<<EOT
+-->
+		<td width="30px" height="25px" align="left">
+			<table width="100%" height="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr><td width="50%" $am>$showmsg1 $am_href </td>
+			<td width="50%" $pm> $showmsg2 $pm_href </td></tr>
+			</table>
+
+		</td>
+<!--
+EOT;
+}else{
+echo <<<EOT
+-->
+		<td width="30px" height="25px" align="left" >$showmsg1
+			<table width="100%" height="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr><td width="50%" $am> $am_href </td>
+			<td width="50%" $pm>  $pm_href </td></tr>
+			</table>
+
+		</td>
+<!--
+EOT;
+}}
+echo <<<EOT
+-->
+		<td width="30" align="center">$total</td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+
+
+</table>
+$result[pages]
+</div>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

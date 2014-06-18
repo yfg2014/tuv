@@ -1,0 +1,116 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+function rm(obj,flag,hrid,id)
+{
+	var del_node = $(obj).parents("tr");
+	if(flag == 1)
+	{
+		if(confirm("此操作不可恢复，您确认要删除此记录吗？"))
+		{
+			$.post("index.php?m=hr&do=ziliao_del&hr_id=&"+hrid+"&fid="+id,null,function(response){
+				del_node.remove();
+			});
+			return;
+		}
+		return;
+	}
+	del_node.remove();
+}
+function save()
+{
+	//调用表单验证插件
+	if(!Validator.Validate(document.forms[0],2))return;
+	document.forms[0].submit();
+
+}
+$(function() {
+	var f=$("div.fl").clone().find("select").val('').end();	
+	$('[name="myfile"]').click(function(){var fo=f.clone();$("#mfile").append(fo);});
+})
+//]]>
+</script>
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" border="0" cellpadding="0" cellspacing="1" bgcolor="#0066FF" align="center">
+<th bgcolor="#FFFFFF" colspan="4">
+<div style="margin-top:5px;text-align:center;"><a href="index.php?m=hr&do=hr_resume&hr_id={$hr_id}">简历</a>&nbsp;&nbsp;<a href="index.php?m=hr&do=hr_education&hr_id={$hr_id}">学历</a>&nbsp;&nbsp;<a href="index.php?m=hr&do=hr_profession&hr_id={$hr_id}">职称</a>&nbsp;&nbsp;<a href="index.php?m=hr&do=ziliao_edit&hr_id={$hr_id}">资料</a></div>
+<div style="text-align:center;font-family:'新宋体';font:caption;color:blue;margin-top:10px;">姓名：{$value[username]}&nbsp;员工编号：{$value[idcode]}</div>
+</th>
+<tr bgcolor="#FFFFFF" height="30">
+<td align="center"><font color=blue>文件名</font></td>
+<td align="center"><font color=blue>文件类型</font></td>
+<td align="center"><font color=blue>上传时间</font></td>
+<td align="center"><font color=blue>操作</font></td>
+</tr>
+<!--
+EOT;
+
+foreach($zi as $k=>$v)
+{
+print <<<EOT
+-->
+<tr bgcolor="#FFFFFF"  height="30" id="{$v[fid]}">
+<td><img border="0" width="20" src="frontEnd/images/image.gif" /><a href="./index.php?m=hr&do=ziliao_down&fid=$v[fid]" target="_blank">$v[filename]</a></td>
+<td align="center">{$setup_hr_uploadfile[$v[filekind]][msg]}</td>
+<td align="center">$v[filetime]</td>
+<td align="center">
+<input type="image" src="frontEnd/images/button_empty.png" alt="删除" style="cursor:pointer;" id="ry" name="remove" onclick="javascript:rm(this,1,$v[hr_id],$v[fid]);" /></td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+
+<p>&nbsp;</p>
+<table width="600" border="0" cellpadding="0" cellspacing="1" bgcolor="#0066FF" align="center">
+<th bgcolor="#FFFFFF">
+<div style="margin-top:10px;text-align:center;"><font style="color:blue;">上传资料</font></div>
+<div style="margin-top:10px;">
+</th>
+<tr bgcolor="#FFFFFF">
+<td>
+<div align="center">
+<form name="add_peixun" method="post" action="index.php?m=hr&do=ziliao_save" enctype="multipart/form-data">
+
+
+<div class="fl" style="margin-top:5px;">
+            附件：<SELECT NAME="filekind[]">
+<!--
+EOT;
+foreach($setup_hr_uploadfile as $k => $v)
+{
+print <<<EOT
+-->
+				<option value="{$v[code]}">$v[msg]</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+            </select>
+<input type="file"  name="files[]">
+<input type="button" value="删除" onClick="$(this).parent().remove();" />
+</div>
+<div id="mfile"></div>
+<div style="margin-top:10px;">
+<input type="button"  value="增 行 " name="myfile" />
+<input type="hidden" name="hr_id" value="{$hr_id}" />
+<input type="button" name="submit1" id="submit1" value="保 存" onclick="javascript:save();"/>
+<input type="button" name="back" value="返 回" onclick="javascript:history.go(-1);"/>
+</div>
+</form>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<!--
+EOT;
+?>
+-->

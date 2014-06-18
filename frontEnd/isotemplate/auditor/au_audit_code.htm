@@ -1,0 +1,132 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+
+//]]>
+</script>
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width">
+<tr >
+
+<td >专业能力>> 姓名：{$result_ren[username]}&nbsp;员工编号：{$result_ren[idcode]}</td>
+<td >
+
+<a href="index.php?m=auditor&do=au_audit_code&hr_id=$hr_id">全部</a>
+<!--
+EOT;
+foreach($setup_audit_iso as $key => $value)
+{
+$sel = '';
+if($value[online]=='1'){
+if($value[code]==$result[iso]){$sel = 'selected';}
+print <<<EOT
+-->
+<a href="index.php?m=auditor&do=au_audit_code&hr_id=$hr_id&iso=$value[code]">{$value[msg]}</a>
+<!--
+EOT;
+}
+}
+print <<<EOT
+-->
+</td>
+</tr>
+</table>
+<table class="c_table stripe" width="$width">
+<tr>
+<th width="42" align="center">编辑</th>
+<th width="60" align="center">状态</th>
+<th width="56" align="center">体系</th>
+<th width="96" align="center">专业代码</th>
+<th width="180" align="center">能力来源</th>
+<th width="97" align="center">申报依据</th>
+<th width="112" align="center">通过日期</th>
+<th width="60" align="center">备注</th>
+
+
+</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+if($v[online] == '1' )
+{ $v[online] = '有效';}
+else if($v[online] == '0')
+{ $v[online] = '<font color=red>关闭</font>';}
+else
+{$v[online] = '<font color=green>申请</font>';}
+print <<<EOT
+
+-->
+<tr >
+<td align="center">
+<a href="index.php?m=auditor&do=au_audit_code_edit&hr_id=$hr_id&id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+<td align="center">$v[online]</td>
+<td align="center">$v[iso]</td>
+<td align="center">$v[xiaolei]</td>
+<td align="center">$v[ability_source]</td>
+<td align="center">$v[sbyj]</td>
+<td align="center">
+
+
+
+<!--
+EOT;
+if($v[shenbaodate]!='' &&$v[shenbaodate]!='0000-00-00')
+{
+print <<<EOT
+-->
+$v[shenbaodate]
+
+<!--
+EOT;
+}else{
+echo <<<EOT
+-->
+待审中
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+
+</td>
+<td align="center">
+<!--
+EOT;
+if(!empty($v[other]))
+{
+print <<<EOT
+-->
+<img src="frontEnd/images/other.png" alt="$v[other]" border="0" />
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+&nbsp;
+</td>
+
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+
+<TR  >
+<TD align="center">
+<a href="index.php?m=auditor&do=au_audit_code_edit&hr_id=$hr_id"><img src="frontEnd/images/button_insert.png" alt="添加" border="0" /></a></TD>
+	<TD colspan="7"></TD>
+</TR>
+</table>
+$result[pages]
+</div>
+</div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,40 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div style="height:150px;"></div>
+<table width="200px"  class="e_table">
+<form name="form1" method="post" action="./index.php?m=contract&do=contract_audit_show">
+	<tr>
+		<td colspan="4">打印评审记录 >></td>
+	</tr>
+<!--
+EOT;
+foreach((array)$htxm as $htxm_v){
+	$htxm_v[audit_type] =	Cache::cache_audit_type($htxm_v[audit_type]);
+echo <<<EOT
+-->
+	<tr>
+		<td width="30" align="center"><input type="radio" name="htxm_id" value="$htxm_v[id]"></td>
+		<td width="30" align="center">$htxm_v[iso]</td>
+		<td align="center">$htxm_v[audit_type]</td>
+		<td align="center">$htxm_v[audit_code]</td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	<tr>
+		<td colspan="4" align="center">
+			<input type="hidden" name="ht_id" value="$ht_id" />
+			<input type="hidden" name="zuzhi_id" value="$zuzhi_id" />
+			<input type="submit" name="sub" value="打 印">
+		</td>
+	</tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

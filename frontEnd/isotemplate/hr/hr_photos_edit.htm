@@ -1,0 +1,44 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+
+//]]>
+</script>
+<div class="blank"></div>
+<table width="$width" align="center">
+  <tr>
+    <th align="left">人员照片>> 姓名：{$result[username]}&nbsp;员工编号：{$result[idcode]}</th>
+  </tr>
+</table>
+<table width="$width" class="e_table">
+  <tr>
+    <td align="right" width="100">照片：</td>
+		<td align="center">
+            <div>
+                <img src="{$result[photos]}" id="srcimg" width="95" height="128" onerror="this.src='frontEnd/images/nophoto.gif'" />
+            </div>
+		</td>
+  </tr>
+</table>
+<div class="blank"></div>
+<table width="$width" class="e_table">
+<form name="form1" method="post" action="index.php?m=hr&do=hr_photos_save" enctype="multipart/form-data">
+<input type="hidden" name="hr_id" value="$hr_id"/>
+  <tr>
+    <td align="right" width="100">照片上传：</td>
+    <td><input type="file" name="files" style="width:250px;" /></td>
+  </tr>
+  <tr>
+  	<td colspan="2" align="center"><input type="submit" name="submit" value="保存"/>&nbsp;&nbsp;
+  	  <input type="button"  onclick="javascript: window.location.href='index.php?m=hr&do=hr_information_edit&id=$hr_id '"  name="submit2" value="返回"/></td>
+  </tr>
+</form> 
+</table>
+
+<!--
+EOT;
+?>
+-->

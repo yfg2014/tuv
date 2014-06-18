@@ -1,0 +1,70 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+<tr><td align="left">
+组织问题查询&gt;&gt;&nbsp;合计：$result[count]
+</td></tr>
+</table>
+
+<table  width="$width" class="c_table stripe">
+	<tr bgcolor="#F2F2F2">
+		<th align="center">修改</th>
+		<th align="center">企业ID</th>
+		<th align="center">企业注册名称</th>
+		<th align="center">联系人</th>
+		<th align="center">联系电话</th>
+		<th align="center">联系传真</th>
+		<th align="center">组织问题</th>
+		<th align="center">问题登记时间</th>
+		<th align="center">问题登记人</th>
+		<th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach ($result['data'] as $k=>$v) {
+
+if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+-->
+	<tr>
+		<td width="50" align="center"><a href="index.php?m=company&do=qiyedengji_question_edit&zuzhi_id=$v[zuzhi_id]&id=$v[id]"><img src="frontEnd/images/button_edit.png" title="修改" border="0" /></a></td>
+		<td width="50">$v[zuzhi_id]</td>
+		<td width="240"><a href="index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		<td width="70" align="center">$v[eilinkman]</td>
+		<td width="100" style="white-space:normal; word-break:break-all;" align="center">$v[eilinkman_mob]</td>
+		<td width="100" style="white-space:normal; word-break:break-all;" align="center">$v[eifax]</td>
+		<td width="80" style="white-space:normal; word-break:break-all;" align="center"><div class="{$k} show_block">{$v[other]}</div>$v[show]</td>
+		<td width="100" align="center">$v[printdate]</td>
+		<td width="100" style="white-space:normal; word-break:break-all;" align="center">$v[zd_ren]</td>
+		<td align="center" width="50"><a href="index.php?m=company&do=qiyedengji_question_del&id=$v[id]" onclick="return confirm('您确定要删除该企业问题吗')"><img src="frontEnd/images/button_empty.png" border="0" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+
+</div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,37 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div align="center">
+<div class="blank"></div>
+<table width="100%" align="center" border="0" cellspacing="1" cellpadding="1" bgcolor="#0066FF">
+	<tr bgcolor="#F2F2F2">
+    	<td align="center"><font color="#003399">选择</font></td>
+        <td align="center"><font color="#003399">人员ID</font></td>
+        <td align="center"><font color="#003399">姓名</font></td>
+    </tr>
+<!--
+EOT;
+foreach($result as $v){
+$username = Cache::cache_username($v[hr_id]);
+print <<<EOT
+-->
+	<tr bgcolor="#F2F2F2">
+    	<td align="center"><input src="../frontEnd/images/button_edit.gif" type="image" class="line" /></td>
+        <td align="center">$v[hr_id]<input type="hidden" name="hr_id" value="$v[hr_id]" class="id" /></td>
+        <td align="center">$username</td>
+    </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	<tr bgcolor="#F2F2F2">
+		<td height="24" colspan="4" align="center">$result[pages]</td>
+	</tr>
+</table>
+</div>
+<!--
+EOT;
+?>
+-->

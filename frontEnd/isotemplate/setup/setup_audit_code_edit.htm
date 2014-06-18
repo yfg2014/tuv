@@ -1,0 +1,121 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div class="blank"></div>
+<table width="450" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+<form method="post" name="input" action="index.php?m=setup&do=setup_audit_code_save">
+    <tr bgcolor="#FFFFFF">
+    	<td height="24" colspan="2"><font color="#003399">信息设置 -&gt; 业务分类 </font></td>
+    </tr>
+	<tr bgcolor="#F2F2F2">
+        <td height="24" align="right"><font color="#003399">领域：</font></td>
+        <td>
+
+	          	<select name="iso" style="width:205px">
+        		<option value=""></option>
+<!--
+EOT;
+foreach($setup_audit_iso as $key => $value)
+{
+$sel = '';
+if($rst[iso]==$value[code]){$sel = 'selected';}
+print <<<EOT
+-->
+	<option value="{$value[code]}" $sel>$value[msg]</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+			</select>
+
+
+        </td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+    	<td height="24" align="right"><font color="#003399">使用编码：</font></td>
+    	<td><input name="code" style="width:205px" value="{$rst[code]}" dataType="Require" msg="代码 不能为空！"></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+    	<td height="24" align="right"><font color="#003399">上报编码：</font></td>
+    	<td><input name="shangbao" style="width:205px" value="{$rst[shangbao]}" dataType="Require" msg="代码 不能为空！"></td>
+    </tr>
+	  <tr bgcolor="#F2F2F2">
+    	<td height="24" align="right"><font color="#003399">认可标志：</font></td>
+        <td>
+<!--
+EOT;
+foreach($setup_mark as $key => $value)
+{
+if($value['online'] == '1')
+{
+
+if(in_array($value[code],$rst[mark] )){$ck='checked="checked"';}else{$ck = '';}
+print <<<EOT
+-->
+            <input type="checkbox" name="mark[]" value='{$value[code]}' $ck>$value[msg] &nbsp;
+<!--
+EOT;
+}}
+print <<<EOT
+-->
+    	</td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+    	<td width="29%" height="24" align="right"><font color="#003399"> 内容：</font></td>
+    	<td width="71%" ><input name="msg" style="width:205px" value="{$rst[msg]}" dataType="Require" msg="内容 不能为空！"></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" align="right"><font color="#003399">见证时间：</font></td>
+        <td><input name="jianzhengdate" style="width:205px" value="{$rst[jianzhengdate]}" id="sel1" onClick="showCalendar(this, 'y-mm-dd');"/></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" align="right"><font color="#003399">批准时间：</font></td>
+        <td><input name="pizhundate" style="width:205px" value="{$rst[pizhundate]}" id="sel2" onClick="showCalendar(this, 'y-mm-dd');"/></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" align="right"><font color="#003399">见证组织：</font></td>
+        <td><input name="eientercode" style="width:205px; " value="{$rst[eientercode]}" /></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" align="right"><font color="#003399">自我评价时间：</font></td>
+        <td><input name="pingjiadate" style="width:205px" value="{$rst[pingjiadate]}" id="sel3" onClick="showCalendar(this, 'y-mm-dd');"/></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+    	<td width="29%" height="24" align="right"><font color="#003399"> 中文技术专项要求：</font></td>
+    	<td width="71%" ><input name="specrequire_cn" style="width:205px" value="{$rst[specrequire_cn]}"/></td>
+    </tr>
+	<tr bgcolor="#F2F2F2">
+    	<td width="29%" height="24" align="right"><font color="#003399"> 英文技术专项要求：</font></td>
+    	<td width="71%" ><input name="specrequire_en" style="width:205px" value="{$rst[specrequire_en]}"/></td>
+    </tr>
+	<tr bgcolor="#F2F2F2">
+    	<td width="29%" height="24" align="right"><font color="#003399"> 备注：</font></td>
+    	<td width="71%" ><input name="other" style="width:205px" value="{$rst[other]}" dataType="Require" msg="内容 不能为空！"></td>
+    </tr>
+<!---->
+<!--
+EOT;
+$rst['online'] == '1' ? $ck1 = 'checked="checked"' : $ck2 = 'checked="checked"';
+print <<<EOT
+-->
+    <tr bgcolor="#F2F2F2">
+        <td height="24" align="right"><font color="#003399">状态：</font></td>
+        <td>
+            <input type="radio" name="online" value="1"  $ck1/>启用
+            <input type="radio" name="online" value="0"  $ck2/>关闭        </td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" colspan="2" align="right">
+            <div align="center">
+                <input type="hidden" name="id" value="{$rst[id]}" />
+                <input type="submit" value=" 确 定 " name="submit" />
+            </div>        </td>
+    </tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,88 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+//企业弹窗
+$(function(){
+	var option = {
+		closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",
+		onClose:function(dialog){
+		$("#simplemodal-container,#simplemodal-overlay").hide();$(dialog.data).empty();$.modal.close();
+		}
+	};
+	$("#eiregistername").click(function(){
+		var obj = $(this).parent();
+		option.containerCss = {
+			width: 900,
+			height: 500
+		};
+		$('<iframe src="dlg/in_qiye_list.php?power=$_SESSION[power]&username=$_SESSION[username]" frameborder="0" style="width:870px;height:680px;margin-bottom:5px;"></iframe>').load(function(){
+			$(this).contents().find('.line').click(function(){
+				var o = $(this).parent();
+				obj.find('#zuzhi_id').val(o.find('.zuzhi_id').val());
+				obj.find('#eiregistername').val(o.find('.eiregistername').val());
+				$.modal.close();
+			})
+		}).modal(option);
+		option.containerCss = null;
+	}); 
+
+});
+function save(){
+		
+	//调用表单验证插件
+	if(!Validator.Validate(document.forms[0],2))return;
+	document.forms[0].submit();
+
+}
+
+//]]>
+</script>
+<div class="blank"></div>
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css">
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('.usual').idTabs({event:'mouseover'});
+})
+//]]>
+</script>
+<div class="blank"></div>
+
+<table class="e_table" width="$width">
+<form name="add_gift" method="post" action="index.php?m=gift&do=qiye_gift_save">
+		<input type="hidden" name="id" value="{$id}" />
+	<tr>	
+		<td colspan="2">&nbsp;组织礼品发放登记>> </td> 
+	</tr>
+	<tr>	
+		<td width="200" align="right">组织名称：</td> 
+		<td width="400">
+			<input type="hidden" name="zuzhi_id" id="zuzhi_id" value="$result[zuzhi_id]" />
+			<input type="text" name="eiregistername" id="eiregistername" style="width:100px;" readonly="readonly" value="{$result[eiregistername]}" datatype="Require" msg="姓名不能为空！" /><font color="red"> * </font>
+		</td>
+	</tr>
+	<tr>
+		<td align="right">礼品名称：</td>
+		<td align="left"><input type="text" name="gift_name" value="{$result[gift_name]}" style="width:100px;" /><font color="red"> * </font></td>
+	</tr>
+	<tr>
+		<td align="right">发放时间：</td>
+		<td><input type="text" name="send_date" value="{$result[send_date]}" style="width:150px" title='日期格式  1980-03-04' dataType="Date" msg="请输入日期格式 如1980-03-04" onFocus="return showCalendar(this, 'y-mm-dd');" /></td>
+	</tr>
+	<tr>
+		<td align="right">备注：</td>
+		<td><textarea name="remark" style="width:300px;height:80px;">$result[remark]</textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center"><input type="button" value=" 保 存 " onclick="javascript:save();" /></td>
+	</tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

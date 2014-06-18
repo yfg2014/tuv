@@ -1,0 +1,39 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<table width="100%" class="c_table">
+<tr bgcolor="#F2F2F2">
+<td align="center" height="22" width="25"><font color="#003399">选择</font></td>
+<td align="center"><font color=#003399>编码</font></td>
+<td align="center"><font color=#003399>检测机构</font></td>
+</tr>
+<!--
+EOT;
+foreach($setup_product_test as $k => $v){
+
+echo <<<EOT
+-->
+
+<tr bgcolor="#FFFFFF">
+<td align="center">
+	<input type="checkbox" name="code" class="line" value="$k" />
+</td>
+<td align="center">$k</td>
+<td>$v</td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+<tr bgcolor="#FFFFFF">
+	<td colspan="3">
+		&nbsp;<input type="button" id="btn" name="button" value="确定" />
+</td>
+</tr>
+</table>
+<!--
+EOT;
+?>
+ -->

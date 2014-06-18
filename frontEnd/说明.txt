@@ -1,0 +1,4 @@
+- css  css文件
+- images 图片文件
+- js JS文件
+- template - 模板文件

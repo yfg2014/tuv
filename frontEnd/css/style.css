@@ -1,0 +1,31 @@
+﻿body {
+	font-family:"宋体";
+	line-height: 20px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-size: 12px;
+}
+ .box3{
+	border:1px solid #B6C5CF;
+	width:auto;
+	height:auto;
+	clip:rect(0px,126px,20px,0px);
+	overflow:hidden;
+	font-size: 12px;
+	color: #999999;
+	position: 固定;
+ }
+ .font1{
+	font-size: 14px;
+	line-height: 20px;
+	color: #006699;
+	letter-spacing: 0.1em;
+}
+ .font2{
+	font-size: 12px;
+	line-height: 20px;
+	color: #FFFFFF;
+	letter-spacing: 0.1em;
+}

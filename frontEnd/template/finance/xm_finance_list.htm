@@ -1,0 +1,70 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="./index.php?m=finance&do=xm_finance_list" >
+	<tr bgcolor="#EAF4EA">
+        <td>
+            $SearchHtml
+            <br/><input type="submit" value="搜索" name="submit" />
+        </td>
+    </tr>
+ </form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+    	<td>收费登记查询&gt;&gt;&nbsp;合计：$result[count]</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+    <tr bgcolor="#F2F2F2">
+       <th align="center">操作</th>
+       <th align="center">项目编号</th>
+	   <th align="center">合同编号</th>
+       <th align="center">组织名称</th>
+       <th align="center">合同来源</th>
+       <th align="center">体系</th>
+       <th align="center">产品/范围</th>
+       <th align="center">审核类型</th>
+       <th align="center">状态</th>
+    </tr>
+<!--
+EOT;
+foreach($result[data] as $k=>$v){
+	$cw_online=Cache::cache_Finance_online($v[cw_online]);
+	$product = Cache::cache_product($v[product]);
+	$kw = '';
+	if ($v[renzhengfanwei] != ''){$kw=$k.w;$renzhengfanwei = "<font onmouseover=\"show_block('$kw')\" onmouseout=\"hide_block('$kw')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$renzhengfanwei = '';}
+echo <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+      <td  width="30" align="center">
+      <a href="./index.php?m=finance&do=fees_finance_edit&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]"><img src="./frontEnd/images/button_edit.png" alt="编辑" border="0" /></a>
+      </td>
+      <td width="70" align="center">$v[htxmcode]</td>
+	  <td width="70" align="center">$v[htcode]</td>
+      <td width="200">&nbsp;$v[eiregistername]</td>
+      <td width="60" align="center">$v[htfrom]</td>
+      <td width="30" align="center">$v[iso]</td>
+      <td width="30" align="center"><div class="{$kw} show_block">产品/范围：$v[renzhengfanwei]</div>$renzhengfanwei</td>
+      <td width="60" align="center">$v[audit_type]</td>
+      <td width="40" align="center">$cw_online</td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

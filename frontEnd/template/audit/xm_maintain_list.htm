@@ -1,0 +1,99 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+
+//]]>
+</script>
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="./index.php?m=audit&do=xm_maintain_list&online=$online">
+    <tr bgcolor="#EAF4EA">
+        <td>
+           $SearchHtml
+           <br/><input type="submit" value="搜索" name="submit" />
+		   	<!--&nbsp;&nbsp;<a href="./index.php?m=xls&do=xm_maintain_list_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" /></a>-->
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width" >
+  <tr>
+  	<td> 监督维护 >> 合计：$result[count] &nbsp;
+	<a href="./index.php?m=audit&do=xm_maintain_list&"><font color="orange">未维护</font></a> &nbsp;
+	<a href="./index.php?m=audit&do=xm_maintain_list&online=sv"><font color="blue">已维护</font></a> &nbsp;
+	</td>
+  </tr>
+</table>
+<table width="$width" class="c_table stripe">
+    <tr bgcolor="#F2F2F2">
+      <th>详细</th>
+      <th height="22" align="center">操作</th>
+	  <th align="center">项目编号</th>
+	  <th align="center">组织名称</th>
+	  <th align="center">审核类型</th>
+	  <th align="center">监审最后期限</th>
+	  <th align="center">证书到期</th>
+	  <th align="center">证书编号</th>
+	  <th align="center">产品/范围</th>
+	  <th align="center">计划开始</th>     
+	  <th align="center">合同来源</th>
+      <th align="center">省份</th>
+      <th align="center">标准</th>
+      <th align="center">专业代码</th>
+	  <th align="center">回访<br>记录</th>
+	  <th align="center">维护时间</th>
+      <th align="center">状态</th>
+	  <!--<th align="center">删除</th>-->
+    </tr>
+<!--
+EOT;
+foreach($result[data] as $k=>$v) {
+$v['wh_date'] = Cache::cache_time_value($v['wh_date']);
+$v[audit_code] = str_replace('；','<br/>',$v[audit_code]);
+if ($v[sv_other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\"  />";}else{$v[show] = '';}
+if ($v[renzhengfanwei] != ''){$kf=$k.'f';$v[showf] = "<font onmouseover=\"show_block('$kf')\" onmouseout=\"hide_block('$kf')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[showf] = '';}
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+    <td align="center"><a href="#"><img src="./frontEnd/images/select1.gif" width="12" height="13" border="0" onclick="ShowDlog_item($v[ht_id])"/></a></td>
+      <td align="center">
+      	<a href="index.php?m=audit&do=xm_maintain_edit&op=1&online=$online&zuzhi_id=$v[zuzhi_id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a>	  </td>
+		<td align="center">$v[htxmcode]</td>
+		<td align="left" width="220" height="22"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a> </td>
+		<!--<td width="120" align="center">$v[product]</td>-->
+
+		<td align="center">$v[audit_type]</td>
+		<td align="center"><font style="cursor:pointer;" onclick="show_edit(this,$v[id],$v[zuzhi_id]);">$v[finalItemDate]</font></td>
+		<td align="center">$v[certEnd]</td>
+		<td align="center">$v[certNo]</td>
+		<td  width="70" align="center"><div class="{$kf} show_block" style="text-align:left">{$v[renzhengfanwei]}</div>$v[showf]</td>
+		<td align="center">$v[auditplandate]</td>
+	  <td align="center">$v[htfrom]</td>
+      <td style="word-wrap:break-word word-break:break-all;" align="center">$v[eiarea]</td>
+      <td style="word-wrap:break-word word-break:break-all;" align="center">$v[audit_ver]</td>
+	  <td align="center">$v[audit_code]</td>
+	  <td align="center"><div class="{$k} show_block">$v[sv_other]</div>$v[show]</td>
+	   <td align="center">$v[wh_date]</td>
+      <td align="center">$v[status]</td>
+	  <!--<td align="center"><a href="./index.php?m=audit&do=xm_maintain_del&xmid=$v[id]">
+		<img src="./frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0" onclick="return confirm('你是否要删除这条数据')" /></a></td>-->
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

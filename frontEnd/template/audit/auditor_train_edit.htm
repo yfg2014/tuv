@@ -1,0 +1,43 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div class="blank"></div>
+<table width="$width" class="e_table">
+<form name="qj" action="index.php?m=audit&do=auditor_train_save" method="post" onsubmit="return Validator.Validate(this,2);">
+	<input type="hidden" name="id" value="$result[id]" />
+	<input type="hidden" name="empId" value="$result[empId]" />
+	<input type="hidden" name="empName" value="$result[empName]" />
+	<input type="hidden" name="htfrom" value="$result[htfrom]" />
+	<tr>
+		<td colspan="4">审核员培训 登记&gt;&gt;</td>
+	</tr>
+	<tr bgcolor="#F2F2F2">
+		<td align="right">培  训  人：</td>
+		<td colspan="3">&nbsp;$result[empName]</td>
+	</tr>
+	<tr>
+		<td width="10%" align="right">开始时间：</td>
+		<td width="35%">
+			<input type="text" name="auditorBeginDate" value="{$result[auditorBeginDate]}" style="width:50%;" onfocus="showCalendar(this, 'y-mm-dd');" dataType="Date" msg="请输入正确日期格式  如:1977-01-01" /> <span style="color:red;">*</span>&nbsp;
+			<select name="auditorBeginHalfDate">$time_s_str</select>
+		</td>
+		<td width="10%" align="right">结束时间：</td>
+		<td width="35%">
+			<input type="text" name="auditorEndDate" value="{$result[auditorEndDate]}" style="width:50%;" onfocus="showCalendar(this, 'y-mm-dd');" dataType="Date" msg="请输入正确日期格式  如:1977-01-01" /> <span style="color:red;">*</span>&nbsp;
+			<select name="auditorEndHalfDate">$time_e_str</select>
+		</td>
+	</tr>
+	<tr bgcolor="#F2F2F2">
+		<td align="right">备注：</td>
+		<td colspan="3"><textarea name="qj_other" style="width:90%;height:80px;">{$result[qj_other]}</textarea></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td colspan="4" align="center"><input type="submit" value="保存" /></td>
+	</tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

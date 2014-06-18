@@ -1,0 +1,91 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="index.php?m=certificate&do=cert_list">
+    <tr>
+  		<td>
+  			$SearchHtml
+			<br>
+<!--			<a href="./index.php?m=xls&do=cert_list_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" /></a>&nbsp;
+			打印信封<a href="./index.php?m=xls&do=cert_post_xls&op=1&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" alt="打印信封" /></a>&nbsp;&nbsp;&nbsp;&nbsp;
+-->			<input type="submit" value="搜索" name="submit" />
+  		</td>
+   </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+    	<td>
+    		证书查询&gt;&gt;</font> 合计：$result[count]&nbsp; 企业数：$qy_num[c_num]
+			&nbsp;&nbsp;&nbsp;<a href="./index.php?m=certificate&do=cert_xm_list&online=0"><font color="orange">未登记</a>
+		</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+	<tr bgcolor="#F2F2F2">
+		<th height="22" align="center">操作</th>
+		<th align="center">项目编号</th>
+		<th align="center">组织名称</th>
+		<th align="center">合同来源</th>
+		<th align="center">标准</th>
+		<th align="center">审核类型</th>
+		<th align="center">标志</th>
+		<th align="center">状态</th>
+		<th align="center">证书编号</th>
+		<th align="center">登记日期</th>
+		<th align="center">注册日期</th>
+		<th align="center">注册到期</th>
+		<th align="center">产品/范围</th>
+		<th align="center">变更日期</th>
+		<th align="center">邮寄日期</th>
+		<th align="center">备注</th>
+		<th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach($result[data] as $k=>$v){
+	$kw = '';
+	if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{ $v[show] = '';}
+	if ($v[coverFields] != ''){$kw=$k.w;$coverFields = "<font onmouseover=\"show_block('$kw')\" onmouseout=\"hide_block('$kw')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$coverFields = '';}
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+		<td align="center"><a href="index.php?m=certificate&do=cert_edit&pdid=$v[pdid]&zuzhi_id=$v[zuzhi_id]&zsid=$v[id]"><img src="./frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+		<td align="center">$v[htxmcode]</td>
+		<td height="22" width="200">&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		<td align="center">$v[htfrom]</td>
+		<td align="center">$v[audit_ver]</td>
+		<td align="center">$v[audit_type]</td>
+		<td align="center">$v[mark]</td>
+		<td align="center">$v[status]</td>
+		<td align="center">$v[certNo]</td>
+		<td align="center">$v[zsprintdate]</td>
+		<td align="center">$v[certStart]</td>
+		<td align="center">$v[certEnd]</td>
+		<td align="center">
+		<div class="{$kw} show_block" style="text-align:left;">代码：$v[audit_code] <br>范围：$v[coverFields]</div>$coverFields</td>
+		<td align="center">$v[zs_change_date]</td>
+		<td align="center">$v[maildate]</td>
+		<td align="center"><div class="{$k} show_block">备注：$v[other]</div>$v[show]</td>
+		<td width="30" align="center"><a href="./index.php?m=certificate&do=cert_del&zsid=$v[id]&zuzhi_id=$v[zuzhi_id]">
+		<img src="./frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0"  onclick="return confirm('你是否要删除该证书数据');" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

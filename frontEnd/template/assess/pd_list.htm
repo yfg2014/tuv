@@ -1,0 +1,93 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+
+//]]>
+</script>
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="./index.php?m=assess&do=pd_list">
+    <tr >
+        <td>
+           $SearchHtml
+		   <br><!--<a href="./index.php?m=xls&do=ht_huishou_xls&{$TopSearch->SearchUrl}"><img src="./frontEnd/images/excel.gif" border="0" title="未上会评定表" />[未上会评定表]</a>-->
+		   <input type="submit" value="搜索" name="submit" />
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width" >
+    <tr>
+    	<td>认证评定>> 合计：$result[count]
+
+    &nbsp;<a href="./index.php?m=assess&do=pd_xm_list"><font color="blue"> 认证评定查询</a>
+    	</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe">
+    <tr bgcolor="#F2F2F2">
+        <th align="center">&nbsp;</th>
+        <th align="center">操作</th>
+		<th align="center">评定<br/>问题</th>
+		<th align="center">评定<br/>老师</th>
+        <th height="22" align="center">合同编号</th>
+        <th align="center">项目编号</th>
+        <th align="center">组织名称</th>
+        <th align="center">合同来源</th>
+        <th align="center">组长</th>
+        <th align="center">审核类型</th>
+        <th align="center">体系标准</th>
+		<th align="center">产品/范围</th>
+        <th align="center">审核开始日期</th>
+        <th align="center">审核结束日期</th>
+		<th align="center">资料收回</th>
+		<th align="center">转技委会日期</th>
+		<th align="center">评定<br>结果</th>
+		<th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v){
+if ($v[renzhengfanwei] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+        <td align="center"><a href="#"><img src="./frontEnd/images/select1.gif" width="12" height="13" border="0" onclick="ShowDlog_item($v[ht_id],$v[htxm_id])"/></a></td>
+        <td align="center"><a href="./index.php?m=assess&do=pd_edit&pdid=$v[id]&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]&taskId=$v[taskId]"><img src="frontEnd/images/button_edit.png" border="0"/></a></td>
+		<td align="center"><a href="./index.php?m=assess&do=pd_problem_edit&pdid=$v[id]&xmid=$v[xmid]&zuzhi_id=$v[zuzhi_id]&taskId=$v[taskId]"><img src="frontEnd/images/button_edit.png" border="0"/></a></td>
+		<td align="center"><a href="./index.php?m=assess&do=pd_evaluation_edit&pdid=$v[id]&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]&taskId=$v[taskId]"><img src="frontEnd/images/button_edit.png" border="0"/></a></td>
+        <td align="center" width="50">$v[htcode]</td>
+        <td width="50" align="center">$v[htxmcode]</td>
+        <td width="200" >&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+        <td align="center">$v[htfrom]</td>
+        <td align="center">$v[empName]</td>
+        <td width="80" align="center">$v[audit_type]</td>
+        <td width="80" align="center">$v[audit_ver]</td>
+		<!--<td align="center">$v[product]</td>-->
+		<td align="center"><div class="{$k} show_block" style="text-align:left">{$v[renzhengfanwei]}</div>$v[show]</td>
+        <td align="center">$v[taskBeginDate].$v[taskBeginHalfDate]</td>
+        <td align="center">$v[taskEndDate].$v[taskEndHalfDate]</td>
+		<td align="center">$v[zl_okdate]</td>
+		<td align="center">$v[to_assess_date]</td>
+		<td align="center">$v[zs_if]</td>
+		<td align="center"><a href="index.php?m=assess&do=pd_del&id=$v[id]&zuzhi_id=$v[zuzhi_id]">
+		<img src="./frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0"  onclick="return confirm('你是否要删除该评定项目')" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+</div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,71 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="./index.php?m=certificate&do=cert_xm_list&online=$online">
+    <tr>
+
+  		<td>$SearchHtml
+			<br><input type="submit" value="搜索" name="submit" />
+		</td>
+   </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+    	<td>证书登记&gt;&gt; 合计：$result[count] &nbsp;
+		&nbsp;&nbsp;&nbsp;<a href="./index.php?m=certificate&do=cert_list"><font color="blue">已登记</a>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+    <tr bgcolor="#F2F2F2">
+        <th height="22" colspan="2" align="center">操作</th>
+        <th align="center">合同编号</th>
+        <th align="center">项目编号</th>
+        <th align="center">组织名称</th>
+        <th align="center">合同来源</th>
+        <th align="center">标准</th>
+        <th align="center">类型</th>
+        <th align="center">资料收回</th>
+        <th align="center">评定时间</th>
+        <th align="center">状态</th>
+    </tr>
+<!--
+EOT;
+foreach($result[data] as $v) {
+$v[online] == '' ? $s_zsprintdate = '未登记' : $s_zsprintdate = '已登记';
+echo <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+        <td align="center">
+        	<a href="./index.php?m=audit&do=xm_show&ht_id=$v[ht_id]"><img src="./frontEnd/images/select1.gif" width="12" height="13" border="0" /></a>        </td>
+        <td align="center">
+        	<a href="index.php?m=certificate&do=cert_edit&pdid=$v[pdid]&zsid=$v[id]&zuzhi_id=$v[zuzhi_id]&op=1"><img  src="./frontEnd/images/button_edit.png" alt="证书登记" border="0" style="cursor:pointer;" /></a>        </td>
+        <td align="center">$v[htcode]</td>
+        <td  align="center">$v[htxmcode]</td>
+        <td width="200" align="left" height="22">&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+        <td align="center">$v[htfrom]</td>
+        <td align="center">$v[audit_ver]</td>
+        <td align="center">$v[audit_type]</td>
+        <td align="center">$v[zl_okdate]</td>
+        <td align="center">$v[assessmentdate]</td>
+        <td align="center">$s_zsprintdate</td>
+    </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

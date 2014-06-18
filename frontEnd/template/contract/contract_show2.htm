@@ -1,0 +1,275 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div class="blank"></div>
+<table width="$width" class="e_table stripe">
+	  <tr>
+		<td colspan="4">合同信息&gt;&gt;</td>
+	  </tr>
+	  <tr>
+    	<td align="right">合同编号：</td>
+        <td>$ht[htcode]</td>
+        <td align="right"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td width="25%" align="right">是否初次：</td>
+        <td width="25%">
+			<input type="radio" name="first" disabled="disabled" value="0" $ck2 />否&nbsp;
+			<input type="radio" name="first" disabled="disabled" value="1" $ck1 />是
+        </td>
+        <td width="25%" align="right">紧急情况：</td>
+        <td width="25%">
+			<input type="radio" name="hurry" value="0" $ck4 disabled="disabled" />
+			<img src="frontEnd/images/j0.gif" alt="一般合同" width="13" height="13" />
+			<input type="radio" name="hurry" value="1" $ck3 disabled="disabled" />
+			<img src="frontEnd/images/j1.gif" alt="加急合同" width="13" height="13" />
+		</td>
+      </tr>
+      <tr>
+        <td align="right">申请日期：</td>
+        <td>$ht[htdate]</td>
+        <td align="right">审核预期：</td>
+        <td>$ht[auditplandate]</td>
+      </tr>
+	  <tr>
+		<td align="right" width="25%">合同备注：</td>
+		<td colspan="3">$ht[other]</td>
+	  </tr>
+</table>
+<br/>
+<!--
+EOT;
+if ($htxmtx != '') {
+	foreach((array)$htxmtx as $htxm_v){
+		$htxm_v[risk] = Cache::cache_risk($htxm_v[risk]);
+		$htxm_v[audit_type] =	Cache::cache_audit_type($htxm_v[audit_type]);
+		$sel1 = $sel2 = '';
+		if ($htxm_v[zjg] == '1'){$htxm_v[zjg] = '是';$none = 'block';}else{$htxm_v[zjg] = '否';$none = 'none';}
+echo <<<EOT
+-->
+<table width="$width" class="e_table stripe">
+	<tr>
+		<td align="right" width="25%">标准版本：</td>
+        <td width="25%">$htxm_v[audit_ver]<input type="hidden" name="iso[]" class="iso" value="$htxm_v[iso]" /></td>
+		<td align="right" width="25%">审核类型：</td>
+        <td width="25%">$htxm_v[audit_type]</td>
+	</tr>
+	<tr>
+		<td align="right">项目编号：</td>
+		<td>$htxm_v[htxmcode]</td>
+		<td align="right">体系人数：</td>
+        <td>$htxm_v[iso_people_num]</td>
+	</tr>
+	<tr>
+		<td align="right">复评次数：</td>
+        <td>$htxm_v[re_views]</td>
+		<td align="right">机构转入：</td>
+        <td>$htxm_v[zjg]</td>
+	</tr>
+	<tr>
+        <td align="right">体系运行时间：</td>
+        <td>$htxm_v[run_date]</td>
+		<td align="right"></td>
+        <td></td>
+	  </tr>
+	<tr>
+		<td align="right">认可标志：</td>
+		<td colspan="3">
+<!--
+EOT;
+foreach ($setup_mark as $v) {
+	if ($v[online] == '1'){
+		strstr($htxm_v['mark'],$v[code]) ? $checked = 'checked' : $checked = '';
+echo <<<EOT
+-->
+        		<input type="checkbox" name="mark_t[]" value="$v[code]" class="mark_t" disabled="disabled" $checked />$v[msg]
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+		</td>
+	</tr>
+	   <tr >
+        <td  align="right">申请范围：</td>
+        <td colspan="3"><div style="width:90%; word-wrap: break-word; word-break: break-all;">$htxm_v[qy_renzhengfanwei]</div></td>
+      </tr>
+    <tr style="display:$none">
+    	<td colspan="4">
+			<table width="100%" class="e_table">
+			<tr>
+			<td width="18%" height="20" align="right">原颁证机构：</td>
+			<td width="33%">$htxm_v[zjg_name]</td>
+			<td width="17%" align="right">原注册日期：</td>
+			<td width="34%">$htxm_v[zjg_sdate]</td>
+			</tr>
+			<tr>
+			<td height="20" align="right">原证书号：</td>
+			<td>$htxm_v[zjg_no]</td>
+			<td align="right">原截止日期：</td>
+			<td>$htxm_v[zjg_edate]</td>
+			</tr>
+			<tr>
+			<td height="20" align="right">上次审核日：</td>
+			<td>$htxm_v[zjg_assess_date]</td>
+			<td align="right">&nbsp;</td>
+			<td>&nbsp;</td>
+			</tr>
+			</table>
+        </td>
+    </tr>
+	<tr>
+		<td align="right">风险等级：</td>
+        <td>$htxm_v[risk]</td>
+		<td align="right">基础审核人日：</td>
+        <td>{$htxm_v[jichurenri]}天</td>
+	</tr>
+	<tr>
+		<td align="right">删减条款：</td>
+        <td>{$htxm_v[shanjiangtiaokuan]}</td>
+        <td align="right">核定审核人日：</td>
+        <td>{$htxm_v[hedingrenri]}天</td>
+	</tr>
+	<tr>
+		<td align="right">人日删减依据：</td>
+        <td>$htxm_v[shanjiangyiju]</td>
+		<td align="right"></td>
+        <td></td>
+	</tr>
+	<tr>
+		<td align="right">审核代码：</td>
+		<td colspan="3">$htxm_v[audit_code]</td>
+	</tr>
+
+	<tr>
+		<td align="right">审批范围：</td>
+		<td colspan="3"><div style="width:90%; word-wrap: break-word; word-break: break-all;">$htxm_v[renzhengfanwei]</div></td>
+	</tr>
+	<tr>
+		<td align="right">英文范围：</td>
+		<td colspan="3">$htxm_v[renzhengfanwei_e]</td>
+	</tr>
+</table>
+<!--
+EOT;
+	}
+}
+if ($htxmcp != '') {
+	foreach((array)$htxmcp as $htxm_p){
+	$htxm_p[audit_type] = Cache::cache_audit_type($htxm_p[audit_type]);
+	$htxm_p[audit_rule] = Cache::cache_audit_rule($htxm_p[audit_rule]);
+echo <<<EOT
+-->
+    <table width="$width" class="e_table stripe" style="margin-bottom:5px;">
+      <tr>
+        <td align="right">认证类别：</td>
+        <td colspan="3">$htxm_p[certifiedproducts]</td>
+	  </tr>
+	  <tr>
+        <td align="right">产品指令：</td>
+        <td colspan="3">$htxm_p[productstandards]</td>
+	  </tr>
+	  <tr>
+        <td align="right">产品关键件：</td>
+        <td colspan="3">$htxm_p[productpieces]</td>
+	  </tr>
+	  <tr>
+        <td align="right">实施规则：</td>
+        <td colspan="3">$htxm_p[audit_rule]</td>
+	  </tr>
+	  <tr>
+	  	<td width="25%"  align="right">项目编号：</td>
+        <td>$htxm_p[htxmcode]</td>
+        <td align="right">审核类型：</td>
+        <td>$htxm_p[audit_type]</td>
+      </tr>
+      <tr>
+        <td width="25%" align="right">复评次数：</td>
+        <td width="25%">$htxm_p[re_views] </td>
+        <td width="25%" align="right">体系人数：</td>
+        <td width="25%">$htxm_p[iso_people_num] </td>
+      </tr>
+      <tr>
+        <td align="right">认可标志：</td>
+        <td colspan="3">
+<!--
+EOT;
+foreach ($setup_mark as $v) {
+	if ($v[online] == '1'){
+		strstr($htxm_p['mark'],$v[code]) ? $checked = 'checked' : $checked = '';
+echo <<<EOT
+-->
+          <input type="checkbox" name="mark_t[]" value="$v[code]" class="mark_t" disabled="disabled" $checked />
+          $v[msg]
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+        </td>
+      </tr>
+      <tr >
+        <td  align="right">认证产品：</td>
+        <td colspan="3">$htxm_p[qy_renzhengfanwei]</td>
+      </tr>
+	  <tr>
+        <td align="right">制造单位：</td>
+        <td colspan="3">$htxm_p[manufacturingunits]</td>
+	  </tr>
+	  <tr>
+        <td align="right">制造地址：</td>
+        <td colspan="3">$htxm_p[manufacturingaddress]</td>
+	  </tr>
+	  <tr>
+        <td align="right">生产单位：</td>
+        <td colspan="3">$htxm_p[productionunit]</td>
+	  </tr>
+	  <tr>
+        <td align="right">生产地址：</td>
+        <td colspan="3">$htxm_p[productionaddress]</td>
+	  </tr>
+	  <tr>
+		<td align="right">基础审核人日：</td>
+        <td>$htxm_p[jichurenri] 天</td>
+		<td align="right">核定审核人日：</td>
+        <td>$htxm_p[hedingrenri] 天</td>
+	</tr>
+	<tr>
+		<td align="right">审核代码：</td>
+		<td colspan="3">$htxm_p[audit_code]</td>
+	</tr>
+
+	<tr>
+		<td align="right">审批范围：</td>
+		<td colspan="3"><div style="width:90%; word-wrap: break-word; word-break: break-all;">$htxm_p[renzhengfanwei]</div></td>
+	</tr>
+	<tr>
+		<td align="right">英文范围：</td>
+		<td colspan="3">$htxm_p[renzhengfanwei_e]</td>
+	</tr>
+    </table>
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+<br/>
+<table width="$width"  class="e_table stripe">
+	  <tr>
+	  	<td align="right" width="25%">评审日期：</td>
+	  	<td>$ht[ps_time]</td>
+	  </tr>
+      <tr>
+        <td align="right" width="25%">评审备注：</td>
+        <td>$ht[ps_other]</td>
+      </tr>
+</table>
+<!--
+EOT;
+?>
+-->

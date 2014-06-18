@@ -1,0 +1,104 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+  <table width="$width" class="t_table" align="center">
+    <form method="post" name="winput" action="./index.php?m=assess&do=pd_xm_list">
+      <tr>
+        <td> $SearchHtml <br><input type="submit" value="搜索" name="submit" />
+			<!--&nbsp;<a href="./index.php?m=doc&do=CMD-SHJL-22&$TopSearch->SearchUrl">[审定结论审批表]</a>&nbsp;&nbsp;
+		  <a href="./index.php?m=xls&do=pd_weishengchengxiangmu_xls&{$TopSearch->SearchUrl}"><img src="./frontEnd/images/excel.gif" border="0" title="未生成监督" />[未生成监督]</a>-->
+        </td>
+      </tr>
+    </form>
+  </table>
+  <div class="blank"></div>
+  $result[pages]
+  <table width="$width">
+    <tr>
+      <td><font color="#003399">认证评定查询</font>&gt;&gt; 合计： $result[count]
+	    &nbsp;<a href="./index.php?m=assess&do=pd_list"><font color="blue"> 认证评定</font></a> </td>
+    </tr>
+  </table>
+  <table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+    <tr bgcolor="#F2F2F2">
+      <th height="22" align="center">&nbsp;</th>
+      <th align="center">评定</th>
+	  <th align="center">评定<br/>问题</th>
+	  <th align="center">评定<br/>老师</th>
+      <th align="center">项目编号</th>
+      <th align="center">组织名称</th>
+      <th align="center">合同来源</th>
+      <th align="center">审核类型</th>
+      <th align="center">标准</th>
+	  <th align="center">换/发证</th>
+	  <th align="center">产品/范围</th>
+      <th align="center">组长</th>
+      <th align="center">评定<br/>人员</th>
+      <th align="center">审核开始日期</th>
+      <th align="center">审核结束日期</th>
+      <th align="center">资料收回日期</th>
+      <th align="center">评定通过日期</th>
+      <th align="center">评定<br>结论</th>
+      <th align="center">技委会<br>意见</th>
+      <th align="center">评定<Br>备注</th>
+	  <th align="center">删除</th>
+    </tr>
+<!--
+EOT;
+foreach ($result[data] as $k => $v ) {
+	$pd_username = array();
+	$sql = "SELECT `username` FROM `pd_evaluation_hr` WHERE pdid='$v[id]'";
+    $username = $db->query($sql);
+    while($pd = $db->fetch_array($username)){
+    	$pd_username []= $pd[username];
+    }
+    $pd_username = implode('<br/>',$pd_username);
+
+	if ($v[describes] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{ $v[show] = '';}
+	if ($v[renzhengfanwei] != ''){$kf=$k.'f';$v[showf] = "<font onmouseover=\"show_block('$kf')\" onmouseout=\"hide_block('$kf')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[showf] = '';}
+	if ($v[evaluatother] != ''){$kw=$k.'wen';;$evaluatother = "<font onmouseover=\"show_block('$kw')\" onmouseout=\"hide_block('$kw')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$evaluatother = '';}
+	$v[ifchangecert] == '1' ? $v[ifchangecert] = '是' : $v[ifchangecert] = '';
+
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+      <td width="25" height="24" align="center"><a href="#"><img src="./frontEnd/images/select1.gif" width="12" height="13" border="0" onclick="ShowDlog_item($v[ht_id],$v[htxm_id])"/></a></td>
+	  <td align="center"><a href="index.php?m=assess&do=pd_edit&taskId=$v[taskId]&pdid=$v[id]&ht_id=$v[ht_id]&zuzhi_id=$v[zuzhi_id]"><img src="./frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+      <td align="center"><a href="./index.php?m=assess&do=pd_problem_edit&pdid=$v[id]&xmid=$v[xmid]&zuzhi_id=$v[zuzhi_id]&taskId=$v[taskId]"><img src="frontEnd/images/button_edit.png" border="0"/></a></td>
+		<td align="center"><a href="./index.php?m=assess&do=pd_evaluation_edit&pdid=$v[id]&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]&taskId=$v[taskId]"><img src="frontEnd/images/button_edit.png" border="0"/></a></td>
+      <td align="center" width="50">$v[htxmcode]</td>
+      <td width="220"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+      <td width="70" align="center">$v[htfrom]</td>
+      <td width="60" align="center">$v[audit_type]</td>
+      <td width="80" align="center">$v[audit_ver]</td>
+	  <td align="center">$v[ifchangecert]</td>
+	  <!--<td align="center">$v[product]</td>-->
+	  <td align="center"><div class="{$kf} show_block" style="text-align:left">{$v[renzhengfanwei]}</div>$v[showf]</td>
+      <td align="center" width="50">$v[empName]</td>
+      <td align="center" width="50">$pd_username</td>
+      <td align="center" width="130">$v[taskBeginDate].$v[taskBeginHalfDate]</td>
+      <td align="center" width="130">$v[taskEndDate].$v[taskEndHalfDate]</td>
+      <td align="center" width="75">$v[zl_okdate]</td>
+      <td align="center" width="75">$v[approvaldate]</td>
+      <td align="center" width="30">$v[zs_if]</td>
+      <td align="center" width="30"><div class="{$k} show_block"  >问题：{$v[describes]}</div>$v[show]</td>
+      <td align="center" width="30"><div class="{$kw} show_block"  >备注：{$v[evaluatother]}</div>$evaluatother</td>
+	  <td align="center"><a href="index.php?m=assess&do=pd_del&id=$v[id]&zuzhi_id=$v[zuzhi_id]">
+		<img src="./frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0"  onclick="return confirm('你是否要删除该评定项目')" /></a></td>
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+  </table>
+  $result[pages]
+  <div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

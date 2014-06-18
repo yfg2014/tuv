@@ -1,0 +1,95 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div class="blank"></div>
+<table width="1000" align="center" border="0" cellspacing="1" cellpadding="1" bgcolor="#226886" id="chaxun" style="display:none00">
+<form method="post" name="winput" action='index.php?m=setup&do=setup_audit_code'>
+    <tr>
+        <td height="30"  bgcolor="#EAF4EA">
+			$SearchHtml
+			<br>
+            <input type="submit" value="搜索" name="submit">
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+<table width="1000" border="0" align="center" cellpadding="0" cellspacing="1">
+    <tr bgcolor="#FFFFFF">
+    	<td height="25"><font color="#003399">信息设置 -&gt; 业务分类</font> 合计：$result[num]</td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+    	<td>$result[pages]</td>
+    </tr>
+</table>
+<table width="1000" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+    <tr bgcolor="#F2F2F2">
+        <td width="26" height="22" align="center"><font color="#003399">领域</font></td>
+        <td width="75" align="center"><font color="#003399">使用编码</font></td>
+		<td width="75" align="center"><font color="#003399">上报编码</font></td>
+        <td width="206" align="center"><font color="#003399">内容</font></td>
+        <td width="36"  align="center"><font color=#003399>标志</font></td>
+        <td width="68"  align="center"><font color=#003399>见证时间</font></td>
+        <td width="68"  align="center"><font color=#003399>批准时间</font></td>
+        <td width="191"  align="center"><font color=#003399>见证组织</font></td>
+        <td width="66"  align="center"><font color=#003399>评价时间</font></td>
+        <td width="130"  align="center"><font color=#003399>备注</font></td>
+        <td width="33" align="center"><font color="#003399">状态</font></td>
+        <td width="37" align="center"><font color="#003399">操作</font></td>
+    </tr>
+<!--
+EOT;
+foreach($result['data'] as $key => $value)
+{
+$temp_mark = array();
+$value[online] = $s->showonline($value[online]);
+$temp_mark =  explode(',',$value[mark]);
+foreach($temp_mark as $k=>$v){
+	if($v=='00'){
+		unset($temp_mark[$k]);
+	}
+}
+$temp_mark = implode(',',$temp_mark);
+$value[mark] = Cache::cache_mark($temp_mark);
+
+$value[mark] = str_replace(',','<br>',$value[mark]);
+print <<<EOT
+-->
+     <tr bgcolor="#FFFFFF">
+        <td align="center">$value[iso]</td>
+        <td>&nbsp;$value[code]</td>
+		<td>&nbsp;$value[shangbao]</td>
+        <td>&nbsp;$value[msg]</td>
+        <td  align="center">$value[mark]</td>
+        <td  align="center">$value[jianzhengdate]</td>
+        <td  align="center">$value[pizhundate]</td>
+        <td>&nbsp;<FONT color=#ff0000>$value[eientercode]</font></td>
+        <td align="center">$value[pingjiadate]</td>
+        <td>$value[other]</td>
+        <td align="center">$value[online]</td>
+        <td width="37" align="center">
+        	<a href="index.php?m=setup&do=setup_audit_code_edit&id=$value[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" width="12" height="13" border="0" /></a>
+       		<a href="index.php?m=setup&do=setup_audit_code_del&id=$value[id]"><img src="frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0" onclick="return confirm('你确定要删除吗？');" /></a>
+        </td>
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+       <tr bgcolor="#F2F2F2">
+         <td colspan="2" align="center"><a href="index.php?m=setup&do=setup_audit_code_edit"><img src="frontEnd/images/button_insert.png" alt="添加" width="13" height="12" border="0" /></a></td>
+          <td height="20" colspan="10" align="center"></td>
+       </tr>
+      </table>
+<table width="1000" border="0" align="center" cellpadding="0" cellspacing="1">
+    <tr bgcolor="#FFFFFF">
+    	<td>$result[pages]</td>
+    </tr>
+</table>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,115 @@
+<!--
+<?php
+print <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css" />
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('.usual').idTabs({event:'mouseover'});
+})
+//]]>
+</script>
+<div class="blank"></div>
+{$Information->info}
+<div class="blank"></div>
+<table width="$width" class="e_table">
+  <tr>
+    <td colspan="4" height="24">项目任务信息>></td>
+  </tr>
+  <tr>
+    <td height="24" align="right">审核企业：</td>
+    <td colspan="3">&nbsp;$audit_qy[eiregistername]</td>
+  </tr>
+  <tr>
+    <td height="24" align="right">审核地址：</td>
+    <td colspan="3">&nbsp;$audit_qy[eisc_address]</td>
+  </tr>
+  <tr>
+    <td height="24" width="18%" align="right">是否进现场：</td>
+    <td>&nbsp;{$result[jinxianchang]}</td>
+    <td width="18%" align="right">认证标准：</td>
+    <td>&nbsp;{$result[iso]}</td>
+  </tr>
+  <tr>
+    <td height="24" align="right">任务开始时间：</td>
+    <td>&nbsp;{$result[taskBeginDate]}.{$result[taskBeginHalfDate]}</td>
+    <td align="right">任务结束时间：</td>
+    <td>&nbsp;{$result[taskEndDate]}.{$result[taskEndHalfDate]}</td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td align="center" colspan="4">
+    	<table width="98%" class="e_table">
+    	<tr bgcolor="#FFFFFF">
+		  	<td align="center">体系</td>
+			<td align="center">体系标准</td>
+		  	<td align="center">产品</td>
+			<td align="center">产品标准</td>
+		    <td align="center">审核类型</td>
+			<td align="center">现场人日</td>
+			<td align="center">认证范围</td>
+		  </tr>
+<!--
+EOT;
+foreach($arr as $v)
+{
+	$v[product] = Cache::cache_product($v[product]);
+	$v[product_ver] = Cache::cache_product_ver($v[product_ver]);
+echo <<<EOT
+-->
+		  <tr bgcolor="#FFFFFF">
+		    <td align="center">$v[iso]</td>
+		    <td align="center">$v[audit_ver]</td>
+		  	<td align="center">$v[product]</td>
+			<td align="center">$v[product_ver]</td>
+		    <td align="center">$v[audit_type]</td>
+			<td align="center">$v[xcd]</td>
+			<td width="200"><div style="width:90%; word-wrap: break-word; word-break: break-all;">$v[renzhengfanwei]</div></td>
+		  </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+    	</table>
+    </td>
+  </tr>
+</table>
+<div class="blank"></div>
+
+<table width="$width" class="e_table">
+  <form name="form1" method="post" action="./index.php?m=audit&do=labor_costs_save" onsubmit="return Validator.Validate(this,2)">
+    <tr>
+      <td colspan="4" height="24">审核员劳务费登记>></td>
+    </tr>
+    <tr>
+      <td height="24" width="18%" align="right">登记日期：</td>
+      <td><input type="text" name="printdate" value="{$rows[printdate]}" style="width:180px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+      <td align="right">劳务费金额：</td>
+      <td><input type="text" name="laborcosts" value="{$rows[laborcosts]}" style="width:180px;" /></td>
+    </tr>
+	<tr>
+      <td height="24" width="18%" align="right">发放日期：</td>
+      <td><input type="text" name="paydate" value="{$rows[paydate]}" style="width:180px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+      <td align="right">&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="4" height="30" align="center"><input type="hidden" name="auditorId" value="{$auditorId}" />
+        <input type="submit" name="submit" value="保存" />
+      </td>
+    </tr>
+  </form>
+</table>
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

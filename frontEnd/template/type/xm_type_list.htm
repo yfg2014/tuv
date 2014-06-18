@@ -1,0 +1,161 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+function selectall(check) { $(':checkbox').each(function(){ $(this).attr('checked',check);});}
+$(function(){
+  	$('[name="button"]').click(function(){
+  	  	if($('.stripe').find('input').is(':checked')){
+			if ($('[name="sp_date"]').val() == '' || $('[name="sp_date"]').val() == '0000-00-00')
+			{
+				alert("请输入正确审批日期时间 如:1980-01-01" );return;
+			}
+  	  		if(confirm('你是否审批该变更')){ $('[name="form1"]').submit();}}else{alert('请选择要审批的变更');}
+  	 });
+});
+$(function(){
+  	$('[name="button2"]').click(function(){
+  	  	if($('.stripe').find('input').is(':checked')){
+  	  		if(confirm('你是否撤销审批该变更')){ $('[name="form1"]').submit();}}else{alert('请选择要撤销审批的变更');}
+  	 });
+});
+function del(obj){
+	var del_url = $(obj).parents("a").attr("title");
+	if(confirm("你确定要删除吗？")){location.href = del_url;}
+}
+//]]>
+</script>
+<div style="width:$width;margin:auto;">
+
+  <div class="blank"></div>
+  <table class="t_table" width="$width">
+<form method="post" name="winput" action="./index.php?m=type&do=xm_type_list&sp_online=$sp_online&">
+	<tr>
+		<td>$SearchHtml
+		<br><input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+<div class="blank"></div>
+  $result[pages]
+  <table width="$width">
+  <form method="post" name="form1" action="./index.php?m=type&do=approval_type&">
+    <tr>
+      <td>
+      	认证类型查询&gt;&gt; 合计：$result[count]  &nbsp; 企业数：$qy_num[c_num]
+		&nbsp;&nbsp;<a href="./index.php?m=type&do=xm_type_list"><font color="#FF6600">未审批</font></a>
+		&nbsp;&nbsp;<a href="./index.php?m=type&do=xm_type_list&sp_online=1"><font color="#FF6600">已审批</font></a>
+	  </td>
+    </tr>
+  </table>
+  <table width="$width" class="c_table stripe" >
+    <tr>
+      <th align="center">变更<br>ID</th>
+		  <th align="center">状态</th>
+		  <th align="center">全选</th>
+		  <th align="center">编辑</th>
+		  <th align="center">特殊<br>审核</th>
+		  <th align="center">项目编号</th>
+		  <th align="center">组织名称</th>
+	      <th align="center">体系</th>
+		  <th align="center">产品/范围</th>
+		  <th align="center">审核类型</th>
+		  <th align="center">合同来源</th>
+	      <th align="center">变更类型</th>
+	      <th align="center">变更日期</th>
+		  <th align="center">变更<br>详细</th>
+		  <th align="center">删除</th>
+    </tr>
+
+<!--
+EOT;
+foreach($result[data] as $k=>$v){
+	if ($v[xiangxi] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+	$rows = $db->get_one("SELECT product FROM `{$dbtable['ht_contract_item']}` WHERE id='{$v[htxm_id]}'");
+	$v[product] = Cache::cache_product($rows['product']);
+	if($v[sp_online] == '0'){$v[sp_online] = '未审批';}else{$v[sp_online] = '已审批';}
+	if ($v[renzhengfanwei] != ''){$kf=$k.'f';$v[showf] = "<font onmouseover=\"show_block('$kf')\" onmouseout=\"hide_block('$kf')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[showf] = '';}
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+		<td align="center" width="40">$v[id]</td>
+		<td align="center" width="40">$v[sp_online]</td>
+		<td width="40" align="center"><input name="pid[]" type="checkbox" value="{$v[id]}"></td>
+		<td align="center">
+		<a href="index.php?m=type&do=xm_type&id=$v[id]&xmid=$v[xmid]&zuzhi_id=$v[zuzhi_id]&renzhengleixing=$v[renzhengleixing_code]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a>
+		</td>
+		<td align="center" width="30"><a href="index.php?m=audit&do=item_add_edit&htxm_id=$v[htxm_id]&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]&rzlx_id=$v[id]"><img src="./frontEnd/images/button_edit.png" border="0" /></a></td>
+		<td align="center">$v[htxmcode]</td>
+		<td width="200"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		<td align="center">$v[iso]</td>
+		<!--<td align="center">$v[product]</td>-->
+		<td  width="70" align="center"><div class="{$kf} show_block" style="text-align:left">{$v[renzhengfanwei]}</div>$v[showf]</td>
+		<td align="center">$v[audit_type]</td>
+		<td align="center">$v[htfrom]</td>
+		<td align="center">$v[renzhengleixing]</td>
+		<td align="center">$v[xm_change_date]</td>
+		<td align="center"><div class="{$k} show_block" style="text-align:left">{$v[xiangxi]}</div>$v[show]</td>
+		<td  align="center">
+		<a href="#" title="./index.php?m=type&do=xm_type_del&cgid=$v[id]&kind=xm_type_list">
+		<img src="./frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0" onclick="del(this);" />
+		</a>
+	</td>
+</tr>
+<!--
+EOT;
+}
+$sp_date == '' && $sp_date = date('Y-m-d');
+echo <<<EOT
+-->
+  </table>
+<!--
+EOT;
+if($sp_online == ''){
+echo <<<EOT
+-->
+<table width="$width" class="c_table">
+	<tr>
+		<td width="44" height="21" align="center">&nbsp;</td>
+		<td width="44" height="21" align="center">&nbsp;</td>
+        <td width="44" align="center" ><input type="checkbox" class="controlAll" onclick="selectall(this.checked)" /></td>
+        <td colspan="15" align="left">
+        	<input type="hidden" name="sp_online" value="1" />
+        	<input type="text" name="sp_date" value="$sp_date" onFocus="return showCalendar(this, 'y-mm-dd');"/>
+        	<input type="button" value="变更审批" name="button"/>
+        </td>
+    </tr>
+</table>
+<!--
+EOT;
+}else{
+echo <<<EOT
+-->
+<table width="$width" class="c_table">
+	<tr>
+		<td width="44" height="21" align="center">&nbsp;</td>
+		<td width="44" height="21" align="center">&nbsp;</td>
+        <td width="44" align="center" ><input type="checkbox" class="controlAll" onclick="selectall(this.checked)" /></td>
+        <td colspan="15" align="left">
+        	<input type="hidden" name="sp_online" value="0" />
+        	<input type="hidden" name="sp_date" value="0000-00-00" />
+        	<input type="button" value="撤销审批变更" name="button2"/>
+        </td>
+    </tr>
+</table>
+
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+  $result[pages]
+  <div class="blank"></div>
+</form>
+</div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,172 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<script type="text/javascript" src="frontEnd/js/jquery.json-2.2.min.js"></script>
+<script type="text/javascript" src="frontEnd/js/jquery.modal.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+
+});
+//]]>
+</script>
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" border="0" class="t_table">
+<form method="post" name="winput" action="./index.php?m=audit&do=task_list&s_online=$s_online">
+    <tr>
+        <td bgcolor="#EAF4EA">
+            <table width="$width" border="0" align="center" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="91" align="right"><font color="#003399">组织名称：</font></td>
+                    <td width="120"><input name="s_idname"  id="colors" style="width:120px;" /></td>
+                    <td width="83" align="right"><font color="#003399">组织编号：</font></td>
+                    <td width="120"><input name="s_idcode" id="code" type="text" style="width:120px;" /></td>
+                    <td width="111" align="right"><font color="#003399">任务开始日期：</font></td>
+                    <td width="120"><input name="s_date_s"  type="text" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+                    <td width="16">至</td>
+                    <td width="124"><input name="s_date_e"  type="text" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+                    <td width="67" align="right"><font color="#003399">领域：</font></td>
+                    <td width="98">
+                    	<select name="s_iso" style="width:90px;">
+                 			<option value="">-请选择-</option>
+<!--
+EOT;
+foreach($cache_renzhenglingyu as $v) {
+echo <<<EOT
+-->
+                 			<option value="$v[code]">$v[msg]</option>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+                 		</select>
+                    </td>
+                </tr>
+                <tr>
+                	<td align="right"><font color="#003399">合同编号：</font></td>
+                	<td><input type="text" name="s_htcode" style="width:120px;" /></td>
+                    <td align="right"><font color="#003399">审核类型：</font></td>
+                    <td>
+                        <select name="s_audit_type" style="width:95px;">
+                        	<option value="">-请选择-</option>
+<!--
+EOT;
+foreach($cache_audit_type as $v){
+	if($v[code] != '1001') {
+print <<<EOT
+-->
+							<option value="$v[msg]">$v[msg]</option>
+<!--
+EOT;
+	}
+}
+print <<<EOT
+-->
+                        </select>
+                    </td>
+                    <td align="right"><font color="#003399">任务结束日期：</font></td>
+                    <td><input name="s_date_s2"  type="text" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+                    <td>至</td>
+                    <td><input name="s_date_e2"  type="text" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+                    <td align="right"><font color="#003399">进现场：</font></td>
+                    <td><select name="s_jinxianchang" style="width:50px;">
+                      <option value="">选择</option>
+                      <option value="1">是</option>
+                      <option value="2">否</option>
+                    </select></td>
+                </tr>
+                <tr>
+                	<td colspan="10"><input type="submit" value="搜索" name="submit" /></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+{$result[pages]}
+<table width="$width" >
+    <tr>
+        <td height="30">
+            <font color="#003399">审核派人查询&gt;&gt;</font>   合计：{$result[count]} &nbsp;
+            &nbsp;&nbsp;<a href="./index.php?m=audit&do=task_list"><font color="#FF6600">未派人</font></a>
+            &nbsp;&nbsp;<a href="./index.php?m=audit&do=task_list&s_online=1"><font color="blue">已派人</font></a>
+        </td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe">
+<form name="ninput" method="post" action="index.php?m=audit&do=task&">
+	<tr bgcolor="#FFFFFF">
+<!--
+EOT;
+if ($s_online == '0'){
+echo <<<EOT
+-->
+		<th width="30" height="21" align="center"><font color=#003399>编辑</font></th>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		<th width="30" align="center"><font color=#003399>修改</font></th>
+		<th align="center"><font color=#003399>状态</font></th>
+		<th width="70" align="center"><font color=#003399>合同编号</font></th>
+		<th align="center"><font color=#003399>组织注册名称</font></th>
+		<th align="center"><font color=#003399>认证标准</font></th>
+		<th align="center"><font color=#003399>进现场</font></th>
+		<th align="center"><font color=#003399>总人日</font></th>
+		<th align="center"><font color="#003399">任务开始日期</font></th>
+		<th align="center"><font color="#003399">任务结束日期</font></th>
+		<th align="center"><font color="#003399">审核类型</font></th>
+		<th align="center"><font color="#003399">合同来源</font></th>
+    </tr>
+<!--
+EOT;
+foreach($result['data'] as $v){
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+		<td align="center">
+   			<a href="./index.php?m=audit&do=xm_edit&taskId=$v[id]"><img src="frontEnd/images/button_edit.png" width="12" height="13" border="0" /></a>
+    	</td>
+<!--
+EOT;
+if ($s_online == '0'){
+echo <<<EOT
+-->
+    	<td align="center">
+   			<a href="./index.php?m=audit&do=task_edit&taskId=$v[id]"><img src="frontEnd/images/button_edit.png" width="12" height="13" border="0" /></a>
+    	</td>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+        <td align="center">{$v[status]}</td>
+        <td align="center"> </td>
+        <td width="200">{$v[eiregistername]}</td>
+        <td align="center">{$v[iso]}</td>
+        <td align="center">{$v[jinxianchang]}</td>
+        <td align="center">{$v[zrd]}</td>
+        <td align="center">{$v[taskBeginDate]}.{$v[taskBeginHalfDate]}</td>
+        <td align="center"><FONT color=#ff0000></font>{$v[taskEndDate]}.{$v[taskEndHalfDate]}</td>
+        <td align="center">{$v[audit_type]}</td>
+        <td align="center">{$v[htfrom]}</td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</form>
+</table>
+{$result[pages]}
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

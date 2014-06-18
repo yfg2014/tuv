@@ -1,0 +1,71 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		<br>
+		<input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+<tr><td align="left">
+人员工资查询&gt;&gt;&nbsp;合计：$result[count]
+</td></tr>
+</table>
+
+<table width="$width" class="c_table stripe">
+	<tr>
+		<th align="center">编辑</th>
+		<th align="center">姓名</th>
+		<th align="center">工资</th>
+		<th align="center">审核补助时间</th>
+		<th align="center">五险一金</th>
+        <th align="center">个人所得税</th>
+		<th align="center">实发金额</th>
+		<th align="center">总额</th>
+		<th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+print <<<EOT
+
+
+-->
+	<tr>
+		<td align="center"><a href="index.php?m=hr&do=hr_wage_edit&hr_id=$v[hr_id]&eid=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+		<td align="center">$v[username]</td>
+		<td align="center">$v[wages]</td>
+		<td width="90" align="center">$v[grant_time]</td>
+		<td width="90" align="center">$v[five_insurance]</td>
+		<td align="center">$v[tax]</td>
+		<td align="center">$v[realhair]</td>
+		<td align="center">$v[total]</td>
+		<td align="center"><a href="index.php?m=hr&do=hr_wage_del&eid=$v[id]" onclick="return confirm('是否要删除{$v[username]}人员工资信息')"><img src="frontEnd/images/button_empty.png" title="删除" border="0" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+</div>
+<!--
+EOT;
+?>
+-->
+<div class="blank"></div>
+<div class="blank"></div>

@@ -1,0 +1,72 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="index.php?m=progress&do=progress_list">
+<tr>
+	<td>
+		$SearchHtml
+        <br/><input type="submit" value="搜索" name="submit" />
+	</td>
+</tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+	<tr bgcolor="#FFFFFF">
+       <td><font color="#003399">审核项目进度&gt;&gt;</font> 合计： $result[count]</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+	<tr bgcolor="#F2F2F2">
+      <th height="22" align="center"></th>
+      <th align="center"><font color="#003399">合同编号</font></th>
+      <th align="center"><font color="#003399">组织名称</font></th>
+      <th align="center"><font color="#003399">合同来源</font></th>
+      <th align="center"><font color="#003399">标准</font></th>
+      <th align="center"><font color="#003399">审核类型</font></th>
+      <th align="center"><font color="#003399">组长</font></th>
+      <th align="center"><font color="#003399">计划开始日期</font></th>
+      <th align="center"><font color="#003399">任务开始日期</font></th>
+      <th align="center"><font color="#003399">评定资料收回</font></th>
+      <th align="center"><font color="#003399">评定通过日期</font></th>
+      <th align="center"><font color="#003399">证书打印日期</font></th>
+      <th align="center"><font color="#003399">状态</font></th>
+    </tr>
+<!--
+EOT;
+foreach($result['data'] as $v){
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+      <td width="20" align="center"><a href="./index.php?m=audit&do=xm_show&ht_id=$v[ht_id]"><img src="frontEnd/images/select1.gif" width="12" height="13" border="0" /></a></td>
+      <td width="90" align="center">$v[htcode]</td>
+      <td>&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a> </td>
+      <td width="70" align="center">$v[htfrom]</td>
+      <td width="30" align="center">$v[audit_ver]</td>
+      <td width="60" align="center">$v[audit_type]</td>
+      <td width="40" align="center">$v[empName]</td>
+      <td width="80" align="center">$v[auditplandate]</td>
+      <td width="80" align="center">$v[taskBeginDate]</td>
+      <td width="80" align="center">$v[zl_okdate]</td>
+      <td width="80" align="center">$v[assessmentdate]</td>
+      <td width="80" align="center">$v[zsprintdate]</td>
+      <td width="40" align="center">$v[status]</td>
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

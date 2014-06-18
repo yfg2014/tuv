@@ -1,0 +1,39 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div align="center">
+
+<div class="blank"></div>
+<table width="100%" class="c_table">
+	<tr bgcolor="#F2F2F2">
+		<td align="center" height="22" width="25"><font color="#003399">选择</font></td>
+		<td align="center"><font color=#003399>编码</font></td>
+		<td align="center"><font color=#003399>检测机构</font></td>
+	</tr>
+<!--
+EOT;
+foreach($setup_product_test as $k => $v){
+	if($v[online]==1){
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+		<td align="center">
+			<input src="../frontEnd/images/button_edit.gif" type="image" class="line" />
+		</td>
+		<td align="center">$k</td>
+		<td>$v[msg]</td>
+	</tr>
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+
+</table>
+</div>
+<!--
+EOT;
+?>
+ -->

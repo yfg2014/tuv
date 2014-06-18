@@ -1,0 +1,174 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css" />
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var rm = function(o){ $(o).parents('tr').empty().remove()};
+$(function(){
+	var pdry = $('#addpdr').find('.pdry').eq(0).clone().find('input').val('').end();
+	$('.usual').idTabs({event : 'mouseover'});
+	$('[name="addline"]').click(function(){pdry.clone().appendTo('#addpdr')});
+});
+var width = 400,height = 400,option = {escClose:true,close:true,closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",containerCss:{width : width + "px",height : height + "px"},onClose: function (dialog){ $("#simplemodal-container,#simplemodal-overlay").hide();$.modal.close();},minHeight:width,minWidth:height};
+option.onShow = function(dialog){}
+function jobsm(obj){var o=$(obj).val();$('<iframe src="./dlg/in_range.php?id='+o+'" id="f1" frameborder="0" style="width:390px;height:390px;margin-bottom:5px;text-align:center;"></iframe>').load(function(){ $(this).contents().find('[name="button"]').click(function(){obj.value = $(this).parents('tr').find('#txt').val();$.modal.close();})}).modal(option);}
+function check(obj){ $('<iframe src="./dlg/in_assesss_taff_list.php?taskId='+ $taskId +'" id="f1" frameborder="0" style="width:380px;height:380px;margin-bottom:5px;text-align:center;"></iframe>').load(function(){ $(this).contents().find('.line').click(function(){var t=$(this).parents('tr');obj.value=t.children('td').eq(2).text();$(obj).siblings().val(t.find('.id').val());$.modal.close();})}).modal(option);}
+function copytop(obj){
+	var describes = $('#top_table_id').find('.describes').text();
+	var assessmentdate = $('#top_table_id').find('.assessmentdate.').val();
+	var approvaldate = $('#top_table_id').find('.approvaldate').val();
+	var zs_if = $('#top_table_id').find('.zs_if').val();
+	var evaluatother = $('#top_table_id').find('.evaluatother').text();
+
+	$(obj).parent().parent().parent().find('.describes').text(describes);
+	$(obj).parent().parent().parent().find('.assessmentdate').val(assessmentdate);
+	$(obj).parent().parent().parent().find('.approvaldate').val(approvaldate);
+	$(obj).parent().parent().parent().find('.zs_if').val(zs_if);
+	$(obj).parent().parent().parent().find('.evaluatother').text(evaluatother);
+}
+//]]>
+</script>
+<!--top 信息-->
+<div class="blank"></div>
+{$Information->info}
+<table width="$width" class="e_table">
+
+  <tr>
+    <td align="right" width="10%">打印：</td>
+    <td>
+	</td>
+  </tr>
+</table>
+<div class="blank"></div>
+<!-- 案卷评定部分 -->
+<form action="./index.php?m=assess&do=Evaluate_save&" method="post" name="pdry">
+<table width="$width" class="e_table">
+    <tr >
+    	<td width="30" align="center">编辑</td>
+        <td width="80" align="center">体系</td>
+        <td width="100" align="center">人员姓名</td>
+		<td width="100" align="center">评级</td>
+        <td width="120" align="center">接卷日期</td>
+        <td width="120" align="center">交卷日期</td>
+        <td width="120" align="center">计费日期</td>
+        <td width="100" align="center">阅卷费</td>
+        <td width="40" align="center">删除</td>
+    </tr>
+<!--
+EOT;
+foreach($pdRenyuan as $v){
+if($v[rating] == '1' ){	
+	$v[rating] = '一评';
+} else if($v[rating] == '2'){
+	$v[rating] = '二评';
+}else{
+	$v[rating] = '';
+}
+
+echo <<<EOT
+-->
+    <tr >
+    	<td align="center" width="30" >
+		<a href="./index.php?m=assess&do=pd_evaluation_edit&pdid=$pdid&taskId=$taskId&eid=$v[id]&zuzhi_id=$zuzhi_id&ht_id=$ht_id"><img src="./frontEnd/images/button_edit.png" alt="评定人员编辑" border="0" /></a>		</td>
+        <td align="center" width="80" >$v[iso]</td>
+        <td align="center" width="100">$v[username]</td>
+		<td align="center" width="100">$v[rating]</td>
+        <td align="center" width="120">$v[thendate]</td>
+        <td align="center" width="120">$v[rossdate]</td>
+        <td align="center" width="120">$v[billingdate]</td>
+        <td align="center" width="100">$v[fees]</td>
+        <td align="center" height="25"><a href="./index.php?m=assess&do=Evaluate_del&id=$v[id]&taskId=$v[taskId]&pdid=$pdid&zuzhi_id=$zuzhi_id&ht_id=$ht_id"><img src="./frontEnd/images/button_empty.png" alt="删除" border="0" onclick="return confirm('你是否要删除评定人员');" /></a></td>
+    </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+<div class="blank"></div>
+<table width="$width" class="e_table" id="addpdr">
+    <tr >
+        <td width="100%"  height="25"  colspan="7"> 评定人员&gt;&gt;</td>
+    </tr>
+	<tr >
+        <td width="100%"  height="25"  colspan="7">
+<!--
+EOT;
+foreach($result as $v) {
+	if($pd[id]) {
+		if($v[id] == $pd[pdid]){
+			$checked = 'checked="checked"';
+		}else{
+			$checked = '';
+		}
+	}else{
+		$checked = 'checked="checked"';
+	}
+	if($v[kind] == '2' && $v[iso] == 'P')
+	{
+		$rows = $db->get_one("SELECT product FROM `{$dbtable['ht_contract_item']}` WHERE id='{$v[htxm_id]}'");
+		$v[iso] = Cache::cache_product($rows['product']);
+	}
+echo <<<EOT
+-->
+	<input type="checkbox" name="pdid[]" value="$v[id]" $checked /><font color="blue"><b>$v[iso]</b>&nbsp;&nbsp;
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+       </td>
+    </tr>
+    <tr >
+        <td height="24" align="center">人员姓名</td>
+		<td align="center">评级</td>
+        <td align="center">接卷日期</td>
+        <td align="center">交卷日期</td>
+        <td align="center">计费日期</td>
+        <td align="center">阅卷费</td>
+        <td align="center">删除</td>
+    </tr>
+    <tr class="pdry">
+        <td align="center"  height="25">
+        <input type="hidden" name="hr_id[]" class="ren_code" value="$pd[hr_id]" />
+        <input type="text" name="username[]" onclick="check(this)" readonly="readonly" style="width:100px" value="$pd[username]" />        </td>
+        <td align="center"><select name="rating[]" style="width:140px;" >
+				<option value="">-请选择-</option>
+<!--
+EOT;
+$pd[rating] == '1' && $sel_y = 'selected=\"selected\"';
+$pd[rating] == '2' && $sel_e = 'selected=\"selected\"';
+print <<<EOT
+-->
+				<option value="1" $sel_y >一评</option>
+				<option value="2" $sel_e >二评</option>
+	        </select></td>
+		<td align="center"><input type="text" name="thendate[]" onfocus="showCalendar(this, 'y-mm-dd');" style="width:100px;" value="$pd[thendate]" /></td>
+        <td align="center"><input type="text" name="rossdate[]" onfocus="showCalendar(this, 'y-mm-dd');" style="width:100px;" value="$pd[rossdate]" /></td>
+        <td align="center"><input type="text" name="billingdate[]" onfocus="showCalendar(this, 'y-mm-dd');" style="width:100px;" value="$pd[billingdate]" /></td>
+        <td align="center"><input type="text" name="fees[]"  style="width:100px;" value="$pd[fees]" /></td>
+        <td width="50" align="center"><input type="hidden" name="pdId[]" class="pdd" value="$pd[id]" /><img src="./frontEnd/images/button_empty.png" alt="删除" border="0" style="cursor:pointer;" onclick="rm(this);" /></td>
+    </tr>
+</table>
+<table width="$width" class="e_table">
+    <tr >
+        <td height="24" align="center">
+        <input type="button" value=" 增行 " name="addline" />
+        <input type="submit" value=" 保存 " name="submit2" />
+        <input type="hidden" name="ppdid" value="$pdid" />
+		<input type="hidden" name="taskId" value="$taskId" />
+		<input type="hidden" name="zuzhi_id" value="$zuzhi_id" />
+		<input type="hidden" name="ht_id" value="$ht_id" />
+        </td>
+    </tr>
+</table>
+</form>
+<div class="blank"></div>
+<br /><br /><br />
+<!--
+EOT;
+?>
+-->

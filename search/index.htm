@@ -1,0 +1,331 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML><HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<TITLE>$eiregistername[0]</TITLE>
+
+
+<LINK href="ERP.ico" rel="shortcut icon">
+<LINK href="./img/sys_style.css"rel=stylesheet>
+
+</HEAD>
+<style>
+.zs{
+border:1px #FF6600 solid;
+text-align:center;
+padding: 3px 0px 0px 0px;
+margin-right:4px;
+color:#FF6600;
+}
+</style>
+
+<BODY >
+
+<!-- ************************ 页面显示准备工作开始  FF6600 ********************************** !-->
+<!--
+EOT;
+
+foreach($certNos as $k=>$v)
+{
+	$v == '' ? $certNo_ck = '0' : $certNo_ck = '1';
+	if($certNo_ck == '1'){
+echo <<<EOT
+-->
+<TABLE height=10 cellSpacing=0 cellPadding=0 width="100%" border=0 >
+  <TBODY>
+  <TR>
+    <TD width="100%" height=10></TD></TR></TBODY></TABLE>
+<TABLE height=1 cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=middle width="100%" height=1>
+      <TABLE height=44 cellSpacing=0 cellPadding=0 width=518 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle width="100%"
+          background=./img/client_title.gif height=44>
+            <TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%"
+            border=0>
+              <TBODY>
+              <TR>
+                <TD width=37 height=23></TD>
+                <TD width=570 height=23></TD></TR>
+              <TR>
+                <TD width=37 height=21></TD>
+                <TH class=addr_tilte2 align=left width=570
+                  height=21>$eiregistername[$k]</TH></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+      <TABLE height=1 cellSpacing=0 cellPadding=0 width=518 bgColor=#ffffff
+      border=0>
+        <TBODY>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=10></TD>
+          <TD width=10 height=10></TD>
+          <TD width=503></TD>
+          <TD width=4
+      background=./img/left_line.gif></TD></TR></TBODY></TABLE>
+      <TABLE height=18 cellSpacing=0 cellPadding=0 width=518 bgColor=#ffffff
+      border=0>
+        <TBODY>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=18></TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=67><div class="zs">证书编号</div></TD>
+          <TD class=addr_tilte2 vAlign=bottom width=436>$v</TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=1></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436 background=./img/line_01.gif></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=10></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=18></TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=67><div class="zs">中文名称</div></TD>
+          <TD class=addr_tilte2 vAlign=bottom width=436>$eiregistername[$k]</TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=1></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436 background=./img/line_01.gif></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=10></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+
+
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=18></TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=67><div class="zs">企业地址</div></TD>
+          <TD class=addr_tilte2 vAlign=bottom
+          width=436>$eipro_address1[$k]</TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=1></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436 background=./img/line_01.gif></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=10></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+		 <TR>
+          <TD width=1 bgColor=#e5e3e3 height=18></TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=67><div class="zs">认证领域</div></TD>
+          <TD class=addr_tilte2 vAlign=bottom width=436>$audit_ver[$k]</TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=1></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436 background=./img/line_01.gif></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=10></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=18></TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=67><div class="zs">认证范围</div></TD>
+          <TD class=addr_tilte2 vAlign=bottom
+            width=436>$coverFields[$k]</TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=1></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436 background=./img/line_01.gif></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=10></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=18></TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=67><div class="zs">注册日期</div></TD>
+          <TD class=addr_tilte2 vAlign=bottom width=436>$certStart[$k]</TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+		<TR>
+          <TD width=1 bgColor=#e5e3e3 height=1></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436 background=./img/line_01.gif></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=10></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+
+          <TD width=1 bgColor=#e5e3e3 height=18></TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=67><div class="zs">注册到期</div></TD>
+          <TD class=addr_tilte2 vAlign=bottom width=436>$certEnd[$k]</TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+		 <TR>
+
+          <TD width=1 bgColor=#e5e3e3 height=1></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436 background=./img/line_01.gif></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=10></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+		<TR>
+          <TD width=1 bgColor=#e5e3e3 height=18></TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=67><div class="zs">证书状态</div></TD>
+          <TD class=addr_tilte2 vAlign=bottom width=436>$online[$k]</TD>
+          <TD width=10 height=18><IMG height=18
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+
+          <TD width=1 bgColor=#e5e3e3 height=1></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436 background=./img/line_01.gif></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+        <TR>
+          <TD width=1 bgColor=#e5e3e3 height=10></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=67></TD>
+          <TD width=436></TD>
+          <TD width=10 height=1><IMG height=1
+            src="./img/space.gif" width=17></TD>
+          <TD width=4 background=./img/left_line.gif></TD></TR>
+
+       </TBODY></TABLE>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle width="100%">
+		  <IMG src="./img/client_b.gif"></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<!--
+EOT;
+}}
+if(empty($certNos) or $certNo_ck == '0'){
+echo <<<EOT
+-->
+<TABLE  cellSpacing=0 cellPadding=0 width="100%" border=0 align="center">
+<TR>
+          <TD align="center" >
+		  <br><br><br><br><br><br><br><br><br>
+		  <p style="font-size:15px;">提示：没有找到相关证书信息</p>
+			<br>
+			请确认所查询的内容或联系我们 </font></a>
+		  </TD>
+        <TR>
+</table>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</BODY></HTML>
+<!--
+EOT;
+?>
+-->

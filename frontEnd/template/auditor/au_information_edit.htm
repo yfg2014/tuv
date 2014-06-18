@@ -1,0 +1,380 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+function checkIdcard(card){
+	var errormsg='';
+
+	var ck=/^\d{15}(\d{2}[A-Za-z0-9])?$/;
+	if(!card.match(ck))
+	{
+		errormsg= errormsg + '证件号码不是15或18位 \\n';
+	}
+	if(errormsg != '')
+	{
+		alert(errormsg);
+		return false;
+	}
+}
+
+//对话框弹窗开始
+var width = 400
+var height = 400;
+var option = {escClose:true,close:true,closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",containerCss:{width : width + "px",height : height + "px"},onClose: function (dialog){ $("#simplemodal-container,#simplemodal-overlay").hide();$.modal.close();},minHeight:width,minWidth:height};
+option.onShow = function(dialog){};
+
+//县/区级地址弹窗
+function dizhi_dlg() {
+	$('<iframe src="dlg/in_dizhi_list.php" frameborder="0" style="width:390px;height:380px;margin:5px;"></iframe>').load(function(){
+		$(this).contents().find('.edit').each(function(){
+			$(this).click(function(){
+				var code = $(this).parent().siblings('.code').text();
+				var dizhi = $(this).parent().siblings('.msg').text();
+				$('#city').val(code);
+				$('#city_msg').val(dizhi);
+				$.modal.close();
+			});
+		});
+	}).modal(option);
+}
+
+//邮编弹窗
+function postcode_dlg() {
+	$('<iframe src="dlg/in_postcode.php" frameborder="0" style="width:390px;height:390px;margin:5px;"></iframe>').load(function(){
+		$(this).contents().find('.edit').each(function(){
+			$(this).click(function(){
+				var code = $(this).parent().siblings('.code').text();
+
+				$('#postcode').val(code);
+
+				$.modal.close();
+			});
+		});
+	}).modal(option);
+}
+</script>
+
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+
+<form method="post" name="winput" action="index.php?m=hr&do=hr_information_save" enctype="multipart/form-data" onsubmit="return Validator.Validate(this,2);">
+<input type="hidden" name="id" value="{$value[id]}" />
+<table width="$width" class="e_table">
+
+		<th  colspan="4" align="left">人员登记&gt;&gt;</th>
+
+	<tr>
+		<td  align="right" width="110">人员编号：</td>
+		<td width="220"><input name="idcode" style="width:180px;" value="{$value[idcode]}"  /> <font color="#FF0000">*</font></td>
+		<td align="right"  rowspan="8">照片：</td>
+		<td  rowspan="8" align="center">
+            <div>
+                <img src="{$value[photo]}" id="srcimg" width="95" height="128" onerror="this.src='frontEnd/images/nophoto.gif'" />
+            </div>
+		</td>
+	</tr>
+	<tr>
+		<td  align="right" width="110">姓&nbsp;&nbsp;&nbsp;&nbsp;名：</td>
+		<td width="220"><input name="username" style="width:180px;" value="{$value[username]}" dataType="Require" msg="名字不能为空！" />
+		<font color="#FF0000"> *</font></td>
+
+	</tr>
+	<tr>
+		<td  align="right">性&nbsp;&nbsp;&nbsp;&nbsp;别：</td>
+		<td>
+            <input type="radio" name="sex" value="01" $sex_ck01 />男
+            <input type="radio" name="sex" value="02" $sex_ck02 />女</td>
+	</tr>
+	<tr>
+		<td  align="right">出生日期：</td>
+		<td>
+        	<select name="nian">
+        	<option value="">选择</option>
+<!--
+EOT;
+$d = date("Y")-10;
+for($i=1;$i<=100;$i++){
+    if($birthday[0] == $d){$selected = 'selected';}else{$selected = '';}
+print <<<EOT
+-->
+			<option value="$d" $selected>$d</option>
+<!--
+EOT;
+ $d = $d - 1;
+}
+print <<<EOT
+-->
+        </select>
+        <select name="yue">
+        	<option value="">选择</option>
+<!--
+EOT;
+for($i=1;$i<=12;$i++){
+if($i<10){$d = "0".$i;}else{$d = $i;}
+	if($birthday[1] == $i){$selected = selected;}else{$selected = '';}
+print <<<EOT
+-->
+			<option value="$d" $selected>$d</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+        </select>
+        <select name="ri">
+        	<option value="">选择</option>
+<!--
+EOT;
+for($i=1;$i<=31;$i++){
+	if($birthday[2] == $i){$selected = selected;}else{$selected = '';}
+	if($i<10){$d = "0".$i;}else{$d = $i;}
+print <<<EOT
+-->
+			<option value="$d" $selected>$d</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+        </select>
+		</td>
+	</tr>
+	<tr>
+		<td  align="right">民 &nbsp;&nbsp; 族：</td>
+		<td><input name="national" style="width:180px;" value="{$value[national]}"/> </td>
+	</tr>
+	<tr>
+    	<td   align="right">政治面貌：</td>
+        <td>
+            <select name="politics" style="width:180px;">
+                <option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_hr_politics as $key => $set)
+{
+$sel = '';
+if($value[politics]==$set[code]){$sel = 'selected';}
+print <<<EOT
+-->
+	<option value="{$set[code]}" $sel>$set[msg]</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+            </select>
+        </td>
+	</tr>
+	<tr>
+		<td  align="right">人员来源：</td>
+		<td>
+        	<select name="htfrom" style="width:180px;">
+                <option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_htfrom as $key => $set)
+{
+$sel = '';
+if($value[htfrom]==$set[code]){$sel = 'selected';}
+print <<<EOT
+-->
+	<option value="{$set[code]}" $sel>$set[msg]</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td  align="right">证件名称：</td>
+		<td>
+            <select name="shenfenkind" style="width:180px;">
+                <option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_hr_certificate as $key => $set)
+{
+$sel = '';
+if($value[shenfenkind]==$set[code]){$sel = 'selected';}
+print <<<EOT
+-->
+	<option value="{$set[code]}" $sel>$set[msg]</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+            </select>
+            <font color="#FF0000"> *</font>
+		</td>
+
+	</tr>
+	<tr>
+    	<td align="right">证件号码：</td>
+    	<td>
+            <input name="cardid" style="width:180px;" value="{$value[cardid]}" onBlur="checkIdcard(this.value)"/>
+            <font color="#FF0000">*</font>
+        </td>
+        <td  align="right" >身份证地址：</td>
+        <td><input name="cardaddress" style="width:180px;" value="{$value[cardaddress]}" /> </td>
+	</tr>
+	<tr>
+		<td align="right"></td>
+		<td></td>
+		<td align="right">县级地址：</td>
+		<td><input type="hidden"  id="city" name="city" value="{$value[city]}" />
+		<input name="city_msg" id="city_msg" value="{$value[city_msg]}" type="text" style="width:160px" title="请从右边选择输入"/>
+		<img src="frontEnd/images/sousuo.gif"onClick="dizhi_dlg();" style="cursor:pointer;" /> </td>
+	</tr>
+	<tr>
+		<td align="right"  width="110">联系手机：</td>
+		<td width="220"><input name="phone" style="width:180px;" value="{$value[phone]}"/>  </td>
+		<td align="right" width="110">电子邮件：</td>
+		<td width="260"><input name="email" style="width:180px;" value="{$value[email]}"/> </td>
+	</tr>
+	<tr>
+		<td  align="right">通讯电话：</td>
+		<td><input name="tel" style="width:180px;" value="{$value[tel]}" /></td>
+		<td align="right">通讯地址：</td>
+		<td><input name="address" type="text" style="width:180px;" value="{$value[address]}"/> </td>
+	</tr>
+	<tr>
+		<td  align="right">单位电话：</td>
+		<td><input name="dwtel" style="width:180px;" value="{$value[dwtel]}" /></td>
+		<td  align="right">单位地址：</td>
+		<td><input name="dwdizhi" style="width:180px;" value="{$value[dwdizhi]}" /></td>
+    <tr>
+        <td  align="right">联系传真：</td>
+        <td><input name="fax" style="width:180px;" value="{$value[fax]}" /></td>
+        <td  align="right">通讯邮编：</td>
+        <td><input name="postcode" id="postcode" style="width:160px;" value="{$value[postcode]}" /><img src="frontEnd/images/sousuo.gif" onClick="postcode_dlg();" style="cursor:pointer;"></td>
+    </tr>
+    <tr>
+        <td  align="right">开户地址：</td>
+        <td><input name="bankmsg" style="width:180px;" value="{$value[bankmsg]}" /></td>
+        <td align="right">银行卡号：</td>
+        <td><input name="bankcode" style="width:180px;" value="{$value[bankcode]}" /></td>
+    </tr>
+    <tr>
+        <td align="right">人员性质：</td>
+        <td  colspan="3" >
+<!--
+EOT;
+foreach($setup_hr_xingzhi as $key => $set)
+{
+$ck = '';
+
+if (in_array($set[code], $value['xingzhi'])){$ck='checked="checked"';}
+
+print <<<EOT
+-->
+				<input type="checkbox" name="xingzhi[]" value="{$set[code]}" $ck />$set[msg]
+<!--
+EOT;
+}
+print <<<EOT
+-->
+        </td>
+    </tr>
+    <tr>
+        <td align="right"  >专兼职：</td>
+        <td>
+            <input type="radio" name="worktype" value="01" $worktype_ck01>兼职
+			<input type="radio" name="worktype" value="02" $worktype_ck02/>专职
+			<input type="radio" name="worktype" value="08" $worktype_ck08>无(办公人员)
+        </td>
+        <td align="right">所在单位：</td>
+        <td><input name="suozaidanwei" style="width:180px;" value="{$value[suozaidanwei]}" /></td>
+    </tr>
+    <tr>
+        <td  align="right">合同编号：</td><!--提交表单验证合同号不重复-->
+        <td><input name="hetonghao" style="width:180px;" value="{$value[hetonghao]}" /></td>
+        <td align="right">入职时间：</td>
+        <td><input name="ruzhidate" style="width:180px;" onclick="showCalendar(this, 'y-mm-dd');"  value="{$value[ruzhidate]}"/></td>
+    </tr>
+    <tr>
+        <td align="right">在聘情况：</td>
+        <td><input type="radio" name="working" value="1" $working_ck01/>在职
+            <input type="radio" name="working" value="0" $working_ck02/>离职</td>
+        <td  align="right">离职日期：</td>
+        <td><input name="lizhidate" type="text" style="width:180px;" onclick="showCalendar(this, 'y-mm-dd');" value="{$value[lizhidate]}" /></td>
+    </tr>
+    <tr>
+        <td  align="right">聘用开始日期：</td>
+        <td><input name="pinyongdate" type="text" id="sel2" style="width:180px;" onclick="showCalendar(this, 'y-mm-dd');" value="{$value[pinyongdate]}" /> </td>
+        <td align="right">聘用结束日期：</td>
+        <td><input name="pinyongover" type="text" id="sel5" style="width:180px;" onclick="showCalendar(this, 'y-mm-dd');" value="{$value[pinyongover]}" /> </td>
+    </tr>
+    <tr>
+        <td  align="right">保密承诺：</td>
+        <td> <input type="checkbox" name="baomi" value="1" $baomi_ck/></td>
+        <td  align="right">保密承诺日期：</td>
+        <td><input name="baomidate" style="width:180px;" value="{$value[baomidate]}" id="sel6" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+    </tr>
+    <tr>
+        <td width="110" align="right">易记码：</td>
+        <td width="260"><input name="yjm" style="width:180px;" value="{$value[yjm]}" /></td>
+        <td align="right">社保编号：</td>
+        <td><input name="shebaohao" style="width:180px;" value="{$value[shebaohao]}" /></td>
+    </tr>
+    <tr>
+        <td  align="right">选用类型：</td>
+        <td><select name="use_lev" style="width:180px;">
+            	<option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_hr_use_lev as $key => $set)
+{
+$sel = '';
+if($value[use_lev]==$set[code]){$sel = 'selected';}
+print <<<EOT
+-->
+	<option value="{$set[code]}" $sel>$set[msg]</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+            </select></td>
+        <td align="right">部门： </td>
+        <td>
+        	<select name="bumen" style="width:180px;">
+            	<option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_hr_department as $key => $set)
+{
+$sel = '';
+if($value[bumen]==$set[code]){$sel = 'selected';}
+print <<<EOT
+-->
+	<option value="{$set[code]}" $sel>$set[msg]</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td  align="right">备注信息：</td>
+        <td colspan="3"><textarea name="beizhu" cols="70" rows="3">{$value[beizhu]}</textarea></td>
+    </tr>
+    <tr><td height="35" colspan="4" style="text-align:center;">
+    		<input type="submit" name="save" value="保存" style="height:20px;width:60px;background-color:#FFFFFF" />
+   		</td>
+    </tr>
+</table>
+</form>
+<div class="blank"></div>
+
+
+<!--
+EOT;
+?>
+-->

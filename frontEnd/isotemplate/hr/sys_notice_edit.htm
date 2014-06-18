@@ -1,0 +1,31 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<table width="$width" class="c_table">
+<form method="post" name="input" action="./index.php?m=hr&do=sys_notice_save" onsubmit="return  Validator.Validate(this,2);">
+    <tr bgcolor="#F2F2F2">
+    	<td height="25" colspan="2" valign="middle"><font color="#0000FF">发布公告>></font></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td width="15%" height="32" align="right"><font color="#0000FF">公告标题：</font></td>
+        <td height="32"><input name="title" type="text" value="$result[title]"  style="width:80%;" maxlength="50" dataType="Require" msg="公告标题不能为空!" /></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td width="15%" align="right"><font color="#0000FF">公告内容：</font></td>
+        <td><textarea name="content" style="width:80%;height:120px;" dataType="Require" msg="公告内容不能为空！">$result[content]</textarea></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="25" colspan="2"  align="center">
+        <input type="hidden" name="id" value="$id" />
+        <input type="hidden" name="num" value="1" />
+        <input type="submit" name="submit" value="提交">&nbsp;&nbsp;
+        <input type="reset" name="Submit3" value="重写"></td>
+    </tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

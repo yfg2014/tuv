@@ -1,0 +1,41 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="c_table stripe">
+        <tr bgcolor="#FFFFFF">
+          <td height="24" colspan="3">消息管理 -&gt; 我收到的短信</td>
+          <td height="24"><div align="center"> <a href="./index.php?m=hr&do=sys_sms_list2">[我发送的短信]</a></div></td>
+        </tr>
+        <tr bgcolor="#F2F2F2">
+          <th height="22" align="center">短信标题</th>
+          <th width="70" align="center">发送人</th>
+          <th width="54" align="center">阅读</th>
+          <th width="130" align="center">发送时间</th>
+        </tr>
+<!--
+EOT;
+foreach ($result[data] as $v) {				
+print <<<EOT
+-->		
+        <tr bgcolor="#FFFFFF">
+          <td height="20">&nbsp;<a href="./index.php?m=hr&do=sys_sms_show&id=$v[id]">$v[title]</a></td>
+          <td align="center">$v[zd_ren]</td>
+          <td align="center">$v[times]</td>
+          <td align="center">$v[zd_date]</td>
+        </tr>
+<!--
+EOT;
+}		
+print <<<EOT
+-->	
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

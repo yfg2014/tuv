@@ -1,0 +1,116 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+<script type="text/javascript">
+//<![CDATA[
+function rm(obj,id,hr_id)
+{
+	var del_node = $(obj).parents("tr");
+	if(confirm("此操作不可恢复，您确认要删除此记录吗？"))
+	{
+		$.post("index.php?m=hr&do=hr_reg_qualification_del&id="+id+"&hr_id="+hr_id,null,function(response){
+
+			del_node.remove();
+		});
+		return;
+	}
+}
+
+//]]>
+</script>
+
+
+<div style="width:$width;margin:auto;">
+
+<div class="blank"></div>
+<table width="$width">
+<tr>
+	<td align="left">
+		注册资格>> 姓名：{$result_ren[username]}&nbsp;员工编号：{$result_ren[idcode]}
+	</td>
+	<td align="left">
+		{$p_url}
+	</td>
+</tr>
+</table>
+
+<table width="$width" class="c_table stripe">
+<tr >
+<th align="center">编辑</th>
+<th align="center">状态</th>
+<th align="center">体系</th>
+<th align="center">标准版本</th>
+<th align="center">资格</th>
+<th align="center">资格证号码</th>
+<th align="center">开始时间</th>
+<th align="center">结束时间</th>
+<th align="center">年度确认</th>
+<th align="center">备注</th>
+
+<th align="center">删除</th>
+</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+
+$v[online] == '1' ? $v[online] = '有效' : $v[online] = '<font color=red>失效</font>';
+
+if($v[yeardate1] !='' && $v[yeardate1] !='0000-00-00'){$yeardate1='第一次年度确认：'.$v[yeardate1].'月份';}else{$yeardate1='';}
+if($v[yeardate2] !='' && $v[yeardate2] !='0000-00-00'){$yeardate2='第二次年度确认：'.$v[yeardate2].'月份';}else{$yeardate2='';}
+print <<<EOT
+-->
+<tr >
+<td align="center">
+<a href="index.php?m=hr&do=hr_reg_qualification_edit&hr_id=$hr_id&id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+<td align="center">$v[online]</td>
+<td align="center">$v[iso]</td>
+<td align="center">$v[audit_ver]</td>
+<td align="center">$v[qualification]</td>
+<td align="center">$v[qualification_no]</td>
+<td align="center">$v[s_date]</td>
+<td align="center">$v[e_date]</td>
+<td align="center">$yeardate1<br>$yeardate2</td>
+<td align="center"><div class="{$k} show_block">$v[other]</div>$v[show]</td>
+<td align="center">
+<input type="image" src="frontEnd/images/button_empty.png" alt="删除" style="cursor:pointer;" id="ry" name="remove" onclick="javascript:rm(this,$v[id],$v[hr_id]);" /></td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+
+<TR   colspan="11" >
+<TD align="center">
+<a href="index.php?m=hr&do=hr_reg_qualification_edit&hr_id=$hr_id"><img src="frontEnd/images/button_insert.png" alt="添加" border="0" /></a></TD>
+	<TD colspan="10"></TD>
+</TR>
+</table>
+$result[pages]
+</div>
+<div class="blank"></div>
+<table width="$width" class="c_table">
+	<tr>
+		<td width="10%" align="right">文档打印：</td>
+		<td>
+			&nbsp;<a href="./index.php?m=doc&do=print_05&hr_id=$hr_id&op=1">人员能力评价表</a>&nbsp;
+			<a href="./index.php?m=doc&do=print_05&hr_id=$hr_id&op=2">审核项目管理人员能力评价</a>&nbsp;
+			<a href="./index.php?m=doc&do=print_05&hr_id=$hr_id&op=3">申请（合同）评审人员能力评价</a>&nbsp;
+			<a href="./index.php?m=doc&do=print_05&hr_id=$hr_id&op=4">审核组长能力评价</a>&nbsp;
+			<br/>
+			&nbsp;<a href="./index.php?m=doc&do=print_05&hr_id=$hr_id&op=5">审核员能力评价</a>&nbsp;
+			<a href="./index.php?m=doc&do=print_05&hr_id=$hr_id&op=6">认证决定人员能力评价</a>&nbsp;
+			<a href="./index.php?m=doc&do=print_05&hr_id=$hr_id&op=7">技术专家能力评价</a>&nbsp;
+			<a href="./index.php?m=doc&do=print_05&hr_id=$hr_id&op=8">专业能力评价人员能力评价</a>
+		</td>
+	</tr>
+</table>
+</div>
+<!--
+EOT;
+?>
+-->

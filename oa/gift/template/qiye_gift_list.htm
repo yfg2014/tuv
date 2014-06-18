@@ -1,0 +1,67 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+
+$result[pages]
+
+<div class="blank"></div>
+<table width="$width">
+	<tr>
+		<td class="row_data" colspan="10">组织礼品发放记录>> 合计：{$result['count']}&nbsp;&nbsp;&nbsp;<a href="index.php?m=gift&do=qiye_gift_edit"><font color="blue">新增</font></a></td>
+	</tr>
+</table>
+
+<table width="$width" class="c_table">
+	<tr>
+		<th align="center">编辑</th>
+		<th align="center">企业名称</th>
+		<th align="center">合同来源</th>
+		<th align="center">礼品名称</th>
+		<th align="center">发放日期</th>
+		<th align="center">备注</th>
+		<th align="center">删除</th>
+	</tr>
+
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+	$v[send_date]  == '0000-00-00' && $v[send_date] = '';
+	if ($v[remark] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+
+-->
+	<tr>
+		<td align="center"><a href="index.php?m=gift&do=qiye_gift_edit&id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+		<td align="center">$v[eiregistername]</td>
+		<td align="center">$v[htfrom]</td>
+		<td align="center">$v[gift_name]</td>
+		<td align="center">$v[send_date]</td>
+		<td align="center"><div class="{$k} show_block">$v[remark]</div>$v[show]</td>
+		<td align="center"><a href="index.php?m=gift&do=qiye_gift_del&id={$v[id]}"><img src="frontEnd/images/button_empty.png" alt="删除" border="0" style="cursor:pointer;" onclick="return confirm('你确定要删除吗？');" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+
+<div class="blank"></div>
+</div>
+
+<!--
+EOT;
+?>
+-->

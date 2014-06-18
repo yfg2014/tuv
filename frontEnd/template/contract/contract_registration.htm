@@ -1,0 +1,66 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+
+
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr bgcolor="#FFFFFF">
+    	<td>认证申请&gt;&gt; 合计：$result[count]</td>
+    </tr>
+</table>
+
+<table width="$width" class="c_table stripe">
+	<tr bgcolor="#F2F2F2">
+		<th align="center">操作</th>
+		<th align="center">企业注册名称</th>
+		<th align="center">省份</th>
+		<th align="center">联系人</th>
+		<th align="center">联系电话</th>
+		<th align="center">联系传真</th>
+		<th align="center">登记人</th>
+		<th align="center">合同</th>
+	</tr>
+<!--
+EOT;
+foreach($result['data'] as $v) {
+	$v[dengji] = '<font color="red">未登记</font>';
+	$ht = $db->get_one("SELECT id FROM {$dbtable['ht_contract']} WHERE zuzhi_id='{$v[id]}' LIMIT 1");
+	$ht['id'] != '' && $v[dengji] = '已登记';
+print <<<EOT
+-->
+        <tr>
+		 <td align="center"><a href="./index.php?m=contract&do=contract_edit&zuzhi_id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="操作" border="0"></a></td>
+         <td width="240px"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[id]">$v[eiregistername]</a></td>
+		 <td align="center" width="60">$v[eiarea]</td>
+         <td align="center">$v[eilinkman]</td>
+         <td align="center" width="150px">$v[eilinkman_mob]</td>
+         <td align="center">$v[eifax]</td>
+		 <td align="center">$v[zd_ren]</td>
+		 <td align="center" width="50px">$v[dengji]</td>
+        </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,113 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<script type="text/javascript">
+<!--
+$(function(){
+
+	var o1 = $(':checkbox'),o2 = $('.controlAll'),f,f1;o2.change(function(){o1.attr("checked",$(this).attr("checked"))});$('[name="submit1"]').click(function(){f = false;o1.each(function(i){if(f == false && i > 0 && i < o1.length - 1 && this.checked){f = true;}});var o = $(':checkbox[name="gid[]"]:checked').parents('tr').find('.htcode');o.each(function(index){f1 = true;for(var i = 0;i < o.length;i++){if($(this).text() != o.eq(i).text()){f1 = false;break;}}});if(!f){alert('您没有选择任何项目！');return;}$('form[name="ninput"]').submit();});
+
+});
+
+//-->
+</script>
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="index.php?m=certificate&do=cert_post&ifpost=$ifpost&">
+    <tr>
+  		<td>
+  			$SearchHtml
+			<br>
+			 <!--<a href="./index.php?m=xls&do=cert_post_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" />打印信封</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			--><input type="submit" value="搜索" name="submit" />
+
+  		</td>
+   </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+    	<td>证书邮寄明细查询&gt;&gt;</font> 合计：$result[count]
+		&nbsp;&nbsp;<a href="index.php?m=certificate&do=cert_post&ifpost=0"><font color="#FF6600">未邮寄</font></a>
+            &nbsp;&nbsp;<a href="index.php?m=certificate&do=cert_post&ifpost=1"><font color="blue">已邮寄</font></a>
+            &nbsp;&nbsp;<a href="index.php?m=certificate&do=cert_post&ifpost=2">所有</a>
+		</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+	<tr bgcolor="#F2F2F2">
+		<td height="22"  align="center"><font color="#003399">全选</font><br><input type="checkbox" class="controlAll" /></td>
+		<th align="center">邮寄日期</th>
+		<th align="center">编辑</th>
+		<th align="center">邮寄备注</th>
+		<th align="center">项目编号</th>
+		<th align="center">组织名称</th>
+		<th align="center">合同来源</th>
+		<th align="center">标准</th>
+		<th align="center">审核类型</th>
+		<th align="center">状态</th>
+		<th align="center">证书编号</th>
+		<th align="center">登记日期</th>
+		<th align="center">注册日期</th>
+		<th align="center">注册到期</th>
+		<th align="center">产品/范围</th>
+		<th align="center">变更日期</th>
+		<th align="center">备注</th>
+	</tr>
+<form name="ninput" method="post" action="index.php?m=certificate&do=cert_post" >
+<!--
+EOT;
+foreach($result[data] as $k=>$v){
+	$kw = $ky = '';
+	$v[maildate] = Cache::cache_time_value($v[maildate]);
+	if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{ $v[show] = '';}
+	if ($v[coverFields] != ''){$kw=$k.w;$coverFields = "<font onmouseover=\"show_block('$kw')\" onmouseout=\"hide_block('$kw')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$coverFields = '';}	
+	if ($v[mailother] != ''){$ky=$k.y;$mailother = "<font onmouseover=\"show_block('$ky')\" onmouseout=\"hide_block('$ky')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$mailother = '';}
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+		<td width="40" align="center"><input name="gid[]" type="checkbox" value="$v[id]"></td>
+		<td align="center">$v[maildate]</td>
+		<td align="center"><a href="./index.php?m=certificate&do=cert_mailother_edit&id=$v[id]&op=1"><img src="./frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+		<td align="center"><div class="{$ky} show_block">邮寄备注：$v[mailother]</div>$mailother</td>
+		<td >$v[htxmcode]</td>
+		<td height="22" width="220"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		<td align="center">$v[htfrom]</td>
+		<td align="center">$v[audit_ver]</td>
+		<td align="center">$v[audit_type]</td>
+		<td align="center">$v[status]</td>
+		<td align="center">$v[certNo]</td>
+		<td align="center">$v[zsprintdate]</td>
+		<td align="center">$v[certStart]</td>
+		<td align="center">$v[certEnd]</td>
+		<td align="center">
+		<div class="{$kw} show_block">产品/范围：$v[coverFields]</div>$coverFields</td>
+		<td align="center">$v[zs_change_date]</td>
+		<td align="center"><div class="{$k} show_block">备注：$v[other]</div>$v[show]</td>
+	</tr>
+<!--
+EOT;
+}
+$maildate = date("Y-m-d");
+echo <<<EOT
+-->
+</table>
+<table width="$width" class="t_table" style="margin-top:5px;">
+	<tr>
+        <td width="40" align="center" ><input type="checkbox" class="controlAll" /><br>全选</td>
+        <td width="70" align="left"><input type="button" value=" 保 存 " name="submit1" /></td>
+		<td>证书邮寄时间：<input type="text" name="maildate" value="$maildate" onfocus="showCalendar(this, 'y-mm-dd');"/></td>
+    </tr>
+</table>
+</form>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

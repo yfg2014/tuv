@@ -1,0 +1,49 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div align="center">
+<form method="post" action="./in_audit_rule_list.php">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+	<tr bgcolor="#FFFFFF">
+		<td>
+			编码：<input type="text" name="code" value="" size="6" />
+			内容：<input type="text" name="msg" value="" size="6" />
+			<input type="submit" value="搜索" />
+		</td>
+	</tr>
+</table>
+</form>
+
+$result[pages]
+<table width="100%" class="c_table">
+	<tr bgcolor="#F2F2F2">
+		<td align="center" height="22" width="25"><font color="#003399">选择</font></td>
+		<td align="center"><font color=#003399>编码</font></td>
+		<td align="center"><font color=#003399>产品名称</font></td>
+	</tr>
+<!--
+EOT;
+foreach($result[data] as $k => $v){
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+		<td align="center">
+			<input src="../frontEnd/images/button_edit.gif" type="image" class="line" />
+		</td>
+		<td align="center">$v[code]</td>
+		<td align="left">$v[msg]</td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+
+</table>
+$result[pages]
+</div>
+<!--
+EOT;
+?>
+ -->

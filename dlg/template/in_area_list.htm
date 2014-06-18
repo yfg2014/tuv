@@ -1,0 +1,34 @@
+<!-- 
+<?php
+echo <<<EOT
+-->
+<div align="center">
+
+	<table width="400" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+		<tr bgcolor="#FFFFFF">
+			<td align="center">操作</td>
+			<td align="center">编码</td>
+			<td align="center">地址</td>
+		</tr>
+<!-- 
+EOT;
+	foreach ($result['data'] as $v) {
+echo <<<EOT
+ -->
+		<tr bgcolor="#FFFFFF">
+			<td align="center"><img src="../frontEnd/images/button_edit.gif" class="edit" style="cursor:pointer;" /></td>
+			<td align="center" class="code">$v[code]</td>
+			<td align="center" class="msg">$v[msg]</td>
+		</tr>
+<!-- 
+EOT;
+}
+echo <<<EOT
+ -->
+	</table>
+	$result[pages]
+</div>
+<!-- 
+EOT;
+?>
+ -->

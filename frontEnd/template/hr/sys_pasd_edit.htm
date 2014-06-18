@@ -1,0 +1,60 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30" class="title">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="30">&nbsp;<img src="frontEnd/images/jiantou.gif" width="9" height="9" /></td>
+        <td>系统管理 修改密码</td>
+      </tr>
+    </table>
+	</td>
+  </tr>
+</table>
+
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="blank"></div>
+
+
+<table width="$width" class="e_table">
+ <form method="post" name="winput" action="index.php?m=hr&do=sys_pasd_save" onsubmit="return Validator.Validate(this,2);">
+        <input type="hidden" name="id" value="{$value[id]}" />
+        <tr>
+          <td height="24" colspan="2"><font color="#003399">修改密码</font><font color="#003399">&gt;&gt;</font></td>
+        </tr>
+        <tr>
+          <td height="24" align="right"><font color="#003399"> 姓名：</font></td>
+          <td width="70%"> {$value[username]}</td>
+        </tr>
+        <tr>
+          <td height="24" align="right"><font color="#003399"> 账号：</font></td>
+          <td> {$value[user]}</td>
+        </tr>
+        <tr>
+          <td height="24" align="right"><font color="#003399">原密码： </font></td>
+          <td><input name="pasd_old" style="width:150px" value=""></td>
+        </tr>
+        <tr>
+          <td height="24" align="right"><font color="#003399">新密码：</font></td>
+          <td><input name="pasd_new" style="width:150px" value=""></td>
+        </tr>
+        <tr>
+			<td height="24" colspan="2"  align="center">
+
+                <input type="submit" value=" 确 定 " name="submit" />
+			</td>
+        </tr>
+  </form>
+</table>
+<div class="blank"></div>
+
+<!--
+EOT;
+?>
+-->

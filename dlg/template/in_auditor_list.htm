@@ -1,0 +1,127 @@
+<script type="text/javascript">
+//<![CDATA[
+
+//]]>
+</script>
+<!--
+<?php
+echo <<<EOT
+-->
+<table width="100%" class="c_table">
+<form method="post" name="winput" action="./in_auditor_list.php">
+    <tr>
+        <td bgcolor="#EAF4EA">
+        <font color="#003399">姓名：</font>
+        <input name="idname" value="" type="text" style="width:70px;" />
+        <font color="#003399">易记码：</font>
+        <input name="yjm" value="" type="text" style="width:70px;" />
+        <font color="#003399">专职兼职：</font><select name="worktype" style="width:60px;">
+            <option value="">选择</option>
+            <option value="02">专职</option>
+            <option value="01">兼职</option>
+        </select>
+
+		<!--<font color="#003399">空闲时间段：</font><input name="auditplandate" value="" type="text" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');"  title='日期格式  1980-03-04' />
+        <font color="#003399">至</font><input name="auditenddate" value="" type="text" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');"  title='日期格式  1980-03-04' />
+        <br />-->
+		<font color="#003399">专业代码：</font><input name="getdaima" value="$getdaima" style="width:200px;" />
+		<br>
+		<font color="#003399">地区：</font> <input name="address" value="" style="width:70px;" />
+		<font color="#003399">人员来源：</font>
+			<select name="htfrom">
+            	<option value=""></option>
+<!--
+EOT;
+foreach ($setup_htfrom as $v){
+echo <<<EOT
+-->
+				<option value="$v[code]" $selected>$v[msg]</option>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+			</select>
+		<br>
+		 <input type="submit" value="搜索" name="submit">
+        <input type="hidden" name="taskBeginDate" value="$taskBeginDate" />
+        <input type="hidden" name="taskEndDate" value="$taskEndDate" />
+		<input type="hidden" name="taskBeginHalfDate" value="$taskBeginHalfDate" />
+        <input type="hidden" name="taskEndHalfDate" value="$taskEndHalfDate" />
+		<input type="hidden" name="iso_t" value="$iso_t" />
+        </td>
+    </tr>
+</form>
+</table>
+<table width="100%" >
+	<tr>
+		<td height="30" width="94%"><font color="#003399">审核员 技术专家>> </font> [{$result[count]}] &nbsp;&nbsp;&nbsp;<a href="../index.php?m=audit&do=item_people_list" target="_blank"><font color="#FF0000;">已安排人员</font></a></td>
+	</tr>
+</table>
+<table width="100%" class="c_table">
+	<tr bgcolor="#F2F2F2">
+		<td align="center" height="22" width="25"><font color="#003399">选择</font></td>
+		<td align="center"><font color="#003399">姓名</font></td>
+		<td align="center"><font color="#003399">性别</font></td>
+		<td align="center"><font color="#003399">专兼职</font></td>
+		<td align="center"><font color="#003399">资格</font></td>
+		<td align="center"><font color="#003399">已排</font></td>
+		<td align="center"><font color="#003399">领域</font></td>
+		<td align="center"><font color="#003399">代码</font></td>
+		<td align="center"><font color="#003399">手机</font></td>
+		<td align="center"><font color="#003399">组长<br />资质</font></td>
+		<td align="center"><font color="#003399">上一次审核地点</font></td>
+		<td align="center"><font color="#003399">下一次审核地点</font></td>
+		<td align="center"><font color="#003399">人员<br />来源</font></td>
+		<td align="center"><font color="#003399">地址</font></td>
+	</tr>
+<!--
+EOT;
+foreach($result['data'] as $k => $v){
+	$pid = '';
+	if(in_array($v[hr_id],$hr_idHas)) { $v[if_pairen] = "<font color='#FF0000' onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\">是</font>";$pid = '1';}else{ $v[if_pairen]= '否';$pid = '0';}
+	$v[worktype] == '01' ? $v[worktype] = '兼职' : $v[worktype] = '专职';
+	$v[groupdate] != '0000-00-00' ? $ifgroup = '是' : $ifgroup = '' ;
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+		<td align="center">
+<!--
+EOT;
+	if ($v[if_pairen] == '否'){
+echo <<<EOT
+-->
+			<input src="../frontEnd/images/button_edit.gif" type="image" class="line" /><input type="hidden" name="hr_id" class="hr_id" value="$v[hr_id]" />
+<!--
+EOT;
+	}
+$empName = urlencode($v[username]);
+echo <<<EOT
+-->
+		</td>
+		<td width="50" height="20" align="center"><div><a href="../index.php?m=audit&do=item_people_list&empName=$empName" target="_blank">$v[username]</a></div></td>
+		<td width="30" align="center">$v[sex]</td>
+		<td width="40" align="center">$v[worktype]</td>
+		<td width="50" align="center">$v[qualification]</td>
+		<td width="30" align="center"><div class="{$k} show_block">{$pairen[$v[hr_id]]}</div>$v[if_pairen]</td>
+		<td width="30" align="center">$v[iso]</td>
+		<td width="60" align="center">{$xiaolei_str[$v[hr_id]][$v[iso]]}</td>
+		<td width="60" align="left">$v[phone]</td>
+		<td width="30" align="center" title="$v[groupdate]">$ifgroup</td>
+		<td width="150"><input type="text" value="$v[next_audit]" style="width:145;"/></td>
+		<td width="150"><input type="text" value="$v[last_audit]" style="width:145;"/></td>
+		<td width="40" align="center">$v[htfrom]</td>
+		<td width="150">$v[address]</td>
+	</tr>
+
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+<!--
+EOT;
+?>
+ -->

@@ -1,0 +1,46 @@
+<!-- 
+<?php
+echo <<<EOT
+-->
+<div align="center">
+	<form method="post" action="in_postcode.php">
+	<table width="90%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+		<tr bgcolor="#FFFFFF">
+			<td>
+				邮编：<input type="text" name="code" value="" size="6" />
+				省：<input type="text" name="bmsg" value="" size="6" />
+				县区：<input type="text" name="msg" value="" size="6" />
+				<input type="submit" value="搜索" />
+			</td>
+		</tr>
+	</table>
+	</form>
+
+	<table width="90%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+		<tr bgcolor="#FFFFFF">
+			<td align="center">操作</td>
+			<td align="center">邮编</td>
+			<td align="center">地址</td>
+		</tr>
+<!-- 
+EOT;
+	foreach ($result['data'] as $v) {
+echo <<<EOT
+ -->
+		<tr bgcolor="#FFFFFF">
+			<td width="40" align="center"><img src="../frontEnd/images/button_edit.gif" class="edit" style="cursor:pointer;" /></td>
+			<td align="center" class="code">$v[postcode]</td>
+			<td align="left" class="msg">$v[province]$v[city]$v[area]</td>
+		</tr>
+<!-- 
+EOT;
+}
+echo <<<EOT
+ -->
+	</table>
+	$result[pages]
+</div>
+<!-- 
+EOT;
+?>
+ -->

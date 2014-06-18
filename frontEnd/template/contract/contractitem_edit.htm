@@ -1,0 +1,145 @@
+<!--
+<?php
+print <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css" />
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('[name="ps_time"]').focusout(function(){
+		var htdate = "$ht[htdate]";
+		var auditplandate = "$ht[auditplandate]";
+		if (htdate > $(this).val() || auditplandate < $(this).val()){
+			alert('评审日期应该在受理日期和预审日期之间');
+		}
+	})
+
+	$('[name="button"]').click(function(){
+		var iso='',code='';
+		if(!Validator.Validate(document.forms[0],2))return;
+		$('.iso').each(function(i){
+			if (i == 0){
+				iso = $(this).val();
+				code = $('.zydm').eq(i).val();
+				nqa_code = $('.nqa_zydm').eq(i).val();
+			}else{
+				iso = iso + '|' + $(this).val();
+				code = code + '|' + $('.zydm').eq(i).val();
+				nqa_code = nqa_code + '|' + $('.nqa_zydm').eq(i).val();
+			}
+		});
+
+		$.post('./dlg/in_audit_code.php',{'iso':iso,'code':code,'nqa_code':nqa_code},function(r){
+			if (r != ''){
+				alert(r + '审核代码不存在，请重新输入审核代码或者更新审核代码库');
+			}else{
+				document.forms[0].submit();
+			}
+		})
+	})
+
+	$('.tx').find('.txcopy').click(cp);
+	$('.usual').idTabs({event:'mouseover'});
+	$('body').width($(window).width());// 屏蔽浏览器对文挡宽度的解释差异
+});
+
+
+//对话框弹窗开始
+var width = 450;
+var height = 400;
+var option = {escClose:true,close:true,closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",containerCss:{width : width + "px",height : height + "px"},onClose: function (dialog){ $("#simplemodal-container,#simplemodal-overlay").hide();$.modal.close();},minHeight:width,minWidth:height};
+option.onShow = function(dialog){};
+
+//专业代码弹窗
+function daima_dlg(obj,the) {
+	$('<iframe src="dlg/in_daima_list.php?iso='+obj+'" frameborder="0" style="width:450px;height:390px;margin-bottom:5px;"></iframe>').load(function(){
+		$(this).contents().find('.edit').each(function(){
+			$(this).click(function(){
+				var code = $(this).parent().siblings('.code').text();
+				var nqa_code = $(this).parent().siblings('.nqa_code').text();
+				var zydm = $(the).siblings('.zydm').val();
+				var nqa_zydm = $(the).siblings('.nqa_zydm').val();
+				if(zydm == '') {
+					$(the).siblings('.zydm').val(code);
+				} else {
+					$(the).siblings('.zydm').val(zydm+'；'+code);
+				}
+				if(nqa_zydm == '') {
+					$(the).siblings('.nqa_zydm').val(nqa_code);
+				} else {
+					$(the).siblings('.nqa_zydm').val(nqa_zydm+'；'+nqa_code);
+				}
+				$.modal.close();
+			});
+		});
+	}).modal(option);
+}
+//]]>
+</script>
+<div class="blank"></div>
+{$Information->info}
+
+<form name="ht" action="index.php?m=contract&do=contractitem_save" method="post" onsubmit="return Validator.Validate(this,2);">
+
+<br/>
+
+<table width="$width" class="tx e_table">
+	<tr>
+		<td width="25%" align="right">复评次数：</td>
+		<td width="25%"><input type="text" name="re_views" style="width:60%;" value="$htxm_v[re_views]" datatype="Custom" regexp="^\d$" msg="请正确输入复评次数！" />
+		<font color="#FF0000">*</font> </td>
+		<td width="25%" align="right">体系人数：</td>
+		<td width="25%"><input name="iso_people_num" class="txrs" value="$htxm_v[iso_people_num]" type="text" style="width:60%;" datatype="Require" msg="体系人数不能为空！" />
+		<font color="#FF0000">*</font> </td>
+	</tr>
+<!--	<tr>
+		<td align="right">一阶段人日：</td>
+        <td><input name="one_stage_num" style="width:120px;" value="$htxm_v[one_stage_num]" /></td>
+		<td align="right">二阶段人日：</td>
+        <td><input name="two_stage_num" style="width:120px;" value="$htxm_v[two_stage_num]" /></td>
+	</tr>
+	<tr>
+		<td align="right">监一人日：</td>
+        <td><input name="one_jiandu_num" style="width:120px;" value="$htxm_v[one_jiandu_num]" /></td>
+		<td align="right">监二人日：</td>
+        <td><input name="two_jiandu_num" style="width:120px;" value="$htxm_v[two_jiandu_num]" /></td>
+	</tr>
+	<tr>
+		<td align="right">再认证人日：</td>
+		<td><input name="re_audit_num" style="width:60%;" value="$htxm_v[re_audit_num]" /></td>-->
+	<tr>
+		<td align="right">删减条款：</td>
+		<td><input name="shanjiangtiaokuan" style="width:60%;" value="$htxm_v[shanjiangtiaokuan]" /></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right"><div class="txcopy">审核代码：</div><input type="hidden" name="iso" class="iso" value="$htxm_v[iso]" /></td>
+		<td colspan="3"><input name="audit_code" class="zydm" type="text" value="$htxm_v[audit_code]" style="width:150px;" dataType="Require" msg="审核代码不能为空！" />
+		NQA审核代码：<input name="nqa_audit_code" class="nqa_zydm" type="text" value="$htxm_v[nqa_audit_code]" style="width:150px;" dataType="Require" msg="NQA审核代码不能为空！" />
+		<img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="daima_dlg('$htxm_v[iso]',this)" /> <font color="#FF0000">*</font></td></tr>
+
+	<tr>
+		<td align="right">审批范围：</td>
+		<td colspan="3"><textarea name="renzhengfanwei" class="zwfw" style="width:95%; height:80px" dataType="Require" msg="审批范围不能为空！">$htxm_v[renzhengfanwei]</textarea> <font color="#FF0000">*</font></td>
+	</tr>
+</table>
+<br/>
+
+<table width="$width"  class="e_table">
+      <tr>
+        <td colspan="4" align="center">
+			<input type="hidden" name="htxm_id" class="id" value="$htxm_id" />
+			<input type="hidden" name="ht_id" value="$ht_id" />
+			<input type="hidden" name="zuzhi_id" value="$zuzhi_id" />
+           <input type="button" value=" 保存 " name="button" $disabled />
+		</td>
+      </tr>
+</table>
+</form>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

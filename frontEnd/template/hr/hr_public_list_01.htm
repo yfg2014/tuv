@@ -1,0 +1,104 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript" src="frontEnd/js/jquery.modal.js"></script>
+<link href="frontEnd/css/jquery.autocomplete.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript">
+$(function(){
+
+	$('[name="s_ren_msg"]').click(function(){ $(this).autocomplete("index.php?m=hr&do=name_search&q="+this.value).result(function(event,data){ var s = (data+'').split(',');$(this).val(s[0]);$('#s_ren_code').val(s[1])});});
+	if(!$.browser.opera){
+		$("#tb1").offset({top:$("#tb1").offset().top,left:$("#chaxun").offset().left});
+	}else{
+		$("#tb1").offset({top:$("body").position().top,left:$("#chaxun").offset().left});
+	}
+	$('body').width($(window).width());
+});
+//对话框弹窗开始
+var width = 500;
+var height = 400;
+var option = {escClose:true,close:true,closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",containerCss:{width : width + "px",height : height + "px"},onClose: function (dialog){ $("#simplemodal-container,#simplemodal-overlay").hide();$.modal.close();},minHeight:width,minWidth:height};
+option.onShow = function(dialog){};
+//省级地址弹窗
+function area_dlg() {
+	$('<iframe src="dlg/in_area_list.php" frameborder="0" style="width:420px;height:390px;margin-bottom:5px;"></iframe>').load(function(){
+		$(this).contents().find('.edit').each(function(){
+			$(this).click(function(){
+				var code = $(this).parent().siblings('.code').text();
+				var dizhi = $(this).parent().siblings('.msg').text();
+				$('#areacode').val(code);
+				$('#area').val(dizhi);
+				$.modal.close();
+			});
+		});
+	}).modal(option);
+}
+</script>
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		<br><input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+
+<!--  -->
+
+<div class="blank"></div>
+<table width="$width" >
+    <tr>
+    <tr>
+    	<td>$result[pages]</td>
+    </tr>
+        <td>
+        	注册资格登记&gt;&gt;&nbsp;合计：$result[count]
+        </td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe">
+	<tr bgcolor="#F2F2F2">
+		<th align="center">编辑</th>
+		<th align="center">编号</th>
+		<th align="center">姓名</th>
+		<th align="center">性别</th>
+		<th align="center">联系手机</th>
+        <th align="center">人员来源</th>
+
+	</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+$v[worktype] = Cache::cache_zaizhi($v[worktype]);
+print <<<EOT
+
+-->
+        <tr class="row">
+
+          <td  align="center">
+          <a href="index.php?m=hr&do=hr_reg_qualification&hr_id={$v[id]}"><img src="frontEnd/images/button_edit.png" border="0" /></a>
+          </td>
+          <td align="center">$v[idcode]</td>
+          <td align="center">$v[username]</td>
+          <td align="center">$v[sex]</td>
+          <td align="center">$v[phone]</td>
+          <td align="center">$v[htfrom]</td>
+        </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

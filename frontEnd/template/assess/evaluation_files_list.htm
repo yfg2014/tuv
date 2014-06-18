@@ -1,0 +1,98 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="./index.php?m=assess&do=evaluation_files_list">
+    <tr>
+        <td align="right"><font color="#003399">组织名称：</font></td>
+        <td><input name="s_idname"  id="colors" style="width:110px;" /></td>
+        <td align="right"><font color="#003399">组织编号：</font></td>
+        <td><input name="s_idcode" id="code" type="text" style="width:110px;" /></td>
+        <td align="right"><font color="#003399">评定日期：</font></td>
+        <td><input name="s_date_s"  type="text" style="width:110px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+        <td align="right">至</td>
+        <td><input name="s_date_e"  type="text" style="width:110px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+    </tr>
+    <tr>
+        <td align="right"><font color="#003399">审核类型：</font></td>
+        <td>
+        	<select name="s_shenheleixing" style="width:90px;">
+        		<option value="">-请选择-</option>
+<!--
+EOT;
+foreach($cache_shenheleixing as $v)
+{
+echo <<<EOT
+-->
+	<option value="$v[msg]">$v[msg]</option>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+        	</select>
+        </td>
+        <td align="right"><font color="#003399">评定结论：</font></td>
+        <td colspan="5">
+			<select name="s_zs_if" style="width:90px;">
+			    <option value="">--请选择--</option>
+			    <option value="1">可接受归档</option>
+			    <option value="2">可接受需纠正</option>
+			    <option value="3">不可接受</option>
+			</select>
+        </td>
+    </tr>
+    <tr>
+  		<td colspan="8"><input type="submit" value="搜索" name="submit" /></td>
+   </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+   		<td><font color="#003399">案卷信息查询&gt;&gt;</font> 合计：$result[count]</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+  <tr bgcolor="#F2F2F2">
+    <th align="center"><font color="#003399">合同编号</font></th>
+    <th align="center"><font color="#003399">组织名称</font></th>
+    <th align="center"><font color="#003399">审核类型</font></th>
+	<th align="center"><font color="#003399">评定问题</font></th>
+	<th align="center"><font color="#003399">评定结果</font></th>
+	<th align="center"><font color="#003399">评定日期</font></th>
+	<th align="center"><font color="#003399">制单人</font></th>
+    <th align="center"><font color="#003399">制单日期</font></th>
+  </tr>
+<!--
+EOT;
+foreach($result[data] as  $v){
+echo <<<EOT
+-->
+  <tr bgcolor="#FFFFFF">
+    <td align="center">$v[htcode]</td>
+    <td width="220">&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+    <td align="center">$v[audit_type]</td>
+	<td width="50" align="center">$v[describes]</td>
+	<td align="center">$v[zs_if]</td>
+	<td align="center">$v[assessmentdate]</td>
+	<td align="center">$v[zd_ren]</td>
+	<td align="center">$v[zd_date]</td>
+  </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

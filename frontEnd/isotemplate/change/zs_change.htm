@@ -1,0 +1,391 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css">
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+//最后审核日期
+var zt_endtime = '$zt_endtime[finalItemDate]';
+$(function(){
+	$('.usual').idTabs({event:'mouseover'});
+})
+function ck_changeitem(k){
+	var x;
+	var cg_arr = new Array('03','04','05','0501','06','0602','0603');
+	for(x in cg_arr){
+		if(cg_arr[x] != k && $('#'+cg_arr[x]).attr('checked')){
+			alert('同时只能选择一种证书状态变更');
+			$('#'+k).attr('checked','');
+			return false;
+			break;
+		}
+	}
+
+	if($('#'+k).attr('checked')){
+		$('#table'+k).show();
+		$('#input'+k).attr({ dataType: "Require", msg: "变更内容不能为空" });
+		if(k == '03'){
+			$("#zs_change_date").val(zt_endtime);
+			$('#zs_zanting_edate').attr({dataType: "Require", msg: "暂停到期时间不能为空" });
+			$('#zt_changereason').attr({dataType: "Require", msg: "暂停原因不能为空" });
+		}
+		if(k == '05'){
+			$('#cx_changereason').attr({dataType: "Require", msg: "撤销原因不能为空" });
+			var ol = "$rows[zs_zanting_edate]";
+			$('#zs_change_date').val(ol);
+		}
+	}else{
+		$('#table'+k).hide();
+		$('#tablemsg'+k).attr({ dataType: "", msg: "" });
+		$("#zs_change_date").val("");
+		if(k == '03'){
+			$("#zs_change_date").val('');
+			$('#zs_zanting_edate').attr({dataType: "", msg: "" });
+			$('#zt_changereason').attr({dataType: "", msg: "" });
+		}
+		if(k == '05'){
+			$('#cx_changereason').attr({dataType: "", msg: "" });
+		}
+	}
+}
+
+function del(obj){
+	var del_url = $(obj).parents("a").attr("title");
+	if(confirm("你确定要删除吗？")){location.href = del_url;}
+}
+function get_zs_zanting_edate(){
+	var zs_change_date = $('#zs_change_date').val();
+	if(zs_change_date!=''){
+		$.post('./index.php?m=change&do=ajax',{kind:'zs_zanting_edate','zs_change_date': zs_change_date},function(r){
+			$('#zs_zanting_edate').val(r);
+		});
+	}
+}
+//]]>
+</script>
+<script type="text/javascript" src="frontEnd/js/jquery.modal.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+
+
+
+//对话框弹窗开始
+var width = 400
+var height = 400;
+var option = {escClose:true,close:true,closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",containerCss:{width : width + "px",height : height + "px"},onClose: function (dialog){ $("#simplemodal-container,#simplemodal-overlay").hide();$.modal.close();},minHeight:width,minWidth:height};
+option.onShow = function(dialog){};
+
+
+//邮编弹窗
+function postcode_dlg(num) {
+	$('<iframe src="dlg/in_postcode.php" frameborder="0" style="width:390px;height:390px;margin:5px;"></iframe>').load(function(){
+		$(this).contents().find('.edit').each(function(){
+			$(this).click(function(){
+				var code = $(this).parent().siblings('.code').text();
+				if(num == 1) {
+				$('#eiregpostalcode').val(code);
+				}
+				if(num == 2) {
+				$('#eiscpostalcode').val(code);
+				}
+				if(num == 3) {
+				$('#eipropostalcode').val(code);
+				}
+				$.modal.close();
+			});
+		});
+	}).modal(option);
+}
+
+//]]>
+</script>
+<div class="blank"></div>
+{$Information->info}
+<div class="blank"></div>
+<table class="c_table"  width="$width" style="display:none">
+	<tr >
+		<td height="25" align="center">变更ID</td>
+		<td align="center">组织名称</td>
+		<td align="center">产品名称</td>
+		<td align="center">变更内容</td>
+		<td  align="center">变更时间</td>
+		<td  align="center">操作人</td>
+		<td  align="center">删除</td>
+	</tr>
+<!--
+EOT;
+foreach($result[data] as $v) {
+print <<<EOT
+-->
+	<tr >
+		<td  align="center" height="25" width="40">$v[id]</td>
+		<td width="200">$v[eiregistername]</td>
+		<td width="100" align="center">$v[product]</td>
+		<td width="100" align="center">$v[changeitem]</td>
+		<td width="80" align="center">$v[zs_change_date]</td>
+		<td width="50" align="center">$v[zd_ren]</td>
+		<td width="50" align="center">
+		<a href="#" title="./index.php?m=change&do=zs_change_del&cgid=$v[id]&zsid=$zsid&ht_id=$ht_id&htxm_id=$htxm_id&zuzhi_id=$zuzhi_id">
+		<img src="./frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0" onclick="del(this);" />
+		</a>
+		</td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+<br />
+<table class="c_table" width="$width" border="0">
+	<tr >
+		<td width="90" height="38"><img src="frontEnd/images/printpage.gif" border="0" /> 打印：</td>
+		<td width="800">
+		   &nbsp;<a href="./index.php?m=doc&do=CMD-SHJL-29&ht_id=$ht_id&zuzhi_id=$zuzhi_id">[认证范围变更申请表]</a>
+		   &nbsp;<a href="./index.php?m=doc&do=CMD-SHJL-32&ht_id=$ht_id&zuzhi_id=$zuzhi_id">[证书变更登记批准表]</a>
+		   &nbsp;<a href="./index.php?m=doc&do=CMD-SHJL-55&ht_id=$ht_id&zuzhi_id=$zuzhi_id">[企业体系覆盖人数（现场审核）变更表]</a>
+		   &nbsp;<a href="./index.php?m=doc&do=CMD-SHJL-65&ht_id=$ht_id&zuzhi_id=$zuzhi_id">[关键件变更申请表]</a>
+		   &nbsp;<a href="./index.php?m=doc&do=CMD-SHJL-66&ht_id=$ht_id&zuzhi_id=$zuzhi_id">[文审扩大报告]</a>
+		</td>
+	</tr>
+</table>
+<div class="blank"></div>
+<form name="winputxm" method="post" action="./index.php?m=change&do=zs_change_save" onsubmit="return Validator.Validate(this,2);">
+<table class="c_table" width="$width">
+
+	<tr >
+		<td height="24" colspan="4">
+		<font color="#003399">证书编号：</font>
+<!--
+EOT;
+foreach($zs as $v){
+$ii++;
+if($ii == '5'){$ii='0';$br = '<br>';}else{$br='';}
+echo <<<EOT
+-->
+<input type="hidden" name="zsid[]" value="$v[id]" />$v[certNo] &nbsp;&nbsp;$br
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		</td>
+	</tr>
+	<tr >
+		<td height="24" colspan="4">
+		<font color="#003399">变更类别&gt;&gt;</font>
+		</td>
+	</tr>
+	<tr >
+		<td  height="25" colspan="4">
+<!--
+EOT;
+foreach ($setup_changeitem as $k=>$v){
+$i++;
+$i == '1' ? $form_rq = 'dataType="Group" msg="至少选择一个变更项"' : $form_rq = '';
+if ($v[online] == '1'){
+$i++;
+$i%3=='0' ? $br = '<div style="clear:left;"></div>' : $br = '';
+
+echo <<<EOT
+-->
+		<div style="float:left;width:180px;">
+		<input type="checkbox" id="$k" name="changeitem[]"  value="$k" onclick="ck_changeitem('$k');" $form_rq />{$v[code]}.{$v[msg]}
+		</div>
+		$br
+<!--
+EOT;
+}
+}
+echo <<<EOT
+-->
+
+		</td>
+	</tr>
+</table>
+
+<table class="c_table" width="$width" style="margin-top:10px;margin-bottom:10px;">
+	<tr>
+		<td height="24" align="left" width="100%">
+		&nbsp;&nbsp;
+		<font color="#003399">变更时间：</font><input id="zs_change_date" name="zs_change_date" style="width:80px;" value="$cg[zs_change_date]" onfocus="showCalendar(this, 'y-mm-dd');" title='日期格式  1977-01-01' dataType="Date" msg="请输入正确变更日期格式 如1977-01-01" />
+		<font color="#FF0000">*</font>
+		&nbsp;&nbsp;
+		<!--<font color="#003399">生成特殊检查项目</font><input type="checkbox" name="creatitem" value="1" />
+		&nbsp;&nbsp;
+		<font color="#003399">现场检查</font><input type="checkbox" name="ifaudit" value="1" >
+		&nbsp;&nbsp;
+		<font color="#003399">是否抽样</font><input type="checkbox" name="ifchouyan" value="1" >
+		&nbsp;&nbsp;
+		<font color="#003399">换证</font><input type="checkbox" name="ifchangecert" value="1" >
+		<br />
+		&nbsp;&nbsp;
+		<font color="#003399">上报时间：</font><input name="up_date" style="width:80px;" value="$cg[up_date]" onfocus="showCalendar(this, 'y-mm-dd');" title='日期格式  1977-01-01' dataType="Date" msg="请输入正确上报日期格式 如1977-01-01" /> <font color="#FF0000">*</font>       &nbsp;&nbsp;&nbsp;&nbsp;
+        -->
+		</td>
+	</tr>
+</table>
+
+<!-- 组织名称变更 01 -->
+<table class="c_table" width="$width" style="display:none;margin-top:10px;margin-bottom:10px;" id="table01">
+	<tr>
+		<td height="24" align="right" width="13%"><font color="#003399">新组织名称：</font></td>
+        <td width="87%"><input id="input01" name="eiregistername" style="width:80%;" value="$cg[eiregistername]"> <font color="#FF0000">*</font></td>
+	</tr>
+</table>
+
+<!-- 注册地址变更 0201 -->
+<table class="c_table" width="$width" style="display:none;margin-top:10px;margin-bottom:10px;" id="table0201">
+	<tr>
+		<td height="24" align="right" width="13%"><font color="#003399">新注册地址：</font></td>
+        <td width="87%"><input id="input0201" name="eireg_address" style="width:70%;" value="$cg[eireg_address]">&nbsp;&nbsp;<font color="#003399">邮编：</font><input type="text" name="eiregpostalcode" id="eiregpostalcode" value="$cg[eiregpostalcode]"  style="width:15%;"/> <img src="frontEnd/images/sousuo.gif" onClick="postcode_dlg(1);" style="cursor:pointer;"><font color="#FF0000">*</font></td>
+	</tr>
+</table>
+
+<!-- 通讯地址变更 0202 -->
+<table class="c_table" width="$width" style="display:none;margin-top:10px;margin-bottom:10px;" id="table0202">
+	<tr>
+		<td height="24" align="right" width="13%"><font color="#003399">新通讯地址：</font></td>
+        <td width="87%"><input id="input0202" name="eisc_address" style="width:70%;" value="$cg[eisc_address]">&nbsp;&nbsp;<font color="#003399">邮编：</font><input type="text" name="eiscpostalcode" id="eiscpostalcode" value="$cg[eiscpostalcode]"  style="width:15%;"/> <img src="frontEnd/images/sousuo.gif" onClick="postcode_dlg(2);" style="cursor:pointer;"><font color="#FF0000">*</font></td>
+	</tr>
+</table>
+
+<!-- 生产地址变更 0203 -->
+<table class="c_table" width="$width" style="display:none;margin-top:10px;margin-bottom:10px;" id="table0203">
+	<tr>
+		<td height="24" align="right" width="13%"><font color="#003399">新生产地址：</font></td>
+        <td width="87%"><input id="input0203" name="eipro_address" style="width:70%;" value="$cg[eipro_address]">&nbsp;&nbsp;<font color="#003399">邮编：</font><input type="text" name="eipropostalcode" id="eipropostalcode" value="$cg[eipropostalcode]"  style="width:15%;"/> <img src="frontEnd/images/sousuo.gif" onClick="postcode_dlg(3);" style="cursor:pointer;"><font color="#FF0000">*</font></td>
+	</tr>
+</table>
+
+<!-- 组织人数变更 0204 -->
+<table class="c_table" width="$width" style="display:none;margin-top:10px;margin-bottom:10px;" id="table0204">
+	<tr>
+		<td height="24" align="right" width="13%"><font color="#003399">新组织人数：</font></td>
+        <td width="87%"><input id="input0204" name="eiman_amount" style="width:20%;" value="$cg[eiman_amount]"> <font color="#FF0000">*</font></td>
+	</tr>
+</table>
+
+<!-- 体系人数变更 0205 -->
+<table class="c_table" width="$width" style="display:none;margin-top:10px;margin-bottom:10px;" id="table0205">
+	<tr>
+		<td height="24" align="right" width="13%"><font color="#003399">新体系人数：</font></td>
+        <td width="87%"><input id="input0205" name="iso_people_num" style="width:20%;" value="$cg[iso_people_num]"> <font color="#FF0000">*</font></td>
+	</tr>
+</table>
+
+<!-- 法人变更 0206 -->
+<table class="c_table" width="$width" style="display:none;margin-top:10px;margin-bottom:10px;" id="table0206">
+	<tr>
+		<td height="24" align="right" width="13%"><font color="#003399">新法人：</font></td>
+        <td width="87%"><input id="input0206" name="eifaren" style="width:20%;" value="$cg[eifaren]"> <font color="#FF0000">*</font></td>
+	</tr>
+</table>
+
+<!-- 组织性质变更 0207 -->
+<table class="c_table" width="$width" style="display:none;margin-top:10px;margin-bottom:10px;" id="table0207">
+	<tr>
+		<td height="24" align="right" width="13%"><font color="#003399">新组织性质：</font></td>
+        <td width="87%">
+		<select id="input0207" name="eikind" style="width:140px;">
+		<option value="">-请选择-</option>
+<!--
+EOT;
+$selected='';
+foreach($setup_organize_information as $v)
+{
+print <<<EOT
+-->
+<option value="{$v[code]}" >{$v[code]}-{$v[msg]}</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+        </select>
+		<font color="#FF0000">*</font></td>
+	</tr>
+</table>
+
+<!-- 证书暂停 03 -->
+<table class="c_table" width="$width" style="display:none;margin-top:10px;margin-bottom:10px;" id="table03">
+	<tr>
+		<td height="24" align="right" width="20%"><font color="#003399">暂停原因：</font></td>
+		<td width="30%" align="left">
+		<select id="zt_changereason" name="zt_changereason" style="width:140px;">
+		<option value="" ></option>
+<!--
+EOT;
+foreach($setup_zs_stop as $v)
+{
+echo <<<EOT
+-->
+		<option value="$v[code]" >$v[msg]</option>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		</select>
+		</td>
+		<td align="right" width="20%"><span style="cursor:pointer;color:red;" onclick="get_zs_zanting_edate();">(默认)</span><font color="#003399">暂停到期时间：</font></td>
+		<td align="left" width="30%"><input id="zs_zanting_edate" name="zs_zanting_edate" style="width:80%;" value="$cg[zs_change_date]" onfocus="showCalendar(this, 'y-mm-dd');">
+		<font color="#FF0000">*</font></td>
+	</tr>
+
+</table>
+
+
+<!-- 证书撤销 05 -->
+<table class="c_table" width="$width" style="display:none;margin-top:10px;margin-bottom:10px;" id="table05">
+	<tr>
+		<td height="24" align="right" width="20%"><font color="#003399">撤销原因：</font></td>
+		<td width="80%" align="left">
+		<select id="cx_changereason" name="cx_changereason" style="width:140px;">
+		<option value="" ></option>
+<!--
+EOT;
+foreach($setup_zs_revocation as $v)
+{
+echo <<<EOT
+-->
+		<option value="$v[code]" >$v[msg]</option>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		</select>
+		</td>
+
+	</tr>
+</table>
+
+
+<table class="c_table" width="$width">
+	<tr >
+		<td height="25" align="right"><font color="#003399">变更费用备注：</font></td>
+		<td colspan="3" >
+		<textarea name="cw_other" style="width:470px;height:50px;">$cw_other</textarea>
+		</td>
+	</tr>
+	<tr >
+		<td height="25" align="right"><font color="#003399">变更备注：</font></td>
+		<td colspan="3" >
+		<textarea name="other" style="width:470px;height:50px;">$other</textarea>
+		</td>
+	</tr>
+	<tr >
+		<td height="24" colspan="4" align="center">
+		<input type="submit" value=" 保 存 " name="submit" />
+		</td>
+	</tr>
+</table>
+</form>
+<!--
+EOT;
+?>
+echo <<<EOT
+-->

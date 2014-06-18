@@ -1,0 +1,71 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="./index.php?m=audit&do=auditor_train_list">
+    <tr bgcolor="#EAF4EA">
+        <td>
+            $SearchHtml
+		   <br><input type="submit" value="搜索" name="submit" />
+		   <!--[计划表]：<a href="./index.php?m=xls&do=pairenxinxi_post_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" /></a>-->
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width" class="c_table">
+    <tr bgcolor="#FFFFFF">
+		<td class="row_data" colspan="10">
+		审核员培训>> 合计：{$result['count']}
+		&nbsp;&nbsp;<a href="index.php?m=audit&do=auditor_train"><font color="blue">新增</font></a>
+		</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe">
+    <tr bgcolor="#F2F2F2">
+    	<th align="center">编辑</th>
+		<th align="center">姓名</th>
+		<th align="center">人员来源</th>
+		<th align="center">培训开始时间</th>
+        <th align="center">培训结束时间</th>
+		<th align="center">备注</th>
+		<th align="center">删除</th>
+    </tr>
+<!--
+EOT;
+foreach ($result[data] as $k=>$v) {
+if ($v[qj_other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+    	<td align="center">
+    		<a href="index.php?m=audit&do=auditor_train_edit&hr_id=$v[empId]&id=$v[id]"><img src="frontEnd/images/button_edit.png" width="12" height="13" border="0" /></a>
+		</td>
+		<td align="center">$v[empName]</td>
+		<td align="center">$v[htfrom]</td>
+        <td align="center">$v[auditorBeginDate] $v[auditorBeginHalfDate]</td>
+        <td align="center">$v[auditorEndDate] $v[auditorEndHalfDate]</td>
+		<td align="center"><div class="{$k} show_block">$v[qj_other]</div>$v[show]</td>
+		<td align="center">
+			<a href="index.php?m=audit&do=auditor_train_del&id={$v[id]}&empName={$v[empName]}&taskBeginDate={$v[taskBeginDate]}">
+			<img src="frontEnd/images/button_empty.png" alt="删除" border="0" style="cursor:pointer;" onclick="return confirm('你确定要删除吗？');" />
+			</a>
+		</td>
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

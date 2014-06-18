@@ -1,0 +1,41 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+<div style="margin:auot;">
+<div class="blank"></div>
+<table width="$width" class="e_table">
+<form method="post" name="winput" action="./index.php?m=report&do=ccaa">
+    <tr>
+        <td >
+
+            <font color="#003399">日期范围：</font>
+            <input name="s_date_s"  type="text" id="sel1" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');" value="$s_date_s" />
+            至
+            <input name="s_date_e"  type="text" id="sel2" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');" value="$s_date_e" />
+
+
+          &nbsp;&nbsp;<input type="submit" value="搜索" name="submit" />
+
+      </td>
+    </tr>
+	<tr >
+    	<td height="50px"><br>
+		<h3>上报CCAA报表(评定通过日期、证书注册日期) 总计： $rt[sum]
+		<a href="./index.php?m=xls&do=ccaa_xls$s_temp"><img src="./frontEnd/images/excel.gif" border="0" title="导出EXCEL上报CNAS数据文件" /></a></h3></td>
+    </tr>
+</form>
+</table>
+
+<div class="blank"></div>
+
+</div>
+<!--
+EOT;
+?>
+-->

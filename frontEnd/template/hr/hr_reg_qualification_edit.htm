@@ -1,0 +1,143 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('#s_date').focusout(function(){
+			var s_date = $('#s_date').val();
+			if(s_date!=''){
+				$.post('./index.php?m=hr&do=ajax',{'type':'e_date','s_date': s_date},function(r){
+						$('#e_date').val(r);
+				});
+			}
+	})
+})
+
+function save()
+{
+	//调用表单验证插件
+	if(!Validator.Validate(document.forms[0],2))return;
+	document.forms[0].submit();
+
+}
+//]]>
+</script>
+<div class="blank"></div>
+<table width="$width" align="center">
+  <tr>
+  	<th align="left">$p_url</th>
+  </tr>
+  <tr>
+    <th align="left">添加注册资格>> 姓名：{$result_ren[username]}&nbsp;员工编号：{$result_ren[idcode]}</th>
+  </tr>
+</table>
+<table class="e_table" width="$width">
+<form name="add_qualification" method="post" action="index.php?m=hr&do=hr_reg_qualification_save">
+<input type="hidden" name="hr_id" value="{$hr_id}" />
+<input type="hidden" name="id" value="{$id}" />
+<input type="hidden" name="htfrom" value="{$result_ren[htfrom]}" />
+
+<tr>
+  <td align="right">专业领域：</td>
+  <td>
+
+<select name="audit_ver" datatype="Require" style="width:205px" msg="标准版本不能为空！">
+<option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_audit_ver as $key => $value)
+{
+$sel = '';
+if($value[online]=='1'){
+if($value[code]==$result[audit_ver]){$sel = 'selected';}
+print <<<EOT
+-->
+	<option value="{$value[code]}" $sel>$value[code]：$value[msg]</option>
+<!--
+EOT;
+}
+}
+print <<<EOT
+-->
+</select>
+
+  </td>
+  </tr>
+<tr>
+  <td align="right">资格：</td>
+  <td>
+
+<select name="qualification" datatype="Require" style="width:205px" msg="资格不能为空！">
+<option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_hr_reg_qualification as $key => $value)
+{
+$sel = '';
+if($value[online]=='1'){
+if($value[code]==$result[qualification]){$sel = 'selected';}
+print <<<EOT
+-->
+	<option value="{$value[code]}" $sel>$value[msg]</option>
+<!--
+EOT;
+}
+}
+print <<<EOT
+-->
+</select>
+
+
+  </td>
+  </tr>
+<tr>
+  <td align="right">资格证号码：</td>
+  <td><input type="text" name="qualification_no" value="{$result[qualification_no]}" style="width:205px" /></td>
+  </tr>
+<tr>
+  <td align="right">开始时间：</td>
+  <td><input type="text" name="s_date" id="s_date" value="{$result[s_date]}" style="width:205px" onFocus="showCalendar(this, 'y-mm-dd');"/></td>
+  </tr>
+<tr>
+  <td align="right">结束时间：</td>
+  <td><input type="text" name="e_date" id="e_date" value="{$result[e_date]}" style="width:205px" onFocus="showCalendar(this, 'y-mm-dd');"/></td>
+  </tr>
+<tr>
+  <td align="right">状态：</td>
+  <td>
+
+            <input type="radio" name="online" value="1" $online_ck01/>有效
+            <input type="radio" name="online" value="0" $online_ck02/>失效
+
+  </td>
+  </tr>
+<tr>
+  <td align="right">第一次年度确认时间：</td>
+  <td><input type="text" name="yeardate1" value="{$result[yeardate1]}" style="width:205px" /></td>
+  </tr>
+
+  <tr>
+<td width="196" align="right">第二次年度确认时间：</td>
+<td width="401">
+<input type="text" name="yeardate2" value="{$result[yeardate2]}" style="width:205px" />
+</td>
+</tr>
+<tr>
+  <td align="right">备注：</td>
+  <td><textarea name="other" style="width:300px;height:80px;">$result[other]</textarea></td>
+  </tr>
+<tr>
+  <td colspan="2" align="center">
+
+<input type="button" name="submit1" id="submit1" value=" 保 存 " onclick="javascript:save();" style="background:#FFFFFF;" />
+<input type="button" name="back" value=" 返 回 " onclick="javascript:history.go(-1);" style="background:#FFFFFF;" />
+</td>
+  </tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,159 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>系统右侧</title>
+<link rel="stylesheet" href="frontEnd/css/scss.css" />
+<script type="text/javascript" src="frontEnd/js/jquery-1.4.2.min.js" ></script>
+<script type="text/javascript" src="frontEnd/js/jquery.modal.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+//对话框弹窗开始
+var width = 500;
+var height = 500;
+var option = {escClose:true,close:true,closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a><br/>",containerCss:{width : width + "px",height : height + "px"},onClose: function (dialog){ $("#simplemodal-container,#simplemodal-overlay").hide();$.modal.close();},minHeight:width,minWidth:height};
+option.onShow = function(dialog){};
+
+//邮件发送弹窗
+function email_dlg() {
+	$('<iframe src="dlg/in_mail.php?id=$_SESSION[userid]" frameborder="0" style="width:480px;height:450px;margin:5px;"></iframe>').load(function(){
+
+	}).modal(option);
+}
+
+//短信发送弹窗
+function mob_dlg() {
+	$('<iframe src="dlg/in_mob.php" frameborder="0" style="width:480px;height:400px;margin:5px;"></iframe>').load(function(){
+
+	}).modal(option);
+}
+
+//]]>
+</script>
+</head>
+
+<body background="frontEnd/images/b.jpg" style="background-repeat:no-repeat">
+<br />
+<br />
+<br />
+<table width="80%" border="0" align="center">
+<tr>
+    <td height="5">&nbsp;</td>
+</tr>
+<tr>
+    <td valign="top">
+	<table width="95%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+        <tr bgcolor="#FFFFFF">
+          <td height="24" >&nbsp;<a href="./error_report.rar">[系统问题反馈单下载]</a>  &nbsp;
+		  &nbsp;<a href="./ngv_sys_atcivex.rar">[认证机构信息管理系统安全控件]</a>
+		   &nbsp;<a href="./install_flash_player_11_active_x_32bit(1).zip">[FLASH最新控件]</a></td>
+        </tr>
+	</table>
+	<br>
+
+	<table width="95%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+        <tr bgcolor="#FFFFFF">
+          <td height="24" colspan="3"><font color="#003399">公司公告&gt;&gt;</font></td>
+        </tr>
+        <tr bgcolor="#F2F2F2">
+          <td width="70%" height="22" align="center"><font color="#003399">公告标题</font></td>
+          <td width="10%" align="center"><font color="#003399">阅读</font></td>
+          <td width="20%" align="center"><font color="#003399">公告时间</font></td>
+        </tr>
+<!--
+EOT;
+foreach ($arr as $v){
+echo <<<EOT
+-->
+        <tr bgcolor="#FFFFFF">
+          <td height="20">&nbsp;<a href="./index.php?m=hr&do=sys_notice_show&id=$v[id]">$v[title]</a></td>
+          <td align="center">$v[times]</td>
+          <td align="center">$v[zd_date]</td>
+        </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	</table>
+	</td>
+</tr>
+ <!--
+<tr>
+  <td height="21">&nbsp;</td>
+</tr>
+<tr>
+    <td valign="top" colspan="2">
+	  <table width="95%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+        <tr bgcolor="#FFFFFF">
+          <td height="24" colspan="4"><font color="#003399">我的消息&gt;&gt;</font></td>
+        </tr>
+        <tr bgcolor="#F2F2F2">
+          <td width="60%" height="22" align="center"><font color="#003399">消息标题</font></td>
+          <td width="10%" align="center"><font color="#003399">发送人</font></td>
+          <td width="10%" c><font color="#003399">阅读</font></td>
+          <td width="20%" align="center"><font color="#003399">发送时间</font></td>
+        </tr>
+
+EOT;
+foreach ($rows as $v){
+echo <<<EOT
+
+        <tr bgcolor="#FFFFFF">
+          <td height="20">&nbsp;<a href="./index.php?m=hr&do=sys_sms_show&id=$v[id]">$v[title]</a></td>
+          <td align="center">$v[zd_ren]</td>
+          <td align="center">$v[times]</td>
+          <td align="center">$v[zd_date]</td>
+        </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+
+      </table>
+    </td>
+</tr>
+-->
+<tr>
+	<td height="21">&nbsp;</td>
+</tr>
+<tr>
+	<td valign="top">
+		<table width="95%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+	        <tr bgcolor="#FFFFFF">
+	          <td height="24" colspan="2"><font color="#003399">最新通知&gt;&gt;&nbsp;</font></td>
+	        </tr>
+	        <tr bgcolor="#F2F2F2">
+	          <td height="24" width="50%" align="center"><a href="./index.php?m=setup&do=setup_news_one">中国认证认可协会</a></td>
+	          <td height="24" width="50%" align="center"><a href="./index.php?m=setup&do=setup_news_two">中国国家认证认可监督管理委员会</a></td>
+	        </tr>
+        </table>
+	</td>
+</tr>
+<tr>
+	<td height="21">&nbsp;</td>
+</tr>
+<!--<tr>
+	<td valign="top">
+		<table width="95%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+	        <tr bgcolor="#FFFFFF">
+	          <td height="24" colspan="2"><font color="#003399">邮件和短信&gt;&gt;&nbsp;发送</font></td>
+	        </tr>
+	        <tr bgcolor="#F2F2F2">
+	          <td height="24" width="50%" align="center"><a href="#" onClick="email_dlg();">发送邮箱</a></td>
+	          <td height="24" width="50%" align="center"><a href="#" onClick="mob_dlg();">发送短信</a></td>
+	        </tr>
+        </table>
+	</td>
+</tr>-->
+</table>
+</body>
+</html>
+<!--
+EOT;
+?>
+-->

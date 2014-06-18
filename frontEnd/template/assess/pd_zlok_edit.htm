@@ -1,0 +1,346 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css">
+<script type="text/javascript" src="frontEnd/js/jquery.idTabs.min.js"></script>
+<script type="text/javascript" src="frontEnd/js/jquery.modal.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+function checkname(str) {
+	if(str != '') {
+		var daima = '$daima';
+		$.post('./edit/checkname_ajax.php',
+			{'name':str,'daima':daima},
+			function(result){
+				if(result !='ok') {
+					alert(result);
+				}
+			}
+		);
+	}
+}
+//]]>
+</script>
+<div class="toptitle">认证评定编辑</div>
+$bar
+<br>
+
+<!--top 信息-->
+<div style="text-align:center;">
+<div class="usual" style="width:700px;">
+	<ul class="idTabs">
+	<li><a href="#tag1" >企业基本信息</a><li>
+	<li><a href="#tag2" >申请认证体系</a><li>
+	<li><a href="#tag3" >咨询和认证情况</a><li>
+	<li><a href="#tag5" >合同信息</a><li>
+	<li><a href="#tag7" >多现场信息</a><li>
+	<li><a href="#tag8" >变更信息</a><li>
+	</ul>
+
+	<div id="tag1">
+	<table>
+	<tr >
+	<td align="right" width="100" height="25">企业编号：</td><td colspan="3">$companymsg[eientercode]</td>
+	</tr>
+	<tr >
+	<td align="right" width="100" height="25">组织名称：</td><td colspan="3">$companymsg[eiregistername]</td>
+	</tr>
+	<tr >
+	<td align="right" width="100" height="25">组织曾用名：</td><td colspan="3">$companymsg[eiregistername_y]</td>
+	</tr>
+	<tr>
+	<td align="right" width="100" height="25">组织性质：</td><td width="200">$companymsg[eikind] 外资企业</td>
+	<td align="right" width="100">注册资本：</td><td>$companymsg[eizhuceziben]</td>
+	</tr>
+	<tr >
+	<td align="right" width="100" height="25">注册地址：</td><td>$companymsg[eireg_address]</td>
+	<td align="right" width="100">邮编：</td><td>$companymsg[eiregpostalcode]</td>
+	</tr>
+	<tr >
+	<td align="right" width="100" height="25">通讯地址：</td><td >$companymsg[eisc_address]</td>
+	<td align="right" width="100">邮编：</td><td>$companymsg[eiscpostalcode]</td>
+	</tr>
+	<tr>
+	<td align="right" width="100" height="25">联 系 人：</td><td >$companymsg[eilinkman]</td>
+	<td align="right" width="100">联系人职务：</td><td>$companymsg[eilinkman_zw]</td>
+	</tr>
+	<tr>
+	<td align="right" width="100" height="25">电 &nbsp;&nbsp; 话：</td><td>$companymsg[eilinkman_tel]</td>
+	<td align="right" width="100">手 &nbsp;&nbsp; 机：</td><td>$companymsg[eilinkman_mob]</td>
+	</tr>
+	<tr>
+	<td align="right" width="100" height="25">邮 &nbsp;&nbsp; 箱：</td><td  >$companymsg[eilinkman_email]</td>
+	<td align="right" width="100">&nbsp; </td><td>&nbsp; </td>
+	</tr>
+	<tr><td align="right" width="100" height="25"><a href="../market/qiyedengji_edit.php?Edit_Id=$qiye_id&sqs_id=$sqs_id&kelong=1" style="text-decoration:underline;color:blue;">添加分场所</a></td></tr>
+	</table>
+	</div>
+
+	<div id="tag2">
+	<table align="left" width="630"  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="">
+	<tr bgcolor="#FFFFFF" >
+	<td height="24" align="left">体系</td>
+	<td align="left">版本</td>
+	<td align="left">认可机构</td>
+	<td align="left">认证/再认证</td>
+	<td align="left">原证书号</td>
+	<td align="left">申请范围</td>
+	</tr>
+<!--
+EOT;
+foreach($rzmsg as $k=>$v)
+{
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+	<td width="40" height="24" align="left">$v[iso]</td>
+	<td width="55" align="left">$v[audit_ver]</td>
+	<td width="75" align="left">$v[mark]</td>
+	<td width="80" align="left">$v[audit_type]</td>
+	<td width="70" align="left">$v[zjg_no]</td>
+	<td  align="left">$v[renzhengfanwei]</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+	</table>
+	</div>
+
+	<div id="tag3">
+	<table align="left" width="560">
+
+<!--
+EOT;
+foreach($zsspmsg as $k=>$v)
+{
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF" >
+	<td height="24" align="left">曾通过本机构认证：</td>
+	<td align="left">体系：$v[old_renzheng]$v[old_renzheng_ot_ot] 证书号：$v[oldzsno] 证书有效期：$v[oldzsdate] 最后监督日期：$v[old_jiandu_date]</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+	</table>
+	</div>
+
+
+
+	<div id="tag5">
+	<p><span style="margin-right:10px;width:150px;">合同时间：$htmsg[htdate] </span><span style="margin-right:10px;width:150px;">$htmsg[free_money]</span></p>
+	<p><span style="margin-right:10px;width:150px;">认证费：$htmsg[renzhengmoney] </span><span style="margin-right:10px;width:150px;">监督费：$htmsg[jiandumoney]</span></p>
+	</div>
+
+
+	<div id="tag7">
+	<table  width="620" border="0" align="left" cellpadding="0" cellspacing="0" bgcolor="#0066FF">
+	<tr bgcolor="#FFFFFF">
+	<td   height="24" align="left">
+	<font color="blue">多个生产/经营/活动地址的企业(具有固定多场所)：</font>
+	</td>
+	</tr>
+<!--
+EOT;
+foreach($dxcmsg as $k=>$v)
+{
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+	<td   height="24" align="left">
+	<FONT color="#003399">名称：</font>$v[dxc_name] &nbsp; <FONT color="#003399">地址：</font>$v[dxc_address]
+	</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+	<td   height="24" align="left">
+	<font color="blue">房地产企业/建筑企业/勘探企业/监理企业等企业(具有临时多场所)：</font>
+	</td>
+	</tr>
+<!--
+EOT;
+foreach($dxmmsg as $k=>$v)
+{
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+	<td   height="24" align="left">
+	<FONT color="#003399">名称：</font>$v[xm_item] &nbsp; <FONT color="#003399">内容：</font>$v[xm_content]
+	</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+	</table>
+	</div>
+<div id="tag8">
+	<table align="left" width="400"  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="">
+	<tr bgcolor="#FFFFFF" >
+	<td height="24" align="left">证书编号</td>
+	<td align="left">变更类别</td>
+	<td align="left">变更时间</td>
+	</tr>
+<!--
+EOT;
+foreach($cg as $k=>$v)
+{
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+	<td width="120" height="24" align="left">$v[zs_no]</td>
+	<td width="200" align="left">$v[changeitem]</td>
+	<td width="80" align="left">$v[zs_change_date]</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+	</table>
+	</div>
+</div>
+</div>
+<!--top 信息 end -->
+
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+  <tr bgcolor="#F2F2F2">
+  	<td  align="center"><font color="#003399">体系</font></td>
+	<td  align="center"><font color="#003399">标准</font></td>
+	<td  align="center"><font color="#003399">证书号</font></td>
+    <td  align="center" height="24"><font color="#003399">专业代码</font></td>
+    <td  align="center" height="24"><font color="#003399">审核组成员</font></td>
+  </tr>
+<!--
+EOT;
+foreach ($iso as $k => $v) {
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+	  	<td  align="center">$v</td>
+		<td  align="center">$audit_ver[$k]</td>
+		<td  align="center">$zs_no[$k]</td>
+	    <td  align="center" height="24">$audit_code[$k]</td>
+	    <td  align="center" height="24">$shenheren[$k]</td>
+ 	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+
+<br>
+
+
+ <!-- 案卷评定部分 -->
+
+ <table width="700" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+  <tr bgcolor="#F2F2F2">
+  	<td  align="center"><font color="#003399">操作</font></td>
+    <td  align="center" height="24"><font color="#003399">资料收回时间</font></td>
+    <td  align="center"><font color="#003399">实际开始时间</font></td>
+    <td  align="center"><font color="#003399">实际结束时间</font></td>
+  </tr>
+<!--
+EOT;
+foreach($read as $k=>$v)
+{
+echo <<<EOT
+-->
+
+<tr bgcolor="#FFFFFF">
+<td width="240" height="25"  style="padding:5px;vertical-align : middle;">
+<img  src="../images/jiantou.gif" >
+<span onclick="getop1($k);" style="cursor:pointer;">编辑</span>
+<font color=blue><b>$v[iso]</b></font> ($v[xmcode])
+</td>
+<td width="200" align="center"> $v[zl_okdate]</td>
+<td width="200"  align="center"> $v[sj_shenhedate_s] $v[sj_shenhedate_sm]</td>
+<td width="200"  align="center"> $v[sj_shenhedate_e] $v[sj_shenhedate_em]</td>
+</tr>
+
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+<br><br>
+<form action="./edit/co_xm_pinding_save.php" method="post" name="ajpd" id="ajpd"  onsubmit="return submitcheck1();">
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+    <tr bgcolor="#FFFFFF">
+      <td height="25" colspan="3">
+<!--
+EOT;
+foreach($read as $k=>$v)
+{
+echo <<<EOT
+-->
+	<INPUT TYPE="checkbox" NAME="xmid[]" value="$v[id]" id="zlsh$k" checked><font color=blue><b>$v[iso]</b></font>&nbsp;&nbsp;
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	  </td>
+    </tr>
+
+
+
+<tr bgcolor="#F2F2F2">
+	<td  align="center" height="24"><font color="#003399">资料收回时间</font></td>
+	<td  align="center"><font color="#003399">实际开始时间</font></td>
+	<td  align="center" ><font color="#003399">实际结束时间</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+	<td width="150" align="center" >
+		<input name="zlok_date" value="$today" type="text" style="width: 70px; height: 18" onfocus="return showCalendar(this, 'y-mm-dd');"/>
+	</td>
+	<td width="150" align="center">
+		<input name="sj_shenhedate_s" value="$def_auditplandate" type="text" id="sj_shenhedate_s" style="width: 70px; height: 18" onfocus="return showCalendar('sj_shenhedate_s', 'y-mm-dd');"/>
+		<select name="sj_shenhedate_sm" style="width: 50px; height: 18">
+			<option value="上午" >上午</option>
+			<option value="下午" >下午</option>
+		</select>
+	</td>
+	
+	<td width="150" align="center" >
+		<input name="sj_shenhedate_e" value="$def_auditenddate" type="text" id="sj_shenhedate_e" style="width: 70px; height: 18" onfocus="return showCalendar('sj_shenhedate_e', 'y-mm-dd');" />
+		<select name="sj_shenhedate_em" style="width: 50px; height: 18">
+			<option value="上午" >上午</option>
+			<option value="下午" >下午</option>
+		</select>
+	</td>
+
+</tr>
+
+<tr bgcolor="#FFFFFF">
+<td height="29" colspan="4" align="center">
+
+<input type="submit" value=" 保存 " />
+
+<input type="hidden" name="op" value="1">
+<input type="hidden" name="renwucode" value="$renwucode" />
+<input type="hidden" name="eientercode" value="$eientercode" />
+<input type="hidden" name="qiye_id" value="$qiye_id" />
+</td>
+</tr>
+</table>
+</form>
+
+<br><br><br><br>
+<!--
+EOT;
+?>
+-->

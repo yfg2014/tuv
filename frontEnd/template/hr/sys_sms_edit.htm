@@ -1,0 +1,55 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<table width="$width" class="c_table">
+<form method="post" name="input" action="./index.php?m=hr&do=sys_sms_save" OnSubmit="return sValidator.Validate(this,2);">
+    <tr bgcolor="#F2F2F2">
+        <td height="25" width="20%" align="right"><span><font color="#0000FF">发送短信工作人员：</font></span></td>
+        <td>
+        	<table width="90%" border="0">
+				<tr>
+<!--
+EOT;
+$i = 0;
+foreach ($arr as $v) {		
+	if ($i % 6==0 and $i != 0){$tr = "</tr><tr>";}else{$tr = '';}
+	if (strstr($result[touserid],$v[user])){$checked = 'checked';}else{$checked = '';}
+$i++;			
+print <<<EOT
+-->	
+				$tr										
+					<td>
+                        <input type="checkbox" name="user[]" value="$v[user]" $checked /> $v[username]
+                    </td>
+<!--
+EOT;
+}
+print <<<EOT
+-->	
+            	</tr>
+            </table>
+        </td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+    	<td width="20%" height="32" align="right"><font color="#0000FF">短信标题：</font></td>
+        <td><input name="title" type="text" value="$result[title]"  style="width:80%;" maxlength="50" dataType="Require" msg="短信标题  不能为空!" /></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td width="20%" align="right"><font color="#0000FF">短信内容：<br> </font></td>
+        <td><textarea name="content" style="width:80%;height:120px;" dataType="Require" msg="短信内容 不能为空！" >$result[content]</textarea></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="25" colspan="2" align="center">
+        <input type="hidden" name="id" value="$id" />
+        <input type="hidden" name="num" value="2" />
+        <input type="submit" name="submit" value="提交">  &nbsp;&nbsp;
+        <input type="reset" name="Submit3" value="重写"></td>
+    </tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

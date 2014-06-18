@@ -1,0 +1,99 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		<br>
+		<!--<a href="./index.php?m=xls&do=contractitem_list_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" /></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		-->
+		<input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+	<tr>
+		<td>合同项目查询>> 合计：$result[count]</td>
+	</tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+	<tr bgcolor="#F2F2F2">
+		<th height="24" align="center">详细</th>
+		<th align="center">抽样登记</th>
+		<th align="center">项目修改</th>
+		<th align="center">合同编号</th>
+		<th align="center">项目编号</th>
+		<th align="center">组织名称</th>
+		<th align="center">受理日期</th>
+		<th align="center">类型</th>
+		<th align="center">体系</th>
+		<th align="center">产品</th>
+		<th align="center">标准</th>
+		<th align="center">专业代码</th>
+		<th align="center">合同来源</th>
+		<th align="center">受理人</th>
+		<th align="center">合同备注</th>
+		<th align="center">评审备注</th>
+		<th align="center">状态</th>
+	</tr>
+<!--
+EOT;
+foreach($result[data] as $k => $v) {
+	$kw = '';
+
+	if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{ $v[show] = '';}
+	if ($v[ps_other] != ''){$kw=$k.'w';$ps_other = "<font onmouseover=\"show_block('$kw')\" onmouseout=\"hide_block('$kw')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$ps_other = '';}
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+		<td width="30" align="center"><a href="./index.php?m=audit&do=xm_show&ht_id=$v[ht_id]"><img src="frontEnd/images/select1.gif" width="12" height="13" border="0" /></a></td>
+		<td width="30" align="center">
+<!--
+EOT;
+if($v[kind] == '2'){
+print <<<EOT
+-->
+			<a href="index.php?m=contract&do=contract_sampling_edit&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]&htxm_id=$v[id]"><img $IfSampling src="frontEnd/images/button_edit.png" title="抽样登记" border="0" /></a>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+		</td>
+		<td width="30" align="center"><a href="index.php?m=contract&do=contractitem_edit&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]&htxm_id=$v[id]"><img src="frontEnd/images/button_edit.png" title="修改" border="0" /></a></td>
+		<td width="80" align="center">$v[htcode]</td>
+		<td width="90" align="center">$v[htxmcode]</td>
+		<td ><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		<td width="70" align="center">$v[htdate]</td>
+		<td width="40" align="center">$v[audit_type]</td>
+		<td width="40" align="center">$v[iso]</td>
+		<td width="100" align="center">$v[product]</td>
+		<td width="40" align="center">$v[audit_ver]</td>
+		<td width="60" align="center">$v[audit_code]</td>
+		<td width="70" align="center">$v[htfrom]</td>
+		<td width="60" align="center">$v[zd_ren]</td>
+		<td width="50" align="center" style="cursor:pointer"><div class="{$k} show_block">合同备注：{$v[other]}</div>$v[show]</td>
+		<td width="50" align="center" style="cursor:pointer"><div class="{$kw} show_block">评审备注：{$v[ps_other]}</div>$ps_other </td>
+		<td width="50" align="center">$v[htonline]</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+</div>
+<!--
+EOT;
+?>
+-->

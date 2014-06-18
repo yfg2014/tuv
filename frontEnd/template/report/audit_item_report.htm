@@ -1,0 +1,62 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+function item(){
+	if($(':radio:checked').size() == 0){
+		alert('请选择打印报表');
+		return;
+	}
+	window.location.href = $(':radio:checked').val();	
+}
+//]]>
+</script>
+<div style="height:120px;"></div>
+<table width="400px" class="e_table">
+	<tr>
+		<td> $main_title >></td>
+	</tr>
+	<tr>
+		<td>
+			<table width="100%" border="0">
+<!--
+EOT;
+foreach($array as $arr){
+echo <<<EOT
+-->
+				<tr>
+<!--
+EOT;
+foreach($arr as $vk){
+echo <<<EOT
+-->
+					<td width="10%" align="right" style="border:0px;"><input type="radio" name="url" value="$vk[url]"></td>
+					<td width="40%" style="border:0px;">$vk[msg]</td>
+<!--
+EOT;
+}
+	if(count($arr) == 1){
+echo <<<EOT
+-->
+					<td width="10%" align="right" style="border:0px;"></td>
+					<td width="40%" style="border:0px;"></td>
+				</tr>
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td align="center"><input type="button" name="btn" value="确定" onclick="return item();"></td>
+	</tr>
+</table>
+<!--
+EOT;
+?>
+-->

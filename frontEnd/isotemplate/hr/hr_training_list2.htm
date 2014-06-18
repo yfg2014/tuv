@@ -1,0 +1,61 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="./index.php?m=hr&do=hr_training_list2">
+    <tr bgcolor="#EAF4EA">
+        <td>
+            $SearchHtml
+            <br/><input type="submit" value="搜索" name="submit" />
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+        <td>
+            <font color="#003399">个人培训信息查询>></font>   合计：$result[count]
+        </td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe">
+        <tr bgcolor="#F2F2F2">
+          <th align="center"></th>
+		  <th align="center">培训人员</th>
+          <th align="center">培训标题</th>
+          <th align="center">培训老师</th>
+          <th align="center">培训时间</th>
+          <th align="center">培训内容</th>
+        </tr>
+<!--
+EOT;
+foreach ($result[data] as $k=>$v) {
+	if ($v[content] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}		
+print <<<EOT
+-->		
+        <tr bgcolor="#FFFFFF">
+          <td width="30" align="center"><a href="./index.php?m=hr&do=hr_training_show&id=$v[mix_id]">查看</a></td>
+		  <td align="center">$v[username]</td>
+          <td height="20">&nbsp;$v[title]</td>
+          <td align="center">$v[teachertraining]</td>
+          <td align="center">$v[trainingdate]</td>
+          <td align="center"><div class="{$k} show_block">$v[content]</div>$v[show]</td>
+        </tr>
+<!--
+EOT;
+}		
+print <<<EOT
+-->	
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

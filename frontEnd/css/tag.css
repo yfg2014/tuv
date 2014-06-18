@@ -1,0 +1,43 @@
+/* css for tabs */
+.usual {
+  color:#111;
+  padding:0px 0px 0px 0px;
+  width:100%;
+  border:1px solid #0066FF;
+  margin:8px auto;
+  text-align:left;
+}
+.usual ul {
+	margin:0px auto 0px 0px;
+	padding-left:0px;
+}
+.usual ul a {
+  display:block;
+  padding:6px 10px;
+  text-decoration:none!important;
+  margin:1px;
+  margin-left:0;
+  font:13px;
+  background:#CCCCFF;
+}
+.usual li { list-style:none; float:left; }
+.usual ul a:hover {
+  color:#000;
+  background:#CCDFFF;
+  }
+.usual ul a.selected {
+  margin-bottom:0;
+  color:blue;
+  background:snow;
+  border-bottom:1px solid snow;
+  cursor:default;
+  }
+.usual div {
+  padding:10px 10px 8px 10px;
+  *padding-top:3px;
+  margin:1px;
+  clear:left;
+  background:snow;
+
+}
+.usual div a { color:#000;}

@@ -1,0 +1,81 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br />
+		<input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width" class="c_table">
+<tr><td align="left">
+人员信息查询&gt;&gt;&nbsp;合计：$result[count]
+</td></tr>
+</table>
+
+<table width="$width" class="c_table stripe">
+	<tr>
+		<td align="center" height="22" width="25"><font color="#003399">选择</font></td>
+		<th align="center">编号</th>
+		<th align="center">姓名</th>
+		<th align="center">性别</th>
+		<th align="center">联系手机</th>
+		<th align="center">电子邮箱</th>
+		<th align="center">专兼职</th>
+		<th align="center">在聘情况</th>
+        <th align="center">人员来源</th>
+		<th align="center">地区</th>
+		<th align="center">备注</th>
+	</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+	$v[worktype] = Cache::cache_zaizhi($v[worktype]);
+	$v[working] = $v[working]== '1'?'在职':'离职';
+	if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+
+
+-->
+	<tr>
+		<td align="center">
+			<input src="../frontEnd/images/button_edit.gif" type="image" class="line" />
+			<input type="hidden" name="hr_id" class="hr_id" value="$v[id]" />
+			<input type="hidden" name="username" class="username" value="$v[username]" />
+		</td>
+		<td height="22" align="center">$v[idcode]</td>
+		<td align="center">$v[username]</td>
+		<td align="center">$v[sex]</td>
+		<td width="90" align="center">$v[phone]</td>
+		<td width="90" align="center">$v[email]</td>
+		<td align="center">$v[worktype]</td>
+		<td align="center">$v[working]</td>
+		<td align="center">$v[htfrom]</td>
+		<td  width="150" align="center">$v[city_msg]</td>
+		<td align="center"><div class="{$k} show_block">$v[other]</div>$v[show]</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+</div>
+<!--
+EOT;
+?>
+-->
+<div class="blank"></div>
+<div class="blank"></div>

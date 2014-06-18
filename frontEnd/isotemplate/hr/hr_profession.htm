@@ -1,0 +1,81 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+function rm(obj,id,hr_id)
+{
+	var del_node = $(obj).parents("tr");
+	if(confirm("此操作不可恢复，您确认要删除此记录吗？"))
+	{
+		$.post("index.php?m=hr&do=hr_profession_del&id="+id+"&hr_id="+hr_id,null,function(response){
+
+			del_node.remove();
+		});
+		return;
+	}
+}
+
+//]]>
+</script>
+
+
+<div style="width:$width;margin:auto;"> 
+<div class="blank"></div>
+<table width="$width">
+<tr>
+<td>人员职称>> 姓名：{$result_ren[username]}&nbsp;员工编号：{$result_ren[idcode]}</td>
+</tr>
+</table>
+
+<table width="$width"  class="c_table stripe">
+<tr>
+<th width="50" align="center">编辑</th>
+<th width="80" align="center">职称等级</th>
+<th width="80" align="center">职称名称</th>
+<th align="center">授予单位</th>
+<th width="96" align="center">取得职称时间</th>
+<th width="50" align="center">备注</th>
+<th width="50" align="center">删除</th>
+</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+$v[profession] = Cache::cache_hr_profession($v[profession]);
+print <<<EOT
+
+-->
+<tr>
+<td align="center">
+<a href="index.php?m=hr&do=hr_profession_edit&hr_id=$hr_id&id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+<td align="center">$v[profession]</td>
+<td align="center">$v[zc_msg]</td>
+<td>&nbsp;$v[danwei]</td>
+<td align="center">$v[zc_date]</td> 
+<td align="center"><div class="{$k} show_block">$v[other]</div>$v[show]</td>
+<td align="center">
+<input type="image" src="frontEnd/images/button_empty.png" alt="删除" style="cursor:pointer;" id="ry" name="remove" onclick="javascript:rm(this,$v[id],$v[hr_id]);" /></td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+
+<TR>
+<TD align="center">
+<a href="index.php?m=hr&do=hr_profession_edit&hr_id=$hr_id"><img src="frontEnd/images/button_insert.png" alt="添加" border="0" /></a></TD>
+	<TD colspan="6" align="center"><input type="button"  onclick="javascript: window.location.href='index.php?m=hr&do=hr_information_edit&id=$hr_id '"  name="submit2" value="返回"/></TD>
+</TR>
+</table>
+$result[pages]
+
+</div>
+</div>
+<!--
+EOT;
+?>
+-->

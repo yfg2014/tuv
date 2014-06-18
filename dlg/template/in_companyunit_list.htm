@@ -1,0 +1,36 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<table width="100%" class="c_table">
+<tr bgcolor="#F2F2F2">
+<td align="center" height="22" width="25"><font color="#003399">选择</font></td>
+<td align="center"><font color=#003399>组织编号</font></td>
+<td align="center"><font color=#003399>组织名称</font></td>
+</tr>
+<!--
+EOT;
+foreach($arr as $v){
+echo <<<EOT
+-->
+
+<tr bgcolor="#FFFFFF">
+<td align="center">
+	<input src="../frontEnd/images/button_edit.gif" type="image" class="line" />
+	<input type="hidden" name="id" class="eid" value="$v[id]" />
+	<input type="hidden" name="eipro_address" class="address" value="$v[eipro_address]" />
+</td>
+<td align="center">$v[eientercode]</td>
+<td>$v[eiregistername]</td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+
+</table>
+<!--
+EOT;
+?>
+ -->

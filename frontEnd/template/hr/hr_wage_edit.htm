@@ -1,0 +1,46 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div class="blank"></div>
+<div class="blank"></div>
+<table width="$width" class="e_table">
+<form name="ninput" method="post" action="./index.php?m=hr&do=hr_wage_save" onsubmit="return Validator.Validate(this,2);">
+    <tr bgcolor="#FFFFFF">
+    	<td height="22" colspan="4">&nbsp;<font color="#003399">人员工资登记&gt;&gt;</font></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td align="right" height="22" width="120"><font color="#003399">工资：</font></td>
+        <td><input type="text" name="wages" value="$result[wages]" style="width:120px;"></td>
+		<td align="right" width="120"><font color="#003399">审核补助时间：</font></td>
+        <td><input type="text" name="grant_time" value="$result[grant_time]" style="width:120px;" onFocus="showCalendar(this, 'y-mm-dd');" /></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td align="right" height="22" width="120"><font color="#003399">五险一金：</font></td>
+        <td><input type="text" name="five_insurance" value="$result[five_insurance]" style="width:120px;"></td>
+		<td align="right" width="120"><font color="#003399">个人所得税：</font></td>
+        <td><input type="text" name="tax" value="$result[tax]" style="width:120px;"></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+		<td align="right" width="120"><font color="#003399">实发金额：</font></td>
+        <td><input type="text" name="realhair" value="$result[realhair]" style="width:120px;"></td>
+		<td align="right" height="22" width="120"><font color="#003399">总额：</font></td>
+        <td><input type="text" name="total" value="$result[total]" style="width:120px;"></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td align="right"><font color="#003399">备注：</font></td>
+        <td colspan="3"><textarea name="remark" style="width:400px;height:80px;">$result[remark]</textarea></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" colspan="4" align="center">
+            <input type="hidden" name="eid" value="$eid" />
+			<input type="hidden" name="hr_id" value="$hr_id" />
+            <input type="submit" value=" 保存 " name="submit" />
+        </td>
+    </tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

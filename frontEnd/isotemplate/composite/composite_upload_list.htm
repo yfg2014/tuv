@@ -1,0 +1,64 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+<tr><td align="left">
+法律法规文档查询&gt;&gt;&nbsp;合计：$result[count]
+</td></tr>
+</table>
+
+<table width="$width"  class="c_table stripe">
+	<tr bgcolor="#F2F2F2">
+		<th align="center">下载</th>
+		<th align="center">文件名</th>
+		<th align="center">文件类型</th>
+		<th align="center">上传时间</th>
+		<th align="center">操作人员</th>
+		<th align="center">备注</th>
+		<th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach ($result['data'] as $k=>$v) {
+	if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+-->
+    <tr bgcolor=#FFFFFF>
+		<td align="center"><a href="index.php?m=composite&do=composite_upload_down&fid=$v[id]" ><img src="frontEnd/images/ico/png-0067.gif" width="17" height="17" title="下载" border="0" /></a></td>
+		<td width="120">$v[filename]</td>
+		<td align="center">$v[filekind]</td>
+		<td align="center">$v[uploadtime]</td>
+		<td align="center">$v[zd_ren]</td>
+		<td align="center"><div class="{$k} show_block">$v[other]</div>$v[show]</td>
+		<td align="center"><a href="index.php?m=composite&do=composite_upload_del&fid=$v[id]" onclick="return confirm('您确定要删除该文件吗')"><img src="frontEnd/images/button_empty.png" border="0" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+
+</div>
+
+<!--
+EOT;
+?>
+-->

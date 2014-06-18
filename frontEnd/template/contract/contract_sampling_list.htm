@@ -1,0 +1,93 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+var sampling_del = function(v,zuzhi_id){if(confirm("此操作将删除该抽样信息，您确认要删除这个抽样信息吗？")){
+	location.href="./index.php?m=contract&do=contract_sampling_del&id="+v+"&zuzhi_id="+zuzhi_id;
+}};
+//]]>
+</script>
+<div class="blank"></div>
+
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		检查机构:<input type="text" name="jc" value="" onclick="testcheck(this);" />
+		<input type="hidden" name="product_test" id="test" value="" />
+		<br>
+		<input type="submit" value="搜索" name="submit" />
+		<!--&nbsp;<a href="./index.php?m=xls&do=sampling_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" />[抽样检验确认表]</a>
+		&nbsp;<a href="./index.php?m=xls&do=sampling_lc_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" />[承检任务表]</a>
+		&nbsp;<a href="./index.php?m=xls&do=sampling_task_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" />[任务完成时间统计表]</a>
+		-->
+		</td>
+	</tr>
+</form>
+</table>
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+	<tr>
+		<td>
+			产品抽样查询>> 合计：$result[count]&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+	</tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+	<tr bgcolor="#F2F2F2">
+		<th align="center">编辑</th>
+		<th align="center">检验结果</th>
+		<th align="center">合同编号</th>
+		<th align="center">组织名称</th>
+		<th align="center">受理日期</th>
+		<th align="center">类型</th>
+		<th align="center">产品</th>
+		<th align="center">专业代码</th>
+		<th align="center">出厂批号</th>
+		<th align="center">抽样日期</th>
+		<th align="center">报告编号</th>
+		<th align="center">报告日期</th>
+		<th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach($result[data] as $k => $v) {
+	if($v[samplingtrue] == '1'){$v[samplingtrue] = '合格';}elseif($v[samplingtrue] == '0'){$v[samplingtrue] = '不合格';}
+	$kw = $kf = '';
+	if ($v[renzhengfanwei] != ''){$kf=$k.'f';$v[showf] = "<font onmouseover=\"show_block('$kf')\" onmouseout=\"hide_block('$kf')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[showf] = '';}
+	if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{ $v[show] = '';}
+	if ($v[ps_other] != ''){$kw=$k.'w';$ps_other = "<font onmouseover=\"show_block('$kw')\" onmouseout=\"hide_block('$kw')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$ps_other = '';}
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+		<td width="30" align="center"><a href="index.php?m=contract&do=contract_sampling_edit&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]&htxm_id=$v[id]&id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+		<td width="50" align="center">$v[samplingtrue]</td>
+		<td width="90" align="center">$v[htcode]</td>
+		<td width="180"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		<td width="70" align="center">$v[htdate]</td>
+		<td width="40" align="center">$v[audit_type]</td>
+		<td width="40" align="center"><div class="{$kf} show_block" style="text-align:left">{$v[renzhengfanwei]}</div>$v[showf]</td>
+		<td width="60" align="center">$v[audit_code]</td>
+		<td width="60" align="center">$v[samplingcode]</td>
+		<td width="60" align="center">$v[samplingdate]</td>
+		<td width="60" align="center">$v[testreportcode]</td>
+		<td width="60" align="center">$v[testreportdate]</td>
+		<td width="30" align="center"><img src="frontEnd/images/button_empty.png" title="删除" border="0" onclick="sampling_del($v[id],$v[zuzhi_id])" style="cursor:pointer;" /></td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+</div>
+<!--
+EOT;
+?>
+-->

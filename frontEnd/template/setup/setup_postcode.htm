@@ -1,0 +1,63 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div class="blank"></div>
+<table width="500" align="center" border="0" cellspacing="1" cellpadding="1" bgcolor="#226886" id="chaxun">
+<form method="post" name="winput" action="index.php?m=setup&do=setup_postcode">
+    <tr>
+        <td width="584"  height="30"  bgcolor="#EAF4EA">
+        	$SearchHtml
+            <input type="submit" value="搜索" name="submit">
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+<table width="500" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+    <tr bgcolor="#FFFFFF">
+    	<td height="24" colspan="6"><font color="#003399">信息设置 -&gt; 邮政编码</font> 合计：$result[count]</td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td width="83" height="22" align="center"><font color="#003399">邮编</font></td>
+        <td width="89" align="center"><font color="#003399">省</font></td>
+        <td width="131"  align="center"><font color="#003399">市</font></td>
+        <td width="53" align="center"><font color="#003399">区</font></td>
+        <td width="53" align="center"><font color="#003399">状态</font></td>
+        <td width="53" align="center"><font color="#003399">操作</font></td>
+    </tr>
+<!--
+EOT;
+foreach($result['data'] as $key => $value)
+{
+$value[online] = $s->showonline($value[online]);
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+        <td align="center">$value[postcode]</td>
+        <td align="center">$value[province]</td>
+        <td height="20" align="center">$value[city]</td>
+        <td height="20" align="center">$value[area]</td>
+        <td align="center">$value[online]</td>
+        <td width="53" align="center"><a href="index.php?m=setup&do=setup_postcode_edit&id=$value[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" width="12" height="13" border="0" /></a>&nbsp;&nbsp;<a href="index.php?m=setup&do=setup_postcode_del&id=$value[id]"><img src="frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0" /></a></td>
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+    <tr bgcolor="#F2F2F2">
+        <td align="center"><a href="index.php?m=setup&do=setup_postcode_edit"><img src="frontEnd/images/button_insert.png" alt="添加" width="13" height="12" border="0" /></a></td>
+        <td height="20" colspan="5" align="center"></td>
+    </tr>
+</table>
+<table  width="500" border="0" align="center" cellpadding="0" cellspacing="1">
+    <tr>
+    	<td>$result[pages]</td>
+    </tr>
+</table>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

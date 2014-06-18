@@ -1,0 +1,233 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<input type="hidden" name="id" value="{$value[id]}" />
+<table width="$width" class="e_table">
+  <th  colspan="4" align="left">人员基本信息&gt;&gt;</th>
+  <tr>
+    <td  align="right" width="110">人员编号：</td>
+    <td width="220">{$value[idcode]} </td>
+    <td align="right"  rowspan="8">照片：</td>
+    <td  rowspan="8" align="center"><div> <img src="{$value[photo]}" id="srcimg" width="95" height="128" onerror="this.src='frontEnd/images/nophoto.gif'" /> </div></td>
+  </tr>
+  <tr>
+    <td  align="right" width="110">姓&nbsp;&nbsp;&nbsp;&nbsp;名：</td>
+    <td width="220">{$value[username]} </td>
+  </tr>
+  <tr>
+    <td  align="right">性&nbsp;&nbsp;&nbsp;&nbsp;别：</td>
+    <td> {$value[sex]}</td>
+  </tr>
+  <tr>
+    <td  align="right">出生日期：</td>
+    <td> {$value[birthday]} </td>
+  </tr>
+  <tr>
+    <td  align="right">民 &nbsp;&nbsp; 族：</td>
+    <td>{$value[national]} </td>
+  </tr>
+  <tr>
+    <td   align="right">政治面貌：</td>
+    <td><!--
+EOT;
+foreach($setup_hr_politics as $key => $set)
+{
+$sel = '';
+if($value[politics]==$set[code])
+{
+print <<<EOT
+-->
+      $set[msg]
+      <!--
+EOT;
+}
+}
+print <<<EOT
+-->
+    </td>
+  </tr>
+  <tr>
+    <td  align="right">人员来源：</td>
+    <td><!--
+EOT;
+foreach($setup_htfrom as $key => $set)
+{
+$sel = '';
+if($value[htfrom]==$set[code]){
+print <<<EOT
+-->
+      $set[msg]
+      <!--
+EOT;
+}}
+print <<<EOT
+-->
+    </td>
+  </tr>
+  <tr>
+    <td  align="right">证件名称：</td>
+    <td><!--
+EOT;
+foreach($setup_hr_certificate as $key => $set)
+{
+$sel = '';
+if($value[shenfenkind]==$set[code]){
+print <<<EOT
+-->
+      $set[msg]
+      <!--
+EOT;
+}}
+print <<<EOT
+-->
+    </td>
+  </tr>
+  <tr>
+    <td align="right">证件号码：</td>
+    <td> {$value[cardid]} </td>
+    <td  align="right" >身份证地址：</td>
+    <td>{$value[cardaddress]}</td>
+  </tr>
+  <tr>
+    <td align="right"></td>
+    <td></td>
+    <td align="right">县级地址：</td>
+    <td>{$value[city_msg]} </td>
+  </tr>
+  <tr>
+    <td align="right"  width="110">联系手机：</td>
+    <td width="220">{$value[phone]}</td>
+    <td align="right" width="110">电子邮件：</td>
+    <td width="260">{$value[email]} </td>
+  </tr>
+  <tr>
+    <td  align="right">通讯电话：</td>
+    <td>{$value[tel]}</td>
+    <td align="right">通讯地址：</td>
+    <td>{$value[address]} </td>
+  </tr>
+  <tr>
+    <td  align="right">单位电话：</td>
+    <td>{$value[dwtel]}</td>
+    <td  align="right">单位地址：</td>
+    <td>{$value[dwdizhi]}</td>
+  <tr>
+    <td  align="right">联系传真：</td>
+    <td>{$value[fax]}</td>
+    <td  align="right">通讯邮编：</td>
+    <td>{$value[postcode]}</td>
+  </tr>
+  <tr>
+    <td  align="right">开户地址：</td>
+    <td>{$value[bankmsg]}</td>
+    <td align="right">银行卡号：</td>
+    <td>{$value[bankcode]}</td>
+  </tr>
+  <tr>
+    <td align="right">人员性质：</td>
+    <td  colspan="3" ><!--
+EOT;
+foreach($setup_hr_xingzhi as $key => $set)
+{
+$ck = '';
+
+if (in_array($set[code], $value['xingzhi'])){$ck='checked="checked"';}
+
+print <<<EOT
+-->
+      <input type="checkbox" name="xingzhi[]" value="{$set[code]}" $ck />
+      $set[msg]
+      <!--
+EOT;
+}
+print <<<EOT
+-->
+    </td>
+  </tr>
+  <tr>
+    <td align="right"  >专兼职：</td>
+    <td>{$value[worktype]} </td>
+    <td align="right">所在单位：</td>
+    <td>{$value[suozaidanwei]}</td>
+  </tr>
+  <tr>
+    <td  align="right">合同编号：</td>
+    <!--提交表单验证合同号不重复-->
+    <td>{$value[hetonghao]}</td>
+    <td align="right">入职时间：</td>
+    <td>{$value[ruzhidate]}</td>
+  </tr>
+  <tr>
+    <td align="right">在聘情况：</td>
+    <td>{$value[working]}</td>
+    <td  align="right">离职日期：</td>
+    <td>{$value[lizhidate]}</td>
+  </tr>
+  <tr>
+    <td  align="right">聘用开始日期：</td>
+    <td>{$value[pinyongdate]}</td>
+    <td align="right">聘用结束日期：</td>
+    <td>{$value[pinyongover]} </td>
+  </tr>
+  <tr>
+    <td  align="right">保密承诺：</td>
+    <td><input type="checkbox" name="baomi" value="1" $baomi_ck /></td>
+    <td  align="right">保密承诺日期：</td>
+    <td>{$value[baomidate]}</td>
+  </tr>
+  <tr>
+    <td width="110" align="right">易记码：</td>
+    <td width="260">{$value[yjm]}</td>
+    <td align="right">社保编号：</td>
+    <td>{$value[shebaohao]}</td>
+  </tr>
+  <tr>
+    <td  align="right">选用类型：</td>
+    <td><!--
+EOT;
+foreach($setup_hr_use_lev as $key => $set)
+{
+$sel = '';
+if($value[use_lev]==$set[code]){
+print <<<EOT
+-->
+      $set[msg]
+      <!--
+EOT;
+}}
+print <<<EOT
+--></td>
+    <td align="right">部门： </td>
+    <td><!--
+EOT;
+foreach($setup_hr_department as $key => $set)
+{
+$sel = '';
+if($value[bumen]==$set[code]){
+print <<<EOT
+-->
+      $set[msg]
+      <!--
+EOT;
+}}
+print <<<EOT
+-->
+    </td>
+  </tr>
+  <tr>
+    <td  align="right">备注信息：</td>
+    <td colspan="3">{$value[beizhu]}</td>
+  </tr>
+  <tr>
+    <td height="35" colspan="4" style="text-align:center;"></td>
+  </tr>
+</table>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

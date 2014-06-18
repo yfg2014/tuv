@@ -1,0 +1,87 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="frontEnd/js/jquery.modal.js"></script>
+<script type="text/javascript" src="./dlg/in_audit_ver.php?js=ok"></script>
+<script type="text/javascript" src="frontEnd/js/jquery.modal.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+var option = {
+		closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",
+		onClose:function(dialog){
+		$("#simplemodal-container,#simplemodal-overlay").hide();$(dialog.data).empty();$.modal.close();
+		}
+	};
+//认证产品
+function certpro(obj){
+	option.containerCss = {width:300,height:400};
+	$('<iframe src="dlg/in_products_list.php" frameborder="0" style="width:290px;height:290px;margin-bottom:5px;"></iframe>').load(function(){
+		$(this).contents().find('.line').click(function(){
+				var o = $(this).parent().next().next().text();
+				var v = $(this).parent().next().text();
+				$(obj).parent().find('#tpr').val(v);
+				$(obj).parent().find('#ducts').val(o);
+				$.modal.close();
+		});
+	}).modal(option);
+}
+//]]>
+</script>
+<div class="blank"></div>
+<table width="450" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+<form method="post" name="input" action="index.php?m=setup&do=setup_product_ver_save"  onsubmit="return Validator.Validate(this,2);">
+<!--
+EOT;
+$product1 = Cache::cache_product($rst['product']);
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+    	<td height="24" colspan="2"><font color="#003399">信息设置 -&gt; 产品标准 </font></td>
+    </tr>
+	<tr bgcolor="#F2F2F2">
+   		<td height="24" align="right"><font color="#003399">产品：</font></td>
+    	<td><input name="products[]" style="width:205px"  id="ducts"  readonly="readonly" value="$product1 " />&nbsp;&nbsp;
+	  	<img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="certpro(this);" />
+				<input type="hidden" name="product" id="tpr" value="{$rst[product]}" />
+		</td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+    	<td height="24" align="right"><font color="#003399">编码：</font></td>
+    	<td><input name="code" style="width:205px" value="{$rst[code]}" dataType="Require" msg="编码 不能为空！"></td>
+    </tr>
+	<tr bgcolor="#F2F2F2">
+    	<td height="24" align="right"><font color="#003399">标准：</font></td>
+    	<td><input name="ver" style="width:205px" value="{$rst[ver]}" dataType="Require" msg="标准 不能为空！"></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+    	<td width="29%" height="24" align="right"><font color="#003399"> 内容：</font></td>
+    	<td width="71%" >
+    		<textarea name="msg" style="width:205px;height:80px;" dataType="Require" msg="内容 不能为空！">$rst[msg]</textarea>
+		</td>
+    </tr>
+<!--
+EOT;
+$rst['online'] == '1' ? $ck1 = 'checked="checked"' : $ck2 = 'checked="checked"';
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+        <td height="24" align="right"><font color="#003399">状态：</font></td>
+        <td>
+            <input type="radio" name="online" value="1"  $ck1/>启用
+            <input type="radio" name="online" value="0"  $ck2/>关闭
+        </td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" colspan="2" align="center">
+           <input type="hidden" name="id" value="{$rst[id]}" />
+           <input type="submit" value=" 确 定 " name="submit" />
+        </td>
+    </tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

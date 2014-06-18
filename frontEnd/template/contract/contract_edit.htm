@@ -1,0 +1,735 @@
+<!--
+<?php
+print <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css" />
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="./dlg/in_audit_ver.php?js=ok"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	var cont = $('#tx_container'),prodCont = $('#prod_container');
+	$('[name="add_tx"]').click(function(){
+		$.post('./dlg/in_contractitem.php',{width : "$width",op : 1},function(r){
+			var o = $.parseJSON(r);
+			cont.append(o);
+		})
+	});
+
+	$('[name="add_prod"]').click(function(){
+		$.post('./dlg/in_contractitem.php',{width : "$width",op : 2},function(r){
+			var o = $.parseJSON(r);
+			prodCont.append(o);
+		})
+	});
+
+	$('.usual').idTabs({event:'mouseover'});
+
+	$('[name="button"]').click(function(){
+		if(!Validator.Validate(document.forms[0],2))return;
+		var f = false;
+		var eiman_amount = "$com[eiman_amount]";
+		$('.txrs').each(function(){
+			if (parseInt($(this).val()) > parseInt(eiman_amount)){
+				f = true;
+			}
+		});
+		if (f){
+			alert('体系人数大于组织人数');
+		}else{
+			document.forms[0].submit();
+		}
+	})
+});
+
+function cp(obj){
+	var o = $(obj).parents('.tx'),o1 = o.prev();
+	if(o1.length){
+		o.find('.txrs').val(o1.find('.txrs').val()).end().find('.sqfw').val(o1.find('.sqfw').val());
+	}
+}
+
+function ccp(obj){
+	var o = $(obj).parents('.prod'),o1 = o.prev('.prod');
+	if(o1.length){
+		o.find('.txrs').val(o1.find('.txrs').val()).end().find('.sqfw').val(o1.find('.sqfw').val());
+	}
+}
+
+function rm(obj,index){
+	if(index == 1){
+		var o = $(obj).parents('.tx');
+	}else{
+		var o = $(obj).parents('.prod');
+	}
+	if(o.find('.id').val() != '' && confirm('此操作将删除此体系项目对应的所有项目数据，您确认要删除吗？')){
+	$.post('./index.php?m=dlg&do=in_contractitem_del',{zuzhi_id : "$zuzhi_id",ht_id : "$ht_id",htxm_id : o.find('.id').val()},function(r){
+		if(r==true){
+		o.empty().remove();alert('此项目已经成功删除！');
+		if(cont.find('.tx').length == 0 && prodCont.find('.prod').length == 0)
+		{location.href='./index.php?m=contract&do=contract_list';}
+		}
+		else{alert('权限不足或合同项目已审批，请撤消审批，再进行此操作！');
+		}
+	})
+	}else if(o.find('.id').val() == ''){
+			o.empty().remove();
+	}
+}
+
+function zjg(obj){
+	var o = $(obj).parents('.tx').find('.zjg_content');
+	if($(obj).val() == 1){
+		o.show();
+	}else{
+		o.find('input').val('').end().hide();
+	}
+};
+
+function mark_ck(obj){
+	var mark='';
+	$(obj).parent().find('.mark_t').each(function(i){
+		if($(this).attr('checked')){
+			mark == '' ? mark = $(this).val() : mark = mark + ',' + $(this).val();
+		}
+	});
+	$(obj).siblings('.mark').val(mark);
+}
+
+//function check_htxmcode(obj,ht_id){
+//	var htxmcode = $(obj).val();
+//	$.post(
+//			'index.php?m=contract&do=ajax&type=htxmcode',
+//			{'htxmcode':htxmcode,'ht_id':ht_id},
+//			function(result) {
+//				if(result != '') {
+//					alert(result);
+//					$(obj).val('');
+//					return false;
+//				} else {
+//					return true;
+//				}
+//			}
+//		);
+//}
+
+var option = {
+		closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",
+		onClose:function(dialog){
+		$("#simplemodal-container,#simplemodal-overlay").hide();$(dialog.data).empty();$.modal.close();
+		}
+	};
+//认证类别
+function certpro(obj){
+	option.containerCss = {width:400,height:500};
+	$('<iframe src="dlg/in_products_list.php" frameborder="0" style="width:390px;height:490px;margin-bottom:5px;"></iframe>').load(function(){
+		$(this).contents().find('.line').click(function(){
+				var o = $(this).parent().next().next().text();
+				var v = $(this).parent().next().text();
+				$(obj).parent().find('.tpr').val(o);
+				$(obj).parent().find('.ducts').val(v);
+				$(obj).parents('.prod').find('.zwfw').val($(this).siblings('.fw').val());
+				$.modal.close();
+		});
+	}).modal(option);
+}
+//产品指令
+function standards(obj){
+	var u = $(obj).parents('.prod').find('.ducts').val();
+//	if(u == ''){alert('请选择认证类别');return;}
+	option.containerCss = {width:450,height:380};
+	$('<iframe src="dlg/in_standards_list.php" frameborder="0" style="width:440px;height:370px;margin-bottom:5px;"></iframe>').load(function(){
+		$(this).contents().find('.line').each(function(){
+			$(this).click(function(){
+				var code = $(this).parents('tr').find('.code').text();
+				var ver = $(this).parents('tr').find('.ver').text();
+				var zydm = $(obj).parents('tr').find('.stand').val();
+				var dards = $(obj).parents('tr').find('.dards').val();
+				if(zydm == '') {
+					if(dards == '')
+					{
+						$(obj).parents('tr').find('.stand').val('');
+					}
+					$(obj).parents('tr').find('.stand').val(ver);
+					$(obj).parents('tr').find('.dards').val(code);
+				} else {
+					$(obj).parents('tr').find('.stand').val(zydm+'；'+ver);
+					$(obj).parents('tr').find('.dards').val(dards+'；'+code);
+				}
+				$.modal.close();
+			});
+		});
+	}).modal(option);
+}
+//产品关键件
+function keypieces(obj){
+	var u = $(obj).parents('.prod').find('.ducts').val();
+	if(u == ''){alert('请选择认证类别');return;}
+	option.containerCss = {width:250,height:280};
+	$('<iframe src="dlg/in_keypieces_list.php?product='+u+'" frameborder="0" style="width:240px;height:270px;margin-bottom:5px;"></iframe>').load(function(){
+		$(this).contents().find('#btn').click(function(){
+				var o = $(this).parents('.c_table'),f,k;
+				if(o.find('.line').is(':checked')){
+					o.find(':checked').each(function(i){
+						if(i == 0){
+							f = $(this).val();
+							k = $(this).parent().next().next().text();
+						}else{
+							f = f + ',' + $(this).val();
+							k = k + '；' + $(this).parent().next().next().text();
+						}
+					});
+					$(obj).parent().find('.pieces').val(f);
+					$(obj).parent().find('.keypie').val(k);
+					$.modal.close();
+				}else{
+					alert('请选择产品关键件');
+				}
+		});
+	}).modal(option);
+}
+
+//产品实施规则
+function audit_rule(obj){
+	option.containerCss = {width:400,height:500};
+	$('<iframe src="dlg/in_audit_rule_list.php" frameborder="0" style="width:390px;height:490px;margin-bottom:5px;"></iframe>').load(function(){
+		$(this).contents().find('.line').click(function(){
+				var o = $(this).parent().next().next().text();
+				var v = $(this).parent().next().text();
+				$(obj).parent().find('.audit_rule_msg').val(o);
+				$(obj).parent().find('.audit_rule').val(v);
+				$.modal.close();
+		});
+	}).modal(option);
+}
+
+function companyckeck(obj,index){
+	var zuzhi_id = $('[name="zuzhi_id"]').val();
+	option.containerCss = {width:350,height:250};
+	$('<iframe src="dlg/in_companyunit_list.php?zuzhi_id='+zuzhi_id+'" frameborder="0" style="width:340px;height:240px;margin-bottom:5px;"></iframe>').load(function(){
+		$(this).contents().find('.line').click(function(){
+				var o = $(this).parent().next().next().text();
+				var f = $(this).parents('tr').find('.address').val();
+				var k = $(this).parents('tr').find('.eid').val();
+				if(index == 1){
+					$(obj).parent().find('.manu').val(o);
+					$(obj).parents('.prod').find('.fact').val(f);
+					$(obj).parents('.prod').find('.maid').val(k);
+				}else{
+					$(obj).parent().find('.duction').val(o);
+					$(obj).parents('.prod').find('.tionadd').val(f);
+					$(obj).parents('.prod').find('.prid').val(k);
+				}
+				$.modal.close();
+		});
+	}).modal(option);
+}
+
+function removed(obj)
+{
+	$(obj).parents('tr').find('.stand').val('');
+	$(obj).parents('tr').find('.dards').val('');
+}
+//复评历次
+function ShowDlog_Contrant(obj)
+{
+        var zuzhi_id= '$zuzhi_id';
+		var audit_ver= $(obj).parent().parent().parent().find('.audit_ver').val();
+
+		if(IsBrowser()=='msie'){
+		result = window.showModelessDialog('index.php?m=contract&do=contract_history&zuzhi_id='+zuzhi_id+'&audit_ver='+ audit_ver,window,'help:no;status: no;dialogWidth=220px;dialogHeight=220px');
+		}else{
+		result = window.open('index.php?m=contract&do=contract_history&zuzhi_id='+zuzhi_id+'&audit_ver='+audit_ver,"contract_history","width=220px,height=220px,resizable=no,z-look=yes,alwaysRaised=yes,depended=yes,scrollbars=yes,left=" + (window.screen.width-840)/2 + ",top=" + (window.screen.height-500)/2);
+		}
+		return result;
+}
+
+
+//检测机构
+//function testcheck(obj){
+//	var u = $(obj).parents('.prod').find('.ducts').val();
+//	//if(u == ''){alert('请选择认证类别');return;}
+//	option.containerCss = {width:300,height:400};
+//	$('<iframe src="dlg/in_test_list.php?product='+u+'" frameborder="0" style="width:290px;height:390px;margin-bottom:5px;"></iframe>').load(function(){
+//		$(this).contents().find('.line').click(function(){
+//				var o = $(this).parent().next().next().text();
+//				var v = $(this).parent().next().text();
+//				$(obj).parent().find('.product_test').val(v);
+//				$(obj).parent().find('.product_test_msg').val(o);
+//				$.modal.close();
+//		});
+//	}).modal(option);
+//}
+//]]>
+</script>
+<div class="blank"></div>
+{$Information->info}
+<!--
+EOT;
+if($ht['first'] == '1'){$ck1 = 'checked="checked"';}else{$ck2 = 'checked="checked"';}
+if($ht['hurry'] == '1'){$ck3 = 'checked="checked"';}else{$ck4 = 'checked="checked"';}
+echo <<<EOT
+-->
+<form name="ht" action="index.php?m=contract&do=contract_save" method="post" onsubmit="return Validator.Validate(this,2);">
+  <table width="$width" class="e_table">
+    <tr bgcolor="#FFFFFF">
+      <td  colspan="4">认证申请&gt;&gt;</td>
+    </tr>
+<!--
+	<tr bgcolor="#F2F2F2">
+      <td height="25" align="right">合同编号：</td>
+      <td><input name="htcode" value="$ht[htcode]" type="text" id="htcode" style="width:120px;" datatype="Require" msg="合同编号不能为空！"><font color="#FF0000"> *</font></td>
+      <td align="right"></td>
+      <td></td>
+    </tr>
+-->
+    <tr bgcolor="#FFFFFF">
+      <td width="25%" height="25" align="right">是否初次：</td>
+      <td width="25%"><input type="radio" name="first" value="0" $ck2 />
+        否&nbsp;
+        <input type="radio" name="first" value="1" $ck1 />
+        是 </td>
+      <td width="25%" align="right">紧急情况：</td>
+      <td width="25%"><input type="radio" name="hurry" value="0" $ck4 />
+        <img src="frontEnd/images/j0.gif" alt="一般合同" width="13" height="13" />
+        <input type="radio" name="hurry" value="1" $ck3 />
+        <img src="frontEnd/images/j1.gif" alt="加急合同" width="13" height="13" /> <font color="#FF0000"> *</font></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+      <td height="25" align="right">受理日期：</td>
+      <td><input name="htdate" value="$ht[htdate]" type="text" id="htdate"  style="width:120px;"   title='日期格式  1980-03-04' dataType="Date" msg="请输入日期格式 如1980-03-04" onFocus="return showCalendar(this, 'y-mm-dd');" />
+        <font color="#FF0000">*</font></td>
+      <td align="right">审核预期：</td>
+      <td><input name="auditplandate" value="$ht[auditplandate]" type="text" style="width:120px;"   title='日期格式  1980-03-04' dataType="Date" msg="请输入日期格式 如1980-03-04" onFocus="return showCalendar(this, 'y-mm-dd');" />
+        <font color="#FF0000">*</font></td>
+    </tr>
+
+  </table>
+  <br>
+  <table width="$width" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+    <tr bgcolor="#FFFFFF">
+      <td height="30" colspan="3">&nbsp;
+        <input type="button" name="add_tx" value="增加体系项目" $disabled style="background-color:#FFFFFF;" />&nbsp;&nbsp;<!--<input type="button" name="add_prod" value="增加产品项目" style="background-color:#FFFFFF;" />-->
+      </td>
+    </tr>
+  </table>
+  <div id="tx_container">
+<!--
+EOT;
+if ($htxmtx != '') {
+foreach((array)$htxmtx as $htxm_v){
+$sel1 = $sel2 = '';
+$htxm_v[zjg] == '1' ? $sel2 = 'selected="selected"' : $sel1 = 'selected="selected"';
+$htxm_v[zjg] == '1' ? $none = '' : $none = 'none';
+if ($op == '1'){$htxm_v[id] = '';$htxm_v['audit_type'] = '1005';}
+$aduvername='aduver'.$htxm_v[id];
+$htxm = $db->get_one("SELECT id FROM {$dbtable[xm_item]} WHERE htxm_id='{$htxm_v[id]}'");
+echo <<<EOT
+-->
+    <table width="$width"  class="tx e_table" style="margin-bottom:10px;">
+      <input type="hidden" name="htxm_id[]" class="id" value="$htxm_v[id]" />
+	  <input type="hidden" name="kind[]" value="1"/>
+	  <input type="hidden" name="product[]" value=""/>
+  	  <input type="hidden" name="product_ver[]" value=""/>
+  	  <input type="hidden" name="product_ce[]" value=""/>
+      <input type="hidden" name="key_part[]" value=""/>
+      <input type="hidden" name="product_test[]" value=""/>
+      <input type="hidden" name="manuid[]" value=""/>
+      <input type="hidden" name="proid[]" value=""/>
+	  <input type="hidden" name="manu_address[]" value=""/>
+      <input type="hidden" name="pro_address[]" value=""/>
+<!--	  <input type="hidden" name="UnitNo[]" value=""/>-->
+<!--
+EOT;
+if ($htxm[id] != '') {
+echo <<<EOT
+-->
+	<tr>
+		<td colspan="4"><font color="red">项目已审批不能修改</font></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	<tr>
+      <tr>
+        <td align="right"><div class="txcopy" onclick="cp(this);">(<font style="color:red;cursor:pointer;">同上</font>)标准版本：</div></td>
+        <td><select name="audit_ver[]"  class="audit_ver" style="width:60%;" datatype="Require" msg="标准版本不能为空！" >
+            <option   value="">-请选择-</option>
+<!--
+EOT;
+foreach ($setup_audit_ver as $v) {
+	
+	if ($v[online] == '1'){
+		$v[code] == $htxm_v['audit_ver'] ? $selected = 'selected="selected"' : $selected = '';
+
+echo <<<EOT
+-->
+            <option value="$v[code]" $selected>$v[msg]</option>
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+          </select>
+          &nbsp;<font color="#FF0000">*</font> </td>
+        <td  align="right">审核类型：</td>
+        <td ><div style="float:left;">
+            <select name="audit_type[]" style="width:60%;" dataType="Require" msg="审核类型不能为空！">
+              <option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_audit_type as $v){
+	if ($v[code] == '1001' || $v[code] == '1002' || $v[code] == '1003' || $v[code] == '1005'){
+		$v[code] == $htxm_v['audit_type'] ? $selected = 'selected' : $selected = '';
+echo <<<EOT
+-->
+              <option value="$v[code]" $selected>$v[msg]</option>
+  <!--
+EOT;
+	}
+}
+if($op == '1')
+{
+   $htxm_v[htxmcode]='';
+}
+echo <<<EOT
+-->
+            </select>
+            &nbsp;<font color="#FF0000">*</font></div>
+          <div align="right"><img src="frontEnd/images/button_empty.png" border="0" title="删除" class="rm_tx" style="cursor:pointer;" onclick="rm(this,1);" /></div></td>
+      </tr>
+      <tr>
+        <td width="25%"  align="right">项目编号：</td>
+		<td>$htxm_v[htxmcode]</td>
+<!--    <td><input onBlur="check_htxmcode(this,'$ht_id')" name="htxmcode[]" value="$htxm_v[htxmcode]" type="text" style="width:60%;" datatype="Require" msg="项目编号不能为空！" />
+          <font color="#FF0000">*</font></td>-->
+        <td width="25%" align="right">体系人数：</td>
+        <td width="25%"><input name="iso_people_num[]" class="txrs" value="$htxm_v[iso_people_num]" type="text" style="width:60%;" datatype="Require" msg="体系人数不能为空！" />
+          <font color="#FF0000">*</font> </td>
+      </tr>
+      <tr>
+        <td width="25%" align="right">(<font  onClick="ShowDlog_Contrant(this)" style="color:red;cursor:pointer;">历次显示</font>)复评次数：</td>
+        <td width="25%"><input type="text" name="re_views[]" style="width:60%;" value="$htxm_v[re_views]" datatype="Custom" regexp="^\d$" msg="请正确输入复评次数！" />
+          <font color="#FF0000">*</font> </td>
+        <td  align="right">机构转入：</td>
+        <td ><select name="zjg[]" class="zjg" style="width:60%;" onblur="zjg(this);">
+            <option value="" $sel1>否</option>
+            <option value="1" $sel2>是</option>
+          </select>
+        </td>
+      </tr>
+	  <tr>
+		<td align="right">删减条款：</td>
+        <td><input name="shanjiangtiaokuan[]" style="width:60%;" value="$htxm_v[shanjiangtiaokuan]" /></td>
+        <td align="right">体系运行时间：</td>
+        <td><input name="run_date[]" style="width:60%;" value="$htxm_v[run_date]" title='日期格式  1980-03-04' onFocus="return showCalendar(this, 'y-mm-dd');"/></td>
+	  </tr>
+	  <tr>
+		<td align="right">上次初/再认证日期：</td>
+        <td><input name="auditEnd_date[]" style="width:60%;" value="$htxm_v[auditEnd_date]" title='日期格式  1980-03-04' onFocus="return showCalendar(this, 'y-mm-dd');" /></td>
+        <td align="right">上次证书到期日期：</td>
+        <td><input name="certEnd_date[]" style="width:60%;" value="$htxm_v[certEnd_date]" title='日期格式  1980-03-04' onFocus="return showCalendar(this, 'y-mm-dd');"/></td>
+	  </tr>
+      <tr>
+        <td align="right">认可标志：</td>
+        <td colspan="3">
+<!--
+EOT;
+foreach ($setup_mark as $v) {
+	if ($v[online] == '1'){
+		strstr($htxm_v['mark'],$v[code]) ? $checked = 'checked' : $checked = '';
+echo <<<EOT
+-->
+          <input type="checkbox" name="mark_t[]" value="$v[code]" class="mark_t" onclick="mark_ck(this)" $checked />
+          $v[msg]
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+          <input type="hidden" name="mark[]" class="mark" value="$htxm_v[mark]" dataType="Require" msg="认可标志不能为空！">
+        <font color="#FF0000">*</font></td>
+      </tr>
+      <tr >
+        <td  align="right">申请范围：</td>
+        <td colspan="3"><div style="width:90%; word-wrap: break-word; word-break: break-all;"><textarea class="sqfw" name="qy_renzhengfanwei[]" style="width:95%;height:80px;">$htxm_v[qy_renzhengfanwei]</textarea></div></td>
+      </tr>
+      <tr class="zjg_content" style="display:$none;">
+        <td colspan="4"><table width="100%" class="e_table">
+            <tr>
+              <td width="18%" height="20" align="right">原颁证机构：</td>
+              <td width="33%"><input name="zjg_name[]" style="width:168px;" value="$htxm_v[zjg_name]" />
+                <font color="#FF0000">*</font></td>
+              <td width="17%" align="right">原注册日期：</td>
+              <td width="34%"><input name="zjg_sdate[]" value="$htxm_v[zjg_sdate]" type="text" style="width:168px;" onclick="showCalendar(this, 'y-mm-dd');" />
+                <font color="#FF0000">*</font></td>
+            </tr>
+            <tr>
+              <td height="20" align="right">原证书号：</td>
+              <td><input name="zjg_no[]" style="width:168px;" value="$htxm_v[zjg_no]" />
+                <font color="#FF0000">*</font></td>
+              <td align="right">原截止日期：</td>
+              <td><input name="zjg_edate[]" value="$htxm_v[zjg_edate]" type="text" style="width:168px;" onclick="showCalendar(this, 'y-mm-dd');" />
+                <font color="#FF0000">*</font></td>
+            </tr>
+            <tr>
+              <td height="20" align="right">上次审核日：</td>
+              <td><input name="zjg_assess_date[]" value="$htxm_v[zjg_assess_date]" type="text" style="width:168px;" onclick="showCalendar(this, 'y-mm-dd');" />
+              </td>
+              <td align="right">&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr>
+        <td colspan="4" style="height:1px;">&nbsp;</td>
+      </tr>
+    </table>
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+  </div>
+  <div id="prod_container">
+<!--
+EOT;
+if ($htxmcp != '') {
+	foreach((array)$htxmcp as $htxm_p){
+	$htxm = $db->get_one("SELECT id FROM {$dbtable[xm_item]} WHERE htxm_id='{$htxm_p[id]}'");
+echo <<<EOT
+-->
+    <table width="$width" class="e_table prod" style="margin-bottom:5px;">
+      <input type="hidden" name="htxm_id[]" class="id" value="$htxm_p[id]" />
+	  <input type="hidden" name="kind[]" value="2"/>
+	  <input type="hidden" name="audit_ver[]" value="$htxm_p[audit_ver]"/>
+	  <input type="hidden" name="zjg[]" value=""/>
+	  <input type="hidden" name="shanjiangtiaokuan[]" value=""/>
+	  <input type="hidden" name="run_date[]" value=""/>
+	  <input type="hidden" name="auditEnd_date[]" value=""/>
+      <input type="hidden" name="certEnd_date[]" value=""/>
+<!--
+EOT;
+if ($htxm[id] != '') {
+echo <<<EOT
+-->
+	<tr>
+		<td colspan="4"><font color="red">项目已审批不能修改</font></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	<tr>
+	<tr>
+        <td align="right"><div class="prodcopy">(<font style="color:red;cursor:pointer;" onclick="ccp(this);">同上</font>)认证类别：</div></td>
+        <td colspan="3">
+        	<div style="float:left;width:95.5%;"><input type="text" name="certifiedproducts[]" class="tpr" value="$htxm_p[certifiedproducts]" readonly="readonly" style="width:89%;" dataType="Require" msg="认证类别不能为空！" />&nbsp;<font color="#FF0000">*</font>&nbsp;<img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="certpro(this);" /><input type="hidden" name="product[]" class="ducts" value="$htxm_p[product]" /></div>
+        	<div style="float:right;"><img src="frontEnd/images/button_empty.png" border="0" title="删除" class="rm_prod" style="cursor:pointer;"  onclick="rm(this,2);" /></div>
+		</td>
+	  </tr>
+<!--	  <tr>
+        <td align="right">认证单元：</td>
+        <td colspan="3">
+        	<input type="text" name="UnitNo[]" value="$htxm_p[UnitNo]" style="width:85%;" dataType="Require" msg="认证单元不能为空！" />&nbsp;<font color="#FF0000">*</font>
+		</td>
+	  </tr>-->
+	  <tr>
+        <td align="right"><div class="prodcopy">(<font style="color:red;cursor:pointer;" onclick="removed(this);">清空</font>)产品指令：</div></td>
+        <td colspan="3">
+        	<input type="text" name="productstandards[]" class="stand" value="$htxm_p[productstandards]" readonly="readonly" style="width:85%;" dataType="Require" msg="产品指令不能为空！" />&nbsp;<font color="#FF0000">*</font>
+			<img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="standards(this);" />
+			<input type="hidden" name="product_ver[]" class="dards" value="$htxm_p[product_ver]" />
+	    </td>
+	  </tr>
+	  <tr>
+        <td align="right">产品关键件：</td>
+        <td colspan="3">
+        	<input type="text" name="productpieces[]" class="keypie" value="$htxm_p[productpieces]" readonly="readonly" style="width:85%;"  />
+			<img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="keypieces(this);" />
+			<input type="hidden" name="key_part[]" class="pieces" value="$htxm_p[key_part]" />
+		</td>
+	  </tr>
+	  <tr>
+<!--
+EOT;
+$htxm_p[audit_rule_msg] = Cache::cache_audit_rule($htxm_p[audit_rule]);
+echo <<<EOT
+-->
+        <td align="right">实施规则：</td>
+        <td colspan="3">
+        	<input type="text" name="audit_rule_msg[]" class="audit_rule_msg" value="$htxm_p[audit_rule_msg]" readonly="readonly" style="width:85%;"  />
+			<img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="audit_rule(this);" />
+			<input type="hidden" name="audit_rule[]" class="audit_rule" value="$htxm_p[audit_rule]" />
+		</td>
+	  </tr>
+<!--
+EOT;
+$htxm_p[product_test_msg] = Cache::cache_product_test($htxm_p[product_test]);
+$sel_ec = $sel_mcs = $sel_ce_mcs = '';
+$htxm_p['product_ce'] == '1' && $sel_ec = 'selected=\"selected\"';
+$htxm_p['product_ce'] == '2' && $sel_mcs = 'selected=\"selected\"';
+$htxm_p['product_ce'] == '3' && $sel_ce_mcs = 'selected=\"selected\"';
+echo <<<EOT
+-->
+	  <tr style="display:none;">
+        <td align="right">检测机构：</td>
+        <td colspan="3">
+			<input type="text" name="product_test_msg[]" class="product_test_msg" value="$htxm_p[product_test_msg]" readonly="readonly" style="width:85%;"  />&nbsp;<font color="#FF0000">*</font>
+			<img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="testcheck(this);" />
+			<input type="hidden" name="product_test[]" class="product_test" value="$htxm_p[product_test]" />
+
+			</td>
+	  </tr>
+		<tr>
+			<td width="25%"  align="right">项目编号：</td>
+			<td>$htxm_p[htxmcode]</td>
+<!--	    <td><input onBlur="check_htxmcode(this,'$ht_id')" name="htxmcode[]" value="$htxm_p[htxmcode]" type="text" style="width:60%;" datatype="Require" msg="项目编号不能为空！" />
+	          <font color="#FF0000">*</font></td>-->
+			<td></td>
+			<td></td>
+		</tr>
+	  <tr>
+  		<td align="right">认证项目：</td>
+		<td>
+			<select name="product_ce[]" style="width:60%;">
+				<option value="">-请选择-</option>
+				<option value="1" $sel_ec>CE</option>
+				<option value="2" $sel_mcs>MCS</option>
+				<option value="3" $sel_ec_mcs>CE+MCS</option>
+			</select>
+		</td>
+        <td  align="right">审核类型：</td>
+        <td >
+            <select name="audit_type[]" style="width:60%;" dataType="Require" msg="审核类型不能为空！">
+              <option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_audit_type as $v){
+	if ($v[code] == '1001' || $v[code] == '1002' || $v[code] == '1003' || $v[code] == '1005'){
+		$v[code] == $htxm_p['audit_type'] ? $selected = 'selected' : $selected = '';
+echo <<<EOT
+-->
+              <option value="$v[code]" $selected>$v[msg]</option>
+<!--
+EOT;
+	}
+}
+if($op == '1')
+{
+   $htxm_p[htxmcode]='';
+}
+$htxm_p[re_views] == '0' && $htxm_p[re_views] = '' ;
+$htxm_p[iso_people_num] == '0' && $htxm_p[iso_people_num] = '' ;
+echo <<<EOT
+-->
+            </select>
+            &nbsp;<font color="#FF0000">*</font>
+          </td>
+      </tr>
+      <tr>
+        <td width="25%" align="right">复评次数：</td>
+        <td width="25%"><input type="text" name="re_views[]" style="width:60%;" value="$htxm_p[re_views]" /></td>
+        <td width="25%" align="right">体系人数：</td>
+        <td width="25%"><input name="iso_people_num[]" class="txrs" value="$htxm_p[iso_people_num]" type="text" style="width:60%;" /></td>
+      </tr>
+      <tr>
+        <td align="right">认可标志：</td>
+        <td colspan="3">
+<!--
+EOT;
+foreach ($setup_mark as $v) {
+	if ($v[online] == '1'){
+		strstr($htxm_p['mark'],$v[code]) ? $checked = 'checked' : $checked = '';
+echo <<<EOT
+-->
+          <input type="checkbox" name="mark_t[]" value="$v[code]" class="mark_t" onclick="mark_ck(this)" $checked />
+          $v[msg]
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+          <input type="hidden" name="mark[]" class="mark" value="$htxm_p[mark]" dataType="Require" msg="认可标志不能为空！">
+        <font color="#FF0000">*</font></td>
+      </tr>
+      <tr >
+        <td  align="right">认证产品：</td>
+        <td colspan="3"><div style="width:90%; word-wrap: break-word; word-break: break-all;"><textarea class="sqfw" name="qy_renzhengfanwei[]" style="width:95%;height:80px;">$htxm_p[qy_renzhengfanwei]</textarea></div></td>
+      </tr>
+	  <tr>
+        <td align="right">制造单位：</td>
+        <td colspan="3">
+        	<input type="text" name="manufacturingunits[]" class="manu" value="$htxm_p[manufacturingunits]" readonly="readonly" style="width:85%;" />
+			<input type="hidden" name="manuid[]" class="maid" value="$htxm_p[manuid]" />
+			<img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="companyckeck(this,1);" />
+		</td>
+	  </tr>
+	  <tr>
+        <td align="right">制造地址：</td>
+        <td colspan="3">
+        	<input type="text" name="manu_address[]" class="fact" value="$htxm_p[manu_address]"  style="width:90%;" />
+		</td>
+	  </tr>
+	  <tr>
+        <td align="right">生产单位：</td>
+        <td colspan="3">
+        	<input type="text" name="productionunit[]" class="duction" value="$htxm_p[productionunit]" readonly="readonly" style="width:85%;" />
+			<input type="hidden" name="proid[]" class="prid" value="$htxm_p[proid]" />
+			<img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="companyckeck(this,2);" />
+		</td>
+	  </tr>
+	  <tr>
+        <td align="right">生产地址：</td>
+        <td colspan="3"><input type="text" name="pro_address[]" class="tionadd" value="$htxm_p[pro_address]"  style="width:90%;" /></td>
+	  </tr>
+      <tr>
+        <td colspan="4" style="height:1px;">&nbsp;</td>
+      </tr>
+    </table>
+<!--
+EOT;
+	}
+}
+
+if ($op != '1'){
+	if($ht[online] == '' || $ht[online] == '0'){
+		$ht[online] = '1';
+	}
+	$ht[online] >= '1' && $online_ck = 'checked="checked"';
+	$ht[online] == '3' && ($online_ck = 'checked="checked"' and $online_str = '(已审批合同，无法修改)');
+	$ht[online] == '3' && $show_online_ck = 'disabled="disabled"';
+}else{
+	$ht[online] = '1';
+}
+echo <<<EOT
+-->
+  </div>
+  <table width="$width" class="e_table">
+    <tr bgcolor="#FFFFFF">
+      <td width="25%" align="right">备注信息：</td>
+      <td width="75%" colspan="3"><textarea name="other" style="width:95%; height:80px">$ht[other]</textarea></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+      <td  colspan="4" align="center">已登记：
+        <input type="checkbox" name="online" value="$ht[online]" $online_ck />
+        <input type="hidden" name="zuzhi_id" value="$zuzhi_id" />
+        <input type="hidden" name="ht_id" value="$ht_id" />
+        <input type="hidden" name="htfrom" value="$htfrom" />
+        <input type="button" value=" 保存 " name="button" $show_online_ck /> $online_str
+      </td>
+    </tr>
+  </table>
+</form>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,55 @@
+<!--
+<?php
+print <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css" />
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('.usual').idTabs({event:'mouseover'});
+});
+//]]>
+</script>
+<div class="blank"></div>
+{$Information->info}
+<form name="ninput" method="post" action="./index.php?m=contract&do=contract_transfer_save" onsubmit="return Validator.Validate(this,2);">
+<table width="$width" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+    <tr bgcolor="#FFFFFF">
+    	<td height="24" colspan="4">&nbsp;<font color="#003399">合同费划拨登记&gt;&gt;</font></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td align="right" height="22" width="120"><font color="#003399">合同费用：</font></td>
+        <td>&nbsp;$result[contract_money]</td>
+		<td align="right" width="120"><font color="#003399">收费项目：</font></td>
+        <td>&nbsp;$result[finance_item]</td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td align="right" height="22" width="120"><font color="#003399">净收入：</font></td>
+        <td><input type="text" name="basket1" value="$result[basket1]" style="width:120px;"></td>
+		<td align="right" width="120"><font color="#003399">审核补助：</font></td>
+        <td><input type="text" name="basket2" value="$result[basket2]" style="width:120px;" /></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td align="right" height="22" width="120"><font color="#003399">部门结余：</font></td>
+        <td><input type="text" name="basket3" value="$result[basket3]" style="width:120px;"></td>
+		<td align="right" width="120"><font color="#003399">项目费用：</font></td>
+        <td><input type="text" name="basket4" value="$result[basket4]" style="width:120px;"></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td align="right"><font color="#003399">备注：</font></td>
+        <td colspan="3"><textarea name="basket_remark" style="width:400px;height:80px;">$result[basket_remark]</textarea></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" colspan="4" align="center">
+            <input type="hidden" name="eid" value="$eid" />
+			<input type="hidden" name="zuzhi_id" value="$zuzhi_id" />
+            <input type="submit" value=" 保存 " name="submit" />
+        </td>
+    </tr>
+</table>
+</form>
+<!--
+EOT;
+?>
+-->

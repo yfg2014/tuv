@@ -1,0 +1,55 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div class="blank"></div>
+<table width="450" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+<form method="post" name="input" action="index.php?m=setup&do=setup_htfrom_save">
+    <tr bgcolor="#FFFFFF">
+    	<td height="24" colspan="2"><font color="#003399">信息设置 -&gt; 合同来源 </font></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+    	<td height="24" align="right"><font color="#003399">代码：</font></td>
+    	<td><input name="code" style="width:205px" value="{$rst[code]}" dataType="Require" msg="代码 不能为空！"></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+    	<td width="29%" height="24" align="right"><font color="#003399"> 内容：</font></td>
+    	<td width="71%" ><input name="msg" style="width:205px" value="{$rst[msg]}" dataType="Require" msg="内容 不能为空！"></td>
+    </tr>
+	<tr bgcolor="#F2F2F2">
+    	<td width="29%" height="24" align="right"><font color="#003399"> 机构批准号：</font></td>
+    	<td width="71%" ><input name="grantNo" style="width:205px" value="{$rst[grantNo]}" dataType="Require" msg="机构批准号不能为空！"></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+    	<td height="20" colspan="2" align="right"><font color="#003399">&nbsp; </font></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+   		<td height="24" align="right"><font color="#003399">排序：</font></td>
+    	<td><input name="isdesc" style="width:205px" value="{$rst[isdesc]}" /></td>
+    </tr>
+<!--
+EOT;
+$rst['online'] == '1' ? $ck1 = 'checked="checked"' : $ck2 = 'checked="checked"';
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+        <td height="24" align="right"><font color="#003399">状态：</font></td>
+        <td>
+            <input type="radio" name="online" value="1"  $ck1/>启用
+            <input type="radio" name="online" value="0"  $ck2/>关闭
+        </td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" colspan="2" align="right">
+            <div align="center">
+                <input type="hidden" name="id" value="{$rst[id]}" />
+                <input type="submit" value=" 确 定 " name="submit" />
+            </div>
+        </td>
+    </tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

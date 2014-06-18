@@ -1,0 +1,73 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="./index.php?m=finance&do=finance_list">
+    <tr bgcolor="#EAF4EA">
+        <td>
+            $SearchHtml<br />
+            <input type="submit" value="搜索" name="submit" />
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+        <td><font color="#003399">合同费用登记>></font>合计: $result[count]</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+    <tr bgcolor="#F2F2F2">
+      <th align="center"><font color="#003399">详细</font></th>
+      <th height="22" align="center"><font color="#003399">操作</font></th>
+      <th align="center"><font color=#003399>项目编号</font></th>
+	  <th align="center"><font color=#003399>合同编号</font></th>
+      <th align="center"><font color="#003399">组织名称</font></th>
+      <th align="center"><font color="#003399">认证领域</font></th>
+      <th align="center"><font color="#003399">产品数</font></th>
+      <th align="center"><font color="#003399">合同来源</font></th>
+      <th align="center"><font color="#003399">收费项目</font></th>
+      <th align="center"><font color="#003399">合同费用</font></th>
+	  <th align="center"><font color="#003399">备注</font></th>
+    </tr>
+<!--
+EOT;
+foreach ($result[data] as $k=>$v){
+	$iso = explode(",",$v[iso]);
+    $v[iso] = implode(",",array_unique($iso));
+
+if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+      <td align="center"><a href="#"><img src="./frontEnd/images/select1.gif" width="12" height="13" border="0" onclick="ShowDlog_item($v[id])"/></a></td>
+      <td align="center"><a href="./index.php?m=finance&do=finance_edit&zuzhi_id=$v[zuzhi_id]&ht_id=$v[id]"><img src="./frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+
+      <td align="center">$v[htxmcode]</td>
+	  <td align="center">$v[htcode]</td>
+      <td height="20" width="200">&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+      <td align="center" height="20">$v[iso]</td>
+   <td align="center" height="20">$v[cp]</td>
+      <td align="center">$v[htfrom]</td>
+      <td align="left">$v[finance_item]</td>
+      <td align="left">$v[contract_money]</td>
+	  <td align="center"><div class="{$k} show_block">{$v[other]}</div>$v[show]</td>
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

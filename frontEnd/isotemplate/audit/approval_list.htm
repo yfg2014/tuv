@@ -1,0 +1,169 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+//function selectall(check) { $(':checkbox').each(function(){ $(this).attr('checked',check);});}
+//$(function(){
+//  	$('[name="button"]').click(function(){
+//  	  	if($('.stripe').find('input').is(':checked')){
+//			if ($('[name="sp_date"]').val() == '' || $('[name="sp_date"]').val() == '0000-00-00')
+//			{
+//				alert("请输入正确审批日期时间 如:1980-01-01" );return;
+//			}
+//  	  		if(confirm('你是否审批该任务')){ $('[name="form1"]').submit();}}else{alert('请选择要审批的任务');}
+//  	 });
+//});
+
+//]]>
+</script>
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="./index.php?m=audit&do=approval_list&xmonline=$xmonline">
+    <tr>
+        <td bgcolor="#EAF4EA">
+			$SearchHtml
+			<br><input type="submit" value="搜索" name="submit" />
+        </td>
+    </tr>
+</form>
+</table>
+<form name="form1" method="post" action="./index.php?m=audit&do=approval_save">
+<div class="blank"></div>
+$result[pages]
+<table width="$width" class="c_table">
+    <tr>
+        <td height="30">
+            审批任务查询>>   合计：$result[count] &nbsp;
+			&nbsp;&nbsp;<a href="./index.php?m=audit&do=xm_no_list"><font color="#FF6600">$cache_item_online[0]</font></a>
+            &nbsp;&nbsp;<a href="./index.php?m=audit&do=approval_list&xmonline=1"><font color="#FF0000">$cache_item_online[1]</font></a>
+			&nbsp;&nbsp;<a href="./index.php?m=audit&do=approval_list&xmonline=2"><font color="orange">$cache_item_online[2]</font></a>
+            &nbsp;&nbsp;<a href="./index.php?m=audit&do=approval_list&xmonline=3"><font color="blue">$cache_item_online[3]</font></a>
+			&nbsp;&nbsp;<a href="./index.php?m=audit&do=approval_list&xmonline=">全部</a>
+        </td>
+    </tr>
+</table>
+<table width="1446" class="c_table stripe">
+	<tr bgcolor="#F2F2F2">	
+		<th align="center">审批</th>
+		<th align="center">修改</th>
+        <th align="center">派人</th>
+        <th align="center">项目编号</th>
+		<th align="center">状态</th>
+        <th align="center">组织名称</th>
+        <th align="center">合同来源</th>
+        <th align="center">标准</th>
+        <th align="center">产品数</th>
+        <th align="center">审核类型</th>
+        <th align="center">总人日</th>
+        <th align="center">审核开始时间</th>
+        <th align="center">审核结束时间</th>
+        <th align="center">审核员(资格)(组长)</th>
+		<th align="center">制单人</th>
+		<th align="center">制单时间</th>
+        <th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach ($result[data] as $v){
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+<!--
+EOT;
+$v[zd_time] == '0000-00-00' && $v[zd_time] = '';
+$pxm = $db->query("select product,id from xm_item where taskId = '$v[id]'");
+$i=0;$product='';
+while($p = $db->fetch_array($pxm)){
+  if($p[product]!=''){
+    $i++;
+    $product .=Cache::cache_product($p[product]).'<br/>';
+  }
+}
+$i==0?$i='':$i;
+
+print <<<EOT
+-->		
+		<td align="center" width="30">
+<!--
+EOT;
+if ($xmonline == '2' or $xmonline == '3') {
+print <<<EOT
+-->	
+    		<a href="index.php?m=audit&do=approval_edit&taskId=$v[id]&zuzhi_id=$v[zuzhi_id]"><img src="./frontEnd/images/button_edit.png" border="0" /></a>
+<!--
+EOT;
+}
+print <<<EOT
+-->	
+		</td>
+	    <td align="center" width="30"><a href="index.php?m=audit&do=task_edit&taskId=$v[id]"><img src="./frontEnd/images/button_edit.png" border="0" /></a></td>
+		<td align="center" width="30"><a href="index.php?m=audit&do=xm_edit&taskId=$v[id]&find=1"><img src="./frontEnd/images/button_edit.png" border="0" /></a></td>
+	    <td width="80" align="center">$v[htxmcode]</td>
+		<td width="50" align="center">$v[xmonline]</td>
+	    <td width="220" height="20">
+		<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">
+		$v[eiregistername]</a></td>
+		<td width="70" align="center">$v[htfrom]</td>
+	    <td width="30" align="center">$v[audit_ver]</td>
+	    <td width="50" align="center" >
+<!--
+EOT;
+if($i>0){
+echo <<<EOT
+-->
+		<a href="#" style="width:50px; display:block" onmouseover="show_block('$v[id]',100,100);" onmouseout="hide_block('$v[id]');">$i</a>
+		<div class="{$v[id]} show_block">$product</div>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		</td>
+	    <td width="60" align="center" >$v[audit_type]</td>
+	    <td width="50" align="center">$v[zrd]</td>
+	    <td width="80" align="center">$v[taskBeginDate]</td>
+	    <td width="80" align="center">$v[taskEndDate]</td>
+	    <td width="320" align="left">$v[inempName]</td>
+		<td width="50" align="left">$v[zd_ren]</td>
+		<td width="70" align="left">$v[zd_time]</td>
+	    <td width="30" align="center"><a href="index.php?m=audit&do=task_del&taskId=$v[id]&zuzhi_id=$v[zuzhi_id]">
+		<img src="./frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0"  onclick="return confirm('你是否要删除该任务')" /></a></td>
+</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+<!--
+EOT;
+if ($xmonline == '2') {
+$sp_date = date('Y-m-d');
+print <<<EOT
+
+<table width="$width" class="c_table" >
+    <tr>
+        <td width="35" align="center"><input type="checkbox" class="controlAll" onclick="selectall(this.checked)" /></td>
+        <td align="left">
+        	&nbsp;<input type="button" name="button" value="批量审批"  />
+			<input type="text" name="sp_date" value="$sp_date" onFocus="return showCalendar(this, 'y-mm-dd');" />
+		</td>
+        <td colspan="18"></td>
+    </tr>
+</table>
+
+EOT;
+}
+print <<<EOT
+-->
+$result[pages]
+<div class="blank"></div>
+</form>
+</div>
+<!--
+EOT;
+?>
+-->

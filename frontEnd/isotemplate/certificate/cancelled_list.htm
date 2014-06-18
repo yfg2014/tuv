@@ -1,0 +1,70 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="./index.php?m=certificate&do=cancelled_list">
+    <tr>
+  		<td>
+  			$SearchHtml
+			<br><input type="submit" value="搜索" name="submit" />
+  		</td>
+   </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+       <td>已撤销证书>> 合计：$result[count]</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+    <tr bgcolor="#F2F2F2">
+        <th align="center">合同编号</th>
+        <th align="center">项目编号</th>
+        <th align="center">组织名称</th>
+        <th align="center">合同来源</th>
+        <th align="center">体系</th>
+        <th align="center">标准</th>
+        <th align="center">证书编号</th>
+        <th align="center">注册日期</th>
+        <th align="center">注册到期</th>
+        <th align="center">变更日期</th>
+        <th align="center">暂停到期</th>
+        <th align="center">状态</th>
+    </tr>
+<!--
+EOT;
+foreach($result[data] as $v) {
+echo <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+        <td align="center">$v[htcode]</td>
+        <td align="center">$v[htxmcode]</td>
+        <td height="22">&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+        <td align="center">$v[htfrom]</td>
+        <td align="center">$v[iso]</td>
+        <td align="center">$v[audit_ver]</td>
+        <td align="center">$v[certNo]</td>
+        <td align="center">$v[certStart]</td>
+        <td align="center">$v[certEnd]</td>
+        <td align="center">$v[zs_change_date]</td>
+        <td align="center">$v[zs_zanting_edate]</td>
+        <td align="center">$v[status]</td>
+    </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

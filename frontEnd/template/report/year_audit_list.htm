@@ -1,0 +1,50 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div style="height:80px;"></div>
+<table width="600" class="e_table">
+<form method="post" name="winput" action="./index.php?m=report&do=year_audit_list">
+<tr bgcolor="#FFFFFF">
+<td align="right"><font color="#003399" style="font-size:14px;">开始日期：</font></td>
+<td><input name="begindate"  type="text" id="sel1" style="width:120px;" onFocus="showCalendar(this, 'y-mm-dd');" value="$begindate" /></td>
+<td align="right"><font color="#003399"  style="font-size:14px;">截止日期：</font></td>
+<td><input name="enddate"  type="text" id="sel2" style="width:120px;" onFocus="showCalendar(this, 'y-mm-dd');"  value="$enddate" /></td>
+<td align="right"><font color="#003399"  style="font-size:14px;">体系：</font></td>
+<td>
+	<select name="iso" style="width:60px;">
+       <option value="">请选择</option>
+<!--
+EOT;
+foreach ($setup_audit_iso as $v) {
+	if ($v[online] == '1'){
+		$v[code] == $iso ? $selected = 'selected="selected"' : $selected = '';
+
+echo <<<EOT
+-->
+            <option value="$v[code]" $selected>$v[code]</option>
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+          </select>
+</td>
+<td><input type="submit" value="搜索" name="submit" /></td>
+</tr>
+</table>
+<table width="600" class="e_table">
+<tr bgcolor="#F2F2F2">
+<td align="center">
+<br>
+现在统计的是 $begindate 至 $enddate 的 $iso 数据
+<br><font color="#003399"><h3>审核员年报数据：<a href="./index.php?m=xls&do=year_audit_list_xls&begindate=$begindate&enddate=$enddate&iso=$iso&"><img src="./frontEnd/images/excel.gif" border="0" title="导出EXCEL审核员年报数据文件" /></a></h3></font>
+</td>
+</tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

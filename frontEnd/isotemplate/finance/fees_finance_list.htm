@@ -1,0 +1,70 @@
+<!--
+<?php
+echo <<<EOT
+-->
+
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="./index.php?m=finance&do=fees_finance_list" >
+	<tr bgcolor="#EAF4EA">
+        <td>
+            $SearchHtml
+            <br/><input type="submit" value="搜索" name="submit" />
+        </td>
+    </tr>
+ </form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+    	<td><font color="#003399">收费登记查询&gt;&gt;</font>&nbsp;合计：$result[count]</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+    <tr bgcolor="#F2F2F2">
+       <th align="center"><font color="#003399">操作</font></th>
+       <th align="center"><font color="#003399">项目编号</font></th>
+	   <th align="center"><font color="#003399">合同编号</font></th>
+       <th align="center"><font color="#003399">组织名称</font></th>
+       <th align="center"><font color="#003399">合同来源</font></th>
+       <th align="center"><font color="#003399">体系</font></th>
+       <th align="center"><font color="#003399">审核范围</font></th>
+       <th align="center"><font color="#003399">审核类型</font></th>
+       <th align="center"><font color="#003399">状态</font></th>
+    </tr>
+<!--
+EOT;
+foreach($result[data] as $k => $v){
+if ($v[renzhengfanwei] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+$cw_online = Cache::cache_Finance_online($v[cw_online]);
+//$v[product] = Cache::cache_product($v[product]);
+echo <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+      <td  width="30" align="center">
+      <a href="./index.php?m=finance&do=fees_finance_edit&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]"><img src="./frontEnd/images/button_edit.png" alt="编辑" border="0" /></a>
+      </td>
+      <td width="70" align="center">$v[htxmcode]</td>
+	  <td width="70" align="center">$v[htcode]</td>
+      <td width="200">&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+      <td width="60" align="center">$v[htfrom]</td>
+      <td width="30" align="center">$v[iso]</td>
+	  <td align="center"><div class="{$k} show_block">合同备注：{$v[renzhengfanwei]}</div>$v[show]</td>
+      <td width="60" align="center">$v[audit_type]</td>
+      <td width="40" align="center">$cw_online</td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

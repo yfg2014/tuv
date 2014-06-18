@@ -1,0 +1,127 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div class="blank"></div>
+<table width="600" align="center" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table width="600" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+<!--
+EOT;
+foreach ($arr as $v) {
+print <<<EOT
+-->
+                <tr bgcolor="#FFFFFF">
+                    <td height="24" colspan="4">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="96%"><font color="#990000">项目基本信息>></font> $v[showonline_xm]</td>
+                            </tr>
+                        </table>
+                    </td>
+    			</tr>
+                <tr bgcolor="#F2F2F2">
+                    <td width="15%" height="25" align="right"><font color="#003399">合同编号：</font></td>
+                    <td width="35%" >&nbsp;$v[htcode]</td>
+                    <td width="15%" align="right"><font color="#003399">项目编号：</font></td>
+                    <td width="35%">&nbsp;$v[htxmcode] </td>
+                </tr>
+                    <tr bgcolor="#FFFFFF">
+                    <td height="25" align="right"><font color="#003399">认证标准：</font></td>
+                    <td><font color="#ff0000">&nbsp;$v[audit_ver]</font></td>
+                    <td width="15%" align="right"><font color="#003399">审核类型：</font></td>
+                    <td width="35%"><font color="#ff0000">&nbsp;$v[audit_type]</font> </td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td height="25" align="right"><font color="#003399">是否进现场：</font></td>
+                    <td>&nbsp;$v[jinxianchang]</td>
+                    <td height="25" align="right"><font color="#003399">代码：</font></td>
+                    <td>&nbsp;$v[audit_code]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td height="25" align="right"><font color="#003399">认可标志：</font></td>
+                    <td>&nbsp;$v[mark]</td>
+                    <td align="right"><font color="#003399">转入：</font></td>
+                    <td>&nbsp;$v[zjg]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td height="25" align="right"><font color="red">任务开始日期：</font></td>
+                    <td>&nbsp;$v[taskBeginDate]</td>
+                    <td height="25" align="right"><font color="red">任务结束日期：</font></td>
+                    <td>&nbsp;$v[taskEndDate]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td height="25" align="right"><font color="#003399">最后监察日：</font></td>
+                    <td>&nbsp;$v[finalItemDate]</td>
+                    <td height="25" align="right"><font color="#003399">评定日期：</font></td>
+                    <td>&nbsp;$v[assessmentdate]</td>
+                </tr>
+
+                <tr bgcolor="#FFFFFF">
+                    <td align="right"><font color="#003399">证书编号：</font></td>
+                    <td>&nbsp;$v[certNo]</td>
+                    <td height="25" align="right"><font color="#003399">证书状态：</font></td>
+                    <td>&nbsp;$v[zsonline]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td align="right"><font color="#003399">证书注册：</font></td>
+                    <td>&nbsp;$v[certStart]</td>
+                    <td height="25" align="right"><font color="#003399">证书到期：</font></td>
+                    <td>&nbsp;$v[certEnd]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td align="right"><font color="#003399">变更时间：</font></td>
+                    <td>&nbsp;$v[zs_change_date]</td>
+                    <td height="25" align="right"><font color="#003399">暂停到期时间：</font></td>
+                    <td>&nbsp;$v[zs_zanting_edate]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td align="right"><font color="red">评定结果：</font></td>
+                    <td>&nbsp;$v[zs_if]</td>
+                    <td height="25" align="right"><font color="red">审核人日：</font></td>
+                    <td>&nbsp;&nbsp;$v[xcd]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td align="right"><font color="#003399">组长：</font></td>
+                    <td>&nbsp;$v[zuzhang]</td>
+                    <td height="25" align="right"><font color="#003399">审核状态：</font></td>
+                    <td>&nbsp;&nbsp;$v[online]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td height="25" align="right"><font color="#003399">审核员信息：</font></td>
+                    <td colspan="3" >&nbsp;$v[empName]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td height="25" align="right"><font color="#003399">技委会：</font></td>
+                    <td colspan="3" >&nbsp;$v[describes]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td width="15%" height="25" align="right"><font color="#003399">认证范围：</font></td>
+                    <td colspan="3" style="word-wrap: break-word; word-break: break-all;">&nbsp;$v[coverFields]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td height="25" align="right"><font color="#003399">英文认证范围：</font></td>
+                    <td colspan="3" style="word-wrap: break-word; word-break: break-all;">&nbsp;$v[coverFieldsE]</td>
+                </tr>
+                <tr bgcolor="#FFFFFF">
+                    <td height="25" colspan="4" align="right">
+                    <font color="#003399">创建：</font>$v[cj_ren][$v[cj_time]]
+                    <font color="#003399">审批：</font>$v[sp_ren][$v[sp_date]]
+					<font color="#003399">评定：</font>$v[pd_ren][$v[pd_date]]
+                    </td>
+                </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+            </table>
+        </td>
+    </tr>
+</table>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

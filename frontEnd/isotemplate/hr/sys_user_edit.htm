@@ -1,0 +1,126 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+function check_user(obj,hr_id){
+	var user = $(obj).val();
+	$.post(
+			'index.php?m=hr&do=ajax&type=user',
+			{'user':user,'hr_id':hr_id},
+			function(result) {
+				if(result != '') {
+					alert(result);
+					$(obj).val('');
+					return false;
+				} else {
+					return true;
+				}
+			}
+		);
+}
+$(document).ready(function(){
+	$(".q_buttom").click(function(){
+		$(this).parent("td").parent("tr").siblings("tr").children("td").children("input").attr("checked",true);
+	})
+	$(".f_buttom").click(function(){
+		$($(this).parent("td").parent("tr").siblings("tr").children("td").children("input")).each(function(){
+			if($(this).attr("checked"))
+			{
+			  $(this).removeAttr("checked");
+			  
+			}
+			else
+			{
+			 $(this).attr("checked",'true');
+			   
+			}
+		})
+	})
+	$(".x_buttom").click(function(){
+		$(this).parent("td").parent("tr").siblings("tr").children("td").children("input").attr("checked",false);
+	})
+})
+</script>
+<div class="blank"></div>
+
+ <form method="post" name="winput" action="index.php?m=hr&do=sys_user_save" onsubmit="return Validator.Validate(this,2);">
+ <table width="$width" class="e_table">
+        <input type="hidden" name="id" value="{$value[id]}" />
+        <tr bgcolor="#FFFFFF">
+          <td height="24" colspan="4"><font color="#003399">权限管理&gt;&gt;</font></td>
+        </tr>
+        <tr bgcolor="#FFFFFF">
+          <td height="24" colspan="2" align="right"><font color="#003399"> 编号：</font></td>
+          <td width="78%"  colspan="2"> {$value[idcode]}</td>
+        </tr>
+        <tr bgcolor="#FFFFFF">
+          <td height="24" colspan="2" align="right"><font color="#003399"> 姓名：</font></td>
+          <td width="78%"  colspan="2"> {$value[username]}</td>
+        </tr>
+        <tr bgcolor="#F2F2F2">
+          <td height="24" colspan="2" align="right"><font color="#003399">帐号： </font></td>
+          <td width="78%" colspan="2"><input name="user" id="user" style="width:150px" value="{$value[user]}" onBlur="check_user(this,'$hr_id');"></td>
+        </tr>
+
+        <tr bgcolor="#F2F2F2">
+          <td height="24" colspan="2" align="right"><font color="#003399">密码：</font></td>
+          <td height="24" colspan="2"><input type="password" name="password" style="width:150px" value=""></td>
+        </tr>
+</table>
+<br>
+<!--
+EOT;
+foreach($menu_setup as $kk=>$vv){
+echo <<<EOT
+-->
+<table width="$width" class="e_table">
+	<tr bgcolor="#F2F2F2">
+		<td align="left">
+		&nbsp;$menudb[$kk] >> <font color="#009900" class="q_buttom">[全选√]</font><font color="#009900" class="f_buttom">[反选√]</font><font color="#FF0000" class="x_buttom">[取消X]</font>
+		</td>
+	</tr>
+	<tr>
+		<td>
+<!--
+EOT;
+$i=0;
+foreach($vv as $k=>$v){
+$i++;
+if($i % 4 == '0'){$br = '<br>';$i='0';}else{$br='';}
+if(in_array($k,$power)){$ck = 'checked="checked"';}else{$ck = '';}
+echo <<<EOT
+-->
+<input type="checkbox" name="sys_quanxian[]" value="$k" $ck />$v $br
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		</td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+
+
+<table width="$width" class="e_table">
+        <tr bgcolor="#F2F2F2">
+          <td height="24" colspan="4" align="right">
+            <div align="center">
+                <input type="submit" value=" 确 定 " name="submit" />
+            </div>
+    	</td>
+        </tr>
+  </form>
+</table>
+<div class="blank"></div>
+
+<!--
+EOT;
+?>
+-->

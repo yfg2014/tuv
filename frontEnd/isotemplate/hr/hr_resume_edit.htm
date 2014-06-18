@@ -1,0 +1,61 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+function save()
+{
+	//调用表单验证插件
+	if(!Validator.Validate(document.forms[0],2))return;
+	document.forms[0].submit();
+
+}
+//]]>
+</script>
+<div class="blank"></div>
+<table width="$width" align="center">
+  <tr>
+    <th align="left">编辑人员简历>> 姓名：{$result_ren[username]}&nbsp;员工编号：{$result_ren[idcode]}</th>
+  </tr>
+</table>
+<table class="e_table" width="$width">
+<form name="add_qualification" method="post" action="index.php?m=hr&do=hr_resume_save">
+<input type="hidden" name="hr_id" value="{$hr_id}" />
+<input type="hidden" name="id" value="{$id}" />
+<tr>
+  <td align="right">开始时间：</td>
+  <td>
+  <input type="text" name="hr_kdate" value="{$result[hr_kdate]}" style="width:205px" datatype="Date" msg="时间必须为2011-01-01格式！" onclick="showCalendar(this, 'y-mm-dd');"/>
+  </td>
+  </tr>
+<tr>
+  <td align="right">结束时间：</td>
+  <td>  
+<input type="text" name="hr_jdate" value="{$result[hr_jdate]}" style="width:205px" datatype="Date" msg="时间必须为2011-01-01格式！" onclick="showCalendar(this, 'y-mm-dd');"/>
+ </td>
+  </tr>
+<tr>
+  <td align="right">所在单位：</td>
+  <td><input type="text" name="danwei" value="{$result[danwei]}" style="width:205px" datatype="Require" msg="所在单位不能为空！"/>
+  </td>
+  </tr>
+<tr>
+  <td align="right">从事工作：</td>
+  <td><input type="text" name="job" value="{$result[job]}" style="width:205px" datatype="Require" msg="从事工作不能为空！"/></td>
+  </tr>
+<tr>
+  <td align="right">备注：</td>
+  <td><input type="text" name="other" value="{$result[other]}" style="width:205px" /></td>
+  </tr>
+<tr>
+  <td colspan="2" align="center">
+<input type="button" name="submit1" id="submit1" value=" 保 存 " onclick="javascript:save();" style="background:#FFFFFF;" />
+<input type="button" name="back" value=" 返 回 " onclick="javascript:history.go(-1);" style="background:#FFFFFF;" /></td>
+  </tr>
+</table>
+</form>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,105 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="blank"></div>
+<table width="$width" class="c_table">
+    <tr bgcolor="#F2F2F2">
+    	<td height="25" colspan="2" valign="middle"><font color="#0000FF">需求信息>></font></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td width="15%" height="32" align="right"><font color="#0000FF">需求分类：</font></td>
+        <td height="32">$rows[menu]</td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td width="15%" height="32" align="right"><font color="#0000FF">标题：</font></td>
+        <td height="32">$rows[title]</td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td width="15%" align="right"><font color="#0000FF">内容：</font></td>
+        <td><div style="line-height:23px;padding:5px">$rows[content]</div></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td width="15%" align="right"><font color="#0000FF">登记日期：</font></td>
+        <td>$rows[zd_time]</td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+	    <td width="15%" align="right"><font color="#0000FF">附件下载：</font></td>
+	    <td>
+<!--
+EOT;
+if($rows[filename] != ''){
+print <<<EOT
+-->
+		<a href="index.php?m=demand&do=demand_file_down&id=$rows[id]">
+		$rows[filename]
+		<img src="frontEnd/images/ico/png-0067.gif" width="17" height="17" title="下载" border="0" /></a>
+<!--
+EOT;
+}
+print <<<EOT
+--> 	</td>
+    </tr>
+</table>
+<div class="blank"></div>
+<table width="$width" class="c_table">
+    <tr bgcolor="#F2F2F2">
+        <td align="left">&nbsp;<font color="#0000FF">回复内容 >></font></td>
+    </tr>
+	<tr>
+		<td>
+<!--
+EOT;
+foreach($result[data] as $k=>$v){
+if($k > 0){
+echo <<<EOT
+-->
+<hr style="color:gray;border:1px;width:98%;height:1px;">
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	<span style="height:30xp;font-size:small;">&nbsp;$v[name]&nbsp;&nbsp;$v[zd_time]</span>
+	<br/><br/>
+	<span style="height:30xp;font-size:small;word-wrap: break-word; word-break: break-all;">&nbsp;$v[content]</span>
+<br/>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		$result[pages]
+		</td>
+	</tr>
+</table>
+
+<div class="blank"></div>
+<table width="$width" class="c_table">
+<form method="post" name="input" action="./index.php?m=demand&do=publish_content_save" onsubmit="return  Validator.Validate(this,2);">
+    <tr bgcolor="#F2F2F2">
+    	<td height="25" colspan="2" valign="middle"><font color="#0000FF">需求回复登记 >></font></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td width="15%" height="32" align="right"><font color="#0000FF">回复人：</font></td>
+        <td height="32"><input name="name" type="text" style="width:80%;" maxlength="50" dataType="Require" msg="回复人不能为空!" /></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td width="15%" align="right"><font color="#0000FF">内容：</font></td>
+        <td><textarea name="content" style="width:80%;height:150px;" dataType="Require" msg="内容不能为空！"></textarea></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="25" colspan="2"  align="center">
+        	<input type="hidden" name="eid" value="$eid" />
+        <input type="hidden" name="fbid" value="$fbid" />
+        <input type="submit" name="submit" value="提交">&nbsp;&nbsp;
+        <input type="reset" name="Submit3" value="重写"></td>
+    </tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

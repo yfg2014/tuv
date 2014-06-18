@@ -1,0 +1,85 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table width="$width" class="t_table" align="center">
+<form method="post" name="winput" action="index.php?m=certificate&do=cert_zhengming&">
+    <tr>
+  		<td>
+  			$SearchHtml
+			<br>
+			<input type="submit" value="搜索" name="submit" />
+
+  		</td>
+   </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+    	<td>证书证明&gt;&gt;</font> 合计：$result[count]	</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+	<tr bgcolor="#F2F2F2">
+	  <th align="center">项目编号</th>
+		<th align="center">组织名称</th>
+		<th align="center">合同来源</th>
+		<th align="center">标准</th>
+		<th align="center">审核类型</th>
+		<th align="center">评定日期</th>
+		<th align="center">评定通过时间</th>
+		<th align="center">证书状态</th>
+		<th align="center">证书编号</th>
+		<th align="center">注册日期</th>
+		<th align="center">注册到期</th>
+		<th align="center">产品/范围</th>
+	</tr>
+
+<!--
+EOT;
+foreach($result[data] as $k=>$v){
+    $v[product] = Cache::cache_product($v[product]);
+
+    $htxm = $db->get_one("SELECT htxmcode,htfrom FROM `ht_contract_item` WHERE id='$v[ht_id]'");
+    $v[htxmcode] = $htxm[htxmcode];
+    $v[htfrom] = Cache::cache_htfrom($htxm[htfrom]);
+
+	$kw = '';
+	if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{ $v[show] = '';}
+	if ($v[renzhengfanwei] != ''){$kw=$k.w;$renzhengfanwei = "<font onmouseover=\"show_block('$kw')\" onmouseout=\"hide_block('$kw')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$renzhengfanwei = '';}
+	$v[maildate] == '0000-00-00' && $v[maildate] = '';
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+	  	<td align="center">$v[htxmcode]</td>
+		<td height="22" width="220"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		<td align="center">$v[htfrom]</td>
+		<td align="center">$v[audit_ver]</td>
+		<td align="center">$v[audit_type]</td>
+		<td align="center">$v[assessmentdate]</td>
+		<td align="center">$v[approvaldate]</td>
+		<td align="center">$v[zsonline]</td>
+		<td align="center">$v[certNo]</td>
+		<td align="center">$v[certStart]</td>
+		<td align="center">$v[certEnd]</td>
+		<td align="center">
+		<div class="{$kw} show_block">产品/范围：$v[renzhengfanwei]</div>$renzhengfanwei</td>
+	</tr>
+<!--
+EOT;
+}
+$maildate = date("Y-m-d");
+echo <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

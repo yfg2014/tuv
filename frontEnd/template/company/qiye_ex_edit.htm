@@ -1,0 +1,73 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+
+//]]>
+</script>
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="blank"></div>
+<form  id="form1" name="form1" method="post" action="index.php?m=company&do=qiye_ex_save" onSubmit="return checkform(this);" >
+  <table width="700" class="e_table">
+    <tr>
+      <td colspan="4">关联公司基本信息登记&gt;&gt;</td>
+    <tr>
+      <td align="right">主公司名称：</td>
+      <td colspan="3"><a href="index.php?m=company&do=qiyedengji_edit&zuzhi_id=$rst[zuzhi_id]">$eiregistername_zhu</a>
+	  <input type="hidden" name="zuzhi_id" value="{$zuzhi_id}" />
+	  </td>
+    </tr>
+    <tr>
+      <td align="right">分场所名称：</td>
+      <td colspan="3"><input name="eiregistername" id="eiregistername" style="width:572px;" value="{$rst[eiregistername]}" dataType="Require" msg="组织名称不为空" onblur="check_zuzhi_name(this.value)" />
+        <font color="#FF0000">*</font> </td>
+    </tr>
+    <tr>
+      <td align="right">分场所名称(英)：</td>
+      <td colspan="3"><input name="eiregistername_e" style="width:572px;" value="{$rst[eiregistername_e]}"></td>
+    </tr>
+    <tr>
+      <td align="right">地址：</td>
+      <td colspan="3"><input name="address" id="address" type="text" style="width:572px;" value="{$rst[address]}" dataType="Require" msg="通讯地址不为空" />
+        <font color="#FF0000">*</font> </td>
+    </tr>
+    <tr>
+      <td align="right">地址(英)：</td>
+      <td colspan="3"><input name="address_e" id="address_e" type="text" style="width:448px;" value="{$rst[address_e]}" /></td>
+    </tr>
+    <tr>
+      <td align="right">联系电话：</td>
+      <td><input name="eiphone" style="width:140px;" value="{$rst[eiphone]}" dataType="Require" msg="组织联系电话不为空" />
+        <font color="#FF0000">*</font></td>
+      <td align="right">传真：</td>
+      <td><input name="eifax" style="width:140px;" value="{$rst[eifax]}" dataType="Require" msg="组织联系传真不为空" />
+        <font color="#FF0000">*</font></td>
+    </tr>
+    <tr>
+      <td align="right">联系人：</td>
+      <td><input name="eilinkman" style="width:140px;" value="{$rst[eilinkman]}"  dataType="Require" msg="联系人不为空" /> <font color="#FF0000">*</font></td>
+      <td align="right">联系人手机：</td>
+      <td><input name="eilinkman_mob" style="width:140px;" value="{$rst[eilinkman_mob]}"  dataType="Require" msg="联系人手机不为空"  /> <font color="#FF0000">*</font></td>
+   </tr>
+    <tr>
+      <td align="right">备注信息：</td>
+      <td colspan="3"><textarea name="remark" style="width:98%;height:50px;">{$rst[remark]}</textarea></td>
+    </tr>
+    <tr>
+      <td height="34" colspan="4" align="center">
+      	<input type="hidden" name="id" value="{$id}" />
+        <input type="submit" value=" 保存 " name="submit" /></td>
+    </tr>
+  </table>
+</form>
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,116 @@
+<!--
+EOT；
+<?php
+print <<<EOT
+-->
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+
+
+<div class="blank"></div>
+$result[pages]
+
+<table width="$width">
+	<tr>
+		<td align="left">组织查询&gt;&gt;&nbsp;合计：$result[count]</td>
+	</tr>
+</table>
+
+<table width="$width" class="c_table stripe">
+	<tr>
+	  <th align="center">编辑</th>
+	  <th align="center" colspan="2">关联公司</th>
+	  <th align="center">企业ID</th>
+	  <th align="center">企业注册名称</th>
+	  <th align="center">省份</th>
+	  <th align="center">合同来源</th>
+	  <th align="center">联系人</th>
+	  <th align="center">联系电话</th>
+	  <th align="center">联系传真</th>
+	  <th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach ($result['data'] as $v) {
+print <<<EOT
+-->
+	<tr>
+		<td width="30" align="center"><a href="index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[id]"><img src="frontEnd/images/button_edit.png" title="编辑" border="0" /></a></td>
+		<td align="center">
+<!--
+EOT;
+if($v['havechild']!="是"){
+print <<<EOT
+-->
+		  <a href="index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[id]&kelong=1"><img src="frontEnd/images/button_edit.png" title="添加关联公司" border="0" /></a>
+<!--
+EOT;
+		}
+		if($v[childkind]==0)
+		{
+		   $v[childkind]=$v['havechild'];
+		}elseif($v[childkind]==1)
+		{
+		   $v[childkind]='子公司';
+		}
+		elseif($v[childkind]==2)
+		{
+		   $v[childkind]='生产';
+		}elseif($v[childkind]==3)
+		{
+		   $v[childkind]='制造';
+		}
+print <<<EOT
+-->
+		</td>
+		<td align="center">
+			$v[childkind]
+		  <div class="{$v[id]} show_block">
+<!--
+EOT;
+	if (strstr($v[havechild],'有')) {
+		foreach ($v[subsidiaries] as $vl) {
+print <<<EOT
+-->
+		$vl[eientercode] - $vl[eiregistername] <br>
+<!--
+EOT;
+		}
+	}
+print <<<EOT
+-->
+			</div>
+
+		</td>
+		<td height="22">$v[id]</td>
+		<td width="240"><a href="index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[id]">$v[eiregistername]</a></td>
+		<td align="center">$v[eiarea]</td>
+		<td align="center">$v[htfrom]</td>
+		<td align="center">$v[eilinkman]</td>
+		<td style="white-space:normal; word-break:break-all;" align="center">$v[eilinkman_mob]</td>
+		<td style="white-space:normal; word-break:break-all;" align="center">$v[eifax]</td>
+		<td align="center"><a href="index.php?m=company&do=qiyedengji_del&zuzhi_id=$v[id]" onclick="return confirm('是否要删除企业：$v[eiregistername]？本操作同时将删除企业所有的合同和审核项目')"><img src="frontEnd/images/button_empty.png" title="删除" border="0" /></a></td>
+	</tr>
+
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+</div>
+
+<!--
+EOT;
+?>
+-->

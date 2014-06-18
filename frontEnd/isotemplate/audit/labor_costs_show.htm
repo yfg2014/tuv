@@ -1,0 +1,81 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="./index.php?m=audit&do=labor_costs_show">
+    <tr bgcolor="#EAF4EA">
+        <td>
+		$SearchHtml
+         <br><input type="submit" value="搜索" name="submit" />
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+  	<tr>
+     	<td>劳务费查询&gt;&gt; 合计： $result[count]</td>
+	</tr>
+</table>
+<table width="$width" class="c_table stripe" >
+  <tr>
+  	<th height="22" align="center">劳务费<br/>登记</th>
+    <th align="center">劳务费<br/>状态</th>
+    <th align="center">姓名</th>
+	<th align="center">项目编号</th>
+    <th align="center">组织名称</th>
+	<th align="center">合同来源</th>
+    <th align="center">认证版本</th>
+    <th align="center">产品数</th>
+    <th align="center">审核类型</th>
+    <th align="center">注册资格</th>
+    <th align="center">审核开始日期</th>
+    <th align="center">审核结束日期</th>
+    <th align="center">审核<br/>天数</th>
+    <th align="center">劳务费<br/>发放日期</th>
+    <th align="center">劳务费<br/>金额</th>
+  </tr>
+<!--
+EOT;
+foreach($result['data'] as $v){
+	$v[isoqualification] = str_replace(',','<br/>',$v[isoqualification]);
+	$v[laborcosts] == '0' ? $v[show] = '未登记' : $v[show] = '已登记';
+
+	$audit_ver = explode(",",$v[audit_ver]);
+    $v[audit_ver] = implode(",",array_unique($audit_ver));
+echo <<<EOT
+-->
+  <tr>
+  	<td width="50" align="center">$v[show]</td>
+  	<td width="50" align="center">$v[online]</td>
+	<td align="center">$v[empName]</td>
+	<td align="center">$v[htxmcode]</td>
+    <td width="200"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+	<td align="center">$v[htfrom]</td>
+    <td align="center">$v[audit_ver]</td>
+    <td align="center">$v[cp]</td>
+    <td align="center">$v[audit_type]</td>
+    <td align="center">$v[isoqualification]</td>
+    <td align="center">$v[taskBeginDate].$v[taskBeginHalfDate]</td>
+    <td align="center">$v[taskEndDate].$v[taskEndHalfDate]</td>
+    <td align="center">$v[auditday]</td>
+    <td align="center">$v[paydate]</td>
+    <td align="center">$v[laborcosts]</td>
+  </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,113 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css">
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('.usual').idTabs({event:'mouseover'});
+});
+//]]>
+</script>
+<div class="blank"></div>
+{$Information->info}
+
+<form name="qinput" method="post" action="./index.php?m=type&do=xm_type_save" onsubmit="return Validator.Validate(this,2);">
+<table class="c_table" width="$width" style="margin-top:10px;margin-bottom:10px;">
+	<tr>
+		<td height="24" align="left" width="100%">
+
+		&nbsp;
+		<font color="#003399">变更时间：
+		</font><input name="xm_change_date" style="width:80px;" value="$rows[xm_change_date]" onfocus="showCalendar(this, 'y-mm-dd');" title='日期格式  1977-01-01' dataType="Date" msg="请输入正确变更日期格式 如1977-01-01" />
+		<font color="#FF0000">*</font>
+		</td>
+	</tr>
+</table>
+
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF" >
+    <tr bgcolor="#FFFFFF">
+    	<td height="25" colspan="2"><font color="#003399">&nbsp;扩大缩小范围>></font></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td width="110" height="25" align="right"><font color="#003399">扩大缩小：</font></td>
+        <td>
+<!--
+EOT;
+switch($rows[changerange]){
+	case '0' : $changerange0 = 'checked="checked"';break;
+	case '1' : $changerange1 = 'checked="checked"';break;
+	case '2' : $changerange2 = 'checked="checked"';break;
+	default : $changerange1 = 'checked="checked"';
+}
+echo <<<EOT
+-->
+            <input type="radio" name="changerange" value="1" $changerange1 />扩大
+            <input type="radio" name="changerange" value="2" $changerange2 />缩小
+			<input type="radio" name="changerange" value="0" $changerange0 />其它
+        </td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="25" align="right"><font color="#003399">原来代码：</font></td>
+        <td><input name="audit_code_bf" type="text" style="width:400px;" readonly="readonly" value="$rows[audit_code_bf]" /></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="25" align="right"><font color="#003399">扩缩代码：</font></td>
+        <td><input name="audit_code_cg" type="text" style="width:400px;" value="$rows[audit_code_cg]" /></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td height="25" align="right"><font color="#003399">本次代码：</font></td>
+        <td><input name="audit_code_af"  type="text" style="width:400px;" value="$rows[audit_code_af]" />
+          <font color="#FF0000">*</font></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+	<td height="10" colspan="2">&nbsp; </td>
+	</tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="17" align="right"><font color="#003399">原来范围：</font></td>
+        <td><textarea name="renzhengfanwei_bf" readonly="readonly" style="width:450px;height:200px;">$rows[renzhengfanwei_bf]</textarea></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="17" align="right"><font color="#003399">扩缩范围：</font></td>
+        <td><textarea name="renzhengfanwei_cg" style="width:450px;height:200px;">$rows[renzhengfanwei_cg]</textarea></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="30" align="right"><font color="#003399">本次范围：</font></td>
+        <td><textarea name="renzhengfanwei_af" style="width:450px;height:200px;">$rows[renzhengfanwei_af]</textarea>
+          <font color="#FF0000">*</font></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+    	<td height="25" colspan="2"><span style="color:#FF0000;">&nbsp;说明：专业代码之间用 ； 分隔。</span></td>
+    </tr>
+</table>
+<table class="c_table" width="$width">
+	<tr >
+		<td height="25" align="right"><font color="#003399">变更费用备注：</font></td>
+		<td colspan="3" >
+		<textarea name="cw_other" style="width:470px;height:50px;">$rows[cw_other]</textarea>
+		</td>
+	</tr>
+	<tr >
+		<td height="25" align="right"><font color="#003399">变更备注：</font></td>
+		<td colspan="3" >
+		<textarea name="other" style="width:470px;height:50px;">$rows[other]</textarea>
+		</td>
+	</tr>
+	<tr >
+		<td height="24" colspan="4" align="center">
+		<input type="hidden" name="cgid" value="$id" />
+		<input type="hidden" name="xmid" value="$rows[xmid]" />
+		<input type="hidden" name="renzhengleixing[]" value="$renzhengleixing" />
+		<input type="hidden" name="zuzhi_id" value="$zuzhi_id" />
+		<input type="submit" value=" 保 存 " name="submit" />
+		</td>
+	</tr>
+</table>
+</form>
+<!--
+EOT;
+?>
+echo <<<EOT
+-->

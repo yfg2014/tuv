@@ -1,0 +1,115 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+
+//]]>
+</script>
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="./index.php?m=auditor&do=au_audit_item_list">
+    <tr bgcolor="#EAF4EA">
+        <td>
+            $SearchHtml
+		   <br><input type="submit" value="搜索" name="submit" />
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width" >
+    <tr bgcolor="#FFFFFF">
+        <td><font color="#003399">审核员审核项目&gt;&gt; 合计：$result[count] </font></td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe">
+    <tr bgcolor="#F2F2F2">
+        <th align="center">查看</th>
+		<th align="center">上传</th>
+		<th align="center">编辑</th>
+		<th align="center">合同编号</th>
+		<th align="center">项目编号</th>
+		<th align="center">是否进场</th>
+		<th align="center">组织名称</th>
+        <th align="center">姓名</th>
+        <th align="center">组长</th>
+        <th align="center">资格</th>
+        <th align="center">领域</th>
+		 <th align="center">审核类型</th>
+        <th align="center">专业代码</th>
+        <th align="center">合同来源</th>
+        <th align="center">审核开始日期</th>
+        <th align="center">审核结束日期</th>
+		<th align="center">技委会<BR/>意见</th>
+		<th align="center">评定<br>结果</th>
+
+    </tr>
+<!--
+EOT;
+foreach ($result[data] as $v) {
+$arr = array();
+$query = $db->query("SELECT ht_id FROM `xm_item` WHERE taskId='$v[taskId]' AND taskId > '0'");
+while($rows = $db->fetch_array($query))
+{
+	$ht = $db->get_one("SELECT htcode FROM `ht_contract` WHERE id='{$rows[ht_id]}'");
+	if($ht[htcode] != '')
+	{
+		$arr []= $ht[htcode];
+	}
+}
+$v[htcode] = implode('<br/>',array_unique($arr));
+$v[isoisLeader] = str_replace(',','<br/>',$v[isoisLeader]);
+$v[isoqualification] = str_replace(',','<br/>',$v[isoqualification]);
+$v[isoaudit_code] = str_replace(',','<br/>',$v[isoaudit_code]);
+if ($v[describes] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{ $v[show] = '';}
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+		 <td height="22" align="center"><a href="index.php?m=auditor&do=auditor_approval_edit&taskId=$v[taskId]&zuzhi_id=$v[zuzhi_id]&op=1">查看</a></td>
+		 <td align="center"><a href="index.php?m=auditor&do=auditor_upload_edit&taskId=$v[taskId]&zuzhi_id=$v[zuzhi_id]" ><img src="frontEnd/images/ico/png-0066.gif" width="17" height="17" title="上传" border="0" /></a></td>
+		 <td width="30" align="center">
+<!--
+EOT;
+if(strstr($v[isoisLeader],'是')){
+print <<<EOT
+-->
+		 	<a href="index.php?m=auditor&do=auditor_range_edit&taskId=$v[taskId]&zuzhi_id=$v[zuzhi_id]&"><img src="frontEnd/images/button_edit.png" title="编辑" border="0" /></a>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+		</td>
+		 <td align="center">$v[htcode]</td>
+		 <td align="center">$v[htxmcode]</td>
+		 <td align="center">$v[jinxianchang]</td>
+        <td height="22" width="200"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">&nbsp;$v[eiregistername]</a></td>
+        <td align="center">$v[empName]</td>
+        <td align="center">$v[isoisLeader]</td>
+        <td>$v[isoqualification]</td>
+        <td align="center">$v[iso]</td>
+		<td > $v[audit_type]</td>
+        <td>$v[isoaudit_code]</td>
+        <td align="center">$v[htfrom]</td>
+        <td align="center">$v[taskBeginDate].$v[taskBeginHalfDate]</td>
+        <td align="center">$v[taskEndDate].$v[taskEndHalfDate]</td>
+		<td align="center" ><div class="{$k} show_block"  >问题：{$v[describes]}</div>$v[show]</td>
+		<td > $v[zs_if]</td>
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

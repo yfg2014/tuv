@@ -1,0 +1,167 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript" src="frontEnd/js/jquery.json-2.2.min.js"></script>
+<script type="text/javascript" src="frontEnd/js/jquery.modal.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[
+function selectall(check) { $(':checkbox').each(function(){ $(this).attr('checked',check);});}
+$(function(){
+	var o1 = $(':checkbox'),o2 = $('.controlAll'),f,f1;
+	o2.change(function(){
+		o1.attr("checked",$(this).attr("checked"))
+	});
+	$('[name="btnAuditPlan"]').click(function(){
+		var audit='';
+		f = false;
+		o1.each(function(i){
+			if(f == false && i >= 0 && i < o1.length - 1 && this.checked){f = true;}
+		});
+
+		var o = $(':checkbox[name="pid[]"]:checked').parents('tr').find('.orgname');
+		o.each(function(index){
+			if (audit == '')
+			{
+				audit = $(this).parents('tr').children('td').eq(12).text();
+			}else
+			{
+				audit = audit + '||' + $(this).parents('tr').children('td').eq(12).text();
+			}
+			f1 = true;
+			for(var i = 0;i < o.length;i++){
+				if($(this).text() != o.eq(i).text()){f1 = false;break;}
+			}
+		});
+
+		if(!f){
+			alert('您没有选择任何项目！');return;
+		}
+		if(audit.indexOf('一阶段')>=0)
+		{
+			if (audit.indexOf('二阶段')>=0){ alert('一阶段和二阶段不能结合审核');return;}
+		}
+		if(!f1){alert('不同的企业不能结合审核！');return;}else{ $('[name="ninput"]').submit();}
+	});
+});
+//]]>
+</script>
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="./index.php?m=audit&do=xm_no_list&">
+    <tr>
+        <td>
+			$SearchHtml
+           <br><input type="submit" value="搜索" name="submit" />
+		   &nbsp;&nbsp;
+		 <!--  审核计划<a href="./index.php?m=xls&do=xm_no_list_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" /></a>-->
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width" class="c_table">
+    <tr>
+        <td align="left">
+           <font color="#003399"> 未安排项目</font>&gt;&gt;   合计：{$result[count]} &nbsp;
+            &nbsp;&nbsp;<a href="./index.php?m=audit&do=xm_no_list"><font color="#FF6600">$cache_item_online[0]</font></a>
+            &nbsp;&nbsp;<a href="./index.php?m=audit&do=approval_list&xmonline=1"><font color="#FF0000">$cache_item_online[1]</font></a>
+			&nbsp;&nbsp;<a href="./index.php?m=audit&do=approval_list&xmonline=2"><font color="orange">$cache_item_online[2]</font></a>
+            &nbsp;&nbsp;<a href="./index.php?m=audit&do=approval_list&xmonline=3"><font color="blue">$cache_item_online[3]</font></a>
+			 &nbsp;&nbsp;<a href="./index.php?m=audit&do=approval_list&xmonline=">全部</a>
+        </td>
+    </tr>
+</table>
+<table width="$width"  class="c_table stripe" >
+<form name="ninput" method="post" action="index.php?m=audit&do=task_edit&">
+	<tr>
+      <th align="center">详细</th>
+	  <th align="center">退监督<br>维护</th>
+      <th align="center">全选</th>
+      <th align="center">状态</th>
+      <th align="center">合同编号</th>
+      <th align="center">项目编号</th>
+      <th align="center">组织名称</th>
+      <th align="center">标准</th>
+      <th align="center">产品</th>
+	  <th align="center">证书到期</th>
+      <th align="center">计划开始</th>
+      <th align="center">监查最后日</th>
+      <th align="center">审核类型</th>
+	  <th align="center">是否到款</th>
+      <th align="center">合同来源</th>
+      <th align="center">删除</th>
+    </tr>
+<!--
+EOT;
+foreach($result[data] as $k=>$v){
+$v[cw_online] == '1' ? $v[cw_online] = '是' :  $v[cw_online] = '否' ;
+if ($v[renzhengfanwei] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+echo <<<EOT
+-->
+	<tr>
+    	<td width="40" align="center"><a href="#"><img src="./frontEnd/images/select1.gif" width="12" height="13" border="0" onclick="ShowDlog_item($v[ht_id],$v[htxm_id])"/></a></td>
+        <td width="40" align="center">
+<!--
+EOT;
+if ($v[audit_type] == '监一' or $v[audit_type] == '监二' or $v[audit_type] == '监三') {
+if($v[product]!='')
+{
+   $v[product]=Cache::cache_product($v[product]);
+}
+echo <<<EOT
+-->
+		<a href="./index.php?m=audit&do=item_revoked&xmid=$v[id]&zuzhi_id=$v[zuzhi_id]" >
+		<img src="frontEnd/images/button_sv.gif" alt="退监督维护" width="11" height="14" border="0" onclick="return confirm('你是否要将该项目退回到监督维护')" />		</a>
+<!--
+EOT;
+}
+echo <<<EOT
+-->		</td>
+		<td width="40" align="center"><input name="pid[]" type="checkbox" value="{$v[id]}"></td>
+        <td width="50" align="center">{$v[status]}</td>
+        <td width="60" align="center">{$v[htcode]}</td>
+		<td width="60" align="center">{$v[htxmcode]}</td>
+        <td width="200" class="orgname"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">
+		$v[eiregistername]</a></td>
+        <td width="100" align="center">{$v[audit_ver]}</td>
+        <!--<td width="70" align="center">{$v[product]}</td>-->
+		<td align="center"><div class="{$k} show_block" style="text-align:left">{$v[renzhengfanwei]}</div>$v[show]</td>
+        <td width="70" align="center">{$v[certEnd_date]}</td>
+		<td width="70" align="center">{$v[auditplandate]}</td>
+        <td width="70" align="center">{$v[finalItemDate]}</td>
+        <td width="60" align="center">{$v[audit_type]}</td>
+		<td width="50" align="center">{$v[cw_online]}</td>
+        <td width="70" align="center">{$v[htfrom]}</td>
+         <td width="40" align="center">
+		<a href="./index.php?m=audit&do=xm_del&xmid=$v[id]" >
+		<img src="frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0" onclick="return confirm('你是否要删除该项目')" />		</a>		</td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</form>
+</table>
+
+<table width="$width" class="c_table">
+	<tr>
+    	<td width="42" height="21" align="center">&nbsp;</td>
+		<td width="45" height="21" align="center">&nbsp;</td>
+        <td width="44" align="center" ><input type="checkbox" class="controlAll" onclick="selectall(this.checked)" /></td>
+        <td colspan="10" align="left">
+        	<input type="button" value="审核安排" name="btnAuditPlan"/>
+        </td>
+    </tr>
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

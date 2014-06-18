@@ -1,0 +1,283 @@
+<!--
+<?php
+echo <<<EOT
+-->
+
+<style></style>
+<br>
+
+<script type="text/javascript">
+
+function leastprice(obj,iso,htxm_id,iso_num) {
+
+	var ht = $(obj);
+	var grade = ht.val();
+	var isonum ='';
+	if(iso_num!=''){
+	isonum =   $(obj).parent().find('.iso_num').val();//document.getElementById(iso_num).value;
+	}
+
+	if(grade != ''){
+	$.post('./index.php?m=plugins&do=leastprice_ajax',{'grade': grade,'iso': iso,'htxm_id': htxm_id,'isonum':isonum},function(r){
+	var ht_arr = r.split("|");
+		//开始赋值obj.parent().next().children().val(r);
+		$(obj).parent().siblings().children('.c').val(ht_arr[0]);
+		$(obj).parent().siblings().children('.j').val(ht_arr[1]);
+		$(obj).parent().siblings().children('.z').val(ht_arr[2]);
+	});
+	}else{
+		$(obj).parent().siblings().children('.c').val('');
+		$(obj).parent().siblings().children('.j').val('');
+		$(obj).parent().siblings().children('.z').val('');
+	}
+}
+function countleastprice(obj,outo) {
+	var allc=0;
+	var allj=0;
+	var allz=0;
+	var c = 0;
+	var j = 0;
+	var z = 0;
+	if(outo=='')
+	{
+	$(obj).parent().parent().parent().find('.c').each(function(i){
+					allc = allc + Number($(this).val());
+					c++;
+				});
+
+	$('#allc').val(Math.floor(allc));
+	$(obj).parent().parent().parent().find('.j').each(function(i){
+					allj = allj + Number($(this).val());
+					j++;
+				});
+
+	$('#allj').val(Math.floor(allj));
+	$(obj).parent().parent().parent().find('.z').each(function(i){
+					allz = allz + Number($(this).val());
+					z++;
+				});
+
+	$('#allz').val(Math.floor(allz));
+	}else
+	{
+		$(obj).parent().parent().parent().find('.c').each(function(i){
+					allc = allc + Number($(this).val());
+					c++;
+				});
+
+	$('#allc1').val(Math.floor(allc));
+	$(obj).parent().parent().parent().find('.j').each(function(i){
+					allj = allj + Number($(this).val());
+					j++;
+				});
+
+	$('#allj1').val(Math.floor(allj));
+	$(obj).parent().parent().parent().find('.z').each(function(i){
+					allz = allz + Number($(this).val());
+					z++;
+				});
+
+	$('#allz1').val(Math.floor(allz));
+	}
+}
+function dz(obj)
+{
+	var allc = $('#allc').val();
+	var allj = $('#allj').val();
+	var allz = $('#allz').val();
+	var txnum = $('#txnum').val();
+	var dzallc;
+	var dzallj;
+	var dzallz;
+	if(txnum >= 1)
+	{
+		switch(txnum)
+		{
+			case '1' : dzallc = allc;dzallj = allj;dzallz = allz;break;alert(txnum);
+			case '2' : dzallc = Math.floor(allc*0.75);dzallj = Math.floor(allj*0.75);dzallz = Math.floor(allz*0.75);break;
+			case '3' : dzallc = Math.floor(allc*0.65);dzallj = Math.floor(allj*0.65);dzallz = Math.floor(allz*0.65);break;
+			default : dzallc = Math.floor(allc*0.65);dzallj = Math.floor(allj*0.65);dzallz = Math.floor(allz*0.65);
+			//case '1' : alert(txnum);break;
+		}
+	}
+	$('#dzallc').val(dzallc);
+	$('#dzallj').val(dzallj);
+	$('#dzallz').val(dzallz);
+}
+
+function dz1(obj)
+{
+	var allc = $('#allc1').val();
+	var allj = $('#allj1').val();
+	var allz = $('#allz1').val();
+	var txnum = $('#txnum1').val();
+	var dzallc;
+	var dzallj;
+	var dzallz;
+	if(txnum >= 1)
+	{
+		switch(txnum)
+		{
+			case '1' : dzallc = allc;dzallj = allj;dzallz = allz;break;alert(txnum);
+			case '2' : dzallc = Math.floor(allc*0.75);dzallj = Math.floor(allj*0.75);dzallz = Math.floor(allz*0.75);break;
+			case '3' : dzallc = Math.floor(allc*0.65);dzallj = Math.floor(allj*0.65);dzallz = Math.floor(allz*0.65);break;
+			default : dzallc = Math.floor(allc*0.65);dzallj = Math.floor(allj*0.65);dzallz = Math.floor(allz*0.65);
+			//case '1' : alert(txnum);break;
+		}
+	}
+	$('#dzallc1').val(dzallc);
+	$('#dzallj1').val(dzallj);
+	$('#dzallz1').val(dzallz);
+}
+
+
+function xjjs(obj,iso,htxm_id,iso_num){
+	var nobj = $(obj).parent().find('.grade');
+	leastprice(nobj,iso,htxm_id,iso_num);
+	//countleastprice(nobj,iso_num);
+}
+function xjjs_all(obj){
+	var nobj = $(obj).parent().parent().parent().find('.grade');
+	countleastprice(nobj,'1');
+}
+</script>
+<br>
+<form method="post" action="">
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF" style="display:none">
+	<tr bgcolor="#FFFFFF"><td height="30">
+
+	&nbsp;项目编号：<input type="text" name="htxmcode" value="$htxmcode" /> <input type="submit" value="提交计算" />
+&nbsp;&nbsp;<font color="red">$company</font>
+
+</td></tr>
+</table>
+</form>
+
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF"  style="display:none">
+	<tr bgcolor="#FFFFFF">
+	<td height="25" align="center"><font color="#003399">最低限价计算器(只是个计算器) </font></td>
+	<td align="center">初审</td>
+	<td align="center">监督</td>
+	<td align="center">再认证</td>
+	</tr>
+<!--
+EOT;
+foreach($arr as $c=>$p){
+switch($p['risk']){
+	case '01' : $risk1 = 'selected="selected"';breeak;
+	case '02' : $risk2 = 'selected="selected"';breeak;
+	case '03' : $risk3 = 'selected="selected"';breeak;
+	default : $risk0 = 'selected="selected"';
+}
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+	<td height="25" align="center" width="200px"><font color="#003399">$p[iso]</font>
+	<SELECT class="grade" onclick="leastprice(this,'$p[iso]','$p[id]','');" onblur="countleastprice(this);">
+		<OPTION VALUE="" $risk >请选风险等级</OPTION>
+		<OPTION VALUE="0" $risk0 >无风险</OPTION>
+		<OPTION VALUE="1" $risk1 >高风险</OPTION>
+		<OPTION VALUE="2" $risk2 >中风险</OPTION>
+		<OPTION VALUE="3" $risk3 >低风险</OPTION>
+	</SELECT>
+	<font color="red" style="cursor:pointer;" onclick="xjjs(this,'$p[iso]','$p[id]','');">[计算]</font>
+	</td>
+	<td align="center" width="200px"><input type="text" class="c" value="" style="border:0px;width:50px;"></td>
+	<td align="center" width="200px"><input type="text" class="j" value="" style="border:0px;width:50px;"></td>
+	<td align="center" width="200px"><input type="text" class="z" value="" style="border:0px;width:50px;"></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF" >
+	<td height="25" align="center" width="200px"><font color="#003399">合计：</font> </td>
+	<td align="center" width="200px"><input type="text" id="allc" value="" style="border:0px;width:50px;"></td>
+	<td align="center" width="200px"><input type="text" id="allj" value="" style="border:0px;width:50px;"></td>
+	<td align="center" width="200px"><input type="text" id="allz" value="" style="border:0px;width:50px;"></td>
+	</tr>
+	<tr bgcolor="#FFFFFF" >
+	<td height="25" align="center" width="200px">
+	<INPUT TYPE="button" VALUE="多体系打折计算" style="width:90px" ONCLICK="dz(this);">
+	&nbsp;<input type="text" style="width:50px" id="txnum" value="$txnum" onclick="this.value='';">
+	</td>
+	<td  align="center" width="200px"><input type="text" id="dzallc" style="border:0px;width:80px;"></td>
+
+	<td align="center" width="200px"><input type="text" id="dzallj" style="border:0px;width:80px;"></td>
+	<td align="center" width="200px"><input type="text" id="dzallz" style="border:0px;width:80px;"></td>
+
+	</tr>
+	<tr bgcolor="#FFFFFF">
+	<td height="25" align="left" colspan="4"><font color="red">&nbsp; 多体系打折后的费用请自行输入体系数量计算，2体系0.75折，3体系0.65折，例如：(Q无风险初审+E中风险再认证)*0.75</font></td>
+	</tr>
+</table>
+<br />
+
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF" >
+	<tr bgcolor="#FFFFFF">
+	<td height="25" align="left"><font color="#003399">最低限价计算器/人数 </font></td>
+	<td align="center">初审</td>
+	<td align="center">监督</td>
+	<td align="center">再认证</td>
+	</tr>
+<!--
+EOT;
+foreach($arr2 as $c=>$p){
+switch($p['risk']){
+	case '01' : $risk1 = 'selected="selected"';breeak;
+	case '02' : $risk2 = 'selected="selected"';breeak;
+	case '03' : $risk3 = 'selected="selected"';breeak;
+	default : $risk0 = 'selected="selected"';
+}
+$iso_num=$p[iso].'_num';
+//onblur="countleastprice(this,'1');"
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+	<td height="25" align="center" width="200px"><font color="#003399">$p[iso]</font>
+	<SELECT style="width:60px" class="grade" onclick="leastprice(this,'$p[iso]','$p[id]','$iso_num');" >
+		<OPTION VALUE=""  >请选风险等级</OPTION>
+		<OPTION VALUE="0"  >无风险</OPTION>
+		<OPTION VALUE="1"  >高风险</OPTION>
+		<OPTION VALUE="2"  >中风险</OPTION>
+		<OPTION VALUE="3"  >低风险</OPTION>
+	</SELECT>
+	<input name="$iso_num" type="text" class="iso_num" style="width:30px" onclick="this.value='';" value="0">
+	<font color="red" style="cursor:pointer;" onclick="xjjs(this,'$p[iso]','$p[id]','$iso_num');">[计算]</font>	</td>
+	<td align="center" width="200px"><input name="text" type="text" class="c" style="border:0px;width:50px;" value=""></td>
+	<td align="center" width="200px"><input type="text" class="j" value="" style="border:0px;width:50px;"></td>
+	<td align="center" width="200px"><input type="text" class="z" value="" style="border:0px;width:50px;"></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF" >
+	<td height="25" align="center" width="200px"><font color="#003399">合计：</font>
+	<font color="red" style="cursor:pointer;" onclick="xjjs_all(this);">[计算]</font></td>
+	<td align="center" width="200px"><input type="text" id="allc1" value="" style="border:0px;width:50px;"></td>
+	<td align="center" width="200px"><input type="text" id="allj1" value="" style="border:0px;width:50px;"></td>
+	<td align="center" width="200px"><input type="text" id="allz1" value="" style="border:0px;width:50px;"></td>
+	</tr>
+	<tr bgcolor="#FFFFFF" >
+	<td height="25" align="center" width="200px">
+	<INPUT TYPE="button" VALUE="多体系打折计算" style="width:90px" ONCLICK="dz1(this);">
+	&nbsp;<input type="text" style="width:50px" id="txnum1" value="$txnum1" onclick="this.value='';">	</td>
+	<td  align="center" width="200px"><input type="text" id="dzallc1" style="border:0px;width:80px;"></td>
+
+	<td align="center" width="200px"><input type="text" id="dzallj1" style="border:0px;width:80px;"></td>
+	<td align="center" width="200px"><input type="text" id="dzallz1" style="border:0px;width:80px;"></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+	<td height="25" align="left" colspan="4"><font color="red">&nbsp; 多体系打折后的费用请自行输入体系数量计算，2体系0.75折，3体系0.65折，例如：(Q无风险初审+E中风险再认证)*0.75</font></td>
+	</tr>
+</table>
+
+<!--收费end-->
+
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,85 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div align="center">
+<div style="width:$width;margin:auto;">
+<table class="t_table" width="$width">
+<div class="blank"></div>
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		<br><input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<div class="blank"></div>
+<table width="$width">
+<tr ><td  align="left">注册资格查询(有效)>>编号：$hrinfo[idcode] 姓名：$hrinfo[username] 合计：{$result['count']}</td>
+</tr>
+</table>
+
+<table  width="$width"  class="c_table stripe">
+<tr >
+<th align="center">体系</th>
+<th align="center">标准版本</th>
+<th align="center">资格</th>
+<th align="center">资格证号码</th>
+<th align="center">开始时间</th>
+<th align="center">结束时间</th>
+<th align="center">年度确认</th>
+<th align="center">备注</th>
+</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+print <<<EOT
+
+-->
+<tr >
+<td align="center">$v[iso]</td>
+<td align="center">$v[audit_ver]</td> 
+<td align="center">$v[qualification]</td> 
+<td align="center">$v[qualification_no]</td>
+<td align="center">$v[s_date]</td>
+<td align="center">$v[e_date]</td>
+<td align="center">$v[yearok]月份</td>
+<td align="center">
+
+<!--
+EOT;
+if(!empty($v[other]))
+{
+print <<<EOT
+-->
+<img src="frontEnd/images/other.png" alt="$v[other]" border="0" />
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+
+</td>
+
+</tr>
+
+
+
+
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+</div>
+</div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,70 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		<br><input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+
+<div class="blank"></div>
+<table width="$width" class="c_table">
+    <tr bgcolor="#FFFFFF">
+		<td class="row_data" colspan="10">
+		审核员>> 合计：{$result['count']}
+		&nbsp;&nbsp;<a href="index.php?m=audit&do=on_duty_list"><font color="#FF0000">已登记</font></a>
+		</td>
+    </tr>
+</table>
+
+<table width="$width" class="c_table">
+<tr>
+<th align="center">登记</th>
+<th align="center">编号</th>
+<th align="center">姓名</th>
+<th align="center">性别</th>
+<th align="center">联系方式</th>
+<th align="center">专兼职</th>
+<th align="center">人员来源</th>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+if($v[sex] != "" ){$v[sex] == "01"? $v[sex]="男" : $v[sex]="女";}
+$v[worktype] = Cache::cache_zaizhi($v[worktype]);
+print <<<EOT
+
+-->
+<tr class="row_data" >
+<td align="center"><a href="index.php?m=audit&do=on_duty_edit&hr_id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+<td align="center">$v[idcode]</td>
+<td align="center">$v[username]</td>
+<td align="center">$v[sex]</td>
+<td align="center">$v[phone]</td>
+<td align="center">$v[worktype]</td>
+<td align="center">$v[htfrom]</td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+
+<div class="blank"></div>
+</div>
+
+<!--
+EOT;
+?>
+-->

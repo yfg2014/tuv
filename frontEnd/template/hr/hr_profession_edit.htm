@@ -1,0 +1,83 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+function save()
+{
+	//调用表单验证插件
+	if(!Validator.Validate(document.forms[0],2))return;
+	document.forms[0].submit();
+
+}
+//]]>
+</script>
+<div class="blank"></div>
+<table width="$width" align="center">
+  <tr>
+    <th align="left">编辑人员职称>> 姓名：{$result_ren[username]}&nbsp;员工编号：{$result_ren[idcode]}</th>
+  </tr>
+</table>
+<table class="e_table" width="$width">
+<form name="add_qualification" method="post" action="index.php?m=hr&do=hr_profession_save">
+<input type="hidden" name="hr_id" value="{$hr_id}" />
+<input type="hidden" name="id" value="{$id}" />
+<tr>
+  <td width="196" align="right">职称等级：</td>
+  <td>
+
+<select name="profession" dataType="Require" style="width:205px" msg="职称等级不能为空！">
+<option value="">-请选择-</option>
+<!--
+EOT;
+foreach($setup_hr_profession as $key => $value)
+{
+$sel = '';
+
+if($value[code]==$result[profession]){$sel = 'selected';}
+print <<<EOT
+-->
+	<option value="{$value[code]}" $sel>$value[msg]</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</select>
+
+  </td>
+  </tr>
+<tr>
+  <td align="right">职称名称：</td>
+  <td><input type="text" name="zc_msg" value="{$result[zc_msg]}" style="width:205px" datatype="Require" msg="职称名称不能为空！"/></td>
+  </tr>
+<tr>
+  <td align="right">授予单位：</td>
+  <td><input type="text" name="danwei" value="{$result[danwei]}" style="width:205px" datatype="Require" msg="授予单位不能为空！"/>
+  </td>
+  </tr>
+
+
+<tr>
+  <td align="right">取得职称时间：</td>
+  <td>  
+<input type="text" name="zc_date" value="{$result[zc_date]}" style="width:205px" datatype="Date" msg="时间必须为2011-01-01格式！" onclick="showCalendar(this, 'y-mm-dd');"/>
+ </td>
+  </tr>
+<tr>
+  <td align="right">备注：</td>
+  <td><input type="text" name="other" value="{$result[other]}" style="width:205px" /></td>
+  </tr>
+<tr>
+  <td colspan="2" align="center">
+
+<input type="button" name="submit1" id="submit1" value=" 保 存 " onclick="javascript:save();" style="background:#FFFFFF;" />
+<input type="button" name="back" value=" 返 回 " onclick="javascript:history.go(-1);" style="background:#FFFFFF;" /></td>
+  </tr>
+</form>
+</table>
+<!--
+EOT;
+?>
+-->

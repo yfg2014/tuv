@@ -1,0 +1,170 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<style>
+td {height:25px;}
+</style>
+<br>
+
+<table class="e_table" width="700px">
+<form method="post" name="winput" action="index.php?m=plugins&do=progress&" >
+	<tr>
+		<td> 企业名称：<input type="text" name="eiregistername" style="width:200px" />&nbsp;&nbsp;&nbsp;&nbsp;
+		项目编号：<input type="text" name="htxmcode" style="width:100px" /><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+<br>
+
+<table class="e_table" width="700px">
+<tr bgcolor="#FFFFFF">
+<td>企业名称>></td>
+</tr>
+<!--
+EOT;
+if($_GET[zuzhi_id] == ''){
+foreach($qy as $qyk=>$qyv){
+echo <<<EOT
+-->
+<tr bgcolor="#FFFFFF">
+<td><a href="index.php?m=plugins&do=progress&zuzhi_id=$qyv[id]">$qyv[eiregistername]</a></td>
+</tr>
+<!--
+EOT;
+}}else{
+echo <<<EOT
+-->
+<tr bgcolor="#FFFFFF">
+<td><a href="index.php?m=plugins&do=progress&zuzhi_id=$mk_company[id]">$mk_company[eiregistername]</a></td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+
+<br>
+
+<table class="e_table" width="700px">
+<tr bgcolor="#FFFFFF">
+<td>项目编号</td>
+<td>体系</td>
+
+<td>合同状态</td>
+<td>合同创建时间</td>
+<td>合同评审时间</td>
+<td>合同审批时间</td>
+</tr>
+<!--
+EOT;
+foreach($ht_contract as $htk=>$htv){
+$ht_online = Cache::cache_ht_online($htv[online]);
+foreach($htv as $k=>$v){
+$v == '0000-00-00' && $htv[$k] = '';
+}
+echo <<<EOT
+-->
+<tr bgcolor="#FFFFFF">
+<td><a href="index.php?m=plugins&do=progress&zuzhi_id=$zuzhi_id&ht_id=$htv[id]&htxmcode=$htxmcode&base_htxmcode=$htv[htxmcode]">{$htv[htxmcode]}</a></td>
+<td><a href="index.php?m=plugins&do=progress&zuzhi_id=$zuzhi_id&ht_id=$htv[id]&htxmcode=$htxmcode&base_htxmcode=$htv[htxmcode]">{$htv[iso]}</a></td>
+<td>$ht_online</td>
+<td>$htv[zd_time]</td>
+<td>$htv[ps_time]</td>
+<td>$htv[sh_time]</td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+
+<br>
+
+<table class="c_table stripe" width="$width">
+<tr bgcolor="#FFFFFF">
+<td>项目编号</td>
+<td>体系</td>
+<td>审核类型</td>
+
+<td>合同状态</td>
+<td>合同创建时间</td>
+<td>合同评审时间</td>
+<td>合同审批时间</td>
+
+<td>项目状态</td>
+<td>项目维护时间</td>
+<td>项目监察最后日</td>
+<td>审核开始时间</td>
+<td>审核结束时间</td>
+<td>资料收回时间</td>
+<td>认证评定时间</td>
+<td>认证评定通过时间</td>
+<td>资料归档时间</td>
+
+<td>证书编号</td>
+<td>证书状态</td>
+<td>证书注册日期</td>
+<td>证书注册到期</td>
+<td>证书邮寄日期</td>
+</tr>
+<!--
+EOT;
+foreach($xm_item as $xmk=>$xmv){
+$xmv[audit_type] = Cache::cache_audit_type($xmv[audit_type]);
+$ht_online = Cache::cache_ht_online($ht_contract[$xmv[ht_id]][online]);
+$xm_online = Cache::cache_item_online($xmv[xmonline]);
+$zs_online = Cache::cache_Certification_online($xmv[zs_online]);
+foreach($xmv as $k=>$v){
+$v == '0000-00-00' && $xmv[$k] = '';
+}
+if($xmv[audit_type] == '监一' or $xmv[audit_type] == '监二' or $xmv[audit_type] == '监三'){
+$maildate = $xmv[maildate];
+}else{
+$maildate = $xmv[zsmaildate];
+}
+
+$base_htxmcode = str_replace('&lt;br&gt;','<br>',$base_htxmcode);
+echo <<<EOT
+-->
+
+<tr bgcolor="#FFFFFF">
+<td><a href="./index.php?m=audit&do=xm_show&ht_id=$xmv[ht_id]" target="_blank">$base_htxmcode</a></td>
+<td>$xmv[iso]</td>
+<td>$xmv[audit_type]</td>
+
+<td>$ht_online</td>
+<td>{$ht_contract[$xmv[ht_id]][zd_time]}</td>
+<td>{$ht_contract[$xmv[ht_id]][ps_time]}</td>
+<td>{$ht_contract[$xmv[ht_id]][sh_time]}</td>
+
+<td>$xm_online</td>
+<td>$xmv[wh_date]</td>
+<td>$xmv[finalItemDate]</td>
+<td>$xmv[taskBeginDate]</td>
+<td>$xmv[taskEndDate]</td>
+<td>$xmv[zl_okdate]</td>
+<td>$xmv[assessmentdate]</td>
+<td>$xmv[approvaldate]</td>
+<td>$xmv[archivedate]</td>
+
+<td>$xmv[certNo]</td>
+<td>$zs_online</td>
+<td>$xmv[certStart]</td>
+<td>$xmv[certEnd]</td>
+<td>{$maildate}</td>
+</tr>
+
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,108 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width" class="c_table">
+    <tr>
+        <td height="30">已回访任务查询>>   合计数：$result[count]  &nbsp; <a href="index.php?m=audit&do=return_record"><font color="blue">返回</font></a> </td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe">
+	<tr bgcolor="#F2F2F2">
+		<th align="center">编辑</th>
+		<th align="center">回访时间</th>
+		<th align="center">回访<br />备注</th>
+        <th align="center">项目编号</th>
+		<th align="center">状态</th>
+        <th align="center">组织名称</th>
+        <th align="center">合同来源</th>
+        <th align="center">标准</th>
+        <th align="center">产品数</th>
+        <th align="center">审核类型</th>
+        <th align="center">总人日</th>
+        <th align="center">审核开始时间</th>
+        <th align="center">审核结束时间</th>
+        <th align="center">审核员(资格)(组长)</th>
+        <th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach ($result[data] as $k=>$v){
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+<!--
+EOT;
+$k_o = $k ;
+if ($v[other] != ''){$v[show_o] = "<font onmouseover=\"show_block('$k_o')\" onmouseout=\"hide_block('$k_o')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+
+$v[zd_time] == '0000-00-00' && $v[zd_time] = '';
+$pxm = $db->query("select product,id from xm_item where taskId = '$v[taskId]'");
+$i=0;$product='';
+while($p = $db->fetch_array($pxm)){
+  if($p[product]!=''){
+    $i++;
+    $product .=Cache::cache_product($p[product]).'<br/>';
+  }
+}
+$i==0?$i='':$i;
+print <<<EOT
+-->		
+	    <td align="center" width="30"><a href="index.php?m=audit&do=return_record_edit&id=$v[id]&taskId=$v[taskId]&zuzhi_id=$v[zuzhi_id]"><img src="./frontEnd/images/button_edit.png" border="0" /></a></td>
+	   	<td width="60" align="center">$v[record_date]</td>
+		<td width="30" align="center"><div class="{$k} show_block">$v[other]</div>$v[show_o]</td>
+	    <td width="80" align="center">$v[htxmcode]</td>
+		<td width="50" align="center">$v[xmonline]</td>
+	    <td width="220" height="20"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		<td width="70" align="center">$v[htfrom]</td>
+	    <td width="30" align="center">$v[audit_ver]</td>
+	    <td width="50" align="center" >
+<!--
+EOT;
+if($i>0){
+echo <<<EOT
+-->
+		<a href="#" style="width:50px; display:block" onmouseover="show_block('$v[id]',100,100);" onmouseout="hide_block('$v[id]');">$i</a>
+		<div class="{$v[id]} show_block">$product</div>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		</td>
+	    <td width="60" align="center" >$v[audit_type]</td>
+	    <td width="50" align="center">$v[zrd]</td>
+	    <td width="80" align="center">$v[taskBeginDate]</td>
+	    <td width="80" align="center">$v[taskEndDate]</td>
+	    <td width="220" align="left">$v[inempName]</td>
+		<td width="30" align="center">
+			<a href="index.php?m=audit&do=return_record_del&id={$v[id]}">
+			<img src="frontEnd/images/button_empty.png" alt="删除" border="0" style="cursor:pointer;" onclick="return confirm('你确定要删除吗？');" />
+			</a>
+		</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

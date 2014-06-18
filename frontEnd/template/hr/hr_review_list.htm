@@ -1,0 +1,66 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+
+$result[pages]
+
+<div class="blank"></div>
+<table width="$width">
+	<tr>
+		<td class="row_data" colspan="10">评审人员查询>> 合计：{$result['count']}&nbsp;&nbsp;&nbsp;<a href="index.php?m=hr&do=hr_review_edit"><font color="blue">添加</font></a></td>
+	</tr>
+</table>
+
+<table width="$width" class="c_table">
+	<tr>
+		<th align="center">编辑</th>
+		<th align="center">姓名</th>
+		<th align="center">体系</th>
+		<th align="center">授权类型</th>
+		<th align="center">授权专业</th>
+		<th align="center">备注</th>
+		<th align="center">删除</th>
+	</tr>
+
+<!--
+EOT;
+foreach($result['data'] as $k=>$v){
+	$v[license_type] = $setup_hr_review[$v[license_type]];
+	if ($v[remark] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+
+-->
+	<tr>
+		<td align="center" width="40"><a href="index.php?m=hr&do=hr_review_edit&&id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+		<td align="center" width="70">$v[username]</td>
+		<td align="center" width="30">$v[iso]</td>
+		<td align="center" width="80">$v[license_type]</td>
+		<td>$v[code]</td>
+		<td align="center" width="40"><div class="{$k} show_block">$v[remark]</div>$v[show]</td>
+		<td align="center" width="40"><a href="index.php?m=hr&do=hr_review_del&id={$v[id]}"><img src="frontEnd/images/button_empty.png" alt="删除" border="0" style="cursor:pointer;" onclick="return confirm('你确定要删除吗？');" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+
+<div class="blank"></div>
+</div>
+
+<!--
+EOT;
+?>
+-->

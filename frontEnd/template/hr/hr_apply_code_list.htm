@@ -1,0 +1,77 @@
+<!--
+<?php
+print <<<EOT
+--> 
+<div style="width:$width;margin:auto;"> 
+<div class="blank"></div>
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		<br><input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+<tr>
+<td class="row_data" colspan="10">专业能力查询>> 合计：{$result['count']}</td>
+</tr>
+</table>
+<table width="$width" class="c_table stripe">
+<tr>
+  <th width="67" align="center">编辑</th>
+  <th width="67" align="center">编号</th>
+<th width="84" align="center">姓名</th>
+<th width="60" align="center">状态</th>
+<th width="57" align="center">体系</th>
+<th width="115" align="center">专业代码</th>
+<th width="132" align="center">能力来源</th>
+<th width="153" align="center">申报依据</th>
+<th width="116" align="center">申报日期</th>
+<th width="67" align="center">备注</th>
+
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+if ($v[other] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+$v[qualification_type] = Cache::cache_qualification_type($v[qualification_type]);
+if($v[online] == '1' )
+{ $v[online] = '有效';}
+else if($v[online] == '0') 
+{ $v[online] = '<font color=red>关闭</font>';} 
+else 
+{$v[online] = '<font color=green>申请</font>';}
+print <<<EOT
+
+-->
+<tr class="row_data" >
+<td align="center"><a href="index.php?m=hr&do=hr_audit_code_edit&hr_id=$v[hr_id]&id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+<td align="center">$v[idcode]</td>
+<td align="center">$v[username]</td>
+<td align="center">$v[online]</td>
+<td align="center">$v[iso]</td>
+<td align="center">$v[xiaolei]</td> 
+<td align="center">$v[ability_source]</td> 
+<td align="center">$v[sbyj]</td>
+<td align="center">$v[shenbaodate]</td>
+<td align="center"><div class="{$k} show_block">$v[other]</div>$v[show]</td>
+</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+
+<div class="blank"></div>
+</div>
+
+<!--
+EOT;
+?>
+-->

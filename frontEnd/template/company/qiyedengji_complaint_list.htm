@@ -1,0 +1,98 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+<tr><td align="left">
+客户投诉查询&gt;&gt;&nbsp;合计：$result[count]
+</td></tr>
+</table>
+
+<table  width="$width" class="c_table stripe">
+	<tr bgcolor="#F2F2F2">
+		<th align="center">修改</th>
+		<th align="center">下载</th>
+		<th align="center">投诉方</th>
+		<th align="center">投诉方<br />联系人</th>
+		<th align="center">投诉方<br />联系方式</th>
+		<th align="center">投诉来源</th>
+		<th align="center">投诉内容</th>
+		<th align="center">关联企业</th>
+		<th align="center">关联企业<br />联系人</th>
+		<th align="center">关联企业<br />联系方式</th>
+		<th align="center">处理类型</th>
+		<th align="center">处理时间</th>
+		<th align="center">重要程度</th>
+		<th align="center">处理部门</th>
+		<th align="center">涉及部门</th>
+		<th align="center">处理结果</th>
+		<th align="center">处理状态</th>
+		<th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach ($result['data'] as $k=>$v) {
+
+if ($v[complaint_content] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+-->
+	<tr>
+		<td width="50" align="center"><a href="index.php?m=company&do=qiyedengji_complaint_edit&zuzhi_id=$v[zuzhi_id]&id=$v[id]"><img src="frontEnd/images/button_edit.png" title="修改" border="0" /></a></td>
+		<td width="50" align="center">
+<!--
+EOT;
+if($v[filename] != ''){
+print <<<EOT
+-->
+		<a href="index.php?m=company&do=qiyedengji_complaint_file_down&id=$v[id]"><img src="frontEnd/images/ico/png-0067.gif" width="17" height="17" title="下载" border="0" /></a>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+		</td>
+		<td width="70" align="center">$v[complaint]</td>
+		<td width="70" align="center">$v[complaint_linkman]</td>
+		<td width="70" align="center">$v[complaint_linkman_mob]</td>
+		<td width="70" align="center">$v[complaint_from]</td>
+		<td width="80" align="center"><div class="{$k} show_block">{$v[complaint_content]}</div>$v[show]</td>
+		<td width="200"><a href="index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		<td width="70" align="center">$v[eilinkman]</td>
+		<td width="70" align="center">$v[eilinkman_mob]</td>
+		<td width="70" align="center">$v[processing_type]</td>
+		<td width="80" align="center">$v[processing_date]</td>
+		<td width="70" align="center">$v[important_degree]</td>
+		<td width="70" align="center">$v[processing_department]</td>
+		<td width="70" align="center">$v[relating_department]</td>
+		<td width="70" align="center">$v[processing_result]</td>
+		<td width="70" align="center">$v[processing_status]</td>
+		<td align="center" width="50"><a href="index.php?m=company&do=qiyedengji_complaint_del&id=$v[id]" onclick="return confirm('您确定要删除吗？')"><img src="frontEnd/images/button_empty.png" border="0" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+
+</div>
+<!--
+EOT;
+?>
+-->

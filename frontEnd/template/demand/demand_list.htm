@@ -1,0 +1,75 @@
+<!--
+<?php
+print <<<EOT
+-->
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+
+
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+<tr><td align="left">
+需求查看&gt;&gt;&nbsp;合计：$result[count]
+</td></tr>
+</table>
+
+<table width="$width"  class="c_table stripe">
+	<tr bgcolor="#F2F2F2">
+		<th align="center">ID</th>
+		<th align="center">查看</th>
+		<th align="center">需求分类</th>
+		<th align="center">标题</th>
+		<th align="center">登记时间</th>
+		<th align="center">附件<br />下载</th>
+		<!--<th align="center">删除</th>-->
+	</tr>
+<!--
+EOT;
+foreach ($result['data'] as $k=>$v) {
+print <<<EOT
+-->
+    <tr bgcolor=#FFFFFF>
+    	<td width="40">$v[id]</td>
+		<td align="center" width="40"><a href="index.php?m=demand&do=publish_content_edit&fbid=$v[id]" ><img src="frontEnd/images/button_edit.png" title="编辑" border="0" /></a></td>
+		<td width="140" align="center">$v[menu]</td>
+		<td width="300">$v[title]</td>
+		<td width="80" align="center">$v[zd_time]</td>
+		<td width="40" align="center">
+<!--
+EOT;
+if($v[filename] != ''){
+print <<<EOT
+-->
+		<a href="index.php?m=demand&do=demand_file_down&id=$v[id]"><img src="frontEnd/images/ico/png-0067.gif" width="17" height="17" title="下载" border="0" /></a>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+		</td>
+		<!--<td width="30" align="center"><a href="index.php?m=demand&do=demand_del&fid=$v[id]" onclick="return confirm('您确定要删除该文件吗')"><img src="frontEnd/images/button_empty.png" border="0" /></a></td>-->
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+
+</div>
+
+<!--
+EOT;
+?>
+-->

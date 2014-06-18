@@ -1,0 +1,121 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css">
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('.usual').idTabs({event:'mouseover'});
+})
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+function del(obj){
+	var del_url = $(obj).parents("a").attr("title");if(confirm("你确定要删除吗？")){location.href = del_url;}
+}
+//]]>
+</script>
+<div class="blank"></div>
+{$Information->info}
+<div class="blank"></div>
+<table width="$width" class="e_table">
+    <tr bgcolor="#FFFFFF">
+    	<td height="24" colspan="8">&nbsp;<font color="#003399">合同收费项目清单>></font></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+    	<td height="22" align="center"><font color="#003399">编辑</font></td>
+        <td align="center"><font color="#003399">收费项目</font></td>
+        <td align="center"><font color="#003399">合同金额</font></td>
+        <td align="center"><font color="#003399">删除</font></td>
+    </tr>
+<!--
+EOT;
+foreach ($rst as $v) {
+$v[finance_item] = Cache::cache_Finance_item($v[finance_item]);
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+    	<td  height="22" align="center">
+            <a href="./index.php?m=finance&do=finance_edit&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]&cwid=$v[id]"><img src="./frontEnd/images/button_edit.png" alt="编辑" border="0" /></a>
+        </td>
+		<td align="center">$v[finance_item]</td>
+        <td align="center">$v[contract_money]</td>
+        <td align="center">
+            <a href="#" title="./index.php?m=finance&do=finance_del&cwid=$v[id]&ht_id=$v[ht_id]&zuzhi_id=$v[zuzhi_id]">
+			<img src="./frontEnd/images/button_empty.png" alt="删除" border="0" onclick="del(this);" /></a>
+        </td>
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+<div class="blank"></div>
+<form name="ninput" method="post" action="./index.php?m=finance&do=finance_save" onsubmit="return Validator.Validate(this,2);">
+<table width="$width" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+    <tr bgcolor="#FFFFFF">
+    	<td height="24" colspan="4">&nbsp; {$titmsg} <font color="#003399"> 收费项目&gt;&gt;</font></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td width="25%" height="25" align="right"><font color="#003399">收费项目：</font></td>
+        <td width="25%" >
+			<select name="finance_item" style="width:70%;" dataType="Require" msg="请选择收费项目">
+            	<option value="">请选择</option>
+<!--
+EOT;
+foreach ($setup_finance_item as $k=>$v){
+$cwrst['finance_item'] == $k ? $selected = 'selected="selected"' : $selected = '';
+print <<<EOT
+-->
+				<option value="{$k}" $selected >$v[msg]</option>
+<!--
+EOT;
+}
+$selected1 = $selected2 = '';
+$cwrst['kind'] == '1' && $selected1 = 'selected="selected"';
+$cwrst['kind'] == '2' && $selected2 = 'selected="selected"';
+print <<<EOT
+-->
+			</select> <font color="#FF0000">*</font>
+        </td>
+        <td width="25%" align="right"><font color="#003399">合同金额：</font></td>
+        <td><input name="contract_money" value="$cwrst[contract_money]" style="width:70%;" dataType="Require" msg="合同费用 不能为空" /> <font color="#FF0000">*</font>
+		</td>
+	</tr>
+	<!--<tr bgcolor="#F2F2F2">
+        <td width="25%" height="25" align="right"><font color="#003399">收费类型：</font></td>
+        <td width="25%" >&nbsp;
+			<select name="kind" style="width:70%;" dataType="Require" msg="请选择收费类型">
+            	<option value="">请选择</option>
+				<option value="1" $selected1>体系</option>
+				<option value="2" $selected2>产品</option>
+			</select> <font color="#FF0000">*</font>
+        </td>
+        <td width="25%" align="right"></td>
+        <td width="25%">&nbsp;</td>
+	</tr>-->
+    <tr bgcolor="#FFFFFF">
+        <td height="25" align="right"><font color="#003399">收费备注：</font></td>
+        <td colspan="3" >
+        	<textarea name="other" style="width:98%;height:45px;">$cwrst[other]</textarea>
+        </td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" colspan="4" align="center">
+            <input type="hidden" name="cwid" value="$cwid" />
+            <input type="hidden" name="ht_id" value="$ht_id" />
+			<input type="hidden" name="zuzhi_id" value="$zuzhi_id" />
+            <input type="submit" value=" 保存 " name="submit" />
+        </td>
+    </tr>
+</table>
+</form>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

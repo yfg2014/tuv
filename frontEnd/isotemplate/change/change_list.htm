@@ -1,0 +1,99 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+function selectall(check) { $(':checkbox').each(function(){ $(this).attr('checked',check);});}
+$(function(){
+  	$('[name="button"]').click(function(){
+  	  	if(!$('.stripe').find('input').is(':checked')){alert('请选择要变更任务');return false;}
+		var o = $('.box:checked'),f = false,hm = false,name = '',htxm = '',htxm_id;
+		o.each(function(i){			
+			if(name == ''){
+				name = $(this).parents('tr').find('.orgname').val();
+			}else{
+				if(name != $(this).parents('tr').find('.orgname').val()){f = true;}	
+			}
+		});
+
+		if(f == true){alert('请选择同一家组织进行变更');return false;}
+		if(confirm('你是否操作变更任务')){ $('[name="form1"]').attr('action','./index.php?m=change&do=zs_change&zuzhi_id=' + name + '&');$('[name="form1"]').submit();}
+  	 });
+});
+//]]>
+</script>
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml
+		<br><input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+<form name="form1" method="post" action="">
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+    <tr>
+    	<td>证书变更&gt;&gt; 合计：$result[count]</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+        <tr bgcolor="#F2F2F2">
+		  <th height="22" align="center">全选</th>
+          <th align="center">项目编号</th>
+		  <th align="center">组织名称</th>
+		  <th align="center">合同来源</th>
+          <th align="center">体系标准</th>
+		  <th align="center">状态</th>
+		  <th align="center">证书编号</th>
+		  <th align="center">注册日期</th>
+		  <th align="center">注册到期</th>
+        </tr>
+<!--
+EOT;
+foreach($result[data] as $k => $v){
+echo <<<EOT
+-->
+        <tr bgcolor="#FFFFFF">
+          <td align="center">
+		  	<input type="checkbox" name="zsid[]" class="box" value="$v[id]" />
+			<input type="hidden" name="htxm_id[]" class="htxm" value="$v[htxm_id]" />
+			<input type="hidden" name="zuzhi_id[]" class="orgname" value="$v[zuzhi_id]" />
+	  	  </td>
+		  <td align="center">$v[htxmcode]</td>
+		  <td height="22" width="200">&nbsp;<a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		  <td align="center">$v[htfrom]</td>
+          <td align="center">$v[audit_ver]</td>
+          <td align="center">$v[status]</td>
+          <td align="center">$v[certNo]</td>
+
+          <td align="center">$v[certStart]</td>
+		  <td align="center">$v[certEnd]</td>
+        </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+<table width="$width" class="c_table" >
+    <tr>
+        <td width="30" align="center"><input type="checkbox" class="controlAll" onclick="selectall(this.checked)" /></td>
+        <td align="left" colspan="9">
+        	&nbsp;<input type="button" name="button" value="变更操作" />
+		</td>
+    </tr>
+</table>
+$result[pages]
+<div class="blank"></div>
+</form>
+</div>
+<!--
+EOT;
+?>
+-->

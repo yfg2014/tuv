@@ -1,0 +1,73 @@
+<!--
+<?php
+echo <<<EOT
+-->
+
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+  <table width="$width" class="t_table" align="center">
+    <form method="post" name="winput" action="./index.php?m=assess&do=pd_hr_list">
+      <tr>
+        <td> $SearchHtml <br>
+			<!--阅卷信息：<a href="./index.php?m=xls&do=pd_hr_list_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" /></a>&nbsp;&nbsp;&nbsp;&nbsp;-->		
+            <input type="submit" value="搜索" name="submit" />
+        </td>
+      </tr>
+    </form>
+  </table>
+  <div class="blank"></div>
+  $result[pages]
+  <table width="$width">
+    <tr>
+      <td><font color="#003399">评定人员查询</font>&gt;&gt; 合计： $result[count]
+	    &nbsp;<a href="./index.php?m=assess&do=pd_list"><font color="blue"> 认证评定</font></a> </td>
+    </tr>
+  </table>
+  <table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+    <tr bgcolor="#F2F2F2">
+      <th align="center">合同编号</th>
+      <th height="22" align="center">项目编号</th>
+      <th align="center">组织名称</th>
+      <th align="center">合同来源</th>
+      <th align="center">审核类型</th>
+      <th align="center">体系</th>
+      <th align="center">评定人员</th>
+      <th align="center">接卷日期</th>
+      <th align="center">交卷时间</th>
+      <th align="center">评定日期</th>
+      <th align="center">评定结论</th>
+    </tr>
+<!--
+EOT;
+foreach ($result[data] as $k => $v ) {
+	$kw = '';
+	if ($v[describes] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{ $v[show] = '';}
+	if ($v[evaluatother] != ''){$kw=$k.'wen';;$evaluatother = "<font onmouseover=\"show_block('$kw')\" onmouseout=\"hide_block('$kw')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$evaluatother = '';}
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+      <td width="90" align="center">$v[htcode]</td>
+      <td width="90" height="24" align="center">$v[htxmcode]</td>
+      <td width="200"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">&nbsp;$v[eiregistername]</a></td>
+      <td align="center">$v[htfrom]</td>
+      <td align="center">$v[audit_type]</td>
+      <td align="center">$v[iso]</td>
+      <td align="center">$v[username]</td>
+      <td align="center">$v[thendate]</td>
+      <td align="center">$v[rossdate]</td>
+      <td align="center">$v[assessmentdate]</td>
+      <td align="center">$v[zs_if]</td>
+    </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+  </table>
+  $result[pages]
+  <div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

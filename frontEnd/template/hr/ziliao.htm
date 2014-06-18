@@ -1,0 +1,76 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript" src="frontEnd/js/jquery.modal.js"></script>
+<link href="frontEnd/css/jquery.autocomplete.css" type="text/css" rel="stylesheet" />
+
+<script type="text/javascript">
+$(function(){
+	$(".stripe").find("tr:even").addClass("alt").click(function() { $(this).toggleClass("click").removeClass("over").toggleClass("alt");}).end().find("tr:odd").click(function() { $(this).toggleClass("click").removeClass("over");}).end().find("tr").mouseover(function() { $(this).addClass("over");}).mouseout(function() { $(this).removeClass("over");});
+	$('[name="s_ren_msg"]').click(function(){ $(this).autocomplete("index.php?m=hr&do=name_search&q="+this.value).result(function(event,data){ var s = (data+'').split(',');$(this).val(s[0]);});});
+
+});
+</script>
+<div class="blank"></div>
+<table width="800" align="center" border="0" cellspacing="1" cellpadding="1" bgcolor="#226886" id="chaxun" style="margin-top:10px;">
+<form method="post" name="winput" action="index.php?m=hr&do=ziliao">
+    <tr bgcolor="#EAF4EA">
+        <td>
+            <div>
+            <font color="#003399">姓名：</font>
+            <input name="s_ren_msg" type="text" style="width:120px;" />
+            <input type="submit" value="搜索" name="submit" />
+            </div>
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+<table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+    <tr>
+    	<td>$result[pages]</td>
+    </tr>
+        <td height="30">
+        	资料查询&gt;&gt;&nbsp;合计：$result[sum]
+        </td>
+    </tr>
+</table>
+<table width="800" border="0" align="center" cellpadding="0" cellspacing="1"  class="stripe" bgcolor="#D9E8E8" style="border:1px solid #AADBD8;">
+	<tr bgcolor="#F2F2F2">
+		<td align="center"><font color="#003399">姓名</font></td>
+		<td align="center"><font color="#003399">文件名</font></td>
+		<td align="center"><font color="#003399">文件类型</font></td>
+		<td align="center"><font color="#003399">上传时间</font></td>
+	</tr>
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+
+print <<<EOT
+
+
+-->
+        <tr bgcolor="#FFFFFF" class="row">
+
+          <td height="20" align="center"><a href="index.php?m=hr&do=ziliao_edit&id=$v[hr_id]">$v[ename]</a></td>
+          <td align="center"><a href="upload/hr/$v[hr_id]/$v[fname]" target="_blank">$v[filename]</a></td>
+          <td align="center">$v[filetype]</td>
+          <td align="center">$v[filetime]</td>
+
+        </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+<div style="float:left;" id="tb1">$result[pages]</div>
+<div class="blank"></div>
+
+<!--
+EOT;
+?>
+-->

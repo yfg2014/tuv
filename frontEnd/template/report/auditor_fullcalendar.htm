@@ -1,0 +1,96 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+		var hr_id = $('#hr_id').text();
+		var date = $('#date').text();
+		$.post('./index.php?m=report&do=ajax',{'kind':'auditor','hr_id': hr_id,'date':date},function(r){
+				$('#xm_item').val(r);
+		});
+})
+//]]>
+</script>
+<div class="blank"></div>
+<table width="$width" align="center" height="500" cellpadding="0" cellspacing="1">
+  <tr height="10">
+  	<td colspan="5">
+  		<div style="visibility:hidden;" id="hr_id">$hr_id</div>
+		<span id="username">aaa</span>
+	</td>
+    <td colspan="2" align="right">
+    	<a href="index.php?m=report&do=auditor_fullcalendar&hr_id=$hr_id&ym=$prevyear"><font color="blue"><<</font></a>
+		&nbsp;<a href="index.php?m=report&do=auditor_fullcalendar&hr_id=$hr_id&ym=$prevmonth"><font color="blue"><</font></a>
+		&nbsp;&nbsp;<span id="date">$year 年 $month 月 </span>
+		&nbsp;&nbsp;<a href="index.php?m=report&do=auditor_fullcalendar&hr_id=$hr_id&ym=$nextmonth"><font color="blue">></font></a>
+		&nbsp;<a href="index.php?m=report&do=auditor_fullcalendar&hr_id=$hr_id&ym=$nextyear"><font color="blue">>></font></a>&nbsp;
+		</td>
+  </tr>
+  <tr height="10">
+  	<td align="center" colspan="7">&nbsp;</td>
+  </tr>
+  <tr style="font-size: 9pt;color: #000000;text-align: center;background-color:#e8f2fe; height:20px;">
+    <td width="100" style="font-size: 9pt;color: #FF0000;text-align: center;">日</td>
+    <td width="100">一</td>
+    <td width="100">二</td>
+    <td width="100">三</td>
+    <td width="100">四</td>
+    <td width="100">五</td>
+    <td width="100" style="font-size: 9pt;color: #FF0000;text-align: center;">六</td>
+  </tr>
+<!--
+EOT;
+$nowtime = mktime(0,0,0,$month,1,$year);//当月1号转为秒
+$daysofmonth = date(t,$nowtime);//当月天数
+$weekofbeginday = date(w,$nowtime);//当月第一天是星期几
+$weekofendday = date(w,mktime(0,0,0,$month+1,0,$year));//当月最后一天是星期几
+$daysofprevmonth = date(t,mktime(0,0,0,$month,0,$year));//上个月天数
+    $count = 1;//计数
+    //列出上月后几天
+    for($i = 1 ; $i <= $weekofbeginday ; $i++)
+        {
+			$end_day = $daysofprevmonth-$weekofbeginday+$i;
+echo <<<EOT
+-->
+           <td valign='top' style='font-size: 9pt;font-style: italic;color: #999999;text-align: center;'>$end_day</td>
+<!--
+EOT;
+            $count++;
+        }
+    //当月全部
+    for($i = 1 ; $i <= $daysofmonth ; $i++)
+        {
+            $css = ($count%7==0 || $count%7==1)?"font-size: 9pt;color: #FF0000;text-align: center;":" font-size: 9pt;color: #000000;text-align: center;";
+            if($i == $today) $css .= "background-color: #FFD9D9;font-weight: bold;";
+echo <<<EOT
+-->
+            <td valign='top' style='$css'><div style='background-color: #DDDDDD;text-align: center;'>$i</div></td>
+<!--
+EOT;
+            if($count%7==0){
+echo <<<EOT
+-->
+  </tr><tr>
+<!--
+EOT;
+			} 
+            $count++;
+        }
+    //下月前几天
+    for ($i = 1;$i <= 6-$weekofendday;$i++)
+        {
+echo <<<EOT
+-->
+           <td valign='top' style='font-size: 9pt;font-style: italic;color: #999999;text-align: center;'>$i</td>
+<!--
+EOT;
+        }
+echo <<<EOT
+-->
+</table>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,59 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<table width="100%" class="c_table">
+<tr bgcolor="#F2F2F2">
+<td align="center" height="22" width="25"><font color="#003399">选择</font></td>
+<td align="center"><font color=#003399>编码</font></td>
+<td align="center"><font color=#003399>产品名称</font></td>
+</tr>
+<!--
+EOT;
+if($v[product]=='pall')
+{
+foreach($setup_key_part as $k => $v){
+echo <<<EOT
+-->
+<tr bgcolor="#FFFFFF">
+<td align="center">
+	<input type="checkbox" name="code" class="line" value="$v[code]" />
+</td>
+<td align="center">$v[code]</td>
+<td>$v[msg]</td>
+</tr>
+<!--
+EOT;
+}
+}else
+{
+foreach($setup_key_part as $k => $v){
+    $v[product] = explode(",",$v[product]);
+	if(in_array("$product",$v[product])){
+echo <<<EOT
+-->
+<tr bgcolor="#FFFFFF">
+<td align="center">
+	<input type="checkbox" name="code" class="line" value="$v[code]" />
+</td>
+<td align="center">$v[code]</td>
+<td>$v[msg]</td>
+</tr>
+<!--
+EOT;
+    }
+  }
+}
+echo <<<EOT
+-->
+
+<tr bgcolor="#FFFFFF">
+	<td colspan="3">
+		&nbsp;<input type="button" id="btn" name="button" value="确定" />
+</td>
+</tr>
+</table>
+<!--
+EOT;
+?>
+ -->

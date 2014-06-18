@@ -1,0 +1,161 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript" src="frontEnd/js/highcharts.js"></script>
+<script type="text/javascript" src="frontEnd/js/modules/exporting.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+var chart;
+var option = {
+		chart: {
+			renderTo: 'container',
+			defaultSeriesType: 'column'
+		},
+		title: {
+			text: '合同项目数量按月比较'
+		},
+		subtitle: {
+			text: '全部办事处（联络处）所有体系全部认证类型合同项目数据汇总'
+		},
+		xAxis: {
+			categories: [
+				'一月',
+				'二月',
+				'三月',
+				'四月',
+				'五月',
+				'六月',
+				'七月',
+				'八月',
+				'九月',
+				'十月',
+				'十一月',
+				'十二月'
+			]
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: '合同项目数量（个）'
+			}
+		},
+		legend: {
+			layout: 'vertical',
+			backgroundColor: '#FFFFFF',
+			align: 'left',
+			verticalAlign: 'top',
+			x: 100,
+			y: 0
+		},
+		tooltip: {
+			formatter: function() {
+				return ''+
+					this.x +': '+ this.y +' 个';
+			}
+		},
+		plotOptions: {
+			column: {
+				pointPadding: 0.2,
+				borderWidth: 0,
+				pointWidth: 15
+			}
+		},
+			series: []
+
+
+	},getChart = function(url,callback){
+		$.getJSON(url,function(data){
+				option.series = new Array(data[0],data[1]);
+				callback(data[2],data[3],data[4]);
+				chart = new Highcharts.Chart(option);
+		});
+
+	}
+$(document).ready(function() {
+	getChart('./index.php?m=report&do=htxm_statistics',$.noop);
+	$(':button[name="search"]').click(function(){
+		getChart('./index.php?m=report&do=htxm_statistics&htfrom=' + $('[name="htfrom"]').val() + '&iso=' + $('[name="iso"]').val() + '&audit_type=' + $('[name="audit_type"]').val(),function(r,r1,r2){option.subtitle.text = r + r1 + r2 + '合同项目数据汇总';});
+	});
+
+	$('#chaxun').offset({left:($(window).width()-800)/2,top:10});
+});
+//]]>
+</script>
+<div class="blank"></div>
+<div style="width:800px;height:40px;text-align:center;" id="chaxun">
+<table bgcolor="#226886" border="0" cellspacing="1" cellpadding="0" align="center" style="text-align:center;width:100%;height:100%;">
+<tr bgcolor="#EAF4EA">
+<td>
+<table align="center" border="0" cellspacing="0" cellpadding="0" style="text-align:left;width:90%;">
+<tr>
+<td width="80">
+合同来源：
+</td>
+<td width="110">
+<select name="htfrom">
+<option value="">全部</option>
+<!--
+EOT;
+foreach($setup_htfrom as $v){
+echo <<<EOT
+-->
+	<option value="$v[code]">$v[msg]</option>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</select>
+</td>
+<td width="40">体系：</td>
+<td width="90">
+<select name="iso">
+<option value="">全部体系</option>
+<!--
+EOT;
+foreach($setup_audit_iso as $v){
+echo <<<EOT
+-->
+	<option value="$v[code]">$v[msg]</option>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</select>
+</td>
+<td width="70">认证类型：</td>
+<td width="90">
+<select name="audit_type">
+<option value="">全部类型</option>
+<!--
+EOT;
+foreach($setup_audit_type as $v){
+echo <<<EOT
+-->
+	<option value="$v[code]">$v[msg]</option>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</select>
+</td>
+<td width="50">
+<input type="button" name="search" value="搜索" />
+</td>
+<td width="190">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="blank"></div>
+<div id="container" style="width:800px; height:500px; margin:0 auto"></div>
+<!--
+EOT;
+?>
+-->

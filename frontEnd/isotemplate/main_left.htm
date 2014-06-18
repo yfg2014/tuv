@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<link rel="stylesheet" href="frontEnd/css/scss.css" />
+<link rel="stylesheet" href="frontEnd/css/jquery.treeview.css" />
+<link rel="stylesheet" href="frontEnd/css/screen.css" />
+<script src="frontEnd/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="frontEnd/js/jquery.cookie.js"></script>
+<script src="frontEnd/js/jquery.treeview.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#browser").treeview();
+})
+</script>
+</head>
+<!--
+<?php
+print <<<EOT
+-->
+
+<body bgColor="#ffffff" leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
+<table width="100%" height="100%"  border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td valign="top">
+			<table width="100%" height="35" border="1" cellspacing="1" bordercolor="#111111"  bordercolorlight="#BFD9FF" bordercolordark="#BFD9FF" bgcolor="#D9E8FF" id="AutoNumber1" style="border-collapse: collapse">
+				<tr>
+					<td width="18" align="center"><img src="frontEnd/images/dot3.gif" width="7" height="16" /></td>
+					<td  class="font1">您好：{$_SESSION['username']}</td>
+				</tr>
+			</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="PADDING-LEFT: 6px; PADDING-top: 6px;">
+	<ul id="browser" class="filetree">
+		<li style="background:url(frontEnd/images/fly.gif) 0 0 no-repeat;"><span><a href="main_right.php" target="main">认证中心</a></span></li>
+		<li><span class="file"><a href="index.php?m=plugins&do=progress" target="main">进度查询</a></span></li>
+<!--
+EOT;
+unset($menudb['htfrom']);
+unset($menudb['other']);
+foreach($menudb as $t=>$m){
+echo <<<EOT
+-->
+		<li class="closed <?php echo $A00;?>"><span class="folder">$m</span>
+			<ul>
+<!--
+EOT;
+foreach($left_menu[$t] as $v){
+echo <<<EOT
+-->
+				<li ><span class="file"><a href="$v[itemurl]" target="main">$v[title]</a></span></li>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+			</ul>
+		</li>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+
+		<li><span class="file"><a href="index.php?m=setup&do=index" target="main">系统配置</a></span></li>
+		<li><span class="file"><a href="index.php?m=hr&do=sys_pasd_edit" target="main">修改密码</a></span></li>
+	<!--	<li><span class="file"><a href="index.php?m=hr&do=sys_mail_edit" target="main">设置邮箱</a></span></li> -->
+		<li><span class="file"><a href="index.php?m=plugins&do=leastprice" target="main">限价计算器</a></span></li>
+		<li><span class="file"><a href="./search/search.htm" target="main">外网证书查询</a></span></li>
+
+	</ul>
+
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,83 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('#button').click(function(){
+		if ($('[name="people"]').val() == ''){alert('1：参加培训成员不能为空！');return;}
+		$.post('./dlg/in_auditor_control.php',{name:$('[name="people"]').val()},function(r){
+			var s = r.split('|');
+			if (s[0] == '1'){
+				alert(s[1]);
+			}else{
+				$('#eid').val(s[1]);
+				if(!Validator.Validate(document.forms[0],2))return;
+				document.forms[0].submit();
+			}
+		});		
+	});
+})
+//]]>
+</script>
+<div class="blank"></div>
+<table width="$width" align="center">
+  <tr>
+    <th align="left">$p_url</th>
+  </tr>
+  <tr>
+    <th align="left">人员培训信息发布</th>
+  </tr>
+</table>
+<table class="e_table" width="$width">
+<form name="add_qualification" method="post" action="index.php?m=hr&do=hr_training_save">
+<input type="hidden" name="id" value="{$id}" />
+<input type="hidden" name="eid" id="eid" value="" />
+<tr>
+  <td align="right">培训标题：</td>
+  <td>
+  <input type="text" name="title" value="{$result[title]}" style="width:405px" datatype="Require" msg="培训标题不能为空！" /> <font color="#FF0000">*</font>
+  </td>
+</tr>
+<tr>
+  <td align="right">培训老师：</td>
+  <td>  
+	<input type="text" name="teachertraining" value="{$result[teachertraining]}" style="width:120px" datatype="Require" msg="培训老师不能为空！"/> <font color="#FF0000">*</font>
+ </td>
+  </tr>
+<tr>
+  <td align="right">培训时间：</td>
+  <td><input type="text" name="trainingdate" value="{$result[trainingdate]}" style="width:120px" datatype="Date" msg="培训时间必须为1977-01-01格式！" onclick="showCalendar(this, 'y-mm-dd');"/> <font color="#FF0000">*</font></td>
+</tr>
+<tr>
+  <td align="right">参加培训成员：</td>
+  <td>
+  	<input type="text" name="people" value="{$result[people]}" style="width:405px;" datatype="Require" msg="参加培训成员不能为空！"> <font color="#FF0000">*</font>
+  </td>
+</tr>
+<tr>
+  <td align="right">培训内容：</td>
+  <td><textarea name="content" style="width:405px;height:80px;" datatype="Require" msg="培训内容不能为空！">$result[content]</textarea> <font color="#FF0000">*</font></td>
+  </tr>
+<tr>
+  <td align="right">备注：</td>
+  <td>
+  	<textarea name="other" style="width:405px;height:80px;">$result[other]</textarea>
+  </td>
+  </tr>
+<tr>
+  <td colspan="2" align="center"><input type="button" name="button1" id="button" value=" 保 存 "/></td>
+  </tr>
+</form>
+</table>
+<table width="$width" align="center">
+  <tr>
+    <td align="left"><font color="#C0C0C0">说明：参加培训成员的姓名输入两个以上时，姓名之间请用汉字分号(；)分隔开</font></td>
+  </tr>
+</table>
+
+<!--
+EOT;
+?>
+-->

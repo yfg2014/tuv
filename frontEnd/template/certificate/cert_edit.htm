@@ -1,0 +1,462 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css" />
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('.jz').click(function(){
+		var o = $(this);
+		$.post('./dlg/in_old_certificate.php',{zsid:o.prev().val()},function(r){
+			if(r == '1'){
+				o.parents('tr').find('.td').text('旧证');
+				o.attr('disabled','disabled');
+				o.parent().parent().find(".cert_ed").hide();
+				o.parent().parent().find(".cert_cg").hide();
+				alert('操作成功');
+			}else{
+				alert('操作失败或权限不足');
+			}
+		});
+
+	})
+	$('[name="fatherzuzhi_id"]').blur(function(){
+		if ($(this).val() != '')
+		{
+			$.post('./dlg/in_company_certificate.php',{zuzhi_id : $(this).val()},function(r){
+				var obj = $.parseJSON(r),s,d1;
+				s = obj.split('@');d1 = s[2].split('|');$('[name="eiregistername"]').val(s[0]);$('[name="eiregistername_e"]').val(s[1]);
+				$('[name="zs_address"]').val(d1[0]);$('[name="zs_address_e"]').val(d1[1]);$('[name="zs_postalcode"]').val(d1[2]);
+			})
+		}
+	})
+	$('[name="certNo"]').blur(function(){
+		if ($(this).val() != '')
+		{
+			$.post('./dlg/in_certNo_certificate.php',{certNo : $(this).val(),zsid: "$zsid"},function(r){
+				var obj = $.parseJSON(r);
+				if(obj == '1')
+				{
+					alert('证书编号重复');
+					$('[name="certNo"]').select();
+				}
+			})
+		}
+	})
+	$('.usual').idTabs({event : 'mouseover'});
+})
+function del(obj){
+	var del_url = $(obj).parents("a").attr("title");if(confirm("你确定要删除证书吗？")){location.href = del_url;}
+}
+function get_certEnd(){
+	var certStart = $('#certStart').val();
+	var kind = $('#kind').val();
+	if(certStart!=''){
+		$.post('./index.php?m=certificate&do=ajax',{'kind':kind,'certStart': certStart},function(r){
+			$('#certEnd').val(r);
+		});
+	}
+}
+function get_firstDate(){
+   $('#firstDate').val($('#certStart').val());
+}
+function get_zsprintDate(){
+   $('#zsprintdate').val($('#certStart').val());
+}
+function show_back(obj)
+{
+	$('#fww').text($(obj).parents('td').find('.show_block').text());
+	$('#login_div').show();
+}
+function closediv(){
+	$('#login_div').hide();
+}
+function get_zjg(){
+	$('#zjg_name').val('恩可埃认证机构');
+}
+ function save()
+{
+	var fatherzuzhi_id=$('#fatherzuzhi_id').val(),f=0;
+	var zuzhi_id='$rows[zuzhi_id]';
+	if(($('#zs_huandate').val() == '0000-00-00' || $('#zs_huandate').val() == '') && $('#renewal_reason').val() == '' && $('#zjg_name').val() == ''){
+		f = 0;
+	}else if(($('#zs_huandate').val() != '0000-00-00' && $('#zs_huandate').val() != '') && $('#renewal_reason').val() != '' && $('#zjg_name').val() != ''){
+		f = 0;
+	}else{
+		f = 1;
+	}
+	if($("#firstDate").val() > $("#certStart").val()){
+		alert("初评获证日不能大于注册日期");
+		return false;
+	}else if(f == 1){
+		alert("换证原因、换证时间、原颁证机构不能为空");
+		return false;
+	}else if(fatherzuzhi_id!=zuzhi_id && $('#main_certNo').val()==''){
+		alert("主证书编号不能为空");
+		return false;
+	}else{
+		//调用表单验证插件
+		if (!Validator.Validate(document.forms[0], 2)) {
+			return;
+		}
+		document.forms[0].submit();
+	}
+}
+//]]>
+</script>
+<div class="blank"></div>
+{$Information->info}
+<div class="blank"></div>
+
+<table width="$width" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+<!--
+EOT;
+if($rows[kind] == '1'){
+echo <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+        <td width="100" height="25" align="right">认证领域：</td>
+        <td width="300" >&nbsp;$rows[iso]</td>
+        <td width="100"  align="right">认证标准：</td>
+        <td width="100" >&nbsp;$rows[audit_ver]</td>
+    </tr>
+<!--
+EOT;
+}elseif($rows[kind] == '2'){
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+        <td width="20%" height="25" align="right">认证产品：</td>
+        <td colspan="3">&nbsp;$rows[product]</td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td width="20%" height="25" align="right">产品标准：</td>
+        <td colspan="3">&nbsp;$htxm[product_ver]</td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td width="20%" height="25" align="right">产品关键件：</td>
+        <td colspan="3">&nbsp;$htxm[key_part]</td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td width="20%" height="25" align="right">检测机构：</td>
+        <td colspan="3">&nbsp;$htxm[product_test]</td>
+    </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+        <td width="20%" height="25" align="right">认可标志：</td>
+        <td width="30%">&nbsp;$htxm[mark]</td>
+        <td width="20%" height="25" align="right">体系人数：</td>
+        <td width="30%">&nbsp;$htxm[iso_people_num]</td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td width="20%" height="25" align="right">专业代码：</td>
+        <td width="30%">&nbsp;$htxm[audit_code]</td>
+        <td width="20%" height="25" align="right">审核类型：</td>
+        <td width="30%">&nbsp;$htxm[audit_type]</td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td width="20%" height="25" align="right">证书范围：</td>
+        <td colspan="3"><div style="width:95%; word-wrap: break-word; word-break: break-all;">$htxm[renzhengfanwei]</div></td>
+    </tr>
+</table>
+<div class="blank"></div>
+<div id="login_div" style="position:absolute;width:300px;background-color:#c0c0c0;
+margin-left:440px;text-align:left;border:solid #D0D0D0 1px;color:blue;
+font-size:24px;line-height:19px;display:none;border-color:red;"><div onclick="closediv();" style="cursor:pointer;text-align:right;color:red;">关闭</div><div id="fww"></div></div>
+<table width="$width" class="e_table">
+    <tr bgcolor="#FFFFFF">
+    	<td height="24" colspan="12">证书履历信息&gt;&gt;</td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+    	<td align="center">标记</td>
+        <td align="center">编辑</td>
+        <td align="center">变更</td>
+        <td align="center">组织名称</td>
+        <td height="20" align="center">证书编号</td>
+        <td align="center">认可标志</td>
+        <td align="center">发证日期</td>
+        <td align="center">证书到期</td>
+		<td align="center">换证日期</td>
+		<td align="center">证书范围</td>
+        <td align="center">状态</td>
+        <td align="center" width="30">删除</td>
+    </tr>
+<!--
+EOT;
+$result['data'] == '' && $result['data'] = array();
+foreach((array)$result[data] as $k=>$v) {
+	$kw = '';
+	if ($v[coverFields] != ''){$kw=$k.w;$coverFields = "<font onmouseover=\"show_block('$kw')\" onmouseout=\"hide_block('$kw')\"><img src=\"frontEnd/images/other.png\" onclick=\"show_back(this);\" /></font>";}else{$coverFields = '';}
+	if ($v[online] == '99'){$disabled = 'disabled';$cert_ed='style="display:none;"';$cert_cg='style="display:none;"';}else{$disabled = '';$cert_ed='';$cert_cg='';}
+	$v[online] = Cache::cache_Certification_online($v[online]);
+	$v[mark] = Cache::cache_mark($v[mark]);
+	$firstDate = $v[firstDate];
+	$v[renewaldate] == '0000-00-00' && $v[renewaldate] = '';
+echo <<<EOT
+-->
+    <tr bgcolor="#F2F2F2">
+    	<td width="30" align="center">
+    	<input type="hidden" name="id" class="eid" value="$v[id]" />
+    	<input type="button" name="button" class="jz" value="旧证" $disabled />
+    	</td>
+        <td width="30" height="20" align="center">
+<!--
+EOT;
+if($v[pdid] == $pdid){
+echo <<<EOT
+-->
+        <a class="cert_ed" $cert_ed href="./index.php?m=certificate&do=cert_edit&zuzhi_id=$zuzhi_id&pdid=$v[pdid]&zsid=$v[id]&">
+        <img src="./frontEnd/images/button_edit.png" border="0">
+        </a>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+        </td>
+        <td width="30" align="center"><a class="cert_cg" $cert_cg href="./index.php?m=change&do=zs_change&zsid=$v[id]&htxm_id=$v[htxm_id]&ht_id=$v[ht_id]&zuzhi_id=$v[zuzhi_id]"><img src="./frontEnd/images/button_edit.png" border="0"></a></td>
+        <td width="200">&nbsp;$v[eiregistername]</td>
+        <td align="center">$v[certNo]</td>
+        <td align="center">$v[mark]</td>
+        <td align="center">$v[certStart]</td>
+        <td align="center">$v[certEnd]</td>
+		<td align="center">$v[renewaldate]</td>
+		<td align="center"><div class="{$kw} show_block" style="text-align:left;">代码：$v[audit_code] <br>范围：$v[coverFields]</div>$coverFields</td>
+		<td width="30" align="center" class="td">$v[online]</td>
+        <td width="30" align="center"><a title="index.php?m=certificate&do=cert_del&zsid=$v[id]&zuzhi_id=$v[zuzhi_id]" href="#"><img src="./frontEnd/images/button_empty.png" border="0" onclick="del(this);" /></a></td>
+    </tr>
+<!--
+EOT;
+}
+$zs[firstDate] == '0000-00-00' && $zs[firstDate] = $firstDate;
+echo <<<EOT
+-->
+</table>
+<div class="blank"></div>
+<table width="$width" class="c_table">
+  <tr>
+    <td width="15%" align="right">打印WORD文档：</td>
+    <td>
+    	&nbsp;<a href="./index.php?m=doc&do=CMD-ZS-ISO&zsid=$zsid&op=1">[质量管理体系证书(中)]</a>
+    	&nbsp;<a href="./index.php?m=doc&do=CMD-ZS-ISO&zsid=$zsid&op=2">[质量管理体系证书(英)]</a>
+		&nbsp;<a href="./index.php?m=doc&do=CMD-ZS-PRODUCT&zsid=$zsid&op=1">[产品认证证书(中)]</a>
+    	&nbsp;<a href="./index.php?m=doc&do=CMD-ZS-PRODUCT&zsid=$zsid&op=2">[产品认证证书(英)]</a><br />
+    	&nbsp;<a href="./index.php?m=doc&do=CMD-ZS-ISO&zsid=$zsid&op=3">[（医械）质量管理体系证书(中)]</a>
+    	&nbsp;<a href="./index.php?m=doc&do=CMD-ZS-ISO&zsid=$zsid&op=4">[（医械）质量管理体系证书(英)]</a>
+		&nbsp;<a href="./index.php?m=doc&do=CMD-SHJL-30&ht_id=$zs[ht_id]&zuzhi_id=$zuzhi_id">[技委会通过企业证书确认批准表]</a>
+	</td>
+  </tr>
+</table>
+<form name="winput" method="post" action="index.php?m=certificate&do=cert_save&">
+<table width="$width" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF" style="margin-top:10px;">
+    <tr bgcolor="#F2F2F2">
+    	<td width="600" height="22" align="center">组织名称</td>
+    	<td align="center">认可标志</td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+		<td height="22" align="center">
+        	<select name="fatherzuzhi_id" id="fatherzuzhi_id" style="width:95%;">
+<!--
+EOT;
+foreach($arr as $v) {
+	if($v[id] == $zs[zuzhi_id]){$selected = 'selected';}else{$selected = '';}
+echo <<<EOT
+-->
+				<option value="$v[id]" $selected>$v[eiregistername]</option>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+			</select>
+		</td>
+		<td align="center">
+			<select name="mark" style="width:70%;" dataType="Require" msg="认可标志不能为空！">
+<!--
+EOT;
+foreach ($setup_mark as $v) {
+	foreach($mark as $vv){
+		if($vv == $v[code]){
+			if($zs[mark] == $v[code]){$selected = 'selected';}else{$selected = '';}
+echo <<<EOT
+-->
+        		<option value="$v[code]" $selected>$v[msg]</option>
+<!--
+EOT;
+		}
+	}
+}
+echo <<<EOT
+-->
+			</select>
+			<font color="#FF0000">*</font>
+		</td>
+	</tr>
+</table>
+
+<table width="$width" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF" style="margin-top:10px;">
+    <tr bgcolor="#FFFFFF">
+        <td height="24" colspan="3">当前状态>><font color=blue>$zsstr</td>
+        <td>
+            <span style="cursor:pointer;color:red;" onclick="get_zsprintDate();">(默认)</span>上报日期：
+            <input name="zsprintdate" value="$zs[zsprintdate]" id="zsprintdate" type="text" style="width:120px;" onfocus="showCalendar(this, 'y-mm-dd');" dataType="Date" msg="输入正确登记日期 如：1980-01-01"/><font color="#FF0000">*
+        </td>
+    </tr>
+        <tr bgcolor="#F2F2F2">
+        <td width="15%" height="25" align="right">证书编号：</td>
+        <td width="35%"><input name="certNo" style="width:160px;" value="$zs[certNo]" dataType="Require" msg="证书编号不能为空！" />
+        <font color="#FF0000">*</font></td>
+        <td width="15%" align="right">换证日期：</td>
+        <td width="35%"><input name="renewaldate" value="$zs[renewaldate]" id="zs_huandate" type="text" style="width:160px;" onfocus="showCalendar(this, 'y-mm-dd');"/> </td>
+    </tr>
+	</tr>
+        <tr bgcolor="#F2F2F2">
+        <td width="15%" height="25" align="right">主证书编号：</td>
+        <td width="35%"><input name="main_certNo" id="main_certNo" style="width:160px;" value="$zs[main_certNo]" /></td>
+        <td width="15%" align="right">换证原因：</td>
+        <td width="35%">
+        	<select name="renewal_reason" id="renewal_reason" style="width:160px;">
+				<option value=""></option>
+<!--
+EOT;
+foreach ($setup_renewal_reason as $k=>$v) {
+	if($zs[renewal_reason] == $k){$selected = 'selected';}else{$selected = '';}
+echo <<<EOT
+-->
+        		<option value="$k" $selected>$v</option>
+<!--
+EOT;
+}
+
+if($zs[zd_ren] == ''){ $zs[certStart] = ''; $zs[certEnd] = ''; }
+echo <<<EOT
+-->
+			</select>
+        </td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="25" align="right">注册日期：</td>
+        <td><input id="certStart" name="certStart" value="$zs[certStart]" type="text" style="width:160px;" onfocus="showCalendar(this, 'y-mm-dd');" dataType="Date" msg="请输入正确注册日期时间 如:1980-01-01" />
+        <font color="#FF0000">*</font></td>
+        <td align="right">原注册号：</td>
+        <td><input name="certNo_y" style="width:160px;" value="$zs[certNo_y]" /> </td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="25" align="right"><span style="cursor:pointer;color:red;" onclick="get_certEnd();">(默认)</span>注册到期：</td>
+		<input type="hidden" id="kind" name="kind" value="$rows[kind]" >
+        <td><input id="certEnd" name="certEnd" value="$zs[certEnd]" type="text" style="width:160px;" onfocus="showCalendar(this, 'y-mm-dd');"  dataType="Date" msg="请输入正确注册到期时间 如:1980-01-01" />
+        <font color="#FF0000">*</font></td>
+        <td height="25" align="right">
+		<span style="cursor:pointer;color:red;" onclick="get_firstDate();">(默认)</span>
+		初评获证日：</td>
+        <td><input id="firstDate" name="firstDate" value="$zs[firstDate]" type="text" style="width:160px;" onfocus="showCalendar(this, 'y-mm-dd'); " dataType="Date" msg="请输入正确初评获证日期时间 如:1980-01-01"/>
+        <font color="#FF0000">*</font></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+        <td height="25" align="right"><span style="cursor:pointer;color:red;" onclick="get_zjg();">(默认)</span>原颁证机构：</td>
+        <td><input id="zjg_name" name="zjg_name" value="$zs[zjg_name]" type="text" style="width:160px;" /></td>
+        <td align="right"></td>
+        <td> </td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+    	<td height="25" align="right">组织名称：</td>
+        <td colspan="3"><input type="text" name="eiregistername" value="$zs[eiregistername]"  readonly="readonly" style="width:540px;"/></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+    	<td height="25" align="right">组织名称(英文)：</td>
+        <td colspan="3"><input type="text" name="eiregistername_e" value="$zs[eiregistername_e]"  style="width:540px;"/></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+      <td height="25" align="right">
+	  证书地址：</td>
+      <td colspan="3" ><input type="text" id="zs_address" name="zs_address" value="$zs[zs_address]"  style="width:400px;" dataType="Require" msg="证书地址不能为空！"/> <font color="#FF0000">*</font>
+	  证书地址邮编：
+	  <input type="text" id="zs_postalcode" name="zs_postalcode" value="$zs[zs_postalcode]"  style="width:60px; " dataType="Require" msg="证书地址邮编不能为空！"/> <font color="#FF0000">*</font></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+      <td height="25" align="right">证书地址(英文)：</td>
+      <td colspan="3" ><input type="text" id="zs_address_e" name="zs_address_e" value="$zs[zs_address_e]"  style="width:540px;"/></td>
+    </tr>
+<!--
+EOT;
+if($zs[kind] == '2'){
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+      <td height="25" align="right">
+	  制造商：</td>
+      <td colspan="3" ><input type="text" id="manu_company" name="manu_company" value="$zs[manu_company]"  style="width:400px;" dataType="Require" msg="制造商不能为空！"/></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+      <td height="25" align="right">
+	  制造商(英文)：</td>
+      <td colspan="3" ><input type="text" id="manu_company_e" name="manu_company_e" value="$zs[manu_company_e]"  style="width:400px;" /></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+      <td height="25" align="right">
+	  制造地址：</td>
+      <td colspan="3" ><input type="text" id="manu_address" name="manu_address" value="$zs[manu_address]"  style="width:400px;" dataType="Require" msg="制造地址不能为空！"/></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+      <td height="25" align="right">制造地址(英文)：</td>
+      <td colspan="3" ><input type="text" id="manu_address_e" name="manu_address_e" value="$zs[manu_address_e]"  style="width:540px;"/></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+      <td height="25" align="right">
+	  生产厂：</td>
+      <td colspan="3" ><input type="text" id="pro_company" name="pro_company" value="$zs[pro_company]"  style="width:400px;" dataType="Require" msg="生产厂不能为空！"/></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+      <td height="25" align="right">
+	  生产厂(英文)：</td>
+      <td colspan="3" ><input type="text" id="pro_company_e" name="pro_company_e" value="$zs[pro_company_e]"  style="width:400px;" /></td>
+    </tr>
+	<tr bgcolor="#FFFFFF">
+      <td height="25" align="right">
+	  生产地址：</td>
+      <td colspan="3" ><input type="text" id="pro_address" name="pro_address" value="$zs[pro_address]"  style="width:400px;" dataType="Require" msg="生产地址不能为空！"/></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+      <td height="25" align="right">生产地址(英文)：</td>
+      <td colspan="3" ><input type="text" id="pro_address_e" name="pro_address_e" value="$zs[pro_address_e]"  style="width:540px;"/></td>
+    </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+        <td height="25" align="right">证书范围(中文):</td>
+        <td colspan="3" ><div style="width:95%; word-wrap: break-word; word-break: break-all;"><textarea name="coverFields" style="width:540px;height:100px;" dataType="Require" msg="证书范围(中文)不能为空！">$zs[coverFields]</textarea><font color="#FF0000">*</font></div>
+        </td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="25" align="right">证书范围(英文):</td>
+        <td colspan="3"><textarea name="coverFieldsE" style="width:540px;height:100px;">$zs[coverFieldsE]</textarea></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td height="25" align="right">备注：</td>
+        <td colspan="3" ><textarea name="other" style="width:540px;height:100px;">$zs[other]</textarea></td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td height="24" colspan="4" align="center">
+        <input type="hidden" name="online" value="$zs[online]" />
+        <input type="hidden" name="op" value="$op" />
+        <input type="hidden" name="pdid" value="$pdid" />
+        <input type="hidden" name="zsid" value="$gzsid" />
+        <input type="button" value=" 保存 " name="button" onclick="save();" />
+        </td>
+    </tr>
+</table>
+</form>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

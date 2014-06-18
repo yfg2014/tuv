@@ -1,0 +1,155 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('[name="button"]').click(function(){
+		var t='',h='',o = $('.stripe').find('input:checked');
+		if (o.length > 0){
+			if ($('[name="paydate"]').val() == ''){
+				alert('请您输入发放日期');
+				return false;
+			}
+		}else{
+			alert('您没有选择要审批的人员！');
+			return false;
+		}
+		o.each(function(i){
+			var p = $(this).parents('tr');
+			if (p.find('.lab').val() == '0'){
+				h = 'a';
+			}
+			i = i + 1;
+			t = t + i + '：' + p.find('.empName').html() + '\\n';
+		});
+		if (h == 'a'){
+			alert('劳务费未登记，不能进行审批！');
+			return false;
+		}
+		if (confirm('您是否对审核人员\\n' + t + '进行劳务费' + $(this).val())){
+			$('[name="winput"]').submit();
+		}
+	});
+})
+function selectall(check) {
+	if($('.controlAll').attr('checked')){
+		$(':checkbox').each(function(){ $(this).attr('checked',check);});
+	}else{
+		$(':checkbox').each(function(){ $(this).attr('checked','');});
+	}
+}
+//]]>
+</script>
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="./index.php?m=audit&do=labor_costs_list&online=$online">
+    <tr bgcolor="#EAF4EA">
+        <td>
+		$SearchHtml
+         <br><input type="submit" value="搜索" name="submit" />
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+  	<tr>
+     	<td>
+     		劳务费{$setup_labor_costs_online[$online]}&gt;&gt; 合计： $result[count]
+     		&nbsp;&nbsp;<a href="./index.php?m=audit&do=labor_costs_list&online=0"><font color="#FF0000">{$setup_labor_costs_online[0]}</font></a>
+            &nbsp;&nbsp;<a href="./index.php?m=audit&do=labor_costs_list&online=1"><font color="#FF6600">{$setup_labor_costs_online[1]}</font></a>
+     	</td>
+	</tr>
+</table>
+<table width="$width" class="c_table stripe">
+<form method="post" name="winput" action="./index.php?m=audit&do=labor_costs_approval&op=$op">
+  <tr>
+  	<th height="22" align="center">全选</th>
+    <th height="22" align="center">编辑</th>
+    <th height="22" align="center">劳务费<br/>登记</th>
+    <th align="center">劳务费<br/>状态</th>
+	<th align="center">项目编号</th>
+    <th align="center">姓名</th>
+    <th align="center">组织名称</th>
+	<th align="center">合同来源</th>
+    <th align="center">认证版本</th>
+    <th align="center">产品数</th>
+    <th align="center">审核类型</th>
+    <th align="center">注册资格</th>
+    <th align="center">审核开始日期</th>
+    <th align="center">审核结束日期</th>
+	<th align="center">评定通过日期</th>
+	<th align="center">劳务费<br/>登记日期</th>
+    <th align="center">劳务费<br/>发放日期</th>
+    <th align="center">劳务费<br/>金额</th>
+  </tr>
+<!--
+EOT;
+foreach($result['data'] as $v){
+
+	$v[isoqualification] = str_replace(',','<br/>',$v[isoqualification]);
+	$v[printdate] == '0000-00-00' ? $v[show] = '未登记' : $v[show] = '已登记';
+	$v[printdate] == '0000-00-00' && $v[printdate] = '';
+	$v[paydate] == '0000-00-00' && $v[paydate] = '';
+
+	$audit_ver = explode(",",$v[audit_ver]);
+    $v[audit_ver] = implode(",",array_unique($audit_ver));
+echo <<<EOT
+-->
+  <tr>
+  	<td width="40" align="center"><input name="auditorId[]" type="checkbox" value="$v[id]"></td>
+    <td width="30" align="center"><a href="index.php?m=audit&do=labor_costs_edit&zuzhi_id=$v[zuzhi_id]&taskId=$v[taskId]&auditorId=$v[id]"><img src="./frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+	<td width="50" align="center">$v[show]<input type="hidden" name="laborcosts" class="lab" value="$v[laborcosts]" /></td>
+	<td width="50" align="center">$v[online]</td>
+	<td width="60" align="center">$v[htxmcode]</td>
+	<td align="center" class="empName">$v[empName]</td>
+    <td width="180"><a href="./index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+	<td align="center">$v[htfrom]</td>
+    <td align="center">$v[audit_ver]</td>
+    <td align="center">$v[cp]</td>
+    <td align="center">$v[audit_type]</td>
+    <td align="center">$v[isoqualification]</td>
+    <td align="center">$v[taskBeginDate].$v[taskBeginHalfDate]</td>
+    <td align="center">$v[taskEndDate].$v[taskEndHalfDate]</td>
+	<td align="center">$v[approvaldate]</td>
+    <td align="center">$v[printdate]</td>
+	<td align="center">$v[paydate]</td>
+    <td align="center">$v[laborcosts]</td>
+  </tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+<table width="$width" class="c_table">
+	<tr>
+        <td width="43" align="center" ><input type="checkbox" class="controlAll" onclick="selectall(this)" /></td>
+        <td colspan="14" align="left">
+<!--
+EOT;
+if ($op == '1'){
+echo <<<EOT
+-->
+       	 发放日期：<input type="text" name="paydate" onFocus="showCalendar(this, 'y-mm-dd');"/>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+        <input type="button" value="$button" name="button" />
+        </td>
+    </tr>
+</form>
+</table>
+$result[pages]
+<div class="blank"></div>
+</div>
+<!--
+EOT;
+?>
+-->

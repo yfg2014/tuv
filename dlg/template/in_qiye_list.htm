@@ -1,0 +1,71 @@
+<!--
+EOT；
+<?php
+print <<<EOT
+-->
+
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+
+<table width="$width" class="t_table">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" /></td>
+	</tr>
+</form>
+</table>
+
+
+<div class="blank"></div>
+$result[pages]
+
+<table width="$width">
+	<tr>
+		<td align="left">组织信息查询&gt;&gt;&nbsp;合计：$result[count]</td>
+	</tr>
+</table>
+
+<table width="$width" class="c_table stripe">
+	<tr>
+	  <th align="center">选择</th>
+	  <th align="center">企业编号</th>
+	  <th align="center">企业名称</th>
+	  <th align="center">省份</th>
+	  <th align="center">合同来源</th>
+	  <th align="center">联系人</th>
+	  <th align="center">联系电话</th>
+	  <th align="center">联系传真</th>
+	</tr>
+<!--
+EOT;
+foreach ($result['data'] as $v) {
+print <<<EOT
+-->
+	<tr>
+		<td align="center">
+			<input src="../frontEnd/images/button_edit.gif" type="image" class="line" />
+			<input type="hidden" name="zuzhi_id" class="zuzhi_id" value="$v[id]" />
+			<input type="hidden" name="eiregistername" class="eiregistername" value="$v[eiregistername]" />
+		</td>
+		<td align="center">$v[eientercode]</td>
+		<td width="240">$v[eiregistername]</td>
+		<td align="center" width="40">$v[eiarea]</td>
+		<td align="center">$v[htfrom]</td>
+		<td align="center">$v[eilinkman]</td>
+		<td style="white-space:normal; word-break:break-all;" align="center">$v[eilinkman_mob]</td>
+		<td style="white-space:normal; word-break:break-all;" align="center">$v[eifax]</td>
+	</tr>
+
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+$result[pages]
+</div>
+
+<!--
+EOT;
+?>
+-->

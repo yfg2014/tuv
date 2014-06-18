@@ -1,0 +1,42 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div class="blank"></div>
+<table width="$width" class="c_table">
+    <tr bgcolor="#F2F2F2">
+    	<td height="25" colspan="4" valign="middle"><font color="#0000FF">发布公告>></font></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td width="15%" height="32" align="right"><font color="#0000FF">公告标题：</font></td>
+        <td height="32" colspan="3">&nbsp;$result[title]</td>
+    </tr>
+    <tr bgcolor="#F2F2F2">
+        <td width="15%" align="right"><font color="#0000FF">公告内容：</font></td>
+        <td colspan="3">&nbsp;$result[content]</td>
+    </tr>
+<!--
+EOT;
+if($result[filename] != ''){
+print <<<EOT
+-->
+	<tr bgcolor="#F2F2F2">
+		<td align="right">附件：</td>
+		<td colspan="3">&nbsp;<a href="index.php?m=hr&do=sys_notice_file_down&id=$result[id]"><font color="red">$result[filename]</font></a>&nbsp;&nbsp;&nbsp;<font color="blue">$result[zd_date]</font></td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+    <tr bgcolor="#FFFFFF">
+      <td align="right" height="25"><font color="#0000FF">发 布 人：</font></td>
+      <td height="25">&nbsp;$result[zd_ren]</td>
+      <td align="right" width="90"><font color="#0000FF">发布时间：</font></td>
+      <td>&nbsp;$result[zd_date]</td>
+    </tr>
+</table>
+<!--
+EOT;
+?>
+-->

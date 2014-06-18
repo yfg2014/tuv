@@ -1,0 +1,212 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+function selectall(check) { $(':checkbox').each(function(){ $(this).attr('checked',check);});}
+$(function(){
+  	$('[name="button"]').click(function(){
+  	  	if($('.stripe').find('input').is(':checked')){
+			if ($('[name="sp_date"]').val() == '' || $('[name="sp_date"]').val() == '0000-00-00')
+			{
+				alert("请输入正确审批日期时间 如:1980-01-01" );return;
+			}
+  	  		if(confirm('你是否审批该变更')){ $('[name="form1"]').submit();}}else{alert('请选择要审批的变更');}
+  	 });
+});
+$(function(){
+  	$('[name="button2"]').click(function(){
+  	  	if($('.stripe').find('input').is(':checked')){
+  	  		if(confirm('你是否撤销审批该变更')){ $('[name="form1"]').submit();}}else{alert('请选择要撤销审批的变更');}
+  	 });
+});
+function del(obj){
+	var del_url = $(obj).parents("a").attr("title");
+	if(confirm("你确定要删除吗？")){location.href = del_url;}
+}
+//]]>
+</script>
+<div class="blank"></div>
+<div style="width:$width;margin:auto;">
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="./index.php?m=change&do=zs_change_list&sp_online=$sp_online&" >
+	<tr>
+		<td>$SearchHtml
+		<br>
+		<!--证书变更下载：<a href="./index.php?m=xls&do=zs_change_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" /></a>
+		-->
+		<input type="submit" value="搜索" name="submit" />
+		</td>
+	</tr>
+</form>
+</table>
+<div class="blank"></div>
+$result[pages]
+<table width="$width">
+<form method="post" name="form1" action="./index.php?m=change&do=approval_change&">
+    <tr>
+    	<td>
+    		证书变更查询&gt;&gt; 合计：$result[count] &nbsp; 企业数：$qy_num[c_num]
+			&nbsp;&nbsp;<a href="./index.php?m=change&do=zs_change_list"><font color="#FF6600">未审批</font></a>
+			&nbsp;&nbsp;<a href="./index.php?m=change&do=zs_change_list&sp_online=1"><font color="#FF6600">已审批</font></a>
+		</td>
+    </tr>
+</table>
+<table width="$width" class="c_table stripe" bgcolor="#D9E8E8">
+	<tr bgcolor="#F2F2F2">
+		<th align="center">变更<br>ID</th>
+		<th align="center">状态</th>
+		<th align="center">全选</th>
+		<th align="center">编辑</th>
+		<th align="center">特殊<br>审核</th>
+		<th align="center">项目编号</th>
+		<th align="center">证书编号</th>
+		<th align="center">组织名称</th>
+		<th align="center">合同来源</th>
+		<th align="center">体系标准</th>
+		<th align="center">产品/范围</th>
+		<th align="center">变更类型</th>
+		<th align="center">变更日期</th>
+		<th align="center">暂停到期</th>
+		<th align="center">审批日期</th>
+		<th align="center">制单日期</th>
+		<th align="center">制单人</th>
+		<th align="center">变更<br>详细</th>
+		<th align="center">备注</th>
+		<th align="center">删除</th>
+	</tr>
+<!--
+EOT;
+foreach($result[data] as $k=>$v){
+$kv = $k.'v';
+$v[zs_zanting_edate] == '0000-00-00' && $v[zs_zanting_edate] = '';
+$v[changebf] = Cache::cache_Certification_online($v[change_bf]);
+$v[changeaf] = Cache::cache_Certification_online($v[change_af]);
+if ($v[changebf] == ''){$v[changebf] = $v[change_bf];}
+if ($v[changeaf] == ''){$v[changeaf] = $v[change_af];}
+$v['changeitem_code'] = $v['changeitem'];
+$v['changeitem'] = Cache::cache_changeitem($v['changeitem']);
+if ($v[changeitem] == '证书暂停'){$v[changereason] = Cache::cache_setup_stop($v[changereason]);}
+if ($v[changeitem] == '证书撤销'){$v[changereason] = Cache::cache_setup_revocation($v[changereason]);}
+if($v[changereason] != ''){$v[ztcx] = $v[changeitem].'原因：'.$v[changereason];}
+switch($v[changeitem]){
+	case '证书暂停' :
+	$print = "<a href=\"./index.php?m=doc&do=print_cg&cgid=$v[id]&kind=03\">通知</a><br><a href=\"./index.php?m=doc&do=print_cg_sp&cgid=$v[id]&kind=03\">审批</a>";
+	break;
+	case '证书撤销' :
+	$print = "<a href=\"./index.php?m=doc&do=print_cg&cgid=$v[id]&kind=05\">通知</a><br><a href=\"./index.php?m=doc&do=print_cg_sp&cgid=$v[id]&kind=05\">审批</a>";
+	break;
+	case '证书恢复' :
+	$print = "<a href=\"./index.php?m=doc&do=print_cg&cgid=$v[id]&kind=04\">通知</a><br><a href=\"./index.php?m=doc&do=print_cg_sp&cgid=$v[id]&kind=04\">审批</a>";
+	break;
+	case '证书注销' :
+	$print = "<a href=\"./index.php?m=doc&do=print_cg&cgid=$v[id]&kind=0501\">通知</a><br><a href=\"./index.php?m=doc&do=print_cg_sp&cgid=$v[id]&kind=0501\">审批</a>";
+	break;
+	default : $print = '';
+}
+
+$v[show] = "<font onmouseover=\"show_block('$kv')\" onmouseout=\"hide_block('$kv')\"><img src=\"frontEnd/images/other.png\" /></font>";
+$rows = $db->get_one("SELECT product FROM `{$dbtable['ht_contract_item']}` WHERE id='{$v[htxm_id]}'");
+$v[product] = Cache::cache_product($rows['product']);
+if($v[sp_online] == '0'){$v[sp_online] = '未审批';}else{$v[sp_online] = '已审批';}
+if ($v[coverFields] != ''){$kf=$k.'f';$v[showf] = "<font onmouseover=\"show_block('$kf')\" onmouseout=\"hide_block('$kf')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[showf] = '';}
+echo <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+		<td align="center" width="40">$v[id]</td>
+		<td align="center" width="40">$v[sp_online]</td>
+		<td width="40" align="center"><input name="pid[]" type="checkbox" value="{$v[id]}"></td>
+		<td align="center">
+		<a href="index.php?m=change&do=zs_change_edit&cg_task_id=$v[cg_task_id]&zuzhi_id=$v[zuzhi_id]&changeitem=$v[changeitem_code]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a>
+		</td>
+		<td align="center" width="30"><a href="index.php?m=audit&do=item_add_edit&cg_task_id=$v[cg_task_id]&htxm_id=$v[htxm_id]&zuzhi_id=$v[zuzhi_id]&ht_id=$v[ht_id]&cgid=$v[id]"><img src="./frontEnd/images/button_edit.png" border="0" /></a></td>
+		<td align="center">$v[htxmcode]</td>
+		<td align="center">$v[certNo]</td>
+		<td height="22" width="200"><a href="index.php?m=company&do=qiyedengji_edit&zuzhi_id=$v[zuzhi_id]">$v[eiregistername]</a></td>
+		<td align="center">$v[htfrom]</td>
+		<td align="center">$v[audit_ver]</td>
+		<!--<td width="100px" align="center">$v[product]</td>-->
+		<td  width="70" align="center"><div class="{$kf} show_block" style="text-align:left">{$v[coverFields]}</div>$v[showf]</td>
+		<td align="center">$v[changeitem]</td>
+		<td align="center">$v[zs_change_date]</td>
+		<td align="center">$v[zs_zanting_edate]</td>
+		<td align="center">$v[sp_date]</td>
+		<td align="center">$v[zd_date]</td>
+		<td align="center">$v[zd_ren]</td>
+		<td align="center"><div style="text-align:left;" class="{$kv} show_block">变更前：$v[changebf]<br/>变更后：$v[changeaf]<br/>$v[ztcx]</div>$v[show]</td>
+		<td align="center">
+
+<!--
+EOT;
+if(!empty($v[other]))
+{
+ $coverFields= "<div color='#FF0000' onmouseover=\"show_block('$k')\" style='cursor:pointer' onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\"  /></div>";
+print <<<EOT
+-->
+	<div class="{$k} show_block"  >备注：{$v[other]}</div>
+	$coverFields
+<!--
+EOT;
+}
+echo <<<EOT
+-->		</td>
+		<td align="center">
+		<a href="#" title="./index.php?m=change&do=zs_change_del&cgid=$v[id]&zsid=$zsid&ht_id=$ht_id&htxm_id=$htxm_id&zuzhi_id=$zuzhi_id&kind=zs_change_list">
+		<img src="./frontEnd/images/button_empty.png" alt="删除" width="11" height="13" border="0" onclick="del(this);" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+$sp_date == '' && $sp_date = date('Y-m-d');
+echo <<<EOT
+-->
+</table>
+<!--
+EOT;
+if($sp_online == ''){
+echo <<<EOT
+-->
+<table width="$width" class="c_table">
+	<tr>
+		<td width="44" height="21" align="center">&nbsp;</td>
+		<td width="44" height="21" align="center">&nbsp;</td>
+        <td width="44" align="center" ><input type="checkbox" class="controlAll" onclick="selectall(this.checked)" /></td>
+        <td colspan="15" align="left">
+        	<input type="hidden" name="sp_online" value="1" />
+        	<input type="text" name="sp_date" value="$sp_date" onFocus="return showCalendar(this, 'y-mm-dd');"/>
+        	<input type="button" value="变更审批" name="button"/>
+        </td>
+    </tr>
+</table>
+<!--
+EOT;
+}else{
+echo <<<EOT
+-->
+<table width="$width" class="c_table">
+	<tr>
+		<td width="44" height="21" align="center">&nbsp;</td>
+		<td width="44" height="21" align="center">&nbsp;</td>
+        <td width="44" align="center" ><input type="checkbox" class="controlAll" onclick="selectall(this.checked)" /></td>
+        <td colspan="15" align="left">
+        	<input type="hidden" name="sp_online" value="0" />
+        	<input type="hidden" name="sp_date" value="0000-00-00" />
+        	<input type="button" value="撤销审批变更" name="button2"/>
+        </td>
+    </tr>
+</table>
+
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+$result[pages]
+<div class="blank"></div>
+</form>
+</div>
+<!--
+EOT;
+?>
+-->

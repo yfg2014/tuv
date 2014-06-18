@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!--
+<?php
+echo <<<EOT
+ -->
+<title>{$regqiye}</title>
+<link href="frontEnd/css/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="frontEnd/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+
+function CheckData(){
+
+
+	if($('#md5').val() == '')	{
+		alert('请先安装安全控件及安全证书');
+		location.href='nousbkey.html';
+		return false;
+	}
+}
+
+
+
+$(function(){
+	var uname,upwd;
+
+	var s = $("#submit");
+	uname = $('[name="username"]');
+	upwd = $('[name="password"]');
+	var func = function(){
+		var u = uname.val(),p = upwd.val();
+/*
+EOT;
+if($conf[cert_open] == '1'){
+echo <<<EOT
+*/
+var cert = dcmd5.Data();
+
+if(cert == ''){
+	alert("请先安装安全控件及数字证书！");
+	return false;
+}
+
+/*
+EOT;
+}else{
+echo <<<EOT
+*/
+var cert;
+/*
+EOT;
+}
+echo <<<EOT
+*/
+
+		if(!u || !p){
+			alert("用户名及密码均不能为空！");
+			return false;
+		}
+    	$.post("login.php?do=login",{'uname' : u,'upwd' : p, 'cert' : cert},function(r){
+    		if(r == '1'){
+    			location.href="main.php";
+    		}else {
+    			alert(r);
+    		}
+    	});
+	}
+	s.click(func);
+	//$(this).keydown(function(event){if(event.keyCode == 13) {func();}});
+});
+//]]>
+
+</script>
+</head>
+<body onload="CheckData();" background="frontEnd/images/ps_01.gif" bgcolor="#58ABE8" >
+<!--
+EOT;
+if($conf['cert_open'] == '1'){
+echo <<<EOT
+-->
+<OBJECT ID="dcmd5" WIDTH="0" HEIGHT="0" CLASSID="CLSID:15E9A41C-D72D-487D-AA25-F88305190664" CODEBASE="dcmd5.cab"></OBJECT>
+<!--
+EOT;
+}else{
+$default_val = '1';
+}
+echo <<<EOT
+-->
+<FORM METHOD=POST ACTION="" ID="testform">
+<table width="539" border="0" align="center" cellpadding="0" cellspacing="0" style="height:540px;">
+  <tr>
+    <td width="540" style="background-image:url('frontEnd/images/ps_02.gif');"><table width="431" border="0" align="center" cellpadding="0" cellspacing="0" style="height:397px;">
+      <tr>
+        <td width="431" height="285" align="center" valign="bottom">
+
+			<INPUT TYPE="hidden" NAME="md5" ID="md5" VALUE="$default_val">
+			<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="479" height="157">
+				<param name="movie" value="frontEnd/images/45.swf" />
+				<param name="quality" value="high" />
+				<param name="wmode" value="transparent" />
+				<embed src="frontEnd/images/45.swf" quality="high"  wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="479" height="157"></embed>
+			</object>
+          </td>
+      </tr>
+      <tr>
+        <td valign="bottom"><table width="191" border="0" align="right" cellpadding="0" cellspacing="0" style="height:88px;">
+            <tr>
+              <td height="28" class="font1">用户名：</td>
+              <td><input name="username" type="text" class="box3" value="" style="width:120px;"/></td>
+            </tr>
+            <tr>
+              <td height="28" class="font1">密　码：</td>
+              <td><input name="password" type="password" class="box3" value="" style="width:120px;" /></td>
+            </tr>
+            <tr>
+              <td height="40" >&nbsp;</td>
+              <td><img src="frontEnd/images/but_03.gif" style="cursor:pointer;" id="submit" /></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</form>
+<script type="text/javascript" language="javascript">
+/*
+EOT;
+if($conf[cert_open] == '1'){
+echo <<<EOT
+*/
+if(document.getElementById("dcmd5").Data == null ){
+		alert('请先安装安全控件及安全证书');
+		location.href='nousbkey.html';
+}else{
+	$('#md5').val(dcmd5.Data());
+}
+/*
+EOT;
+}
+echo <<<EOT
+*/
+</script>
+</body>
+
+</html>
+<!--
+EOT;
+?>
+ -->

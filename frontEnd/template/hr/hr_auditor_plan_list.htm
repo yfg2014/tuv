@@ -1,0 +1,81 @@
+<!--
+<?php
+print <<<EOT
+-->
+<div style="width:$width;margin:auto;">
+<div class="blank"></div>
+<table class="t_table" width="$width">
+<form method="post" name="winput" action="$baseurl" >
+	<tr>
+		<td>$SearchHtml<br><input type="submit" value="搜索" name="submit" />
+		<a href="./index.php?m=xls&do=hr_plan_track_xls&$TopSearch->SearchUrl"><img src="./frontEnd/images/excel.gif" border="0" /></a>
+		</td>
+	</tr>
+</form>
+</table>
+
+$result[pages]
+
+<div class="blank"></div>
+<table width="$width">
+	<tr>
+		<td class="row_data" colspan="10">培养计划查询>> 合计：{$result['count']}&nbsp;&nbsp;&nbsp;<a href="index.php?m=hr&do=hr_auditor_plan_edit"><font color="blue">添加</font></a></td>
+	</tr>
+</table>
+
+<table width="$width" class="c_table">
+	<tr>
+		<th align="center">项目</th>
+		<th align="center">编辑</th>
+		<th align="center">姓名</th>
+		<th align="center">培养方向</th>
+		<th align="center">负责人</th>
+		<th align="center">体系</th>
+		<th align="center">预定开始时间</th>
+		<th align="center">预定完成时间</th>
+		<th align="center">实际完成时间</th>
+		<th align="center">备注</th>
+		<th align="center">删除</th>
+	</tr>
+
+<!--
+EOT;
+foreach($result['data'] as $k=>$v)
+{
+	$v[username] = Cache::cache_username($v[hr_id]);
+	$v[plan_item] = $setup_hr_auditor_plan[$v[plan_item]];
+	$v[plan_complete_date]  == '0000-00-00' && $v[plan_complete_date] = '';
+	$v[actual_complete_date]  == '0000-00-00' && $v[actual_complete_date] = '';
+	
+	if ($v[remark] != ''){$v[show] = "<font onmouseover=\"show_block('$k')\" onmouseout=\"hide_block('$k')\"><img src=\"frontEnd/images/other.png\" /></font>";}else{$v[show] = '';}
+print <<<EOT
+
+-->
+	<tr>
+		<td align="center"><a href="index.php?m=audit&do=item_people_list&iso=$v[iso]&empName=$v[username]&taskBeginDate1=$v[plan_date]&taskBeginDate2=$v[plan_complete_date]">查看</a></td>
+		<td align="center"><a href="index.php?m=hr&do=hr_auditor_plan_edit&&id=$v[id]"><img src="frontEnd/images/button_edit.png" alt="编辑" border="0" /></a></td>
+		<td align="center">$v[username]</td>
+		<td align="center">$v[plan_item]</td>
+		<td align="center">$v[planner]</td>
+		<td align="center">$v[iso]</td>
+		<td align="center">$v[plan_date]</td>
+		<td align="center">$v[plan_complete_date]</td>
+		<td align="center">$v[actual_complete_date]</td>
+		<td align="center"><div class="{$k} show_block">$v[remark]</div>$v[show]</td>
+		<td align="center"><a href="index.php?m=hr&do=hr_auditor_plan_del&id={$v[id]}"><img src="frontEnd/images/button_empty.png" alt="删除" border="0" style="cursor:pointer;" onclick="return confirm('你确定要删除吗？');" /></a></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</table>
+$result[pages]
+
+<div class="blank"></div>
+</div>
+
+<!--
+EOT;
+?>
+-->

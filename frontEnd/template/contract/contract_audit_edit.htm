@@ -1,0 +1,506 @@
+<!--
+<?php
+print <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="frontEnd/css/tag.css" />
+<script src="frontEnd/js/jquery.idTabs.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="./dlg/in_audit_ver.php?js=ok"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$('[name="ps_time"]').focusout(function(){
+		if($(this).val() == '')return;
+		var htdate = "$ht[htdate]";
+		var auditplandate = "$ht[auditplandate]";
+		if (htdate > $(this).val() || auditplandate < $(this).val()){
+			alert('评审日期应该在受理日期和预审日期之间');
+		}
+	})
+
+	$('[name="button"]').click(function(){
+		var iso='',code='',nqa_code='';
+		if(!Validator.Validate(document.forms[0],2))return;
+		$('.iso').each(function(i){
+			if (i == 0){
+				iso = $(this).val();
+				code = $('.zydm').eq(i).val();
+				nqa_code = $('.nqa_zydm').eq(i).val();
+			}else{
+				iso = iso + '|' + $(this).val();
+				code = code + '|' + $('.zydm').eq(i).val();
+				nqa_code = nqa_code + '|' + $('.nqa_zydm').eq(i).val();
+			}
+		});
+
+		$.post('./dlg/in_audit_code.php',{'iso':iso,'code':code,'nqa_code':nqa_code},function(r){
+			if (r != ''){
+				alert(r + '审核代码不存在，请重新输入审核代码或者更新审核代码库');
+			}else{
+				document.forms[0].submit();
+			}
+		})
+	})
+
+	$('.tx').find('.txcopy').click(cp);
+	$('.usual').idTabs({event:'mouseover'});
+	$('body').width($(window).width());// 屏蔽浏览器对文挡宽度的解释差异
+});
+
+function cp(obj){
+	var o = $(obj).parents('.tx');
+	var o1 = o.prev('.tx');
+	if(o1.length){
+		o.find('.zydm').val(o1.find('.zydm').val()).end().find('.zwfw').val(o1.find('.zwfw').val()).end().find('.ywfw').val(o1.find('.ywfw').val()).end().find('.nqa_zydm').val(o1.find('.nqa_zydm').val());
+	}
+}
+
+function ccp(obj){
+	var o = $(obj).parents('.prod');
+	var o1 = o.prev('.prod');
+	if(o1.length){
+		o.find('.zydm').val(o1.find('.zydm').val()).end().find('.zwfw').val(o1.find('.zwfw').val()).end().find('.ywfw').val(o1.find('.ywfw').val());
+	}
+}
+
+//对话框弹窗开始
+var width = 450;
+var height = 400;
+var option = {escClose:true,close:true,closeHTML:"<a href='#'><span style='float:right;cursor:pointer;color:red;'>关闭</span></a>",containerCss:{width : width + "px",height : height + "px"},onClose: function (dialog){ $("#simplemodal-container,#simplemodal-overlay").hide();$.modal.close();},minHeight:width,minWidth:height};
+option.onShow = function(dialog){};
+
+//专业代码弹窗
+function daima_dlg(obj,the) {
+	$('<iframe src="dlg/in_daima_list.php?iso='+obj+'" frameborder="0" style="width:450px;height:390px;margin-bottom:5px;"></iframe>').load(function(){
+		$(this).contents().find('.edit').each(function(){
+			$(this).click(function(){
+				var code = $(this).parent().siblings('.code').text();
+				var nqa_code = $(this).parent().siblings('.nqa_code').text();
+				var zydm = $(the).siblings('.zydm').val();
+				var nqa_zydm = $(the).siblings('.nqa_zydm').val();
+				if(zydm == '') {
+					$(the).siblings('.zydm').val(code);
+				} else {
+					$(the).siblings('.zydm').val(zydm+'；'+code);
+				}
+				if(nqa_zydm == '') {
+					$(the).siblings('.nqa_zydm').val(nqa_code);
+				} else {
+					$(the).siblings('.nqa_zydm').val(nqa_zydm+'；'+nqa_code);
+				}
+				$.modal.close();
+			});
+		});
+	}).modal(option);
+}
+
+function audit_print(){
+	window.open("./index.php?m=contract&do=contract_audit_show&zuzhi_id=$zuzhi_id&ht_id=$ht_id&op=1");
+}
+//]]>
+</script>
+<div class="blank"></div>
+{$Information->info}
+<!--
+EOT;
+if($ht['first'] == '1'){$ck1 = 'checked="checked"';}else{$ck2 = 'checked="checked"';}
+if($ht['hurry'] == '1'){$ck3 = 'checked="checked"';}else{$ck4 = 'checked="checked"';}
+$ht[htcheck] == '1'?$ht_check="已核对":$ht_check="未核对";
+echo <<<EOT
+-->
+<form name="ht" action="index.php?m=contract&do=contract_audit_save" method="post" onsubmit="return Validator.Validate(this,2);">
+<table width="$width" class="e_table">
+	  <tr>
+		<td colspan="4">合同评审&gt;&gt;</td>
+	  </tr>
+	  <tr>
+    	<td align="right">合同编号：</td>
+        <td>$ht[htcode]</td>
+        <td align="right"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td width="25%" align="right">是否初次：</td>
+        <td width="25%">
+			<input type="radio" name="first" disabled="disabled" value="0" $ck2 />否&nbsp;
+			<input type="radio" name="first" disabled="disabled" value="1" $ck1 />是
+        </td>
+        <td width="25%" align="right">紧急情况：</td>
+        <td width="25%">
+			<input type="radio" name="hurry" value="0" $ck4 disabled="disabled" />
+			<img src="frontEnd/images/j0.gif" alt="一般合同" width="13" height="13" />
+			<input type="radio" name="hurry" value="1" $ck3 disabled="disabled" />
+			<img src="frontEnd/images/j1.gif" alt="加急合同" width="13" height="13" />
+		<font color="#FF0000">*</td>
+      </tr>
+      <tr>
+        <td align="right">申请日期：</td>
+        <td>$ht[htdate]</td>
+        <td align="right">审核预期：</td>
+        <td>$ht[auditplandate]</td>
+      </tr>
+</table>
+<br/>
+<div id="tx_container">
+<!--
+EOT;
+if ($htxmtx != '') {
+	foreach((array)$htxmtx as $htxm_v){
+		$htxm_v[audit_type] = Cache::cache_audit_type($htxm_v[audit_type]);
+		$htxm_v[audit_ver] = Cache::cache_audit_ver($htxm_v[audit_ver]);
+		$sel1 = $sel2 = '';
+		if ($htxm_v[zjg] == '1'){$htxm_v[zjg] = '是';$none = 'block';}else{$htxm_v[zjg] = '否';$none = 'none';}
+		$htxm = $db->get_one("SELECT id FROM {$dbtable[xm_item]} WHERE htxm_id={$htxm_v[id]}");
+		$htxm_v[renzhengfanwei] == '' && $htxm_v[renzhengfanwei]=$htxm_v[qy_renzhengfanwei];
+echo <<<EOT
+-->
+<table width="$width" class="tx e_table" style="margin-bottom:5px;">
+	<input type="hidden" name="htxm_id[]" class="id" value="$htxm_v[id]" />
+<!--
+EOT;
+if ($htxm[id] != '') {
+echo <<<EOT
+-->
+	<tr>
+		<td colspan="4"><font color="red">项目已审批不能修改</font></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	<tr>
+		<td align="right" width="25%">标准版本：</td>
+        <td width="25%">$htxm_v[audit_ver]<input type="hidden" name="iso[]" class="iso" value="$htxm_v[iso]" /></td>
+		<td align="right" width="25%">审核类型：</td>
+        <td width="25%">$htxm_v[audit_type]</td>
+	</tr>
+	<tr>
+		<td align="right">项目编号：</td>
+		<td>$htxm_v[htxmcode]</td>
+		<td align="right">体系人数：</td>
+        <td>$htxm_v[iso_people_num]</td>
+	</tr>
+	<tr>
+		<td align="right">复评次数：</td>
+        <td>$htxm_v[re_views]</td>
+		<td align="right">机构转入：</td>
+        <td>$htxm_v[zjg]</td>
+	</tr>
+	<tr>
+        <td align="right">体系运行时间：</td>
+        <td>$htxm_v[run_date]</td>
+		<td align="right"></td>
+        <td></td>
+	  </tr>
+	<tr>
+		<td align="right">认可标志：</td>
+		<td colspan="3">
+<!--
+EOT;
+foreach ($setup_mark as $v) {
+	if ($v[online] == '1'){
+		strstr($htxm_v['mark'],$v[code]) ? $checked = 'checked' : $checked = '';
+echo <<<EOT
+-->
+        		<input type="checkbox" name="mark_t[]" value="$v[code]" class="mark_t" disabled="disabled" $checked />$v[msg]
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+		</td>
+	</tr>
+	   <tr >
+        <td  align="right">申请范围：</td>
+        <td colspan="3"><div style="width:90%; word-wrap: break-word; word-break: break-all;">$htxm_v[qy_renzhengfanwei]</div></td>
+      </tr>
+    <tr style="display:$none">
+    	<td colspan="4">
+			<table width="100%" class="e_table">
+			<tr>
+			<td width="18%" height="20" align="right">原颁证机构：</td>
+			<td width="33%">$htxm_v[zjg_name]</td>
+			<td width="17%" align="right">原注册日期：</td>
+			<td width="34%">$htxm_v[zjg_sdate]</td>
+			</tr>
+			<tr>
+			<td height="20" align="right">原证书号：</td>
+			<td>$htxm_v[zjg_no]</td>
+			<td align="right">原截止日期：</td>
+			<td>$htxm_v[zjg_edate]</td>
+			</tr>
+			<tr>
+			<td height="20" align="right">上次审核日：</td>
+			<td>$htxm_v[zjg_assess_date]</td>
+			<td align="right">&nbsp;</td>
+			<td>&nbsp;</td>
+			</tr>
+			</table>
+        </td>
+    </tr>
+	<tr>
+		<td align="right">风险等级：</td>
+        <td><select name="risk[]" style="width:120px;">
+		 <option value="" >----请选择----</option>
+<!--
+EOT;
+foreach($setup_risk as $v){
+    if($v[code] == $htxm_v[risk]){$sel = 'selected="selected"';}else{$sel = '';}
+echo <<<EOT
+-->
+		 <option value="$v[code]" $sel>$v[msg]</option>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+		 </select>
+        </td>
+		<td align="right">基础审核人日：</td>
+        <td><input name="jichurenri[]" style="width:120px;" value="$htxm_v[jichurenri]" /></td>
+	</tr>
+	<tr>
+		<td align="right">删减条款：</td>
+        <td><input name="shanjiangtiaokuan[]" style="width:120px;" value="$htxm_v[shanjiangtiaokuan]" /></td>
+        <td align="right">核定审核人日：</td>
+        <td><input name="hedingrenri[]" style="width:120px;" value="$htxm_v[hedingrenri]" /></td>
+	</tr>
+	<tr>
+		<td align="right">人日删减依据：</td>
+        <td colspan="3"><input name="shanjiangyiju[]" style="width:370px;" value="$htxm_v[shanjiangyiju]" /></td>
+	</tr>
+<!--		<td align="right">带子证书：</td>
+        <td><input name="cert_num[]" style="width:120px;" value="$htxm_v[cert_num]" />张</td>
+	</tr>
+	<tr>
+		<td align="right">一阶段人日：</td>
+        <td><input name="one_stage_num[]" style="width:120px;" value="$htxm_v[one_stage_num]" /></td>
+		<td align="right">二阶段人日：</td>
+        <td><input name="two_stage_num[]" style="width:120px;" value="$htxm_v[two_stage_num]" /></td>
+	</tr>
+	<tr>
+		<td align="right">监一人日：</td>
+        <td><input name="one_jiandu_num[]" style="width:120px;" value="$htxm_v[one_jiandu_num]" /></td>
+		<td align="right">监二人日：</td>
+        <td><input name="two_jiandu_num[]" style="width:120px;" value="$htxm_v[two_jiandu_num]" /></td>
+	</tr>
+	<tr>
+		<td align="right">再认证人日：</td>
+        <td><input name="re_audit_num[]" style="width:120px;" value="$htxm_v[re_audit_num]" /></td>
+		<td align="right">一阶段的审核方式：</td>
+
+EOT;
+$htxm_v[approach] == '2' ? $seleced1='selected="selected"' : $seleced1='';
+echo <<<EOT
+
+        <td><select name="approach" style="width:130px;">
+        	<option value="1">在受审核方场所进行</option>
+			<option value="2" $seleced1>不在受审核方场所进行</option>
+        	</select>
+		</td>
+	</tr>-->
+	<tr>
+		<td align="right"><div class="txcopy" onclick="cp(this);">(<font style="color:red;cursor:pointer;">同上</font>)审核代码：</div></td>
+		<td colspan="3"><input name="audit_code[]" class="zydm" type="text" value="$htxm_v[audit_code]" style="width:150px;" dataType="Require" msg="审核代码不能为空！" />
+		自用代码：<input name="nqa_audit_code[]" class="nqa_zydm" type="text" value="$htxm_v[nqa_audit_code]" style="width:150px;" dataType="Require" msg="自用代码不能为空！" />
+		<img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="daima_dlg('$htxm_v[iso]',this)" /> <font color="#FF0000">*</font></td>
+	</tr>
+
+	<tr>
+		<td align="right">审批范围：</td>
+		<td colspan="3"><div style="width:90%; word-wrap: break-word; word-break: break-all;"><textarea name="renzhengfanwei[]" class="zwfw" style="width:95%; height:80px" dataType="Require" msg="审批范围不能为空！">$htxm_v[renzhengfanwei]</textarea><font color="#FF0000">*</font></div></td>
+	</tr>
+	<tr>
+		<td align="right">英文范围：</td>
+		<td colspan="3"><textarea name="renzhengfanwei_e[]" class="ywfw" style="width:85%; height:80px">$htxm_v[renzhengfanwei_e]</textarea></td>
+	</tr>
+</table>
+<!--
+EOT;
+	}
+}
+if ($htxmcp != '') {
+	foreach((array)$htxmcp as $htxm_p){
+	$htxm_p[audit_type] = Cache::cache_audit_type($htxm_p[audit_type]);
+	$htxm_p[audit_rule] = Cache::cache_audit_rule($htxm_p[audit_rule]);
+	$htxm = $db->get_one("SELECT id FROM {$dbtable[xm_item]} WHERE htxm_id={$htxm_p[id]}");
+	$htxm_p[renzhengfanwei] == '' && $htxm_p[renzhengfanwei]=$htxm_p[qy_renzhengfanwei];
+echo <<<EOT
+-->
+    <table width="$width" class="e_table prod" style="margin-bottom:5px;">
+      <input type="hidden" name="htxm_id[]" class="id" value="$htxm_p[id]" />
+<!--
+EOT;
+if ($htxm[id] != '') {
+echo <<<EOT
+-->
+	<tr>
+		<td colspan="4"><font color="red">项目已审批不能修改</font></td>
+	</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	<tr>
+      <tr>
+        <td align="right">认证类别：</td>
+        <td colspan="3">$htxm_p[certifiedproducts]</td>
+	  </tr>
+	  <tr>
+        <td align="right">产品指令：</td>
+        <td colspan="3">$htxm_p[productstandards]<input type="hidden" name="iso[]" class="iso" value="$htxm_p[iso]" /></td>
+	  </tr>
+	  <tr>
+        <td align="right">产品关键件：</td>
+        <td colspan="3">$htxm_p[productpieces]</td>
+	  </tr>
+	  <tr>
+        <td align="right">实施规则：</td>
+        <td colspan="3">$htxm_p[audit_rule]</td>
+	  </tr>
+	  <tr>
+	  	<td width="25%"  align="right">项目编号：</td>
+        <td>$htxm_p[htxmcode]</td>
+        <td align="right">审核类型：</td>
+        <td>$htxm_p[audit_type]</td>
+      </tr>
+      <tr>
+        <td width="25%" align="right">复评次数：</td>
+        <td width="25%">$htxm_p[re_views] </td>
+        <td width="25%" align="right">体系人数：</td>
+        <td width="25%">$htxm_p[iso_people_num] </td>
+      </tr>
+      <tr>
+        <td align="right">认可标志：</td>
+        <td colspan="3">
+<!--
+EOT;
+foreach ($setup_mark as $v) {
+	if ($v[online] == '1'){
+		strstr($htxm_p['mark'],$v[code]) ? $checked = 'checked' : $checked = '';
+echo <<<EOT
+-->
+          <input type="checkbox" name="mark_t[]" value="$v[code]" class="mark_t" disabled="disabled" $checked />
+          $v[msg]
+<!--
+EOT;
+	}
+}
+echo <<<EOT
+-->
+        </td>
+      </tr>
+      <tr >
+        <td  align="right">认证产品：</td>
+        <td colspan="3">$htxm_p[qy_renzhengfanwei]</td>
+      </tr>
+	  <tr>
+        <td align="right">制造单位：</td>
+        <td colspan="3">$htxm_p[manufacturingunits]</td>
+	  </tr>
+	  <tr>
+        <td align="right">制造地址：</td>
+        <td colspan="3">$htxm_p[manufacturingaddress]</td>
+	  </tr>
+	  <tr>
+        <td align="right">生产单位：</td>
+        <td colspan="3">$htxm_p[productionunit]</td>
+	  </tr>
+	  <tr>
+        <td align="right">生产地址：</td>
+        <td colspan="3">$htxm_p[productionaddress]</td>
+	  </tr>
+	  <tr>
+		<td align="right">基础审核人日：</td>
+        <td><input name="jichurenri[]" style="width:120px;" value="$htxm_p[jichurenri]" /></td>
+		<td align="right">核定审核人日：</td>
+        <td><input name="hedingrenri[]" style="width:120px;" value="$htxm_p[hedingrenri]" /></td>
+	</tr>
+	<tr>
+		<td align="right"><div class="txcopy" onclick="ccp(this);">(<font style="color:red;cursor:pointer;">同上</font>)审核代码：</div></td>
+		<td colspan="3"><input name="audit_code[]" class="zydm" type="text" value="$htxm_p[audit_code]" style="width:400px;" dataType="Require" msg="审核代码不能为空！" /><img src="frontEnd/images/sousuo.gif" style="cursor:pointer;" onclick="daima_dlg('$htxm_p[iso]',this)" /> <font color="#FF0000">*</font></td>
+	</tr>
+
+	<tr>
+		<td align="right">审批范围：</td>
+		<td colspan="3"><div style="width:90%; word-wrap: break-word; word-break: break-all;"><textarea name="renzhengfanwei[]" class="zwfw" style="width:95%; height:80px" dataType="Require" msg="审批范围不能为空！">$htxm_p[renzhengfanwei]</textarea> <font color="#FF0000">*</font></div></td>
+	</tr>
+	<tr>
+		<td align="right">英文范围：</td>
+		<td colspan="3"><textarea name="renzhengfanwei_e[]" class="ywfw" style="width:85%; height:80px">$htxm_p[renzhengfanwei_e]</textarea></td>
+	</tr>
+    </table>
+<!--
+EOT;
+	}
+}
+if($ht[online] == '1'){
+	$ht[online] = '2';
+}
+$ht[online] >= '2' && $online_ck = 'checked="checked"';
+$ht[online] == '3' && ($online_ck = 'checked="checked"' and $online_str='(已审批项目，无法修改)');
+$ht[online] == '3' && $show_online_ck = 'disabled="disabled"';
+echo <<<EOT
+-->
+<table width="$width" class="tx e_table">
+<!--	<tr>
+		<td align="right" width="25%">范围外包情况：</td>
+		<td colspan="3">
+
+EOT;
+strstr($ht[outsourcing],'a') && $achceck= 'checked="checked"';
+strstr($ht[outsourcing],'b') && $bchceck= 'checked="checked"';
+strstr($ht[outsourcing],'c') && $cchceck= 'checked="checked"';
+strstr($ht[outsourcing],'d') && $dchceck= 'checked="checked"';
+strstr($ht[outsourcing],'e') && $echceck= 'checked="checked"';
+echo <<<EOT
+
+		 <input type="checkbox" name="outsourcing[]" value="a" $achceck>主过程外包
+		 <input type="checkbox" name="outsourcing[]" value="b" $bchceck>部分过程外包
+		 <input type="checkbox" name="outsourcing[]" value="c" $cchceck>零部件加工外包
+		 <input type="checkbox" name="outsourcing[]" value="d" $dchceck>无外包
+		 <input type="checkbox" name="outsourcing[]" value="e" $echceck>其他
+		</td>
+	</tr>-->
+	<tr>
+		<td align="right" width="25%">合同备注：</td>
+		<td colspan="3">
+		$ht[other]
+		</td>
+	</tr>
+</table>
+<br/>
+</div>
+
+
+
+<table width="$width"  class="e_table">
+	  <tr>
+	  	<td align="right" width="25%">评审日期：</td>
+	  	<td colspan="3"><input name="ps_time" value="$ht[ps_time]" type="text" id="htdate"  style="width:120px;" onfocus="showCalendar(this, 'y-mm-dd');"  title='日期格式  1980-03-04' dataType="Date" msg="请输入日期格式 如1980-03-04" /> <font color="#FF0000">*</font></td>
+	  </tr>
+      <tr>
+        <td align="right" width="25%">评审备注：</td>
+        <td colspan="3"><textarea name="ps_other" style="width:95%; height:80px">$ht[ps_other]</textarea></td>
+      </tr>
+      <tr>
+        <td colspan="4"><font color="#999999"> 说明：多个专业代码之间用" ； "分隔。</td>
+      </tr>
+      <tr>
+        <td colspan="4" align="center">
+        	<!--<input type="button" value="打印评审记录 " name="button1" onclick="return audit_print();"/>-->
+		已评审：<input type="checkbox" name="online" value="$ht[online]" $online_ck />
+			<input type="hidden" name="ht_id" value="$ht_id" />
+			<input type="hidden" name="zuzhi_id" value="$zuzhi_id" />
+            <input type="button" value=" 保存 " name="button" $show_online_ck /> &nbsp; $online_str
+		</td>
+      </tr>
+</table>
+</form>
+<div class="blank"></div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,46 @@
+<!-- 
+<?php
+echo <<<EOT
+-->
+<div align="center">
+	<form method="post" action="in_dizhi_list.php">
+	<table width="90%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+		<tr bgcolor="#FFFFFF">
+			<td>
+				编码：<input type="text" name="code" value="" size="6" />
+				省：<input type="text" name="bmsg" value="" size="6" />
+				市县区：<input type="text" name="msg" value="" size="6" />
+				<input type="submit" value="搜索" />
+			</td>
+		</tr>
+	</table>
+	</form>
+	<br />
+	<table width="90%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+		<tr bgcolor="#FFFFFF">
+			<td align="center">操作</td>
+			<td align="center">编码</td>
+			<td align="center">地址</td>
+		</tr>
+<!-- 
+EOT;
+	foreach ($result['data'] as $v) {
+echo <<<EOT
+ -->
+		<tr bgcolor="#FFFFFF">
+			<td width="50" align="center"><img src="../frontEnd/images/button_edit.gif" class="edit" style="cursor:pointer;" /></td>
+			<td width="50" align="center" class="code">$v[code]</td>
+			<td align="left" class="msg">$v[msg]</td>
+		</tr>
+<!-- 
+EOT;
+}
+echo <<<EOT
+ -->
+	</table>
+	$result[pages]
+</div>
+<!-- 
+EOT;
+?>
+ -->

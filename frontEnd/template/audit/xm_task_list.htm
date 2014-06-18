@@ -1,0 +1,160 @@
+<!--
+<?php
+print <<<EOT
+-->
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$(".stripe").find("tr:even").addClass("alt").click(function() { $(this).toggleClass("click").removeClass("over").toggleClass("alt");}).end().find("tr:odd").click(function() { $(this).toggleClass("click").removeClass("over");}).end().find("tr").mouseover(function() { $(this).addClass("over");}).mouseout(function() { $(this).removeClass("over");});
+	$('#colors').click(function(){ $(this).autocomplete("./dlg/in_search.php?q="+this.value).result(function(event,data){ var s = (data+'').split(',');$(this).val(s[0]);$('#code').val(s[1])});});
+     if(!$.browser.opera) {
+		$("#tb1").offset({top:$("#tb1").offset().top,left:$("#chaxun").offset().left});
+	}else{
+		$("#tb1").offset({top:$("body").position().top,left:$("#chaxun").offset().left});
+	}
+	$('body').width($(window).width());
+});
+
+//]]>
+</script>
+<div class="blank"></div>
+<table width="1100" border="0" align="center" cellspacing="1" cellpadding="1" bgcolor="#226886" id="chaxun">
+<form method="post" name="winput" action="./index.php?m=audit&do=xm_task_list">
+    <tr>
+        <td bgcolor="#EAF4EA">
+            <table width="1100" border="0" align="center" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="75" align="right"><font color="#003399">组织名称：</font></td>
+                    <td width="120"><input name="s_idname"  id="colors" value="" style="width:120px;" /></td>
+                    <td width="74" align="right"><font color="#003399">组织编号：</font></td>
+                    <td width="120"><input name="s_idcode" id="code"  value="" type="text" style="width:120px;" /></td>
+                    <td width="67" align="right"><font color="#003399">状态：</font></td>
+                    <td width="90">
+                        <select name="s_online" style="width:80px;">
+                            <option value="">-请选择-</option>
+                            <option value="已安排">已安排</option>
+                            <option value="已审批">已审批</option>
+                        </select>
+                    </td>
+                    <td width="70" align="right"><font color="#003399">当天审核：</font></td>
+                    <td width="120"><input name="s_date_s2"  type="text" id="sel3" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+                    <td width="99" align="right"><font color="#003399">计划开始日期：</font></td>
+                    <td width="120"><input name="s_date_s"  type="text" id="sel1" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+                    <td width="13" align="center">至</td>
+                    <td width="132"><input name="s_date_e"  type="text" id="sel2" style="width:120px;" onclick="showCalendar(this, 'y-mm-dd');" /></td>
+                </tr>
+                <tr>
+                	<td align="right"><font color="#003399">合同编号：</font></td>
+                	<td><input type="text" name="s_htcode" value="" style="width:120px;" /></td>
+                    <td align="right"><font color="#003399">审核类型：</font></td>
+                    <td>
+                        <select name="s_shenheleixing" style="width:90px;">
+                        	<option value="">-请选择-</option>
+<!--
+EOT;
+foreach($cache_shenheleixing as $zv){
+print <<<EOT
+-->
+                        	<option value="$zv[msg]">$zv[msg]</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                        	<option value="所有监督">所有监督</option>
+                        </select>
+                    </td>
+                    <td align="right"><font color="#003399">计划月份：</font></td>
+                    <td>
+                        <select name="s_date_yue" style="width:90px;">
+                        	<option value="">-请选择-</option>
+<!--
+EOT;
+for ($i=date("m");$i<=12;$i++){
+if (strlen($i)=="1"){$ii="0".$i;}else{$ii=$i;}
+$plan_date=date("Y-").$ii;
+print <<<EOT
+-->
+                        	<option value="$plan_date">$plan_date</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                        </select>
+                    </td>
+                    <td align="right"><font color="#003399">进现场：</font></td>
+                    <td>
+                        <select name="s_jinxianchang" style="width:50px;">
+                            <option value="">选择</option>
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                        </select>
+                    </td>
+                    <td colspan="6" align="right"></td>
+                </tr>
+                <tr bgcolor="#EAF4EA">
+              		<td colspan="12">
+              			<input type="submit" value="搜索" name="submit" />
+              		</td>
+            	</tr>
+            </table>
+        </td>
+    </tr>
+</form>
+</table>
+<div class="blank"></div>
+<table width="1100"  align="center" border="0" cellpadding="0" cellspacing="1">
+    <tr>
+        <td>$result[pages]</td>
+    </tr>
+    <tr>
+        <td height="30">
+            <font color="#003399">审核项目查询>></font>   合计：$result[count]
+        </td>
+    </tr>
+</table>
+<table width="1100" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#D9E8E8" class="stripe">
+	<tr bgcolor="#F2F2F2">
+        <td width="30" align="center"><font color="#003399">文档</font></td>
+        <td align="center"><font color="#003399">状态</font></td>
+        <td align="center"><font color="#003399">合同编号</font></td>
+        <td align="center"><font color=#003399>组织名称</font></td>
+        <td align="center"><font color=#003399>认证版本</font></td>
+        <td align="center"><font color=#003399>审核类型</font></td>
+        <td align="center"><font color=#003399>总人日</font></td>
+        <td align="center"><font color=#003399>任务开始日期</font></td>
+        <td align="center"><font color=#003399>任务结束日期</font></td>
+        <td align="center" style="padding:5px 0;"><font color=#003399>派人信息->组长(是)</font></td>
+        <td align="center"><font color=#003399>进现场</font></td>
+	</tr>
+<!--
+EOT;
+foreach ($result[data] as $v){
+print <<<EOT
+-->
+	<tr bgcolor="#FFFFFF">
+    	<td width="30" height="20" align="center"><img src="./frontEnd/images/word.gif" border="0" style="cursor:pointer;" /></td>
+    	<td align="center">$v[xmonline]</td>
+    	<td align="center" style="padding:5px 0;">$v[htcode]</td>
+    	<td>$v[eiregistername]</td>
+    	<td align="center">$v[audit_ver]</td>
+    	<td align="center" >$v[audit_type]</td>
+    	<td align="center">$v[zrd]</td>
+    	<td align="center">$v[taskBeginDate].$v[taskBeginHalfDate]</td>
+    	<td align="center">$v[taskEndDate].$v[taskEndHalfDate]</td>
+    	<td width="200" style="padding:5px 0;">$v[inempName]</td>
+    	<td align="center">$v[jinxianchang]</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+<div id="tb1" style="float:right;">$result[pages]</div>
+<div class="blank"></div>
+<!-- 
+EOT;
+?>
+-->

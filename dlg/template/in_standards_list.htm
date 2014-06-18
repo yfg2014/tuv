@@ -1,0 +1,52 @@
+<!--
+<?php
+echo <<<EOT
+-->
+<div align="center">
+	<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<form method="post" action="in_standards_list.php">
+			<tr bgcolor="#FFFFFF">
+				<td>
+					标准：<input type="text" name="ver" value="" size="6" />
+					内容：<input type="text" name="msg" value="" size="6" />
+					<input type="hidden" name="iso" value="$iso">
+					<input type="submit" value="搜索" />
+				</td>
+			</tr>
+		</form>
+	</table>
+<div class="blank"></div>
+	<table width="95%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#0066FF">
+		<tr bgcolor="#FFFFFF">
+			<td align="center">操作</td>
+			<td align="center">编码</td>
+			<td align="center">标准</td>
+			<td align="center">产品名称</td>
+		</tr>
+<!--
+EOT;
+	foreach ((array)$result['data'] as $v) {
+echo <<<EOT
+-->
+		<tr bgcolor="#FFFFFF">
+			<td width="40" align="center"><img src="../frontEnd/images/button_edit.gif" class="line" style="cursor:pointer;" /></td>
+			<td align="center" class="code">$v[code]</td>
+			<td align="left" class="ver">$v[ver]</td>
+			<td align="left" class="msg" width="220">$v[msg]</td>
+		</tr>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+	</table>
+	<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>$result[pages]</td>
+		</tr>
+	</table>
+</div>
+<!--
+EOT;
+?>
+-->

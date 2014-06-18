@@ -1,0 +1,97 @@
+<?php
+$seach_arr=array(
+	 'eiregistername'=>array(
+	  'kind'=>'company',
+	  'name'=>'eiregistername',
+	  'msg'=>'组织名称',
+	  'width'=>'100px',
+	  'arr'=>'',
+	  'sql_field'=>'a.zuzhi_id',
+	  'sql_kind'=>'in'
+	),
+	  'zd_ren'=>array(
+		'kind'=>'zd_ren',
+		'name'=>'zd_ren',
+		'msg'=>'受 理 人',
+		'width'=>'100px',
+		'arr'=>'',
+		'sql_field'=>'a.ht_id',
+		'sql_kind'=>'%like%'
+	  ),
+	  'htfrom'=>array(
+	  'kind'=>'select',
+	  'name'=>'htfrom',
+	  'msg'=>'合同来源',
+	  'width'=>'100px',
+	  'arr'=>$setup_htfrom ,
+	  'sql_field'=>'a.htfrom',
+	  'sql_kind'=>'='
+	),
+	 'htdate1'=>array(
+		'kind'=>'htdate1',
+		'name'=>'htdate1',
+		'msg'=>'受理日期',
+		'width'=>'100px',
+		'arr'=>'',
+		'sql_field'=>'a.ht_id',
+		'sql_kind'=>'>='
+	 ),
+	'htdate2'=>array(
+		'kind'=>'htdate2',
+		'name'=>'htdate2',
+		'msg'=>'受理日期',
+		'width'=>'100px',
+		'arr'=>'',
+		'sql_field'=>'a.ht_id',
+		'sql_kind'=>'<='
+	 ),
+	/* 'htxmcode'=>array(
+		'kind'=>'text',
+		'name'=>'htxmcode',
+		'msg'=>'项目编号',
+		'width'=>'100px',
+		'arr'=>'',
+		'sql_field'=>'htxmcode',
+		'sql_kind'=>'%like%'
+	  ),*/
+	 'htcode'=>array(
+	  'kind'=>'htcode',
+	  'name'=>'htcode',
+	  'msg'=>'合同编号',
+	  'width'=>'100px',
+	  'arr'=>'',
+	  'sql_field'=>'a.ht_id',
+	  'sql_kind'=>'='
+	),
+		'br'=>array(
+		'kind'=>'br',
+	 ),
+	'audit_code'=>array(
+		'kind'=>'text',
+		'name'=>'audit_code',
+		'msg'=>'专业代码',
+		'width'=>'100px',
+		'arr'=>'',
+		'sql_field'=>'b.audit_code ',
+		'sql_kind'=>'like% '
+	  ),
+	  'audit_type'=>array(
+		'kind'=>'select',
+		'name'=>'audit_type',
+		'msg'=>'审核类型',
+		'width'=>'100px',
+		'arr'=>$setup_audit_type,
+		'sql_field'=>'a.audit_type',
+		'sql_kind'=>'='
+	),
+	 'product'=>array(
+		'kind'=>'product',
+		'name'=>'product',
+		'msg'=>'认证产品',
+		'width'=>'100px',
+		'arr'=>'',
+		'sql_field'=>'b.product',
+		'sql_kind'=>'%like%'
+	),
+);
+?>
