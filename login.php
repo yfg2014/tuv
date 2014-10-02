@@ -4,7 +4,11 @@ $do = '';
 $uname = '';
 $upwd = '';
 
+ini_set('error_reporting', E_ALL); //打开所有的错误级别
+ini_set('display_errors', 1); //显示错误 
+
 include dirname(__FILE__).'/'.'include/globals.php';
+
 GrepUtil::InitGP(array('do','uname','upwd','cert'));
 switch ($do) {
 	case 'login' :
@@ -24,6 +28,7 @@ switch ($do) {
 		Url::goto_url("login.php");
 		break;
 	default:
+               //包含登录模板
 		include T_DIR.'login.htm';
 		break;
 }

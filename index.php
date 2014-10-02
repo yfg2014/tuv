@@ -11,6 +11,8 @@ header("Content-Type: text/html; charset=utf-8");
 include dirname(__FILE__).'/'.'include/globals.php';
 include S_DIR."conf/left_menu.php";
 GrepUtil::InitGP(array('m','do','menu','core'));
+
+//权限检查，检查是否登录
 Power::ckLogin('login.php');
 
 if($m == 'setup'){
