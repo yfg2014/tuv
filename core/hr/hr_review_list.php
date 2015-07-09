@@ -44,7 +44,7 @@ $params = array(
 $s = new Review();
 $result = $s->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_review_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_review_list.htm';
+include TEMP.'footer.htm';
 ?>

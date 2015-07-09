@@ -169,7 +169,7 @@ $result = $Contract->listElement($params);
 
 
 $width = '1200px';
-include_once T_DIR.'header.htm';
-include_once T_DIR.'contract/contract_list.htm';
-include_once T_DIR.'footer.htm';
+include_once TEMP.'header.htm';
+include_once TEMP.'contract/contract_list.htm';
+include_once TEMP.'footer.htm';
 ?>

@@ -21,7 +21,7 @@ $htxmtx = $ContractItem->toArray("ht_id='{$ht_id}' AND kind='1'");
 $htxmcp = $ContractItem->toArray("ht_id='{$ht_id}' AND kind='2'");
 
 $width = '600px';
-include T_DIR.'header.htm';
-include T_DIR.'contract/contract_show2.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'contract/contract_show2.htm';
+include TEMP.'footer.htm';
 ?>

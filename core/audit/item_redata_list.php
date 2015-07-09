@@ -49,7 +49,7 @@ $cp = $db->get_one("SELECT COUNT(distinct(zuzhi_id)) AS c_num FROM xm_item WHERE
 $Item = new Item();
 $result = $Item->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/item_redata_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/item_redata_list.htm';
+include TEMP.'footer.htm';
 ?>

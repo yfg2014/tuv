@@ -35,7 +35,7 @@ if($result[yearok]=='2')
 }
 
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_education_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_education_edit.htm';
+include TEMP.'footer.htm';
 ?>

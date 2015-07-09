@@ -145,7 +145,7 @@ VKN;
 VKN;
 }
 
-include T_DIR.'header.htm';
+include TEMP.'header.htm';
 calendar();
-include T_DIR.'footer.htm';
+include TEMP.'footer.htm';
 ?>

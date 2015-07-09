@@ -78,8 +78,8 @@ $params = array(
 $s = new Finance();
 $result = $s->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'finance/finance_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'finance/finance_list.htm';
+include TEMP.'footer.htm';
 
 ?>

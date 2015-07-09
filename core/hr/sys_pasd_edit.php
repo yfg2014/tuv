@@ -20,7 +20,7 @@ if ($_SESSION['userid']) {
 
 $width='500px';
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/sys_pasd_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/sys_pasd_edit.htm';
+include TEMP.'footer.htm';
 ?>

@@ -12,7 +12,7 @@ $array = array(
 	),
 );
 
-include T_DIR.'header.htm';
-include T_DIR.'report/audit_item_report.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'report/audit_item_report.htm';
+include TEMP.'footer.htm';
 ?>

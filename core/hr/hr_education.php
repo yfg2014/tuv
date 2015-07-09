@@ -33,7 +33,7 @@ $params = array(
 $s = new hr_education();
 $result = $s->list_audit_code($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_education.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_education.htm';
+include TEMP.'footer.htm';
 ?>

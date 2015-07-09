@@ -65,7 +65,7 @@ $params = array(
 $TaskUpload = new TaskUpload();
 $result = $TaskUpload->listSetup($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'auditor/auditor_upload_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'auditor/auditor_upload_list.htm';
+include TEMP.'footer.htm';
 ?>

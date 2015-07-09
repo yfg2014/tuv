@@ -196,7 +196,7 @@ $Change = new Change();
 $result = $Change->listChange($params);
 
 $width = '1300px';
-include T_DIR.'header.htm';
-include T_DIR.'change/zs_change_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'change/zs_change_list.htm';
+include TEMP.'footer.htm';
 ?>

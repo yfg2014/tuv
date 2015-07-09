@@ -19,7 +19,7 @@ GrepUtil::InitGP(array('id'));
 $CompanyQuestion = new CompanyQuestion();
 $Question = $CompanyQuestion->query($id);
 
-include T_DIR.'header.htm';
-include T_DIR.'company/qiyedengji_question_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'company/qiyedengji_question_edit.htm';
+include TEMP.'footer.htm';
 ?>

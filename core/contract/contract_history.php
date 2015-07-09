@@ -10,7 +10,7 @@ while($result = $db->fetch_array($rows)){
 	$result['htdate'] = $ht['htdate'];
 	$history_audit []= $result;
 }
-include T_DIR.'header.htm';
+include TEMP.'header.htm';
 ?>
 
 
@@ -36,5 +36,5 @@ $v['audit_type'] = Cache::cache_audit_type($v['audit_type']);
 ?>
 </table>
 <?php
-include T_DIR.'footer.htm';
+include TEMP.'footer.htm';
 ?>

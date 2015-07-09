@@ -11,7 +11,7 @@ try {
 	echo $e->error_message();
 }
 		
-include T_DIR.'header.htm';
-include T_DIR.'assess/pd_zlok_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'assess/pd_zlok_edit.htm';
+include TEMP.'footer.htm';
 ?>

@@ -24,7 +24,7 @@ $id_arr = array('zuzhi_id'=>$zuzhi_id);
 $params = array('company' => array());
 $Information = new Information($id_arr,$width,'',$params);
 
-include T_DIR.'header.htm';
-include T_DIR.'company/qiyedengji_finance_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'company/qiyedengji_finance_edit.htm';
+include TEMP.'footer.htm';
 ?>

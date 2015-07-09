@@ -84,8 +84,8 @@ $s = new fees_finance();
 $result = $s->listElement($params);
 
 $width = '750px';
-include T_DIR.'header.htm';
-include T_DIR.'finance/xm_finance_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'finance/xm_finance_list.htm';
+include TEMP.'footer.htm';
 
 ?>

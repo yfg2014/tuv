@@ -52,7 +52,7 @@ $width='600px';
 $OtherCosts = new OtherCosts();
 $result = $OtherCosts->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'finance/other_costs_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'finance/other_costs_list.htm';
+include TEMP.'footer.htm';
 ?>

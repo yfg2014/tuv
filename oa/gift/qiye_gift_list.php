@@ -69,7 +69,7 @@ $params = array(
 $s = new CompanyGift();
 $result = $s->list_company_gift($params);
 
-include T_DIR.'header.htm';
+include TEMP.'header.htm';
 include 'template/qiye_gift_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'footer.htm';
 ?>

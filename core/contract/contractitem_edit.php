@@ -24,7 +24,7 @@ if($zs['id'] != '' or $zs['id'] == '0'){
 $Information = new Information(array('zuzhi_id'=>$zuzhi_id,'ht_id'=>array($ht_id)),'600px',$height,$params = array('company'=>array(),'finance'=>array()));
 
 $width = '600px';
-include T_DIR.'header.htm';
-include T_DIR.'contract/contractitem_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'contract/contractitem_edit.htm';
+include TEMP.'footer.htm';
 ?>

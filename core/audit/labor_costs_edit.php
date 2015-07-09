@@ -68,7 +68,7 @@ $params = array('task' => array(),'company' => array());
 $Information = new Information($id_arr,$width,'',$params);
 
 
-include_once T_DIR.'header.htm';
-include_once T_DIR.'audit/labor_costs_edit.htm';
-include_once T_DIR.'footer.htm';
+include_once TEMP.'header.htm';
+include_once TEMP.'audit/labor_costs_edit.htm';
+include_once TEMP.'footer.htm';
 ?>

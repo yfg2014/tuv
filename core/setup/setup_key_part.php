@@ -24,7 +24,7 @@ $result = $s->list_setup($params);
 
 //页面设置
 $width = '600px';
-include T_DIR.'header.htm';
-include T_DIR.'setup/setup_key_part.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'setup/setup_key_part.htm';
+include TEMP.'footer.htm';
 ?>

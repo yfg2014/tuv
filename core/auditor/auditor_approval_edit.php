@@ -44,7 +44,7 @@ if($op == '1'){
 	}
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'auditor/auditor_approval_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'auditor/auditor_approval_edit.htm';
+include TEMP.'footer.htm';
 ?>

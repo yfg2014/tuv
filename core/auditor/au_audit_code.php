@@ -40,7 +40,7 @@ $params = array(
 $s = new Hr_audit_code();
 $result = $s->list_audit_code($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'auditor/au_audit_code.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'auditor/au_audit_code.htm';
+include TEMP.'footer.htm';
 ?>

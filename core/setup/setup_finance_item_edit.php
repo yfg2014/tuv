@@ -8,7 +8,7 @@ if ($id) {
 	$rst = $s->get_setup($id);
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'setup/setup_finance_item_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'setup/setup_finance_item_edit.htm';
+include TEMP.'footer.htm';
 ?>

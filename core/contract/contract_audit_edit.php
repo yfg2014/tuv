@@ -42,7 +42,7 @@ if ($ht_id > 0) {
 $Information = new Information(array('zuzhi_id'=>$zuzhi_id,'ht_id'=>array($ht_id)),'600px',$height,$params = array('company'=>array(),'contract' => array(),'finance'=>array()));
 
 $width = '600px';
-include T_DIR.'header.htm';
-include T_DIR.'contract/contract_audit_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'contract/contract_audit_edit.htm';
+include TEMP.'footer.htm';
 ?>

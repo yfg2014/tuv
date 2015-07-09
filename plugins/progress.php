@@ -148,8 +148,8 @@ if($zuzhi_id != ''){
 }
 $width = '1600px';
 
-include T_DIR.'header.htm';
-include T_DIR.'plugins/progress.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'plugins/progress.htm';
+include TEMP.'footer.htm';
 
 ?>

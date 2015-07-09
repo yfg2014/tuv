@@ -94,7 +94,7 @@ $params = array(
 $Item = new Item();
 $result = $Item->listElementPost($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'certificate/cert_zhengming.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'certificate/cert_zhengming.htm';
+include TEMP.'footer.htm';
 ?>

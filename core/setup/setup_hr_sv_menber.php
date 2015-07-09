@@ -27,7 +27,7 @@ File::writeFile(SET_DIR.'/setup_hr_sv_menber.php', $cache);
 
 }
 include(SET_DIR."setup_hr_sv_menber.php");
-include T_DIR.'header.htm';
+include TEMP.'header.htm';
 if($error_name != '')
 {
 	echo '<br><Br><p align=center>错误的人员姓名'.$error_name.'</p>';
@@ -85,5 +85,5 @@ else
   </form>
 </table>
 <?php
-include T_DIR.'footer.htm';
+include TEMP.'footer.htm';
 ?>

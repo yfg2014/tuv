@@ -31,7 +31,7 @@ $Evaluate = new Evaluate();
 $result = $Evaluate->listElement($params);
 
 $width = '1000px';
-include T_DIR.'header.htm';
-include T_DIR.'assess/pd_hr_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'assess/pd_hr_list.htm';
+include TEMP.'footer.htm';
 ?>

@@ -37,7 +37,7 @@ $AssessmentItem = new AssessmentItem();
 $result = $AssessmentItem->listElement($params," ORDER BY approvaldate DESC");
 
 $width = '1450px';
-include T_DIR.'header.htm';
-include T_DIR.'assess/pd_xm_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'assess/pd_xm_list.htm';
+include TEMP.'footer.htm';
 ?>

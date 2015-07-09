@@ -50,7 +50,7 @@ $result = $s->list_audit_code($params2);
 
 // 个人信息导航代码
 $p_url = Personal::Navigation($hr_id);
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_audit_code.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_audit_code.htm';
+include TEMP.'footer.htm';
 ?>

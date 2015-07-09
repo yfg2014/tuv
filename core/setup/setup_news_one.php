@@ -32,9 +32,9 @@ include (S_DIR . 'include/cache.inc.php');
 	$cache = new CacheStr($cachedir, $filename, $lifetime); //省略参数即采用缺省设置, $cache = new Cache($cachedir);
 	$cache->load(); //装载缓存,缓存有效则不执行以下页面代码
 
-	include T_DIR . 'header.htm';
-	include T_DIR . 'setup/setup_news_one.htm';
-	include T_DIR . 'footer.htm';
+	include TEMP . 'header.htm';
+	include TEMP . 'setup/setup_news_one.htm';
+	include TEMP . 'footer.htm';
 
 	$cache->write(); //写入缓存
 ?>

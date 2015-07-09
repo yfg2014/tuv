@@ -111,7 +111,7 @@ $result = $s->list_reg_qualification($params);
 $s1= new Au_information_info();
 $hrinfo = $s1->query($id);
 
-include T_DIR.'header.htm';
-include T_DIR.'auditor/au_reg_qualification_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'auditor/au_reg_qualification_list.htm';
+include TEMP.'footer.htm';
 ?>

@@ -162,7 +162,7 @@ $params = array(
 $Complex = new Complex();
 $result = $Complex->listSetup($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/complex_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/complex_list.htm';
+include TEMP.'footer.htm';
 ?>

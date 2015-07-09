@@ -27,7 +27,7 @@ $press2 = 'off';
 $ck_xm = $db->get_one("SELECT id FROM xm_item WHERE ht_id='$ht_id' LIMIT 1");
 if ($ck_xm['id'] != ''){$press2 = 'on';}
 
-include T_DIR.'header.htm';
-include T_DIR.'contract/contract_show.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'contract/contract_show.htm';
+include TEMP.'footer.htm';
 ?>

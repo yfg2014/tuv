@@ -68,7 +68,7 @@ if($taskBeginDate!='' and $taskEndDate!=''){
 }
 
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/approval_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/approval_edit.htm';
+include TEMP.'footer.htm';
 ?>

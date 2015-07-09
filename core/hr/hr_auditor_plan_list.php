@@ -53,7 +53,7 @@ $params = array(
 $s = new Hr_auditor_plan();
 $result = $s->list_auditor_plan($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_auditor_plan_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_auditor_plan_list.htm';
+include TEMP.'footer.htm';
 ?>

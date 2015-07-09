@@ -92,7 +92,7 @@ $params = array(
 $s = new Hr_public_list();
 $result = $s->list_hr_public($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_public_list_01.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_public_list_01.htm';
+include TEMP.'footer.htm';
 ?>

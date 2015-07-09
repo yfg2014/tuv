@@ -108,7 +108,7 @@ while ($rows = $db->fetch_array($query)){
 }
 
 $width= '700px';
-include T_DIR.'header.htm';
-include T_DIR.'company/company_show.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'company/company_show.htm';
+include TEMP.'footer.htm';
 ?>

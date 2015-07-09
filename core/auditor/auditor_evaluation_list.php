@@ -34,7 +34,7 @@ $params = array(
 $AuditorPlan = new AuditorPlan();
 $result = $AuditorPlan->listAuditorEval($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'auditor/auditor_evaluation_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'auditor/auditor_evaluation_list.htm';
+include TEMP.'footer.htm';
 ?>

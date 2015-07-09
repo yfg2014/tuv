@@ -81,7 +81,7 @@ $params = array(
 $s = new Hr_audit_code();
 $result = $s->list_audit_code($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_apply_code_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_apply_code_list.htm';
+include TEMP.'footer.htm';
 ?>

@@ -14,7 +14,7 @@ if ($id) {
 	$rst = $s->get_setup($id);
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'setup/setup_law_uploadfile_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'setup/setup_law_uploadfile_edit.htm';
+include TEMP.'footer.htm';
 ?>

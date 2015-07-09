@@ -29,7 +29,7 @@ switch ($do) {
 		break;
 	default:
                //包含登录模板
-		include T_DIR.'login.htm';
+		include TEMP.'login.htm';
 		break;
 }
 ?>

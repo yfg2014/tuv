@@ -67,7 +67,7 @@ $width='750px';
 $Company = new Company();
 $result = $Company->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'company/qiyedengji_complaint.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'company/qiyedengji_complaint.htm';
+include TEMP.'footer.htm';
 ?>

@@ -11,7 +11,7 @@ $result = $InformationRelease->query($id);
 
 $upload = "./core/hr/sys_notice_file_upload.php";
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/sys_notice_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/sys_notice_edit.htm';
+include TEMP.'footer.htm';
 ?>

@@ -32,13 +32,13 @@ $id_arr = array('zuzhi_id'=>$zuzhi_id);
 
 $Information = new Information($id_arr,$width,'',$params);
 
-include T_DIR.'header.htm';
+include TEMP.'header.htm';
 if($renzhengleixing == ''){
-	include T_DIR.'type/xm_type.htm';
+	include TEMP.'type/xm_type.htm';
 }else if($renzhengleixing == '03'){
-	include T_DIR.'type/version_rzlx_edit.htm';
+	include TEMP.'type/version_rzlx_edit.htm';
 }else if($renzhengleixing == '06' or $renzhengleixing == '07'){
-	include T_DIR.'type/size_rzlx_edit.htm';
+	include TEMP.'type/size_rzlx_edit.htm';
 }
-include T_DIR.'footer.htm';
+include TEMP.'footer.htm';
 ?>

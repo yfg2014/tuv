@@ -13,7 +13,7 @@ $zs['online'] = Cache::cache_Certification_online($zs['online']);
 $zs['renewal_reason'] = $setup_renewal_reason[$zs['renewal_reason']];
 
 
-include T_DIR.'header.htm';
-include T_DIR.'certificate/cert_show.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'certificate/cert_show.htm';
+include TEMP.'footer.htm';
 ?>

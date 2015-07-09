@@ -131,7 +131,7 @@ $params = array(
 $Item = new Item();
 $result = $Item->listElementStop($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'certificate/should_suspend_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'certificate/should_suspend_list.htm';
+include TEMP.'footer.htm';
 ?>

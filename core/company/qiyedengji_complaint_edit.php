@@ -20,7 +20,7 @@ if($id != ''){
 
 $upload = "./core/company/qiyedengji_complaint_file_upload.php";
 
-include T_DIR.'header.htm';
-include T_DIR.'company/qiyedengji_complaint_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'company/qiyedengji_complaint_edit.htm';
+include TEMP.'footer.htm';
 ?>

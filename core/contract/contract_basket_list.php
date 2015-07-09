@@ -52,8 +52,8 @@ $params = array(
 $FinanceBasket = new FinanceBasket();
 $result = $FinanceBasket->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'contract/contract_basket_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'contract/contract_basket_list.htm';
+include TEMP.'footer.htm';
 
 ?>

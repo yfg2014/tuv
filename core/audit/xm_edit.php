@@ -114,7 +114,7 @@ $id_arr = array('zuzhi_id'=>$result['zuzhi_id'],'htxm_id'=>$htxm_id,'ht_id'=>$ht
 $params = array('company' => array(),'certificate' => array(),'contract'=>array(),'item' => array(),'finance'=>array());
 $Information = new Information($id_arr,$width,'',$params);
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/xm_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/xm_edit.htm';
+include TEMP.'footer.htm';
 ?>

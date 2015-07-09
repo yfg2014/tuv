@@ -16,7 +16,7 @@ $Review = new Review();
 $result = $Review->query($id);
 $result['username'] = Cache::cache_username($result['hr_id']);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_review_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_review_edit.htm';
+include TEMP.'footer.htm';
 ?>

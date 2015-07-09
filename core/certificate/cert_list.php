@@ -33,7 +33,7 @@ $qy_num = $db->get_one("SELECT COUNT(distinct(zuzhi_id)) AS c_num FROM zs_cert W
 $Certificate = new Certificate();
 $result = $Certificate->listCertification($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'certificate/cert_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'certificate/cert_list.htm';
+include TEMP.'footer.htm';
 ?>

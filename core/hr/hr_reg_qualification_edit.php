@@ -42,7 +42,7 @@ if($result[yearok]=='2')
 {$yearok_ck03 = 'checked="checked"';}
 // 个人信息导航代码
 $p_url = Personal::Navigation($hr_id);
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_reg_qualification_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_reg_qualification_edit.htm';
+include TEMP.'footer.htm';
 ?>

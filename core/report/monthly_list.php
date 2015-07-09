@@ -568,7 +568,7 @@ function get_change($cgid)
 }
 
 
-include T_DIR.'header.htm';
-include T_DIR.'report/monthly_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'report/monthly_list.htm';
+include TEMP.'footer.htm';
 ?>

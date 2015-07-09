@@ -58,7 +58,7 @@ $params = array(
 $s = new XmTaskReturnRecord();
 $result = $s->list_return_record($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/return_record_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/return_record_list.htm';
+include TEMP.'footer.htm';
 ?>

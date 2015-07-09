@@ -13,7 +13,7 @@ if($eid != ''){
 
 $width = '500px';
 
-include T_DIR.'header.htm';
-include T_DIR.'demand/demand_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'demand/demand_edit.htm';
+include TEMP.'footer.htm';
 ?>

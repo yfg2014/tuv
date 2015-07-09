@@ -127,7 +127,7 @@ $result = $Item->listElement($params);
 
 
 $width = '900px';
-include T_DIR.'header.htm';
-include T_DIR.'type/type_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'type/type_list.htm';
+include TEMP.'footer.htm';
 ?>

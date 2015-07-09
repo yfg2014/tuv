@@ -15,7 +15,7 @@ if ($id) {
 	
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'setup/setup_key_part_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'setup/setup_key_part_edit.htm';
+include TEMP.'footer.htm';
 ?>

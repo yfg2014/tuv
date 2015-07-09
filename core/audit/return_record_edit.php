@@ -19,7 +19,7 @@ $result = $XmTaskReturnRecord->query($id);
 
 $result['record_date'] == '' && $result['record_date'] = date("Y-m-d");
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/return_record_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/return_record_edit.htm';
+include TEMP.'footer.htm';
 ?>

@@ -47,7 +47,7 @@ if($comvid !='')
   $comv = $db->get_one($sql_cm);
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/xm_maintain_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/xm_maintain_edit.htm';
+include TEMP.'footer.htm';
 ?>

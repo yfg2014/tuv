@@ -38,7 +38,7 @@ if($htcy['samplestrue'] == '0'){$sel1 = 'selected="selected"';}elseif($htcy['sam
 $width = '600px';
 $Information = new Information(array('zuzhi_id'=>$zuzhi_id,'ht_id'=>array($ht_id)),$width,'',$params = array('company'=>array(),'contract' => array()));
 
-include T_DIR.'header.htm';
-include T_DIR.'contract/contract_sampling_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'contract/contract_sampling_edit.htm';
+include TEMP.'footer.htm';
 ?>

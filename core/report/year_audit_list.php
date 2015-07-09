@@ -8,7 +8,7 @@ GrepUtil::InitGP(array('begindate','enddate','iso'));
 if($begindate==''){$begindate=date("Y").'-01-01';}
 if($enddate==''){$enddate=date("Y").'-12-31';}
 
-include T_DIR.'header.htm';
-include T_DIR.'report/year_audit_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'report/year_audit_list.htm';
+include TEMP.'footer.htm';
 ?>

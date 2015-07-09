@@ -520,7 +520,9 @@ class UserLogin {
 		$sql = "SELECT id,power,user,username,htfrom
 					FROM hr_information
 						WHERE 1 AND user='$usr' AND password='".md5($pwd)."' AND (user = 'admin' OR (online = '1' AND working='1')) $temp_sql" ;
-		$hr = $db->get_one($sql);
+		
+
+                $hr = $db->get_one($sql);
 		if($hr){
 			return $hr;
 		}else{

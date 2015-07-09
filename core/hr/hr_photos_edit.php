@@ -10,7 +10,7 @@ $Hr_information = new Hr_information();
 $result = $Hr_information->query($hr_id);
 $result['photos'] = './upload/hr/'.$hr_id.'/photos/'.$result['photos'];
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_photos_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_photos_edit.htm';
+include TEMP.'footer.htm';
 ?>

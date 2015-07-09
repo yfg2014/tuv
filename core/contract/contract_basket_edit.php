@@ -20,7 +20,7 @@ if($eid != ''){
 $width = '600px';
 $Information = new Information(array('zuzhi_id'=>$cwxm['zuzhi_id'],'ht_id'=>array($cwxm['ht_id'])),$width,$height,$params = array('company'=>array(),'contract'=>array()));
 
-include T_DIR.'header.htm';
-include T_DIR.'contract/contract_basket_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'contract/contract_basket_edit.htm';
+include TEMP.'footer.htm';
 ?>

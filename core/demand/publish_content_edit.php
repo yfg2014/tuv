@@ -18,7 +18,7 @@ $params = array(
 $result = $PublishContent->listElement($params);
 
 $width = '500px';
-include T_DIR.'header.htm';
-include T_DIR.'demand/publish_content_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'demand/publish_content_edit.htm';
+include TEMP.'footer.htm';
 ?>

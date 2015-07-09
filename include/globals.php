@@ -2,7 +2,10 @@
 date_default_timezone_set("Asia/Shanghai");
 //DEFINE设置
 define('S_DIR',dirname(__FILE__).'/../'); // 定义根目录
-define('T_DIR',S_DIR.'frontEnd/template/');	//模板文件目录
+
+//define('T_DIR',S_DIR.'frontEnd/template/');	//模板文件目录
+//重新定义常量名称
+define('TEMP',S_DIR.'frontEnd/template/');	//模板文件目录
 define('UPLOAD_DIR',S_DIR.'upload/');	//上传根目录的绝对路径
 define('SET_DIR',S_DIR.'include/setup/');	//缓存目录路径
 define('MAXSIZE',320000);	//最大上传文件大小

@@ -84,7 +84,7 @@ $params = array(
 $Report_information = new Report_information();
 $result = $Report_information->authentication_activity_list($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'report/authentication_activity_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'report/authentication_activity_list.htm';
+include TEMP.'footer.htm';
 ?>

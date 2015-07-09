@@ -86,7 +86,7 @@ $htxm['mark'] = Cache::cache_mark($htxm['mark']);
 $op != '' ? $zsstr = '<font color=blue>证书登记</font>&nbsp;&nbsp;&nbsp;&nbsp;该体系最后一次证书编号：'.$zsend['certNo'] : $zsstr = '<font color=red>证书编辑>> '.$zs['certNo'].'   '.Cache::cache_mark($zs['mark'])."&nbsp;</font><a href=\"./index.php?m=certificate&do=cert_edit&pdid=$pdid&zsid=$zsid&zuzhi_id=$zuzhi_id&op=2\"><span  class=\"newinfo\">新增证书</span></a>";
 $zs['renewaldate'] == '0000-00-00' && $zs['renewaldate'] = '';
 
-include T_DIR.'header.htm';
-include T_DIR.'certificate/cert_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'certificate/cert_edit.htm';
+include TEMP.'footer.htm';
 ?>

@@ -171,7 +171,7 @@ $params = array(
 $Auditor = new Auditor();
 $result = $Auditor->listAuditor($params);
 
-include_once T_DIR.'header.htm';
-include_once T_DIR.'audit/item_people_list.htm';
-include_once T_DIR.'footer.htm';
+include_once TEMP.'header.htm';
+include_once TEMP.'audit/item_people_list.htm';
+include_once TEMP.'footer.htm';
 ?>

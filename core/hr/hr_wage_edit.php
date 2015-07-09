@@ -12,7 +12,7 @@ if($eid != ''){
 	$result = $Wage->query($eid);
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_wage_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_wage_edit.htm';
+include TEMP.'footer.htm';
 ?>

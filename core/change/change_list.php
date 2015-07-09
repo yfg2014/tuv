@@ -141,7 +141,7 @@ $Certificate = new Certificate();
 $result = $Certificate->listCertification($params);
 
 $width = '850px';
-include T_DIR.'header.htm';
-include T_DIR.'change/change_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'change/change_list.htm';
+include TEMP.'footer.htm';
 ?>

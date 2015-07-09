@@ -34,7 +34,7 @@ $width='800px';
 $s = new hr_profession();
 $result = $s->list_audit_code($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_profession.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_profession.htm';
+include TEMP.'footer.htm';
 ?>

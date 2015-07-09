@@ -120,7 +120,7 @@ $TypeChange = new TypeChange();
 $result = $TypeChange->listRzlx($params);
 
 $width = '950px';
-include T_DIR.'header.htm';
-include T_DIR.'type/xm_type_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'type/xm_type_list.htm';
+include TEMP.'footer.htm';
 ?>

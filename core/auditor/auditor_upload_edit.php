@@ -18,7 +18,7 @@ $id_arr = array('taskId'=>$taskId,'zuzhi_id'=>$zuzhi_id);
 $params = array('company' => array(),'task' => array());
 $Information = new Information($id_arr,$width,'',$params);
 
-include T_DIR.'header.htm';
-include T_DIR.'auditor/auditor_upload_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'auditor/auditor_upload_edit.htm';
+include TEMP.'footer.htm';
 ?>

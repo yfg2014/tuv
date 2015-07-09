@@ -61,7 +61,7 @@ $params = array(
 $s = new Hr_information();
 $result = $s->listHr($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/auditor_train.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/auditor_train.htm';
+include TEMP.'footer.htm';
 ?>

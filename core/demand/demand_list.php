@@ -53,7 +53,7 @@ $params = array(
 $Demand = new Demand();
 $result = $Demand->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'demand/demand_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'demand/demand_list.htm';
+include TEMP.'footer.htm';
 ?>

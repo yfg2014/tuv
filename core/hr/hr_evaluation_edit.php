@@ -20,7 +20,7 @@ $result['pjempName'] = $rows['empName'];
 
 $Information = new Information(array('zuzhi_id'=>$zuzhi_id),$width,'',$params = array('company'=>array()));
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_evaluation_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_evaluation_edit.htm';
+include TEMP.'footer.htm';
 ?>

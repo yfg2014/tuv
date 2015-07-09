@@ -38,7 +38,7 @@ $params = array(
 $s = new hr_resume();
 $result = $s->list_audit_code($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_resume.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_resume.htm';
+include TEMP.'footer.htm';
 ?>

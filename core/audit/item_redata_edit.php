@@ -67,7 +67,7 @@ while($row = $db->fetch_array($query)){
 
 $qy = $db->get_one("SELECT kehujibie FROM mk_company WHERE id='$zuzhi_id'"); //客户级别
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/item_redata_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/item_redata_edit.htm';
+include TEMP.'footer.htm';
 ?>

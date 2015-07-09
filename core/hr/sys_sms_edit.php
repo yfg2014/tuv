@@ -14,7 +14,7 @@ $Hr_information = new Hr_information();
 $where = "password!='' and online='1' and user!='admin'";
 $arr = $Hr_information->toArray($where);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/sys_sms_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/sys_sms_edit.htm';
+include TEMP.'footer.htm';
 ?>

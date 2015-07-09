@@ -92,7 +92,7 @@ while($forum_setup = $db->fetch_array($quer_setup))
 }
 
 $width = "600px";
-include T_DIR.'header.htm';
-include T_DIR.'report/ccaa.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'report/ccaa.htm';
+include TEMP.'footer.htm';
 ?>

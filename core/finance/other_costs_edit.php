@@ -18,7 +18,7 @@ $id_arr = array('zuzhi_id'=>$zuzhi_id,'ht_id'=>array($ht_id));
 $params = array('company' => array(),'contract' => array());
 $Information = new Information($id_arr,$width,'',$params);
 
-include T_DIR.'header.htm';
-include T_DIR.'finance/other_costs_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'finance/other_costs_edit.htm';
+include TEMP.'footer.htm';
 ?>

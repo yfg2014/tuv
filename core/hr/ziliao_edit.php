@@ -15,7 +15,7 @@ if ($hr_id) {
 	$zi=$renUpload->query($hr_id);
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/ziliao_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/ziliao_edit.htm';
+include TEMP.'footer.htm';
 ?>

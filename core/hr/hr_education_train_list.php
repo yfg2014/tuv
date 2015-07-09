@@ -54,7 +54,7 @@ $params = array(
 $s = new EducationTrain();
 $result = $s->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_education_train_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_education_train_list.htm';
+include TEMP.'footer.htm';
 ?>

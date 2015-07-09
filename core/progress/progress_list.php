@@ -146,7 +146,7 @@ $params = array(
 $Item = new Item();
 $result = $Item->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'progress/progress_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'progress/progress_list.htm';
+include TEMP.'footer.htm';
 ?>

@@ -51,8 +51,8 @@ $params = array(
 $finance = new finance();
 $result = $finance->listFinance($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'contract/contract_transfer.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'contract/contract_transfer.htm';
+include TEMP.'footer.htm';
 
 ?>

@@ -19,7 +19,7 @@ $result['username'] = Cache::cache_username($result['hr_id']);
 $result['plan_complete_date']  == '0000-00-00' && $result['plan_complete_date'] = '';
 $result['actual_complete_date']  == '0000-00-00' && $result['actual_complete_date'] = '';
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_auditor_plan_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_auditor_plan_edit.htm';
+include TEMP.'footer.htm';
 ?>

@@ -155,7 +155,7 @@ $params = array(
 $Auditor = new Auditor();
 $result = $Auditor->listAuditor($params);
 
-include_once T_DIR.'header.htm';
-include_once T_DIR.'auditor/au_audit_item_list.htm';
-include_once T_DIR.'footer.htm';
+include_once TEMP.'header.htm';
+include_once TEMP.'auditor/au_audit_item_list.htm';
+include_once TEMP.'footer.htm';
 ?>

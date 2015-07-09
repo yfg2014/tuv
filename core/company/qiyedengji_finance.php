@@ -27,7 +27,7 @@ $s = new Company();
 $result = $s->listElement($params);
 
 
-include T_DIR.'header.htm';
-include T_DIR.'company/qiyedengji_finance.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'company/qiyedengji_finance.htm';
+include TEMP.'footer.htm';
 ?>

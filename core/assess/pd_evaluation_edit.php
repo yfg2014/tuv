@@ -47,7 +47,7 @@ $id_arr = array('taskId'=>$taskId,'zuzhi_id'=>$zuzhi_id,'ht_id'=>$ht_id_arr,'htx
 $params = array('company' => array(),'contract' => array(),'task' => array(),'item'=>array(),'certificate'=>array(),'finance'=>array(),'sampling'=>array());
 $Information = new Information($id_arr,$width,'',$params);
 
-include T_DIR.'header.htm';
-include T_DIR.'assess/pd_evaluation_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'assess/pd_evaluation_edit.htm';
+include TEMP.'footer.htm';
 ?>

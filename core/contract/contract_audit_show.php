@@ -54,7 +54,7 @@ if($op == 1){
 
 $main_title = '打印评审记录';
 
-include T_DIR.'header.htm';
-include T_DIR.'contract/'.$htm;
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'contract/'.$htm;
+include TEMP.'footer.htm';
 ?>

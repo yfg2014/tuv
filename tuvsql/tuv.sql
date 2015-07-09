@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1:3306
--- 生成日期: 2014 年 10 月 02 日 02:48
+-- 生成日期: 2015 年 07 月 09 日 21:57
 -- 服务器版本: 5.1.28
--- PHP 版本: 5.2.6
+-- PHP 版本: 5.4.32
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -432,7 +432,7 @@ CREATE TABLE IF NOT EXISTS `hr_information` (
 --
 
 INSERT INTO `hr_information` (`old_id`, `id`, `user`, `idcode`, `username`, `username_e`, `password`, `power`, `ename`, `sex`, `birthday`, `shenfenkind`, `cardid`, `cardaddress`, `politics`, `htfrom`, `national`, `ruzhidate`, `pinyongdate`, `pinyongover`, `hetonghao`, `yjm`, `shebaohao`, `suozaidanwei`, `baomi`, `baomidate`, `province`, `city`, `city_msg`, `address`, `postcode`, `phone`, `tel`, `fax`, `email`, `m_server`, `m_name`, `m_password`, `bankcode`, `bankmsg`, `xingzhi`, `contract_type`, `working`, `groupdate`, `use_lev`, `other`, `worktype`, `dwdizhi`, `dwtel`, `xz_dangan`, `sh_dangan`, `lizhidate`, `bumen`, `photos`, `online`, `isdesc`, `cert`, `technical`, `workingtime`, `language`, `language_level`, `healthystart`, `healthyend`, `position`, `agency`, `agency_date`) VALUES
-(0, 1, 'admin', 'admin', '管理员', '', '21232f297a57a5a743894a0e4a801fc3', 'integrated,A0S,B0S,C6S,C4S,D0S,E0S,F0S,G2S,B1B,B2Z,B2C,B2D,company,A0S,A0E,A0D,A1S,A1E,A1L,A1D,A1C,A2C,A2D,A3E,A3S,A3D,A2E,A2S,contract,B0S,B0E,B0D,B2Q,B2E,B2P,B2B,G0S,G0E,G0D,B1S,B1B,B2Z,B2C,B2D,B3S,B3E,audit,Z4S,Z4D,Z8S,Z8E,Z8D,Z7S,Z7E,Z7D,C0S,C0E,C1S,C1E,C1D,C2D,C2S,C2P,C3S,C4S,C5S,C5E,C6S,C6D,C7S,C7E,M0E,M0D,M0S,C0T,sv,C8S,C8E,C8D,C9S,C9E,C9D,C9F,pd,D0E,D0S,D0D,D1S,D1E,D1D,D2E,D2D,D4E,D4S,cert,E0E,E0S,E0Z,E0D,E0C,E1S,E2S,E3S,E4S,E5E,change,F0E,F0S,F0D,F0P,finance,G1S,G1E,G1D,G2S,G2X,G3E,G3D,G3S,hr,H0S,H0E,H1S,H1E,H2S,H2E,H3P,H4S,H4E,H4D,H6S,H6E,H6D,H0G,H1G,H2G,H1P,H2P,H4P,H0J,H7S,H7E,H7D,H8S,H8E,H8D,statistics,I0S,I1S,I2S,I3S,I3E,I4S,I5S,I6S,composite,L0S,L0E,L1S,L1E,L1HY,L2HY,auditer,K0S,K0F,K1S,K0L,K0B,K0D,K0H,K0W,H5S,K0J,sys,J0E,J1E,J2S,J3E,J4E,other,Z0S,Z2S,Z3S,Z5A,Z5B,Z5C,Z5D', '', '', '0000-00-00', NULL, '', '', '', '1000', '', NULL, NULL, NULL, '', '', 0, NULL, NULL, NULL, '', NULL, '', NULL, '', '', '', NULL, '', '', '', '', '', '', NULL, '', 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, '', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '0000-00-00'),
+(0, 1, 'admin', 'admin', '管理员', '', 'e10adc3949ba59abbe56e057f20f883e', 'integrated,A0S,B0S,C6S,C4S,D0S,E0S,F0S,G2S,B1B,B2Z,B2C,B2D,company,A0S,A0E,A0D,A1S,A1E,A1L,A1D,A1C,A2C,A2D,A3E,A3S,A3D,A2E,A2S,contract,B0S,B0E,B0D,B2Q,B2E,B2P,B2B,G0S,G0E,G0D,B1S,B1B,B2Z,B2C,B2D,B3S,B3E,audit,Z4S,Z4D,Z8S,Z8E,Z8D,Z7S,Z7E,Z7D,C0S,C0E,C1S,C1E,C1D,C2D,C2S,C2P,C3S,C4S,C5S,C5E,C6S,C6D,C7S,C7E,M0E,M0D,M0S,C0T,sv,C8S,C8E,C8D,C9S,C9E,C9D,C9F,pd,D0E,D0S,D0D,D1S,D1E,D1D,D2E,D2D,D4E,D4S,cert,E0E,E0S,E0Z,E0D,E0C,E1S,E2S,E3S,E4S,E5E,change,F0E,F0S,F0D,F0P,finance,G1S,G1E,G1D,G2S,G2X,G3E,G3D,G3S,hr,H0S,H0E,H1S,H1E,H2S,H2E,H3P,H4S,H4E,H4D,H6S,H6E,H6D,H0G,H1G,H2G,H1P,H2P,H4P,H0J,H7S,H7E,H7D,H8S,H8E,H8D,statistics,I0S,I1S,I2S,I3S,I3E,I4S,I5S,I6S,composite,L0S,L0E,L1S,L1E,L1HY,L2HY,auditer,K0S,K0F,K1S,K0L,K0B,K0D,K0H,K0W,H5S,K0J,sys,J0E,J1E,J2S,J3E,J4E,other,Z0S,Z2S,Z3S,Z5A,Z5B,Z5C,Z5D', '', '', '0000-00-00', NULL, '', '', '', '1000', '', NULL, NULL, NULL, '', '', 0, NULL, NULL, NULL, '', NULL, '', NULL, '', '', '', NULL, '', '', '', '', '', '', NULL, '', 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, '', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '0000-00-00'),
 (0, 3, '1337739042', '1', '刘样', '', '', NULL, '', '01', '1984-05-23', '00', '460300199006110000', '北京市怀柔区xxx', '1002', '1000', '汉族', '2012-05-01', '2012-05-01', '2014-05-31', '', '', 0, '', 0, '0000-00-00', '110000', '110116', '北京市怀柔区', '', '', '13976580000', '', '', '793055635@qq.com', '', '', '', '', '', '1001', '', 1, '0000-00-00', '', '', '08', '', '', NULL, NULL, '2012-05-23', '', '', 1, NULL, '', '', '5', '英语', '', '0000-00-00', '0000-00-00', 'D2', '', '2012-05-23'),
 (0, 4, '1337743556', '2', '李佳佳', 'JiaJia Li', '', NULL, '', '02', '1989-05-23', '00', '460300199006118888', '河北省邢台市任县', '', '1000', '汉族', '0000-00-00', '0000-00-00', '0000-00-00', '', '', 0, '', 0, '0000-00-00', '130000', '130526', '河北省邢台市任县', '', '', '13976581111', '', '', '567576@qq.com', '', '', '', '', '', '', '', 0, '0000-00-00', '', '', '02', '', '', NULL, NULL, '0000-00-00', '', '', 1, NULL, '', '', '', '', '', '0000-00-00', '0000-00-00', '', '', '0000-00-00');
 
@@ -14220,7 +14220,7 @@ CREATE TABLE IF NOT EXISTS `sys_log` (
   `logtime` datetime DEFAULT NULL,
   `info` varchar(100) CHARACTER SET gbk NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='系统操作日志' AUTO_INCREMENT=779 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='系统操作日志' AUTO_INCREMENT=790 ;
 
 --
 -- 导出表中的数据 `sys_log`
@@ -15005,7 +15005,18 @@ INSERT INTO `sys_log` (`id`, `zuzhi_id`, `username`, `ip`, `logtime`, `info`) VA
 (775, 0, 'admin:管理员', '127.0.0.1', '2014-06-18 22:26:48', '登入成功'),
 (776, 0, 'admin:管理员', '127.0.0.1', '2014-08-17 15:20:03', '登入成功'),
 (777, 0, 'admin:管理员', '127.0.0.1', '2014-09-29 13:26:10', '登入成功'),
-(778, 0, 'admin:管理员', '127.0.0.1', '2014-10-02 10:45:55', '登入成功');
+(778, 0, 'admin:管理员', '127.0.0.1', '2014-10-02 10:45:55', '登入成功'),
+(779, 0, 'admin:管理员', '127.0.0.1', '2014-10-02 11:31:57', '登入成功'),
+(780, 0, 'admin:管理员', '127.0.0.1', '2015-07-09 21:36:09', '登入成功'),
+(781, 0, 'admin:管理员', '127.0.0.1', '2015-07-09 21:47:46', '登入成功'),
+(782, 0, 'admin:管理员', '127.0.0.1', '2015-07-09 21:47:49', '登入成功'),
+(783, 0, 'admin:管理员', '127.0.0.1', '2015-07-09 21:47:56', '登入成功'),
+(784, 0, 'admin:管理员', '127.0.0.1', '2015-07-09 21:47:58', '登入成功'),
+(785, 0, 'admin:管理员', '127.0.0.1', '2015-07-09 21:48:01', '登入成功'),
+(786, 0, 'admin:管理员', '127.0.0.1', '2015-07-09 21:48:02', '登入成功'),
+(787, 0, 'admin:管理员', '127.0.0.1', '2015-07-09 21:48:33', '登入成功'),
+(788, 0, 'admin:管理员', '127.0.0.1', '2015-07-09 21:48:36', '登入成功'),
+(789, 0, 'admin:管理员', '127.0.0.1', '2015-07-09 21:52:12', '登入成功');
 
 -- --------------------------------------------------------
 

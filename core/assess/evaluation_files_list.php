@@ -20,7 +20,7 @@ $Files = new Files();
 $result = $Files->listElement($params);
 
 $width = '800px';
-include T_DIR.'header.htm';
-include T_DIR.'assess/evaluation_files_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'assess/evaluation_files_list.htm';
+include TEMP.'footer.htm';
 ?>

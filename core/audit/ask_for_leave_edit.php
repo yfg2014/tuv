@@ -38,7 +38,7 @@ for($i=0;$i<=23;$i++){
 
 
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/ask_for_leave_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/ask_for_leave_edit.htm';
+include TEMP.'footer.htm';
 ?>

@@ -18,8 +18,8 @@ $arr2 = array(
 'Q','E','S','F'
 );
 $company = Cache::cache_company($htxm['zuzhi_id']);
-include T_DIR.'header.htm';
-include T_DIR.'plugins/leastprice.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'plugins/leastprice.htm';
+include TEMP.'footer.htm';
 
 ?>

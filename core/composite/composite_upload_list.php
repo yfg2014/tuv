@@ -80,7 +80,7 @@ $params = array(
 $CompositeUpload = new CompositeUpload();
 $result = $CompositeUpload->listSetup($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'composite/composite_upload_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'composite/composite_upload_list.htm';
+include TEMP.'footer.htm';
 ?>

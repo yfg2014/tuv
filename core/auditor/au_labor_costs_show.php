@@ -170,7 +170,7 @@ if ($online == '0'){
 $Auditor = new Auditor();
 $result = $Auditor->listAuditor($params);
 
-include_once T_DIR.'header.htm';
-include_once T_DIR.'auditor/au_labor_costs_show.htm';
-include_once T_DIR.'footer.htm';
+include_once TEMP.'header.htm';
+include_once TEMP.'auditor/au_labor_costs_show.htm';
+include_once TEMP.'footer.htm';
 ?>

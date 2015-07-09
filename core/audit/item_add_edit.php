@@ -35,7 +35,7 @@ $params = array('company' => array(),'contract' => array());
 $id_arr = array('zuzhi_id'=>$zuzhi_id,'ht_id'=>array($ht_id));
 $Information = new Information($id_arr,$width,'',$params);
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/item_add_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/item_add_edit.htm';
+include TEMP.'footer.htm';
 ?>

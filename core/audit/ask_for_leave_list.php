@@ -84,7 +84,7 @@ $params = array(
 $Auditor = new Auditor();
 $result = $Auditor->listAuditor($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/ask_for_leave_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/ask_for_leave_list.htm';
+include TEMP.'footer.htm';
 ?>

@@ -22,7 +22,7 @@ if ($id != ''){
 // 个人信息导航代码
 $p_url = Personal::Navigation($id);
 $width= '550px';
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_training_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_training_edit.htm';
+include TEMP.'footer.htm';
 ?>

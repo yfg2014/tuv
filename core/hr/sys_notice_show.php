@@ -12,7 +12,7 @@ $times = $result['times'] + 1;
 $InformationRelease->update($id, array('times' => $times));
 
 $width = '600px';
-include T_DIR.'header.htm';
-include T_DIR.'hr/sys_notice_show.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/sys_notice_show.htm';
+include TEMP.'footer.htm';
 ?>

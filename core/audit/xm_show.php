@@ -94,7 +94,7 @@ foreach ($rows as $v) {
 	$arr []= $v;
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/xm_show.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/xm_show.htm';
+include TEMP.'footer.htm';
 ?>

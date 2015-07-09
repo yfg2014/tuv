@@ -77,7 +77,9 @@ Class DB {
 
 	function get_one($SQL,$result_type = MYSQL_ASSOC) {
 		$query = $this->query($SQL,'Q');
-		$rt =& $this->fetch_array($query,$result_type);
+                //原代码会报：<b>Strict Standards</b>: Only variables should be assigned by reference in XX的错误。
+		//$rt =&$this->fetch_array($query,$result_type);
+                $rt = $this->fetch_array($query,$result_type);
 		return $rt;
 	}
 

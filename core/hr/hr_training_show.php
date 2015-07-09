@@ -19,7 +19,7 @@ foreach ($arr as $v){
 $result['people'] = implode('；',$add);
 
 $width= '550px';
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_training_show.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_training_show.htm';
+include TEMP.'footer.htm';
 ?>

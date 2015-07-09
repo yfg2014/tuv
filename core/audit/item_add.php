@@ -137,7 +137,7 @@ $params = array(
 $ContractItem = new ContractItem();
 $result = $ContractItem->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'audit/item_add.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'audit/item_add.htm';
+include TEMP.'footer.htm';
 ?>

@@ -37,9 +37,9 @@ include(S_DIR.'include/cache.inc.php');
 
 
 
-include T_DIR.'header.htm';
-include T_DIR.'setup/setup_news_one.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'setup/setup_news_one.htm';
+include TEMP.'footer.htm';
 
 	$cache->write();//写入缓存
 

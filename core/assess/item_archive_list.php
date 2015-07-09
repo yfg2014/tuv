@@ -113,7 +113,7 @@ $params = array(
 $Item = new Item();
 $result = $Item->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'assess/item_archive_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'assess/item_archive_list.htm';
+include TEMP.'footer.htm';
 ?>

@@ -33,7 +33,7 @@ if ($begindate=='' or $enddate==''){
 	$enddate	=$ydate."-".$mdate."-".$tianshu;				//取数截止日期
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'report/new_monthly_find.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'report/new_monthly_find.htm';
+include TEMP.'footer.htm';
 ?>

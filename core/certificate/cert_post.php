@@ -244,7 +244,7 @@ $params = array(
 $Certificate = new Certificate();
 $result = $Certificate->postCertification($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'certificate/cert_post.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'certificate/cert_post.htm';
+include TEMP.'footer.htm';
 ?>

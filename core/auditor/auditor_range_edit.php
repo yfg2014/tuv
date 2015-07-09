@@ -35,7 +35,7 @@ $params = array('company' => array(),'contract' => array(),'task' => array(),'it
 $Information = new Information($id_arr,$width,'',$params);
 
 $width = '700px';
-include T_DIR.'header.htm';
-include T_DIR.'auditor/auditor_range_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'auditor/auditor_range_edit.htm';
+include TEMP.'footer.htm';
 ?>

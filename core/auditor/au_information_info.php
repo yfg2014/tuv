@@ -36,7 +36,7 @@ elseif($value[shebaohao] == '2'){$shebaohao_ck02='checked="checked"' ;}
 $value['groupdate'] != '0000-00-00' ? $groupdate_ck02 = 'checked="checked"' : $groupdate_ck01 = 'checked="checked"';
 // 个人信息导航代码
 $p_url = Personal::Navigation($id);
-include T_DIR.'header.htm';
-include T_DIR.'auditor/au_information_info.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'auditor/au_information_info.htm';
+include TEMP.'footer.htm';
 ?>

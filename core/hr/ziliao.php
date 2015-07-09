@@ -12,7 +12,7 @@ $params = array(
 );
 $result = ZiliaoDao::list_ziliao($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/ziliao.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/ziliao.htm';
+include TEMP.'footer.htm';
 ?>

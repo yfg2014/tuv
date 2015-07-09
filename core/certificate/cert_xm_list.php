@@ -154,7 +154,7 @@ $params = array(
 $Certificate = new Certificate();
 $result = $Certificate->listCertification($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'certificate/cert_xm_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'certificate/cert_xm_list.htm';
+include TEMP.'footer.htm';
 ?>

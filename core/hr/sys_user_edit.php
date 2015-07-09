@@ -25,7 +25,7 @@ if ($hr_id) {
 }
 
 //$db->query("UPDATE hr_information SET power='$main_power_temp' WHERE id='1'");
-include T_DIR.'header.htm';
-include T_DIR.'hr/sys_user_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/sys_user_edit.htm';
+include TEMP.'footer.htm';
 ?>

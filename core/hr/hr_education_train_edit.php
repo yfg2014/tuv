@@ -15,7 +15,7 @@ $EducationTrain = new EducationTrain();
 $result = $EducationTrain->query($id);
 $result['username'] = Cache::cache_username($result['hr_id']);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_education_train_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_education_train_edit.htm';
+include TEMP.'footer.htm';
 ?>

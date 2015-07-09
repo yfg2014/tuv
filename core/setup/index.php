@@ -1,7 +1,7 @@
 <?php
 Power::CkPower('J0E');
 
-include T_DIR.'header.htm';
-include T_DIR.'setup/index.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'setup/index.htm';
+include TEMP.'footer.htm';
 ?>

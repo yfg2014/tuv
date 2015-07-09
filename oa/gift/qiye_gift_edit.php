@@ -17,7 +17,7 @@ $result = $CompanyGift->query($id);
 $result['eiregistername'] = Cache::cache_company($result['zuzhi_id']);
 $result['plan_complete_date']  == '0000-00-00' && $result['plan_complete_date'] = '';
 
-include T_DIR.'header.htm';
+include TEMP.'header.htm';
 include 'template/qiye_gift_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'footer.htm';
 ?>

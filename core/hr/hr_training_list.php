@@ -58,7 +58,7 @@ $Training = new Training();
 $result = $Training->listElement($params);
 
 $width= '600px';
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_training_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_training_list.htm';
+include TEMP.'footer.htm';
 ?>

@@ -13,5 +13,5 @@ $where = "num='2'and touserid like '%{$_SESSION['user']}%' ORDER BY zd_date DESC
 $rows = $InformationRelease->toArray($where);
 $rows == '' ? $rows = array(0) : $rows;
 
-include T_DIR.'main_right.htm';
+include TEMP.'main_right.htm';
 ?>

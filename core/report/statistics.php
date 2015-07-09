@@ -12,7 +12,7 @@ if ($source == 'htxm'){
 	$do = 'ht_statistics';
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'report/'.$do.'.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'report/'.$do.'.htm';
+include TEMP.'footer.htm';
 ?>

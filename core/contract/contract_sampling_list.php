@@ -37,7 +37,7 @@ $params = array(
 $Sampling = new Sampling();
 $result = $Sampling->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'contract/contract_sampling_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'contract/contract_sampling_list.htm';
+include TEMP.'footer.htm';
 ?>

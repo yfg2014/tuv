@@ -174,7 +174,7 @@ $params = array(
 $s = new Hr_reg_qualification();
 $result = $s->list_reg_qualification($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_reg_qualification_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_reg_qualification_list.htm';
+include TEMP.'footer.htm';
 ?>

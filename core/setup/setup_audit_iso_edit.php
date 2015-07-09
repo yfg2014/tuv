@@ -9,7 +9,7 @@ if ($id) {
 	$rst['mark'] = explode(',',$rst['mark']);
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'setup/setup_audit_iso_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'setup/setup_audit_iso_edit.htm';
+include TEMP.'footer.htm';
 ?>

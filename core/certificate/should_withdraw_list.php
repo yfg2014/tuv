@@ -169,7 +169,7 @@ $params = array(
 $Certificate = new Certificate();
 $result = $Certificate->listCertification($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'certificate/should_withdraw_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'certificate/should_withdraw_list.htm';
+include TEMP.'footer.htm';
 ?>

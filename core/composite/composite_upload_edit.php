@@ -7,7 +7,7 @@ Power::CkPower('L0S');
 
 $upload = './core/composite/composite_file_upload.php';
 
-include T_DIR.'header.htm';
-include T_DIR.'composite/composite_upload_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'composite/composite_upload_edit.htm';
+include TEMP.'footer.htm';
 ?>

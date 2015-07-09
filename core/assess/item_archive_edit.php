@@ -22,7 +22,7 @@ $rows['archivedate'] = Cache::cache_time_value($rows['archivedate']);
 $Information = new Information(array('zuzhi_id'=>$rows['zuzhi_id'],'ht_id'=>array($rows['ht_id'])),'600px');
 
 $width = '600px';
-include T_DIR.'header.htm';
-include T_DIR.'assess/item_archive_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'assess/item_archive_edit.htm';
+include TEMP.'footer.htm';
 ?>

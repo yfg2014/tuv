@@ -42,7 +42,7 @@ if($result[online]=='0')
     $online_ck = '申请';
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'auditor/au_audit_code_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'auditor/au_audit_code_edit.htm';
+include TEMP.'footer.htm';
 ?>

@@ -18,7 +18,7 @@ while($v = $db->fetch_array($query)){
 	$arr[$v['htfrom']][$v['iso']]++;
 }
 
-include T_DIR.'header.htm';
-include T_DIR.'report/audit_department_report.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'report/audit_department_report.htm';
+include TEMP.'footer.htm';
 ?>

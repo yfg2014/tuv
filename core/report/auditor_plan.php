@@ -107,7 +107,7 @@ $result['count'] = $page->count;
 $result['pages'] = $page->nav;
 $result['data'] = $list;
 
-include T_DIR.'header.htm';
-include T_DIR.'report/auditor_plan.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'report/auditor_plan.htm';
+include TEMP.'footer.htm';
 ?>

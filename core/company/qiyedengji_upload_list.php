@@ -75,7 +75,7 @@ $params = array(
 $CompanyUpload = new CompanyUpload();
 $result = $CompanyUpload->listSetup($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'company/qiyedengji_upload_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'company/qiyedengji_upload_list.htm';
+include TEMP.'footer.htm';
 ?>

@@ -14,7 +14,7 @@ $rst['eiregistername_zhu'] = Cache::cache_company($rst['zuzhi_id']);
 
 $eiregistername_zhu = Cache::cache_company($zuzhi_id);
 
-include T_DIR.'header.htm';
-include T_DIR.'company/qiye_ex_edit.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'company/qiye_ex_edit.htm';
+include TEMP.'footer.htm';
 ?>

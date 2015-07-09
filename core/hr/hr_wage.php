@@ -53,7 +53,7 @@ $params = array(
 $s = new hr_information();
 $result = $s->listHr($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_wage.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_wage.htm';
+include TEMP.'footer.htm';
 ?>

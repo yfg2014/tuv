@@ -64,7 +64,7 @@ $result = $s->list_setup($params);
 
 //页面设置
 $width = '1000px';
-include T_DIR.'header.htm';
-include T_DIR.'setup/setup_product_ver.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'setup/setup_product_ver.htm';
+include TEMP.'footer.htm';
 ?>

@@ -20,7 +20,7 @@ if ($date != ''){
 }
 
 $width = '400px';
-include T_DIR.'header.htm';
-include T_DIR.'certificate/cert_operate.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'certificate/cert_operate.htm';
+include TEMP.'footer.htm';
 ?>

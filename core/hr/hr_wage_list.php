@@ -52,7 +52,7 @@ $params = array(
 $Wage = new Wage();
 $result = $Wage->listElement($params);
 
-include T_DIR.'header.htm';
-include T_DIR.'hr/hr_wage_list.htm';
-include T_DIR.'footer.htm';
+include TEMP.'header.htm';
+include TEMP.'hr/hr_wage_list.htm';
+include TEMP.'footer.htm';
 ?>
