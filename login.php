@@ -9,6 +9,7 @@ ini_set('display_errors', 1); //显示错误
 
 include dirname(__FILE__).'/'.'include/globals.php';
 
+//获取全局变量
 GrepUtil::InitGP(array('do','uname','upwd','cert'));
 switch ($do) {
 	case 'login' :
@@ -16,19 +17,18 @@ switch ($do) {
 		if($hr->login($uname,$upwd,$cert,$conf['cert_open']))
 		{
 			exit('1');
-		}
-		else
-		{
+		}else{
 			exit('帐号、密码或数字证书错误');
 		}
 		break;
 	case 'logout' :
 		$hr = new UserLogin();
 		$hr->logout();
-		Url::goto_url("login.php");
+		// Url::goto_url("login.php");
+        include TEMP.'login.htm';
 		break;
 	default:
-               //包含登录模板
+        //包含登录模板
 		include TEMP.'login.htm';
 		break;
 }

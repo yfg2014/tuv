@@ -8,7 +8,7 @@ include_once SET_DIR.'setup_industry.php';
 include_once SET_DIR.'setup_money_unit.php';
 include_once SET_DIR.'setup_country_area.php';
 include_once SET_DIR.'setup_qualification_kind.php';
-
+//权限检查
 Power::CkPower('A0S');
 
 GrepUtil::InitGP(array('zuzhi_id','kelong'));
